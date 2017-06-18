@@ -1,4 +1,4 @@
-# just_married
+# just-married
 
 A Clojure library designed to ... well, that part is up to you.
 
