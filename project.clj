@@ -53,7 +53,7 @@
                      :stylesheet just-married.css/screen
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
-  :doo {:build "test"}
+
   :ring {:handler just-married.api/app
          :auto-reload? true
          :auto-refresh? true}
