@@ -11,3 +11,4 @@ pom.xml.asc
 .hg/
 /infrastructure/secrets.tf
 .cljs_rhino_repl/
+resources/public/js/
