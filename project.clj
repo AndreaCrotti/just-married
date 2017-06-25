@@ -4,23 +4,23 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
-                 [org.clojure/core.async "0.3.442"]
+                 [org.clojure/core.async "0.3.443"]
                  [sqlitejdbc "0.5.6"]
                  [datascript "0.16.1"]
                  [doo "0.1.7"]
                  [re-frisk "0.4.5"]
 
-                 [re-frame "0.9.2"]
-                 [reagent "0.6.1"]
-                 [ring "1.6.0"]
+                 [re-frame "0.9.4"]
+                 [reagent "0.6.2"]
+                 [ring "1.6.1"]
                  [ring-middleware-format "0.7.2" :exclusions [ring]]
                  [ring.middleware.logger "0.5.0"]
                  [ring/ring-defaults "0.3.0"]
                  [ring/ring-json "0.4.0"]
-                 [cljs-ajax "0.5.9"]
+                 [cljs-ajax "0.6.0"]
                  [secretary "1.2.3"]
                  [org.clojure/clojurescript "1.9.521"]
-                 [metosin/ring-http-response "0.8.2"]
+                 [metosin/ring-http-response "0.9.0"]
                  [bk/ring-gzip "0.2.1"]
                  [clj-jwt "0.1.1"]
                  [compojure "1.6.0"]
@@ -73,11 +73,11 @@
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
-                   [com.cemerick/piggieback "0.2.1"]
+                   [com.cemerick/piggieback "0.2.2"]
                    [figwheel "0.5.10"]
                    [figwheel-sidecar "0.5.10"]
                    [javax.servlet/servlet-api "2.5"]
-                   [lambdaisland/garden-watcher "0.3.0"]
+                   [lambdaisland/garden-watcher "0.3.1"]
                    ;; dependencies for the reloaded workflow
                    [ns-tracker "0.3.1"]
                    [reloaded.repl "0.2.3"]
