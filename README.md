@@ -1,10 +1,9 @@
 # just-married
 
-A Clojure library designed to ... well, that part is up to you.
+Website to collect pictures, share information about a wedding and so on and so forth.
 
 ## Usage
 
-FIXME
 
 ## License
 

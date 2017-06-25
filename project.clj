@@ -1,6 +1,6 @@
 (defproject just-married "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Wedding website"
+  :url "https://github.com/AndreaCrotti/just-married"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
@@ -34,4 +34,82 @@
             [lein-cljsbuild "1.1.4"]
             [lein-garden "0.2.8"]]
 
-  :min-lein-version "2.5.3")
+  :uberjar-name "just-married.jar"
+  :min-lein-version "2.5.3"
+  :source-paths ["src/clj" "src/cljc"]
+  :test-paths ["test/clj" "test/cljc"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
+                                    "test/js"
+                                    "resources/public/css"]
+
+  :figwheel {:css-dirs ["resources/public/css"]
+             :open-file-command "lein_opener.sh"
+             :server-logfile "log/figwheel.log"}
+
+  :garden {:builds [{:id           "screen"
+                     :source-paths ["src/clj"]
+                     :stylesheet just-married.css/screen
+                     :compiler     {:output-to     "resources/public/css/screen.css"
+                                    :pretty-print? true}}]}
+  :doo {:build "test"}
+  :ring {:handler just-married.api/app
+         :auto-reload? true
+         :auto-refresh? true}
+
+  :main just-married.api
+  :target-path "target/%s"
+
+  :profiles
+  {:production {:env {:production true}}
+   :uberjar {:hooks []
+             :source-paths ["src/clj" "src/cljc"]
+             :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
+             :omit-source true
+             :aot :all
+             :main just-married.api}
+   :dev
+   {:plugins [[lein-figwheel "0.5.10"]
+              [lein-doo "0.1.7"]]
+
+    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+    :dependencies [[binaryage/devtools "0.9.4"]
+                   [com.cemerick/piggieback "0.2.1"]
+                   [figwheel "0.5.10"]
+                   [figwheel-sidecar "0.5.10"]
+                   [javax.servlet/servlet-api "2.5"]
+                   [lambdaisland/garden-watcher "0.3.0"]
+                   ;; dependencies for the reloaded workflow
+                   [ns-tracker "0.3.1"]
+                   [reloaded.repl "0.2.3"]
+                   [ring-mock "0.1.5"]]}}
+
+  :cljsbuild
+  {:builds
+   [{:id           "dev"
+     :source-paths ["src/cljs" "src/cljc"]
+     :figwheel     {:on-jsload "just-married.core/mount-root"}
+     :compiler     {:main                 just-married.core
+                    :output-to            "resources/public/js/compiled/app.js"
+                    :output-dir           "resources/public/js/compiled/out"
+                    :asset-path           "js/compiled/out"
+                    :source-map-timestamp true
+                    :preloads             [devtools.preload]
+                    :external-config      {:devtools/config {:features-to-install :all}}
+                    }}
+
+    {:id           "min"
+     :source-paths ["src/cljs" "src/cljc"]
+     :compiler     {:main            just-married.core
+                    :output-to       "resources/public/js/compiled/app.js"
+                    :optimizations   :advanced
+                    :closure-defines {goog.DEBUG false}
+                    :pretty-print    false}}
+
+    {:id           "test"
+     :source-paths ["src/cljs" "test/cljs" "src/cljc" "test/cljc"]
+     :compiler     {:main          just-married.runner
+                    :output-to     "resources/public/js/compiled/test.js"
+                    :output-dir    "resources/public/js/compiled/test/out"
+                    :optimizations :none}}
+    ]}
+  )
