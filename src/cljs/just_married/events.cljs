@@ -1,3 +1,8 @@
-(ns just-married.events)
+(ns just-married.events
+  (:require [re-frame.core :as re-frame :refer [dispatch reg-event-db]]))
 
-(def n 10)
+
+(reg-event-db
+ :set-language
+ (fn [db [_ language]]
+   (assoc db :language language)))
