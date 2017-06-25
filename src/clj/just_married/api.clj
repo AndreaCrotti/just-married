@@ -12,14 +12,14 @@
    [ring.util.http-response :as response]
    [ring.middleware.defaults :refer [api-defaults wrap-defaults]]))
 
-;; (def app
-;;   (logger/wrap-with-logger
-;;    (wrap-json-response app-routes api-defaults)))
-
 (defroutes app-routes
   (GET "/" [] (response/file-response "index.html" {:root "resources/public"}))
   (POST "/stripe-checkout" [data] (payment/handle-payment data))
-  (route/not-found))
+  (route/not-found "Could not find page"))
+
+(def app
+  #_(logger/wrap-with-logger)
+  (wrap-json-response app-routes api-defaults))
 
 (defn -main [& [port]]
   (let [port (Integer. (or port (env :port) 5000))]
