@@ -1,3 +1,6 @@
-(ns just-married.subs)
+(ns just-married.subs
+  (:require [re-frame.core :as re-frame :refer [reg-sub]]))
 
-(def h 100)
+(reg-sub
+ :current-language
+ :language)
