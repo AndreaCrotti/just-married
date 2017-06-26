@@ -1,12 +1,8 @@
 (ns just-married.views
   (:require
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
-   [just-married.language :refer [make-lang AVAILABLE-LANGUAGES]]))
-
-(defn payment
-  []
-  "Gift section, using stripe or something similar
-for the integration")
+   [just-married.language :refer [make-lang AVAILABLE-LANGUAGES]]
+   [just-married.payment-views :as payment-views]))
 
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
@@ -21,4 +17,5 @@ for the integration")
 (defn main-panel
   []
   (fn []
-    [:g [lang-selection]]))
+    [:g [lang-selection]]
+    ))
