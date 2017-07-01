@@ -13,7 +13,12 @@ Website to collect pictures, share information about a wedding and so on and so 
   - [ ] bank coordinates (EUR/GDP choice)
   - [ ] stripe integration (EUR/GDP choice)
 - [ ] add ways to upload images using various integrations: dropbox/google drive/else?
-  
+
+## Upload feature
+
+Could use [Picasa WEB developer API](https://developers.google.com/picasa-web/) 
+For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
+
 ## License
 
 Copyright © 2017 FIXME
