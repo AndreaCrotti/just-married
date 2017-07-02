@@ -26,6 +26,8 @@
         png-file (lang flag-files)
         props {:type "image" :src png-file}
         full-props (if selected
+                     ;; the default language does not
+                     ;; get selected at the moment
                      (assoc props :class "language.selected" )
                      (assoc props
                             :class "language.not-selected"

@@ -12,3 +12,5 @@ pom.xml.asc
 /infrastructure/secrets.tf
 .cljs_rhino_repl/
 resources/public/js/
+log/
+/.dir-locals.el

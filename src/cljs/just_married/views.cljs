@@ -14,6 +14,10 @@
        (for [lang AVAILABLE-LANGUAGES]
          (make-lang lang @current-language))))))
 
+;; devtools does not seem to be set up correctly
+;; since it doesn't find hints.js for example
+;; (log "hello")
+
 (defn main-panel
   []
   (fn []

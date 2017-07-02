@@ -29,7 +29,9 @@
                  [http-kit "2.2.0"]
                  ;; Clojure(script) wrapper for the Stripe API
                  [racehub/stripe-clj "0.3.5"]
-                 [tongue "0.2.2"]]
+                 [tongue "0.2.2"]
+                 [camdez/sendgrid "0.1.0"]
+                 [raven-clj "1.5.0"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
