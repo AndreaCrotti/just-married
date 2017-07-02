@@ -6,8 +6,9 @@
 
 #_(t/deftest test-email
   (t/testing "sending email using the API"
+
     (let [request (mock/request :post "/send-email"
-                                {:body "hello from test"})
+                                {:content "hello from test"})
           response (api/app request)]
 
       (t/is (= (:status response) 200)))))

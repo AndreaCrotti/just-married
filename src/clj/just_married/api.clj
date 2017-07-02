@@ -17,10 +17,10 @@
 
 (defroutes app-routes
   (GET "/" [] (response/file-response "index.html" {:root "resources/public"}))
-  (POST "/send-email" [request]
-        (do (print "request is now " request)
+  (POST "/send-email" request
+        (do (print "request =" request)
             (send-email
-             (-> request :params :body))))
+             (-> request :params :content))))
   (POST "/stripe-checkout" [data] (payment/handle-payment data))
   (route/not-found "Could not find the requested URI"))
 
