@@ -18,15 +18,15 @@
 (defroutes app-routes
   (GET "/" [] (response/file-response "index.html" {:root "resources/public"}))
   (POST "/send-email" request
-        (do (print "request =" request)
-            (send-email
-             (-> request :params :content))))
+        (send-email
+         (-> request :params :content)))
   (POST "/stripe-checkout" [data] (payment/handle-payment data))
   (route/not-found "Could not find the requested URI"))
 
 (def app
   (-> app-routes
-      (wrap-json-response api-defaults)
+      (wrap-defaults api-defaults)
+      #_(wrap-json-response api-defaults)
       (wrap-sentry settings/SENTRY-DSN)))
 
 (defn -main [& [port]]
