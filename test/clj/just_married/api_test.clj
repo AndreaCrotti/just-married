@@ -3,7 +3,9 @@
             [clojure.test :as t]
             [ring.mock.request :as mock]
             [clojure.data.json :as json]
-            [just-married.settings :refer [loaded?]]))
+            [just-married.settings :refer [loaded?]]
+            [clj-http.fake :as fake]
+            [sendgrid.core :as sendgrid]))
 
 (t/deftest test-email
   (t/testing "sending email using the API"
@@ -12,6 +14,6 @@
                                 {:content "hello from test"})
           response (api/app request)]
 
-      ;; simple way to just skip the tests running on travis
-      (when (loaded?)
+      (with-redefs
+        [sendgrid/send-email (fn [config data] true)]
         (t/is (= (:status response) 200))))))
