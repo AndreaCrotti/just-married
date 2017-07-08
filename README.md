@@ -17,6 +17,9 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add ways to upload images using various integrations: dropbox/google drive/else?
 - [ ] add a link to the amazon wish list, which should not be entirely public
       but should still allow to see something
+- [ ] add "fork me on github" to the web page somewhere??
+- [ ] evaluate the fully static page hosted page?
+      (might be easier but not as much fun potentially)
 
 ## Upload feature
 

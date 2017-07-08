@@ -7,23 +7,6 @@
   </head>
   <body>
     <div id="app"></div>
-    <div id="stripe-checkout">
-      <form action="/your-server-side-code" method="POST">
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="pk_test_qtDjM2KBQgYX9vVBhbzrU27F"
-          data-amount="999"
-          data-name="Demo Site"
-          data-description="Widget"
-          data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-          data-locale="auto"
-          data-zip-code="true"
-          <!-- currency here should be changeable (depending on the country??) -->
-          data-currency="gbp">
-        </script>
-      </form>
-    </div>
-
     <script src="js/compiled/app.js"></script>
     <script>just_married.core.init();</script>
   </body>

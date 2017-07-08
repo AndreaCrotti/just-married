@@ -22,4 +22,5 @@
   []
   (fn []
     [:g [lang-selection]]
-    ))
+    [:g [payment-views/stripe-checkout
+         payment-views/amazon-wish-list]]))

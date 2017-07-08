@@ -27,6 +27,7 @@
 (def app
   (-> app-routes
       (wrap-defaults api-defaults)
+      ;; TODO: add back the json response since it's actually needed
       #_(wrap-json-response api-defaults)
       (wrap-sentry settings/SENTRY-DSN)))
 
