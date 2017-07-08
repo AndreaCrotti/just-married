@@ -11,7 +11,7 @@
                  [re-frisk "0.4.5"]
 
                  [re-frame "0.9.4"]
-                 [reagent "0.6.2"]
+                 [reagent "0.7.0"]
                  [ring "1.6.1"]
                  [ring-middleware-format "0.7.2" :exclusions [ring]]
                  [ring.middleware.logger "0.5.0"]
@@ -19,13 +19,15 @@
                  [ring/ring-json "0.4.0"]
                  [cljs-ajax "0.6.0"]
                  [secretary "1.2.3"]
-                 [org.clojure/clojurescript "1.9.521"]
+                 [org.clojure/clojurescript "1.9.671"]
                  [metosin/ring-http-response "0.9.0"]
                  [bk/ring-gzip "0.2.1"]
                  [clj-jwt "0.1.1"]
                  [compojure "1.6.0"]
                  [environ "1.1.0"]
                  [garden "1.3.2"]
+                 ;; this added just to make garden happy?
+                 [prone "1.0.1"]
                  [http-kit "2.2.0"]
                  ;; Clojure(script) wrapper for the Stripe API
                  [racehub/stripe-clj "0.3.5"]
@@ -72,14 +74,14 @@
              :aot :all
              :main just-married.api}
    :dev
-   {:plugins [[lein-figwheel "0.5.10"]
+   {:plugins [[lein-figwheel "0.5.11"]
               [lein-doo "0.1.7"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
-                   [figwheel "0.5.10"]
-                   [figwheel-sidecar "0.5.10"]
+                   [figwheel "0.5.11"]
+                   [figwheel-sidecar "0.5.11"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.1"]
                    ;; dependencies for the reloaded workflow
