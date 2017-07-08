@@ -13,3 +13,7 @@
 
 (def SENTRY-DSN
   (:sentry-dsn env))
+
+(defn loaded?
+  []
+  (not (nil? (:api-key SENDGRID-CONFIG))))
