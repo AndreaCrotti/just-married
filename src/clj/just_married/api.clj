@@ -1,4 +1,5 @@
 (ns just-married.api
+  (:gen-class)
   (:require
    [compojure
     [core :refer [GET POST defroutes]]
