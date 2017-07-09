@@ -9,6 +9,7 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] let tests also run on travis, mocking out the HTTP calls for example
 - [ ] serve the website behind HTTPS (Heroku's one or another)
 - [ ] register a nice DNS name
+- [ ] add section about how to get there;
 - [ ] handle different ways to do the payment, where the "preferrable" might not be stripe since it's the only choice with a commission fee attached to it
   - [ ] postepay coordinates (EUR only)
   - [ ] bank coordinates (EUR/GDP choice)
@@ -20,6 +21,7 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add "fork me on github" to the web page somewhere??
 - [ ] evaluate the fully static page hosted page?
       (might be easier but not as much fun potentially)
+- [ ] add a countdown feature
 
 ## Upload feature
 
