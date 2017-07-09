@@ -3,6 +3,10 @@
 (def STRIPE-KEY "pk_test_qtDjM2KBQgYX9vVBhbzrU27F")
 (def STRIPE-IMG "https://stripe.com/img/documentation/checkout/marketplace.png")
 
+(def LANGUAGE-TO-CURRENCY
+  {:english "gbp"
+   :italian "euro"})
+
 (defn payment
   []
   "Gift section, using stripe or something similar for the integration")
@@ -17,7 +21,8 @@
     [:div {:class "amazon-wish-list"}
      [:a {:href "http://amzn.eu/hzWt6gk"} "Amazon wish list"]]))
 
-(def STRIPE-FORM
+(defn stripe-form
+  [language]
   [:form {:action "/stripe-checkout" :method "POST"}
    [:script
     {:src "https://checkout.stripe.com/checkout.js" :class "stripe-button"
@@ -29,12 +34,11 @@
      :data-locale "auto"
      :data-zip-code "true"
      ;; the gbp should change depending on the language automatically
-     :data-currency "gbp"}
+     :data-currency (get LANGUAGE-TO-CURRENCY language)}
     ]])
 
 (defn stripe-checkout
   []
-  "Stripe checkout form"
-  (fn []
-    STRIPE-FORM))
-
+  (let [lang (subscribe [:current-language])]
+    (fn []
+      (stripe-form lang))))

@@ -7,7 +7,9 @@ Website to collect pictures, share information about a wedding and so on and so 
 ## TODO
 
 - [ ] let tests also run on travis, mocking out the HTTP calls for example
-- [ ] serve the website behind HTTPS (Heroku's one or another)
+- [ ] serve the website behind HTTPS (Heroku's one or another), this actually costs 20$ a month
+      with Heroku, even if the certificate itself is free.
+
 - [ ] register a nice DNS name
 - [ ] add section about how to get there;
 - [ ] handle different ways to do the payment, where the "preferrable" might not be stripe since it's the only choice with a commission fee attached to it
@@ -22,6 +24,8 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] evaluate the fully static page hosted page?
       (might be easier but not as much fun potentially)
 - [ ] add a countdown feature
+- [ ] add a list of suggested hotels people can use, with different ranges of prices
+- [ ] evaluate twillio integration for more interesting way to interact
 
 ## Upload feature
 

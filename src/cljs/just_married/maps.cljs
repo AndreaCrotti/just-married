@@ -1,12 +1,12 @@
 (ns just-married.maps
-  (:require [reagent]))
+  #_(:require [reagent]))
 
 (def GOOGLE-MAPS-KEY
   "AIzaSyCuKlf0JMp94GtD3MFknJIJqYhAmvLzcgY")
 
 ;; look at the example from:
 ;; https://gist.github.com/jhchabran/e09883c3bc1b703a224d#file-2_google_map-cljs
-(defn gmap-component []
+#_(defn gmap-component []
   (let [gmap    (atom nil)
         options (clj->js {"zoom" 9})
         update  (fn [comp]
@@ -31,7 +31,7 @@
       :component-did-update update
       :display-name "gmap-component"})))
 
-(defn gmap-wrapper []
+#_(defn gmap-wrapper []
   (let [pos (subscribe [:current-position])]
     (fn []
       [gmap-component @pos])))
