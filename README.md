@@ -26,6 +26,8 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add a countdown feature
 - [ ] add a list of suggested hotels people can use, with different ranges of prices
 - [ ] evaluate twillio integration for more interesting way to interact
+- [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics) 
+
 
 ## Upload feature
 
