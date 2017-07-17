@@ -35,7 +35,13 @@
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.0"]
                  [clj-http-fake "1.0.3"]
-                 [com.andrewmcveigh/cljs-time "0.5.0"]]
+                 [com.andrewmcveigh/cljs-time "0.5.0"]
+                 ;; pedestal dependencies
+                 [io.pedestal/pedestal.service       "0.5.2"]
+                 [io.pedestal/pedestal.service-tools "0.5.2"] ;; Only needed for ns-watching; WAR tooling
+                 [io.pedestal/pedestal.jetty         "0.5.2"]
+                 [io.pedestal/pedestal.immutant      "0.5.2"]
+                 [io.pedestal/pedestal.tomcat        "0.5.2"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
