@@ -10,7 +10,10 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] serve the website behind HTTPS (Heroku's one or another), this actually costs 20$ a month
       with Heroku, even if the certificate itself is free.
 
-- [ ] register a nice DNS name
+- [ ] register a nice DNS name (on [namecheap](https://www.namecheap.com/) or godaddy), possible examples could be:
+  - andreaenrica.life
+  - andreaenrica.wedding (more expensive)
+
 - [ ] add section about how to get there;
 - [ ] handle different ways to do the payment, where the "preferrable" might not be stripe since it's the only choice with a commission fee attached to it
   - [ ] postepay coordinates (EUR only)
