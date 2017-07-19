@@ -14,7 +14,6 @@
                  [reagent "0.7.0"]
                  [ring "1.6.1"]
                  [ring-middleware-format "0.7.2" :exclusions [ring]]
-                 [ring.middleware.logger "0.5.0"]
                  [ring/ring-defaults "0.3.0"]
                  [ring/ring-json "0.4.0"]
                  [cljs-ajax "0.6.0"]
@@ -40,8 +39,14 @@
                  [io.pedestal/pedestal.service       "0.5.2"]
                  [io.pedestal/pedestal.service-tools "0.5.2"] ;; Only needed for ns-watching; WAR tooling
                  [io.pedestal/pedestal.jetty         "0.5.2"]
-                 [io.pedestal/pedestal.immutant      "0.5.2"]
-                 [io.pedestal/pedestal.tomcat        "0.5.2"]]
+                 #_[io.pedestal/pedestal.immutant      "0.5.2"]
+                 ;; is tomcat actually needed
+                 #_[io.pedestal/pedestal.tomcat        "0.5.2"]
+                 [ch.qos.logback/logback-classic "1.1.8" :exclusions [org.slf4j/slf4j-api]]
+                 
+                 [org.slf4j/jul-to-slf4j "1.7.22"]
+                 [org.slf4j/jcl-over-slf4j "1.7.22"]
+                 [org.slf4j/log4j-over-slf4j "1.7.22"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
