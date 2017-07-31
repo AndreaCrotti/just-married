@@ -87,12 +87,14 @@
              :aot :all
              :main just-married.api}
    :dev
-   {:plugins [[lein-figwheel "0.5.11"]
+   {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
+    :plugins [[lein-figwheel "0.5.11"]
               [lein-doo "0.1.7"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
+                   [io.pedestal/pedestal.service-tools "0.5.2"]
                    [figwheel "0.5.11"]
                    [figwheel-sidecar "0.5.11"]
                    [javax.servlet/servlet-api "2.5"]
