@@ -12,9 +12,9 @@
 
                  [re-frame "0.9.4"]
                  [reagent "0.7.0"]
-                 [ring "1.6.1"]
+                 [ring "1.6.2"]
                  [ring-middleware-format "0.7.2" :exclusions [ring]]
-                 [ring/ring-defaults "0.3.0"]
+                 [ring/ring-defaults "0.3.1"]
                  [ring/ring-json "0.4.0"]
                  [cljs-ajax "0.6.0"]
                  [secretary "1.2.3"]
@@ -26,7 +26,7 @@
                  [environ "1.1.0"]
                  [garden "1.3.2"]
                  ;; this added just to make garden happy?
-                 [prone "1.0.1"]
+                 [prone "1.1.4"]
                  [http-kit "2.2.0"]
                  ;; Clojure(script) wrapper for the Stripe API
                  [racehub/stripe-clj "0.3.5"]
@@ -34,7 +34,7 @@
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.0"]
                  [clj-http-fake "1.0.3"]
-                 [com.andrewmcveigh/cljs-time "0.5.0"]
+                 [com.andrewmcveigh/cljs-time "0.5.1"]
                  ;; pedestal dependencies
                  [io.pedestal/pedestal.service       "0.5.2"]
                  [io.pedestal/pedestal.service-tools "0.5.2"] ;; Only needed for ns-watching; WAR tooling
@@ -42,11 +42,11 @@
                  #_[io.pedestal/pedestal.immutant      "0.5.2"]
                  ;; is tomcat actually needed
                  #_[io.pedestal/pedestal.tomcat        "0.5.2"]
-                 [ch.qos.logback/logback-classic "1.1.8" :exclusions [org.slf4j/slf4j-api]]
+                 [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  
-                 [org.slf4j/jul-to-slf4j "1.7.22"]
-                 [org.slf4j/jcl-over-slf4j "1.7.22"]
-                 [org.slf4j/log4j-over-slf4j "1.7.22"]]
+                 [org.slf4j/jul-to-slf4j "1.7.25"]
+                 [org.slf4j/jcl-over-slf4j "1.7.25"]
+                 [org.slf4j/log4j-over-slf4j "1.7.25"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
@@ -88,15 +88,15 @@
              :main just-married.api}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
-    :plugins [[lein-figwheel "0.5.11"]
+    :plugins [[lein-figwheel "0.5.12"]
               [lein-doo "0.1.7"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
                    [io.pedestal/pedestal.service-tools "0.5.2"]
-                   [figwheel "0.5.11"]
-                   [figwheel-sidecar "0.5.11"]
+                   [figwheel "0.5.12"]
+                   [figwheel-sidecar "0.5.12"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.1"]
                    ;; dependencies for the reloaded workflow
