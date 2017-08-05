@@ -27,11 +27,12 @@ Website to collect pictures, share information about a wedding and so on and so 
       but should still allow to see something
 - [ ] add a countdown feature
 - [ ] add a list of suggested hotels people can use, with different ranges of prices
-- [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics) 
+- [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics)
+- [ ] do English and Italian version of the content (changing currency based on the language as well potentially?)
 
 ### Tech details
 
-- [ ] add "fork me on github" to the web page somewhere??
+- [ ] add "fork me on github" to the web page somewhere?? (maybe not the usual visible on top)
 - [ ] evaluate twillio integration for more interesting way to interact
 - [ ] add sentry support
   - [x] backend

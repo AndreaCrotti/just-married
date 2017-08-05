@@ -8,6 +8,7 @@
   [request]
   (http/json-response "Getting married"))
 
+(def common-interceptors [(body-params/body-params) http/html-body])
 (def routes #{["/" :get (conj common-interceptors `home-page)]})
 
 (def service {:env :prod
