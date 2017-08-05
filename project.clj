@@ -54,7 +54,7 @@
             [lein-garden "0.2.8"]]
 
   :uberjar-name "just-married.jar"
-  :min-lein-version "2.5.3"
+  :min-lein-version "2.7.1"
   :source-paths ["src/clj" "src/cljc"]
   :test-paths ["test/clj" "test/cljc"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
