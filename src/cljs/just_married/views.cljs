@@ -19,6 +19,11 @@
    [:a {:href "#accommodation"} "Accomodation"]
    [:a {:href "#contacts"}]])
 
+(defn story
+  []
+  [:div {:id "#piccionciccini"} "Andrea Crotti & Enrica Verrucci"]
+  [:p {:id "#date"} "27 May 2018"])
+
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   []

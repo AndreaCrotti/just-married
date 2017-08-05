@@ -29,6 +29,7 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add a list of suggested hotels people can use, with different ranges of prices
 - [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics)
 - [ ] do English and Italian version of the content (changing currency based on the language as well potentially?)
+- [ ] select a nice font from https://fonts.google.com
 
 ### Tech details
 
