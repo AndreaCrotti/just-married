@@ -36,8 +36,10 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add sentry support
   - [x] backend
   - [ ] frontend
-- [ ] add google analytics to get insight on the usage of the page
-- [ ] add newrelic support (if free)
+- [x] add google analytics to get insight on the usage of the page
+- [x] add newrelic support (if free)
+- [ ] set up logentries to get even more insights
+- [ ] register right DNS name and link it with Heroku
 
 ## Upload feature
 
