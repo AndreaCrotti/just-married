@@ -14,3 +14,4 @@ pom.xml.asc
 resources/public/js/
 log/
 /.dir-locals.el
+/resources/public/css/screen.css

@@ -43,6 +43,14 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] set up logentries to get even more insights
 - [ ] register right DNS name and link it with Heroku
 
+## Font choice
+
+Nice possible fonts to use:
+
+- https://fonts.google.com/specimen/Courgette
+- https://fonts.google.com/specimen/Dancing+Script
+- https://fonts.google.com/specimen/Abril+Fatface
+
 ## Upload feature
 
 Could use [Picasa WEB developer API](https://developers.google.com/picasa-web/) 
