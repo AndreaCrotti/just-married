@@ -18,7 +18,7 @@
                  [ring/ring-json "0.4.0"]
                  [cljs-ajax "0.6.0"]
                  [secretary "1.2.3"]
-                 [org.clojure/clojurescript "1.9.671"]
+                 [org.clojure/clojurescript "1.9.854"]
                  [metosin/ring-http-response "0.9.0"]
                  [bk/ring-gzip "0.2.1"]
                  [clj-jwt "0.1.1"]

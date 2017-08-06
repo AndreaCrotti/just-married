@@ -25,9 +25,13 @@
        [:a {:href "#contacts"}]
        ])))
 
+(defn share
+  []
+  [:div {:id "share" :class "section"}
+   [:div ]])
+
 (defn story
   []
-  ;; what is the G for exactly here?
   [:div {:id "story" :class "section"}
    [:div "Andrea Crotti & Enrica Verrucci"]
    [:div [:a {:href "#find-us"} ADDRESS]]
