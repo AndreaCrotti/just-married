@@ -30,6 +30,7 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics)
 - [ ] do English and Italian version of the content (changing currency based on the language as well potentially?)
 - [ ] select a nice font from https://fonts.google.com
+- [ ] integrate a google maps view of the address
 
 ### Tech details
 
@@ -42,6 +43,11 @@ Website to collect pictures, share information about a wedding and so on and so 
 - [x] add newrelic support (if free)
 - [ ] set up logentries to get even more insights
 - [ ] register right DNS name and link it with Heroku
+- [ ] use https://github.com/kristoferjoseph/flexboxgrid for the alignment
+
+## Pre production check list
+
+- [ ] make sure the google maps key is restricted access [to avoid quota thefts](https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1) 
 
 ## Font choice
 
@@ -50,6 +56,12 @@ Nice possible fonts to use:
 - https://fonts.google.com/specimen/Courgette
 - https://fonts.google.com/specimen/Dancing+Script
 - https://fonts.google.com/specimen/Abril+Fatface
+
+## Graphics
+
+Getting ideas from various places:
+
+- https://www.behance.net/
 
 ## Upload feature
 

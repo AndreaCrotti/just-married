@@ -2,27 +2,48 @@
   (:require
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
    [just-married.language :refer [make-lang AVAILABLE-LANGUAGES]]
-   [just-married.payment-views :as payment-views]))
+   [just-married.payment-views :as payment-views]
+   [just-married.settings :as settings]))
+
+(def ADDRESS "Parco Dei Principi, San Silvestro (Pescara)")
 
 (defn header
-  ;; do we need the language available all over the place??
   []
-  ;; the actual spacing and similar stuff can be done
-  ;; with CSS directly
-  [:div {:id "header"}
-   [:a {:href "#story"} "Our Story"]
-   [:a {:href "#find-us"} "Find us"]
-   [:a {:href "#gift"} "Donate"]
-   [:a {:href "#rvsp"} "RVSP"]
-   [:a {:href "#share"} "Share Your Memories"]
-   [:a {:href "#get-there"} "Directions"]
-   [:a {:href "#accommodation"} "Accomodation"]
-   [:a {:href "#contacts"}]])
+  (let [current-language (subscribe [:current-language])]
+    ;; do we need the language available all over the place??
+    (fn []
+      ;; the actual spacing and similar stuff can be done
+      ;; with CSS directly
+      [:div {:id "header" :class ["col-xs" "section"]}
+       [:a {:href "#story"} "Our Story"]
+       [:a {:href "#find-us"} "Find us"]
+       [:a {:href "#gift"} "Donate"]
+       [:a {:href "#rvsp"} "RVSP"]
+       [:a {:href "#share"} "Share Your Memories"]
+       [:a {:href "#get-there"} "Directions"]
+       [:a {:href "#accommodation"} "Accomodation"]
+       [:a {:href "#contacts"}]
+       ])))
 
 (defn story
   []
-  [:div {:id "#piccionciccini"} "Andrea Crotti & Enrica Verrucci"]
-  [:p {:id "#date"} "27 May 2018"])
+  ;; what is the G for exactly here?
+  [:div {:id "story" :class "section"}
+   [:div "Andrea Crotti & Enrica Verrucci"]
+   [:div [:a {:href "#find-us"} ADDRESS]]
+   [:div "27th May, 2018"]])
+
+(defn find-us
+  []
+  [:div {:id "find-us" :class "section"}
+   [:div [:a {:href "#find-us"} ADDRESS]]
+   [:div {:id "map"}]])
+
+(defn gifts
+  []
+  [:div {:id "gifts" :class "section"}
+   [:div {:id "amazon-wish-list"}
+    [:a {:href settings/AMAZON-WISH-LIST} "Amazon wish list"]]])
 
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
@@ -30,7 +51,7 @@
   (let [current-language (subscribe [:current-language])]
     (fn []
       (into
-       [:div {:class "language-group"}]
+       [:div {:class ["language-group"]}]
        (for [lang AVAILABLE-LANGUAGES]
          (make-lang lang @current-language))))))
 
@@ -43,6 +64,8 @@
   (fn []
     [:g
      [header]
+     ;; lang selection could be moved into the header potentially?
      [lang-selection]
-     [payment-views/amazon-wish-list]]
-    ))
+     [story]
+     [find-us]
+     [gifts]]))

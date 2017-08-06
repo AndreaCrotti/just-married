@@ -27,4 +27,8 @@
   
   ;; this should be an id instead of this
   [:#submit-button {:background-color "red" :font-weight "bold"}]
+
+  ;; boxing sections properly
+  [:.section {:border-width "2px"
+              :border-style "solid"}]
 )
