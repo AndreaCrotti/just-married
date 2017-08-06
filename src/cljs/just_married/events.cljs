@@ -11,3 +11,13 @@
  :set-language
  (fn [db [_ language]]
    (assoc db :language language)))
+
+(reg-event-db
+ :name
+ (fn [db [_ name]]
+   (assoc db :name name)))
+
+(reg-event-db
+ :email
+ (fn [db [_ name]]
+   (assoc db :email name)))

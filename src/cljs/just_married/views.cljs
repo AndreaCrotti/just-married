@@ -45,6 +45,26 @@
    [:div {:id "amazon-wish-list"}
     [:a {:href settings/AMAZON-WISH-LIST} "Amazon wish list"]]])
 
+(defn rvsp
+  []
+  [:div {:id "rvsp" :class "section"}
+   [:input {:type "text"
+            :placeholder "Your name"
+            :on-change #(dispatch [:name (-> % .-target .-value)])}]
+
+   [:input {:type "email"
+            :placeholder "Your email address"
+            :on-change #(dispatch [:email (-> % .-target .-value)])}]
+
+   [:button {:id "confirm-coming"
+             :on-click #(dispatch [:coming])}
+    "Pleasure to join you!"]
+
+   [:button {:id "confirm-not-coming"
+             :on-click #(dispatch [:not-coming])}
+    "Sadly can't join you!"]
+   ])
+
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   []
@@ -68,4 +88,5 @@
      [lang-selection]
      [story]
      [find-us]
-     [gifts]]))
+     [gifts]
+     [rvsp]]))
