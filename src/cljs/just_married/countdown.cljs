@@ -12,6 +12,7 @@
   (time/interval (time/now) FATIDIC-TIME))
 
 (def time-left
+  "Atom representing the time left"
   (r/atom (get-time-left)))
 
 (defn extract
@@ -27,13 +28,12 @@
   []
   (reset! time-left (extract (get-time-left))))
 
-
 (defn countdown-component
   "Generic component for the countdown"
   []
   (r/with-let [timer-fn (js/setInterval #(swap! time-left reset-left-time) 1000)]
 
-    [:div.timer
+    [:div.timer {:class ["col-xs" "row"]}
      [:div (str (:days @time-left) " Days")]
      [:div (str (:hours @time-left) " Hours")]
      [:div (str (:minutes @time-left) " Minutes")]]

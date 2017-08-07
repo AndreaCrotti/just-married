@@ -4,7 +4,10 @@
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :dark-red "#8B0000"
-   :blue "#4444FF"})
+   :blue "#4444FF"
+   :marsala "#955251"
+   :royal-blue "#4169e1"
+   :deep-blue "#00bfff"})
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"})
@@ -34,4 +37,9 @@
 
   ;; find us settings
   [:#map {:width "400px" :height "400px"}]
+
+  ;; countdown settings
+  [:.timer {;:background-color (:marsala COLOR-PALLETTE)
+            :font-weight "bolder"
+            :color (:deep-blue COLOR-PALLETTE)}]
 )
