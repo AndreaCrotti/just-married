@@ -5,7 +5,6 @@
    [just-married.payment-views :as payment-views]
    [just-married.settings :as settings]))
 
-(def ADDRESS "Parco Dei Principi, San Silvestro (Pescara)")
 
 (defn header
   []
