@@ -3,10 +3,13 @@
 
 var latitude = 42.423608;
 var longitude = 14.231041;
+var zoom = 14;
+
 var map = new GMaps({
     el: '#map',
     lat: latitude,
-    lng: longitude
+    lng: longitude,
+    zoom: zoom
 });
 
 map.addMarker({

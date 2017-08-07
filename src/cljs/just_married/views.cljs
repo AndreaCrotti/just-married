@@ -3,6 +3,7 @@
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
    [just-married.language :refer [make-lang AVAILABLE-LANGUAGES]]
    [just-married.payment-views :as payment-views]
+   [just-married.countdown :as countdown]
    [just-married.settings :as settings]))
 
 
@@ -19,7 +20,6 @@
        [:a {:href "#gift"} "Donate"]
        [:a {:href "#rvsp"} "RVSP"]
        [:a {:href "#share"} "Share Your Memories"]
-       [:a {:href "#get-there"} "Directions"]
        [:a {:href "#accommodation"} "Accomodation"]
        [:a {:href "#contacts"}]
        ])))
@@ -33,13 +33,14 @@
   []
   [:div {:id "story" :class "section"}
    [:div "Andrea Crotti & Enrica Verrucci"]
-   [:div [:a {:href "#find-us"} ADDRESS]]
-   [:div "27th May, 2018"]])
+   [:div [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
+   [:div "27th May, 2018"]
+   [:div {:id "countdown"} (countdown/countdown-component)]])
 
 (defn find-us
   []
   [:div {:id "find-us" :class "section"}
-   [:div [:a {:href "#find-us"} ADDRESS]]
+   [:div (-> settings/PLACES :parco :name)]
    [:div {:id "map"} "Map here"]])
 
 (defn gifts

@@ -1,23 +1,41 @@
 (ns just-married.countdown
-  (:require [reagent.core :as r]))
+  (:require [reagent.core :as r]
+            [just-married.settings :refer [FATIDIC-TIME]]
+            [cljs-time.core :as time]
+            [cljs-time.format :refer [unparse-duration]]
+            [goog.date.duration :as duration]))
 
 ;; sample code found https://stackoverflow.com/questions/30280484/making-a-simple-countdown-timer-with-clojure-reagent
 
-(defn countdown-component []
-  (r/with-let [seconds-left (r/atom 60)
-               timer-fn     (js/setInterval #(swap! seconds-left dec) 1000)]
+(defn get-time-left
+  []
+  (time/interval (time/now) FATIDIC-TIME))
+
+(def time-left
+  (r/atom (get-time-left)))
+
+(defn extract
+  [interval]
+  (let [[days hours minutes]
+        (re-seq #"\d+" (unparse-duration interval))]
+    
+    {:days days
+     :hours hours
+     :minutes minutes}))
+
+(defn reset-left-time
+  []
+  (reset! time-left (extract (get-time-left))))
+
+
+(defn countdown-component
+  "Generic component for the countdown"
+  []
+  (r/with-let [timer-fn (js/setInterval #(swap! time-left reset-left-time) 1000)]
+
     [:div.timer
-     [:div "Time Remaining: " (str @seconds-left)]]
+     [:div (str (:days @time-left) " Days")]
+     [:div (str (:hours @time-left) " Hours")]
+     [:div (str (:minutes @time-left) " Minutes")]]
+
     (finally (js/clearInterval timer-fn))))
-
-(defn reset-component [t]
-  [:input {:type "button" :value "Reset"
-           :on-click #(reset! t 60)}])
-
-(defn countdown-component []
-  (let [seconds-left (atom 60)]
-    (js/setInterval #(swap! seconds-left dec) 1000)
-    (fn []  
-      [:div.timer
-        [:div "Time Remaining: " (show-time @seconds-left)]
-        [reset-component seconds-left]])))

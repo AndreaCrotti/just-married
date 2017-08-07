@@ -46,7 +46,9 @@
                  
                  [org.slf4j/jul-to-slf4j "1.7.25"]
                  [org.slf4j/jcl-over-slf4j "1.7.25"]
-                 [org.slf4j/log4j-over-slf4j "1.7.25"]]
+                 [org.slf4j/log4j-over-slf4j "1.7.25"]
+                 ;; date manipulation in clojurescript
+                 [com.andrewmcveigh/cljs-time "0.5.0"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]

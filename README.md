@@ -33,6 +33,9 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
       see: https://github.com/Day8/re-frame/blob/master/docs/Using-Stateful-JS-Components.md
       to do it more correctly
 - [ ] add a way to suggest songs to play with https://developer.spotify.com/web-api/code-examples/
+- [ ] would be good to find a way to authenticate users, which could be as light as possible:
+      An option would be the magic link like Monzo does, just enter your email and authenticate with a magic link
+- [ ] package everything in something that can be pushed to the google app store
 
 ### Tech details
 
