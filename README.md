@@ -30,6 +30,9 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
 - [ ] do English and Italian version of the content (changing currency based on the language as well potentially?)
 - [ ] select a nice font from https://fonts.google.com
 - [ ] integrate a google maps view of the address
+      see: https://github.com/Day8/re-frame/blob/master/docs/Using-Stateful-JS-Components.md
+      to do it more correctly
+- [ ] add a way to suggest songs to play with https://developer.spotify.com/web-api/code-examples/
 
 ### Tech details
 

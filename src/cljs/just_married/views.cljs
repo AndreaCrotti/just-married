@@ -41,7 +41,7 @@
   []
   [:div {:id "find-us" :class "section"}
    [:div [:a {:href "#find-us"} ADDRESS]]
-   [:div {:id "map"}]])
+   [:div {:id "map"} "Map here"]])
 
 (defn gifts
   []

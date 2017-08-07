@@ -31,4 +31,7 @@
   ;; boxing sections properly
   [:.section {:border-width "2px"
               :border-style "solid"}]
+
+  ;; find us settings
+  [:#map {:width "400px" :height "400px"}]
 )
