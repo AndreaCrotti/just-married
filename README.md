@@ -1,8 +1,7 @@
 # just-married
 
 Website to collect pictures, share information about a wedding and so on and so forth.
-
-## Usage
+Currently hard coded to my specific wedding, but could potentially be easily adaptable or templatable.
 
 ## TODO
 
