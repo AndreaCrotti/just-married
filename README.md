@@ -15,7 +15,7 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
   - andreaenrica.life
   - andreaenrica.wedding (more expensive)
 
-- [ ] add section about how to get there;
+- [ ] add section about how to get there
 - [ ] handle different ways to do the payment, where the "preferrable" might not be stripe since it's the only choice with a commission fee attached to it
   - [ ] postepay coordinates (EUR only)
   - [ ] bank coordinates (EUR/GDP choice)
@@ -26,7 +26,7 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
       but should still allow to see something
 - [ ] add a countdown feature
 - [ ] add a list of suggested hotels people can use, with different ranges of prices
-- [ ] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics)
+- [x] add simple support to [https://gist.github.com/andrewsuzuki/fd9edda14296fd03483b0dbe40ee3a99](google analytics)
 - [ ] do English and Italian version of the content (changing currency based on the language as well potentially?)
 - [ ] select a nice font from https://fonts.google.com
 - [ ] integrate a google maps view of the address
@@ -40,7 +40,7 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
   - [ ] frontend
 - [x] add google analytics to get insight on the usage of the page
 - [x] add newrelic support (if free)
-- [ ] set up logentries to get even more insights
+- [x] set up logentries to get even more insights
 - [ ] register right DNS name and link it with Heroku
 - [ ] use https://github.com/kristoferjoseph/flexboxgrid for the alignment
 
@@ -69,7 +69,7 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 
 ## License
 
-Copyright © 2017 FIXME
+Copyright © 2017 Andrea Crotti
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
