@@ -43,11 +43,18 @@
     <script>just_married.core.init();</script>
 
     <script>
+      var lat = 42.423608;
+      var long = 14.231041;
       var map = new GMaps({
       el: '#map',
-      lat: 42.423608,
-      lng: 14.231041
+      lat: lat,
+      lng: long
       });
+      map.addMarker({
+        lat: lat,
+        lng: long,
+        title: 'Parco dei Principi',
+    });
     </script>
   </body>
 </html>
