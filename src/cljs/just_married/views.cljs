@@ -60,6 +60,7 @@
             :placeholder "Your email address"
             :on-change #(dispatch [:email (-> % .-target .-value)])}]
 
+   ;; add something about dietary requirements here if possible
    [:button {:id "confirm-coming"
              :on-click #(dispatch [:coming])}
     "Pleasure to join you!"]

@@ -48,7 +48,11 @@
                  [org.slf4j/jcl-over-slf4j "1.7.25"]
                  [org.slf4j/log4j-over-slf4j "1.7.25"]
                  ;; date manipulation in clojurescript
-                 [com.andrewmcveigh/cljs-time "0.5.0"]]
+                 [com.andrewmcveigh/cljs-time "0.5.0"]
+                 [honeysql "0.9.0"]
+                 [migratus "0.9.8"]
+                 [nilenso/honeysql-postgres "0.2.3"]
+                 [clj-postgresql "0.7.0"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
@@ -80,6 +84,16 @@
   :main just-married.api
   :target-path "target/%s"
 
+  :doo {:alias {:browsers [:phantomjs]}}
+
+  :migratus {:store :database
+             :migration-dir "migrations"
+             :db {:classname "com.postgresql.jdbc.Driver"
+                  :subprotocol "postgresql"
+                  :subname "//localhost/migratus"
+                  :user "just-married"
+                  :port "5439"
+                  :password "just-married"}}
   :profiles
   {:production {:env {:production true}}
    :uberjar {:hooks []
@@ -91,7 +105,8 @@
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :plugins [[lein-figwheel "0.5.12"]
-              [lein-doo "0.1.7"]]
+              [lein-doo "0.1.7"]
+              [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
@@ -105,6 +120,7 @@
                    [ns-tracker "0.3.1"]
                    [reloaded.repl "0.2.3"]
                    [ring-mock "0.1.5"]]}}
+
 
   :cljsbuild
   {:builds

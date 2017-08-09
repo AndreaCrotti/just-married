@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  test-db:
+    image: postgres:9.6
+
+    ports:
+      - "5440:5432"
+
+    environment:
+      POSTGRES_USER: just_married
+      POSTGRES_PASSWORD: just_married
+      POSTGRES_DATABASE: just_married

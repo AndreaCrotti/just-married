@@ -50,6 +50,22 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
 - [ ] register right DNS name and link it with Heroku
 - [ ] use https://github.com/kristoferjoseph/flexboxgrid for the alignment
 
+## DB schema
+
+- invited (every person invited):
+  + age
+  + name
+  + dietary requirements
+  + lunch/dinner flags (or in the family this one?)
+
+- family (collection of invited people, sharing contact details)
+  + O2M: invited
+  + contact person
+  + phone
+  + email address
+  + should be notified flag?
+  + requires accommodation?
+
 ## Pre production check list
 
 - [ ] make sure the google maps key is restricted access [to avoid quota thefts](https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1) 

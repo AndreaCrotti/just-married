@@ -7,7 +7,8 @@
             [clj-http.fake :as fake]
             [sendgrid.core :as sendgrid]))
 
-#_(t/deftest test-email
+
+(t/deftest test-email
   (t/testing "sending email using the API"
 
     (let [request (mock/request :post "/send-email"
