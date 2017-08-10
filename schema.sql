@@ -11,6 +11,15 @@ CREATE TABLE people  (
        -- VARCHAR age,
        lunch BOOLEAN,
        dinner BOOLEAN,
+       -- map of booleans which could default to
+       -- {
+       --    'celiac': False,
+       --    'vegan': False,
+       --    'vegetarian' False,
+       --    'other': ?
+       -- }
+       -- Some conditions are mutually exclusive (vegan/vegetarian) but
+       -- not all of them are?
        dietary JSON
 );
 
@@ -18,7 +27,10 @@ CREATE TABLE family (
        id serial,
        family_name VARCHAR,
        contact_person INTEGER,
+       family_members INTEGER[10],
        -- might need more structuring
        address VARCHAR,
        FOREIGN KEY(contact_person) REFERENCES people(id)
 );
+
+SELECT * FROM family;
