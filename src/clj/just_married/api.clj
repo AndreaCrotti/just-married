@@ -17,7 +17,11 @@
    [raven-clj.ring :refer [wrap-sentry]]))
 
 (defroutes app-routes
-  (GET "/" [] (response/file-response "index.html" {:root "resources/public"}))
+  (GET "/" []
+       (response/content-type
+        (response/file-response "index.html" {:root "resources/public"})
+        "text/html"))
+
   (POST "/send-email" request
         (send-email
          (-> request :params :content)))
