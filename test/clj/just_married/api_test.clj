@@ -8,7 +8,7 @@
             [sendgrid.core :as sendgrid]))
 
 
-(t/deftest test-email
+#_(t/deftest test-email
   (t/testing "sending email using the API"
 
     (let [request (mock/request :post "/send-email"
