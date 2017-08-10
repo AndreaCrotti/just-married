@@ -11,6 +11,12 @@ CREATE TABLE people  (
        -- VARCHAR age,
        lunch BOOLEAN,
        dinner BOOLEAN,
+
+       -- possibly useful to make the tables
+       -- could also be an array or a JSON field in theory
+       speak_italian BOOLEAN,
+       speak_english BOOLEAN,
+
        -- map of booleans which could default to
        -- {
        --    'celiac': False,
@@ -28,8 +34,12 @@ CREATE TABLE family (
        family_name VARCHAR,
        contact_person INTEGER,
        family_members INTEGER[10],
-       -- might need more structuring
+       -- might need more structure if more analysis should be done or
+       -- could be a simple string if only used for shipping purposes
        address VARCHAR,
+
+       requires_accommodation BOOLEAN,
+
        FOREIGN KEY(contact_person) REFERENCES people(id)
 );
 
