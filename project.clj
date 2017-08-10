@@ -52,7 +52,8 @@
                  [honeysql "0.9.0"]
                  [migratus "0.9.8"]
                  [nilenso/honeysql-postgres "0.2.3"]
-                 [clj-postgresql "0.7.0"]]
+                 [clj-postgresql "0.7.0"]
+                 [com.taoensso/tempura "1.1.2"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
