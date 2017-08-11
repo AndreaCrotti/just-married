@@ -53,7 +53,10 @@
                  [migratus "0.9.8"]
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]
-                 [com.taoensso/tempura "1.1.2"]]
+                 ;; translation library
+                 [com.taoensso/tempura "1.1.2"]
+                 ;; authentication with pedestal
+                 [geheimtur "0.3.3"]]
 
   :plugins [[lein-ring "0.8.13"]
             [environ/environ.lein "0.3.1"]
