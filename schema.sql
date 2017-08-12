@@ -7,8 +7,9 @@ CREATE TYPE sposini AS ENUM ('enrica', 'andrea');
 CREATE TABLE people  (
        id serial PRIMARY KEY,
        invited_by sposini NOT NULL,
-       first_name VARCHAR NOT NULL,
-       last_name VARCHAR NOT NULL,
+       first_name VARCHAR,
+       last_name VARCHAR,
+       comment TEXT,
        -- just a range would be enough?
        -- or know if it's a kid or not?
        -- but better to have the exact age if possible
@@ -53,4 +54,12 @@ CREATE TABLE family (
        FOREIGN KEY(contact_person) REFERENCES people(id)
 );
 
+
+INSERT INTO people (invited_by, first_name, last_name, lunch, dinner, speak_italian, speak_english, phone_number)
+VALUES ('andrea', 'nome', 'cognome', true, true, true, false, '+39232322');
+
+INSERT INTO family (family_name, contact_person, family_members, address, requires_accommodation) VALUES
+('cro', 1, '{1}', 'Via ponzio pilato', true);
+
+SELECT * FROM people;
 SELECT * FROM family;

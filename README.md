@@ -40,10 +40,14 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
 ### Tech details
 
 - [ ] add "fork me on github" to the web page somewhere?? (maybe not the usual visible on top)
-- [ ] evaluate twillio integration for more interesting way to interact
+- [ ] evaluate twillio integration for more interesting way to interact,
+  Works very well to send SMS, but unfortunately can't buy an italian phone number
+  so all messages would appear to come from an English phone.
+
 - [ ] add sentry support
   - [x] backend
   - [ ] frontend
+
 - [x] add google analytics to get insight on the usage of the page
 - [x] add newrelic support (if free)
 - [x] set up logentries to get even more insights
