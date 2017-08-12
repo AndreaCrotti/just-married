@@ -1,7 +1,3 @@
-DROP TABLE IF EXISTS family;
-DROP TABLE IF EXISTS people;
-DROP TYPE IF EXISTS sposini;
-
 CREATE TYPE sposini AS ENUM ('enrica', 'andrea');
 
 CREATE TABLE people  (
@@ -53,13 +49,3 @@ CREATE TABLE family (
 
        FOREIGN KEY(contact_person) REFERENCES people(id)
 );
-
-
-INSERT INTO people (invited_by, first_name, last_name, lunch, dinner, speak_italian, speak_english, phone_number)
-VALUES ('andrea', 'nome', 'cognome', true, true, true, false, '+39232322');
-
-INSERT INTO family (family_name, contact_person, family_members, address, requires_accommodation) VALUES
-('cro', 1, '{1}', 'Via ponzio pilato', true);
-
-SELECT * FROM people;
-SELECT * FROM family;

@@ -92,12 +92,7 @@
 
   :migratus {:store :database
              :migration-dir "migrations"
-             :db {:classname "com.postgresql.jdbc.Driver"
-                  :subprotocol "postgresql"
-                  :subname "//localhost/migratus"
-                  :user "just-married"
-                  :port "5439"
-                  :password "just-married"}}
+             :db ~(get (System/getenv) "DATABASE_URL")}
   :profiles
   {:production {:env {:production true}}
    :uberjar {:hooks []
