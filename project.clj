@@ -19,6 +19,7 @@
                  [racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.0"]
+                 [clj-http "3.6.1"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
@@ -29,6 +30,7 @@
                  [tongue "0.2.2"]
                  [com.andrewmcveigh/cljs-time "0.5.0"]
                  [com.taoensso/tempura "1.1.2"]
+                 [cljs-http "0.1.43"]
 
                  ;; testing libraries
                  [doo "0.1.7"]
@@ -36,9 +38,6 @@
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
                  [prone "1.1.4"]
-                 [http-kit "2.2.0"]
-                 [clj-http-fake "1.0.3"]
-
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]

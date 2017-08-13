@@ -1,5 +1,10 @@
 (ns just-married.css
-  (:require [garden.def :refer [defstyles]]))
+  (:require [garden.def :refer [defstyles defcssfn]]
+            [garden.core :refer [css]]))
+
+;; for some reason this is not already available but at least it's
+;; very easy to define
+(defcssfn url)
 
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
@@ -13,6 +18,19 @@
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"})
+
+(def FONT-STYLES
+  {:big
+   {:font-weight "bolder"
+    :font-family (:open-sans FONT-FAMILIES)}})
+
+;; define various font styles that can be used here
+
+;; the base path in this case refers to where the css will be
+;; generated into
+(def IMAGES
+  {:bw-cats "../images/cats_heart.jpg"
+   :small-cats "../images/small_cats.jpg"})
 
 ;; each style defines a new file, could simply also generate
 ;; many different files ideally
@@ -29,19 +47,27 @@
   [:#header [:a {:padding-right "20px"
                  :font-weight "bold"
                  :font-family (:open-sans FONT-FAMILIES)}]]
-  
-  ;; this should be an id instead of this
-  [:#submit-button {:background-color "red" :font-weight "bold"}]
 
   ;; boxing sections properly
   [:.section {:border-width "2px"
-              :border-style "solid"}]
+              ;;:border-style "solid"
+              }]
 
-  ;; find us settings
-  [:#map {:width "400px" :height "400px"}]
+  [:#story {:background-image
+            [(url (format "'%s'" (:bw-cats IMAGES)))]
+            :background-repeat "no-repeat"
+            :width "500px"
+            :height "400px"
+            :text-align "center"
+            :font-weight "bold"
+            :font-size "x-large"
+            :color (:marsala COLOR-PALLETTE)}]
 
   ;; countdown settings
   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
+  
+  ;; find us settings
+  [:#map {:width "400px" :height "400px"}]
 )

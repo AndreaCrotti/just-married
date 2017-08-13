@@ -34,10 +34,11 @@ wedding related website, and it's backend storing information about guests
 
 ** TODO accommodation suggestions                                        :v2:
 
-** DONE how to get there google map                                      :v1:
-   CLOSED: [2017-08-13 Sun 15:16]
-
-   - CLOSING NOTE [2017-08-13 Sun 15:16]
+** TODO how to get there google map                                      :v1:
+   - [ ] add map with marker
+   - [ ] add extra information attached to the marker
+   - [ ] try to get everything working with clojurescript without
+     having to resort to use javascript directly
 
 ** TODO playlist suggestion                                              :v2:
 
