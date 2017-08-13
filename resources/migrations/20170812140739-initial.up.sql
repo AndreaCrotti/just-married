@@ -7,12 +7,12 @@ CREATE TABLE people  (
        comment TEXT,
        -- to count the number of kids define what's the actually age
        -- threshold for that
-       kid BOOLEAN NOT NULL,
+       kid BOOLEAN,
 
        -- possibly useful to make the tables
        -- could also be an array or a JSON field in theory
-       speak_italian BOOLEAN NOT NULL,
-       speak_english BOOLEAN NOT NULL,
+       speak_italian BOOLEAN,
+       speak_english BOOLEAN,
 
        -- map of booleans which could default to
        -- {
@@ -38,19 +38,19 @@ CREATE TABLE family (
        invited_by sposini NOT NULL,
        comment TEXT,
 
-       lunch BOOLEAN NOT NULL,
-       dinner BOOLEAN NOT NULL,
+       lunch BOOLEAN,
+       dinner BOOLEAN,
 
        family_name VARCHAR NOT NULL,
-       contact_person INTEGER NOT NULL,
+       contact_person INTEGER,
        -- unfortunately no way to enforce a foreign key constraint on
        -- all the elements of the array
        family_members INTEGER[10],
        -- might need more structure if more analysis should be done or
        -- could be a simple string if only used for shipping purposes
-       address VARCHAR NOT NULL,
+       address VARCHAR,
 
-       requires_accommodation BOOLEAN NOT NULL,
+       requires_accommodation BOOLEAN,
 
        FOREIGN KEY(contact_person) REFERENCES people(id)
 );

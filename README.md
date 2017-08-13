@@ -54,6 +54,7 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
 - [ ] register right DNS name and link it with Heroku
 - [ ] use https://github.com/kristoferjoseph/flexboxgrid for the alignment
 - [ ] check how to get good results on Google, matching all the possible various combinations of names
+- [ ] detect the language of the browser and default to that, instead of defaulting English
 
 ## DB schema
 
@@ -70,6 +71,15 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
   + email address
   + should be notified flag?
   + requires accommodation?
+
+- table of events, collecting all the interactions such as:
+  + rvsp yes
+  + rvsp no
+  + email sent
+  + sms sent
+  + song suggested
+
+  How do we know who did what? Need some kind of basic authentication to keep track properly.
 
 ## Pre production check list
 

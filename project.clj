@@ -3,9 +3,14 @@
   :url "https://github.com/AndreaCrotti/just-married"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
+  :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/core.async "0.3.443"]
-                 [sqlitejdbc "0.5.6"]
+                 [org.clojure/java.jdbc "0.7.0"]
+                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
+
+                 [honeysql "0.9.0"]
+                 [migratus "0.9.8"]
+
                  [datascript "0.16.1"]
                  [doo "0.1.7"]
                  [re-frisk "0.4.5"]
@@ -21,7 +26,7 @@
                  [org.clojure/clojurescript "1.9.854"]
                  [metosin/ring-http-response "0.9.0"]
                  [bk/ring-gzip "0.2.1"]
-                 [clj-jwt "0.1.1"]
+                 ;; [clj-jwt "0.1.1"]
                  [compojure "1.6.0"]
                  [environ "1.1.0"]
                  [garden "1.3.2"]
@@ -43,14 +48,14 @@
                  ;; is tomcat actually needed
                  #_[io.pedestal/pedestal.tomcat        "0.5.2"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 
+
                  [org.slf4j/jul-to-slf4j "1.7.25"]
                  [org.slf4j/jcl-over-slf4j "1.7.25"]
                  [org.slf4j/log4j-over-slf4j "1.7.25"]
                  ;; date manipulation in clojurescript
                  [com.andrewmcveigh/cljs-time "0.5.0"]
-                 [honeysql "0.9.0"]
-                 [migratus "0.9.8"]
+                 ;; XXX: should move this up as well but for some crazy
+                 ;; reason it breaks piggieback if I do so!
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]
                  ;; translation library
