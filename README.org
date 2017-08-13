@@ -1,3 +1,8 @@
+* Just married
+
+Pedestal and re-frame Clojure app to host the public facing part of a
+wedding related website, and it's backend storing information about guests
+
 * Versions
 
 ** v1
@@ -48,6 +53,9 @@
 
 ** TODO feature to upload your own thoughts and images                   :v3:
 
+Could use [Picasa WEB developer API](https://developers.google.com/picasa-web/) 
+For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
+
 ** TODO language detection and translation (italian/english)             :v1:
 
 ** TODO nicely packaged android/ios app?                                 :v2:
@@ -58,3 +66,45 @@
 
 * TODO logentries                                               :infrastructure:
 
+* TODO restrict the google maps key to avoid [[https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1][quota thefts]]   :infrastructure:
+
+* Graphics
+
+** TODO choose the right fonts
+
+Nice possible fonts to use:
+
+- https://fonts.google.com/specimen/Courgette
+- https://fonts.google.com/specimen/Dancing+Script
+- https://fonts.google.com/specimen/Abril+Fatface
+
+** TODO Get the right structure and graphics
+
+Check places like:
+
+- https://www.behance.net/
+
+* Database schema
+
+- invited (every person invited):
+  + age
+  + name
+  + dietary requirements
+  + lunch/dinner flags (or in the family this one?)
+
+- family (collection of invited people, sharing contact details)
+  + O2M: invited
+  + contact person
+  + phone
+  + email address
+  + should be notified flag?
+  + requires accommodation?
+
+- table of events, collecting all the interactions such as:
+  + rvsp yes
+  + rvsp no
+  + email sent
+  + sms sent
+  + song suggested
+
+  How do we know who did what? Need some kind of basic authentication to keep track properly.
