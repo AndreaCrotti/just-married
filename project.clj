@@ -78,15 +78,18 @@
 
   :migratus {:store :database
              :migration-dir "migrations"
+             ;; can use environ here??
              :db ~(get (System/getenv) "DATABASE_URL")}
   :profiles
   {:production {:env {:production true}}
    :uberjar {:hooks []
              :source-paths ["src/clj" "src/cljc"]
              :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
+             ;; "garden" ["garden" "once"]
+             ;; should we omit the source??
              :omit-source true
              :aot :all
-             :main just-married.api}
+             :main just-married.server}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :plugins [[lein-figwheel "0.5.12"]
@@ -117,8 +120,7 @@
                     :asset-path           "js/compiled/out"
                     :source-map-timestamp true
                     :preloads             [devtools.preload]
-                    :external-config      {:devtools/config {:features-to-install :all}}
-                    }}
+                    :external-config      {:devtools/config {:features-to-install :all}}}}
 
     {:id           "min"
      :source-paths ["src/cljs" "src/cljc"]
