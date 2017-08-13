@@ -1,3 +1,0 @@
-(ns just-married.core)
-
-

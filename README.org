@@ -66,6 +66,7 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 
 * TODO logentries                                               :infrastructure:
 
+* TODO fill in the database with all the invited people importing from existing data :v1:
 * TODO restrict the google maps key to avoid [[https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1][quota thefts]]   :infrastructure:
 
 * Graphics
