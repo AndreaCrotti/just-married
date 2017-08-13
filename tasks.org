@@ -1,0 +1,60 @@
+* Versions
+
+** v1
+   DEADLINE: <2017-09-08 Fri>
+   bare minimum to make the website public, which contains the basic information required,
+   and some basic interaction like the RVSP, already multi lingual.
+
+** v2
+   DEADLINE: <2017-10-29 Sun>
+   Extra interaction like music selection and similar other things.
+
+** v3
+   DEADLINE: <2017-12-31 Sun>
+   More integrations and fun things, like mail/sms notifications and uploading your own pictures.
+
+* TODO run tests in Circleci                              :infrastructure:v1:
+** TODO run frontend tests in Circle
+
+* TODO use HTTPS everywhere                                  :infrastructure:
+  This might potentially be expensive at least on Heroku, less so on Aws or digital ocean
+
+* TODO register and use a nice DNS name                      :infrastructure:v1:
+  - andreaenrica.life
+  - andreaenrica.wedding (more expensive)
+
+* TODO User facing features
+
+** TODO smart notifications via sms/email                                :v2:
+
+** TODO accommodation suggestions                                        :v2:
+
+** DONE how to get there google map                                      :v1:
+   CLOSED: [2017-08-13 Sun 15:16]
+
+   - CLOSING NOTE [2017-08-13 Sun 15:16]
+
+** TODO playlist suggestion                                              :v2:
+
+** TODO information about date and countdown                             :v1:
+
+** TODO few pictures in main gallery                                     :v1:
+
+** TODO suggestions for gifts                                            :v2:
+   - [ ] postepay
+   - [ ] bank coordinates
+   - [ ] stripe/braintree integration
+   - [ ] amazon wish list
+
+** TODO feature to upload your own thoughts and images                   :v3:
+
+** TODO language detection and translation (italian/english)             :v1:
+
+** TODO nicely packaged android/ios app?                                 :v2:
+
+** TODO authentication support                                           :v2:
+
+* TODO google analytics                                      :infrastructure:
+
+* TODO logentries                                               :infrastructure:
+
