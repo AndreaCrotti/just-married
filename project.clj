@@ -84,8 +84,10 @@
   {:production {:env {:production true}}
    :uberjar {:hooks []
              :source-paths ["src/clj" "src/cljc"]
-             :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
-             ;; "garden" ["garden" "once"]
+             :prep-tasks ["compile"
+                          ["cljsbuild" "once" "min"]]
+             ;; add garden as well
+             ;;["garden" "once"]
              ;; should we omit the source??
              :omit-source true
              :aot :all

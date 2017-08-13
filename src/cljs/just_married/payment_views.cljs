@@ -7,10 +7,6 @@
   {:english "gbp"
    :italian "euro"})
 
-(defn payment
-  []
-  "Gift section, using stripe or something similar for the integration")
-
 ;; should the wish list url be directly here or injected in some other way?
 (defn amazon-wish-list
   ;; does it need to subscribe to anything here?
@@ -36,9 +32,3 @@
      ;; the gbp should change depending on the language automatically
      :data-currency (get LANGUAGE-TO-CURRENCY language)}
     ]])
-
-(defn stripe-checkout
-  []
-  (let [lang (subscribe [:current-language])]
-    (fn []
-      (stripe-form lang))))
