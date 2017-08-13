@@ -53,6 +53,7 @@ Currently hard coded to my specific wedding, but could potentially be easily ada
 - [x] set up logentries to get even more insights
 - [ ] register right DNS name and link it with Heroku
 - [ ] use https://github.com/kristoferjoseph/flexboxgrid for the alignment
+- [ ] check how to get good results on Google, matching all the possible various combinations of names
 
 ## DB schema
 

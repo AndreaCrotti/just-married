@@ -7,7 +7,9 @@
    :blue "#4444FF"
    :marsala "#955251"
    :royal-blue "#4169e1"
-   :deep-blue "#00bfff"})
+   :deep-blue "#00bfff"
+   :electric-blue "#2C75FF"
+   :deep-electric-blue "#035096"})
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"})
