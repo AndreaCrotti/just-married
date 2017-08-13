@@ -11,23 +11,13 @@
                  [honeysql "0.9.0"]
                  [migratus "0.9.8"]
 
-                 [datascript "0.16.1"]
                  [doo "0.1.7"]
                  [re-frisk "0.4.5"]
 
                  [re-frame "0.9.4"]
                  [reagent "0.7.0"]
-                 [ring "1.6.2"]
-                 [ring-middleware-format "0.7.2" :exclusions [ring]]
-                 [ring/ring-defaults "0.3.1"]
-                 [ring/ring-json "0.4.0"]
                  [cljs-ajax "0.6.0"]
-                 [secretary "1.2.3"]
                  [org.clojure/clojurescript "1.9.854"]
-                 [metosin/ring-http-response "0.9.0"]
-                 [bk/ring-gzip "0.2.1"]
-                 ;; [clj-jwt "0.1.1"]
-                 [compojure "1.6.0"]
                  [environ "1.1.0"]
                  [garden "1.3.2"]
                  ;; this added just to make garden happy?
@@ -39,14 +29,10 @@
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.0"]
                  [clj-http-fake "1.0.3"]
-                 [com.andrewmcveigh/cljs-time "0.5.1"]
                  ;; pedestal dependencies
                  [io.pedestal/pedestal.service       "0.5.2"]
                  [io.pedestal/pedestal.service-tools "0.5.2"] ;; Only needed for ns-watching; WAR tooling
                  [io.pedestal/pedestal.jetty         "0.5.2"]
-                 #_[io.pedestal/pedestal.immutant      "0.5.2"]
-                 ;; is tomcat actually needed
-                 #_[io.pedestal/pedestal.tomcat        "0.5.2"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
 
                  [org.slf4j/jul-to-slf4j "1.7.25"]
@@ -63,8 +49,7 @@
                  ;; authentication with pedestal
                  [geheimtur "0.3.3"]]
 
-  :plugins [[lein-ring "0.8.13"]
-            [environ/environ.lein "0.3.1"]
+  :plugins [[environ/environ.lein "0.3.1"]
             [lein-cljsbuild "1.1.4"]
             [lein-garden "0.2.8"]]
 
@@ -72,6 +57,7 @@
   :min-lein-version "2.7.1"
   :source-paths ["src/clj" "src/cljc"]
   :test-paths ["test/clj" "test/cljc"]
+  :resource-paths ["config" "resources"]
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
                                     "test/js"
                                     "resources/public/css"]
@@ -86,11 +72,7 @@
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
 
-  :ring {:handler just-married.api/app
-         :auto-reload? true
-         :auto-refresh? true}
-
-  :main just-married.api
+  :main ^{:skip-aot true} just-married.server
   :target-path "target/%s"
 
   :doo {:alias {:browsers [:phantomjs]}}
@@ -122,8 +104,7 @@
                    [lambdaisland/garden-watcher "0.3.1"]
                    ;; dependencies for the reloaded workflow
                    [ns-tracker "0.3.1"]
-                   [reloaded.repl "0.2.3"]
-                   [ring-mock "0.1.5"]]}}
+                   [reloaded.repl "0.2.3"]]}}
 
 
   :cljsbuild
