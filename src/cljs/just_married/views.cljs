@@ -40,7 +40,11 @@
 (defn find-us
   []
   [:div {:id "find-us" :class "section"}
-   [:div (-> settings/PLACES :parco :name)]
+   [:div
+    [:a
+     {:href (-> settings/PLACES :parco :url)}
+     (-> settings/PLACES :parco :name)]]
+
    [:div {:id "map"} "Map here"]])
 
 (defn gifts

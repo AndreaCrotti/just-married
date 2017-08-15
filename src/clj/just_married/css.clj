@@ -17,7 +17,8 @@
    :deep-electric-blue "#035096"})
 
 (def FONT-FAMILIES
-  {:open-sans "'Open Sans', sans-serif"})
+  {:open-sans "'Open Sans', sans-serif"
+   :alex-brush "'Alex Brush', cursive"})
 
 (def FONT-STYLES
   {:big
@@ -35,6 +36,13 @@
 ;; each style defines a new file, could simply also generate
 ;; many different files ideally
 (defstyles screen
+  ;;TODO: make it actually still look nice though
+  [:a {:color "inherit"
+       :text-decoration "none"}]
+
+  [:a:hover {:text-decoration "none"
+             :color "inherit"}]
+
   ;; various language settings
   [:.language-group {:padding-right "20px"}]
   [:.language.selected {:padding-right "20px"}]
@@ -53,6 +61,9 @@
               ;;:border-style "solid"
               }]
 
+  [:app {:background-color (:marsala COLOR-PALLETTE)}]
+  ;; maybe the image containing the rest should actually be an element
+  ;; by itself?
   [:#story {:background-image
             [(url (format "'%s'" (:bw-cats IMAGES)))]
             :background-repeat "no-repeat"
@@ -60,6 +71,7 @@
             :height "400px"
             :text-align "center"
             :font-weight "bold"
+            :font-family (:alex-brush FONT-FAMILIES)
             :font-size "x-large"
             :color (:marsala COLOR-PALLETTE)}]
 

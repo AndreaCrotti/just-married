@@ -28,7 +28,10 @@ wedding related website, and it's backend storing information about guests
   - andreaenrica.life
   - andreaenrica.wedding (more expensive)
 
-* TODO User facing features
+* Features
+
+** TODO add a way to collect stories about the couple,                   :v2:
+   which can be written out/told during the wedding itself
 
 ** TODO smart notifications via sms/email                                :v2:
 
@@ -43,6 +46,9 @@ wedding related website, and it's backend storing information about guests
 ** TODO playlist suggestion                                              :v2:
 
 ** TODO information about date and countdown                             :v1:
+
+- [ ] improve style for the countdown
+- [ ] add seconds as well if possible?
 
 ** TODO few pictures in main gallery                                     :v1:
 
