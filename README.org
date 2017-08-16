@@ -83,6 +83,9 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 
 * TODO fill in the database with all the invited people importing from existing data :v1:
 * TODO restrict the google maps key to avoid [[https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1][quota thefts]]   :infrastructure:
+* TODO add a way to run everything inside docker             :infrastructure:
+  This would allow to possibly test running everything in AWS/ECS or
+  even kubernetes in the google cloud otherwise.
 
 * Graphics
 

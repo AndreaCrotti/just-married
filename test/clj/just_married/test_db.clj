@@ -1,15 +1,27 @@
 (ns just-married.test-db
   (:require [just-married.db :as db]
             [clojure.test :as t]
-            [migratus.core :as migratus]))
+            [migratus.core :as migratus]
+            [environ.core :refer [env]]))
 
-(defn my-test-fixture [f]
-  ;; add the right migratus functions to create and destroy the
-  ;; database, before running the tests
-  ;;(create-db)
+;; this could be defaulting already somewhere else??
+;; and make it also being directly available in cider?
+(def DEFAULT-TEST-DB "postgresql://just_married:just_married@localhost:5440/just_married")
+
+;; should we default to something maybe?
+(def config {:store :database
+             :migration-dir "migrations"
+             :db (get env :database-url DEFAULT-TEST-DB)})
+
+(defn setup-db [f]
+  (migratus/migrate config)
   (f)
-  #_(destroy-db))
+  (migratus/reset config))
 
-; Here we register my-test-fixture to be called once, wrapping ALL tests 
-; in the namespace
-(t/use-fixtures :once my-test-fixture)
+(t/use-fixtures :each setup-db)
+
+;;TODO: add tests again when they postgres is actually correctly being
+;;set up in circle ci
+#_(t/deftest test-db-loads
+  (t/testing "check migration works"
+    (t/is (= 1 (inc 0)))))
