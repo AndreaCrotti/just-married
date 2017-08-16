@@ -28,7 +28,7 @@ wedding related website, and it's backend storing information about guests
   - andreaenrica.life
   - andreaenrica.wedding (more expensive)
 
-* Features
+* User facing features
 
 ** TODO add a way to collect stories about the couple,                   :v2:
    which can be written out/told during the wedding itself
@@ -68,6 +68,14 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 ** TODO nicely packaged android/ios app?                                 :v2:
 
 ** TODO authentication support                                           :v2:
+
+* Backend features
+
+** TODO research and implement some algorithm to generate the tables     :v2:
+
+- [ ] add a "category" field to put families/people in?
+- [ ] add information about the actual amount of tables and their shape/number of seats
+- [ ] add a way to add extra constraints on families/people who should not be in the same table
 
 * TODO google analytics                                      :infrastructure:
 
