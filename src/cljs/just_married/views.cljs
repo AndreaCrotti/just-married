@@ -32,9 +32,11 @@
 (defn story
   []
   [:div {:id "story" :class "section"}
-   [:div "Andrea Crotti & Enrica Verrucci"]
-   [:div [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
-   [:div "27th May, 2018"]
+   [:div {:class "names"} "Andrea Crotti & Enrica Verrucci"]
+   [:div {:class "find-us"}
+    [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
+
+   [:div {:class "date"} "27th May, 2018"]
    [:div {:id "countdown"} (countdown/countdown-component)]])
 
 (defn find-us
