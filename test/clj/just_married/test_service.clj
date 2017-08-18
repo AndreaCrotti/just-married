@@ -12,4 +12,15 @@
   (t/is
    (= (:status (pt/response-for test-service :get "/")) 200)
    (= (:status (pt/response-for test-service :post "/")) 405)))
-;; now check the headers
+
+
+(t/deftest confirmation-test
+  (let [confirm-positive (pt/response-for
+                          test-service
+                          :post "/confirm"
+                          :body {"coming" true
+                                 "email" "friend@mail.com"
+                                 "name" "friend"})]
+    ;; this should actually fail!
+    (t/is 
+     (= (:status confirm-positive 201)))))

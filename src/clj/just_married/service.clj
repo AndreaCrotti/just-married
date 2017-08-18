@@ -15,6 +15,11 @@
 (def html-interceptors [(body-params/body-params) http/html-body])
 (def routes #{["/" :get (conj html-interceptors `home-page)]})
 
+(defn confirm
+  [request]
+  (-> (ring-resp/response "hello wolrd")
+      (ring-resp/content-type "application/json")))
+
 (def service {:env :prod
               ::http/routes routes
               ::http/allowed-origins ["http://localhost:8080"]
