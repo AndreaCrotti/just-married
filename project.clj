@@ -32,8 +32,9 @@
                  [com.taoensso/tempura "1.1.2"]
                  [cljs-http "0.1.43"]
 
-                 ;; testing libraries
+                 ;; testing libraries, could they also not be in here at all?
                  [doo "0.1.7"]
+                 [day8.re-frame/test "0.1.5"]
 
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
