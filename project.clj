@@ -26,6 +26,8 @@
                  [re-frisk "0.4.5"]
                  [re-frame "0.9.4"]
                  [cljs-ajax "0.6.0"]
+                 ;; also ns-tracker is needed not only in dev
+                 [ns-tracker "0.3.1"]
                  [garden "1.3.2"]
                  [tongue "0.2.2"]
                  [com.andrewmcveigh/cljs-time "0.5.0"]
@@ -65,11 +67,6 @@
              :open-file-command "lein_opener.sh"
              :server-logfile "log/figwheel.log"}
 
-  :garden {:builds [{:id           "screen"
-                     :source-paths ["src/clj"]
-                     :stylesheet just-married.css/screen
-                     :compiler     {:output-to     "resources/public/css/screen.css"
-                                    :pretty-print? true}}]}
 
   :main ^{:skip-aot true} just-married.server
   :target-path "target/%s"
@@ -85,10 +82,9 @@
    :uberjar {:hooks []
              :source-paths ["src/clj" "src/cljc"]
              :prep-tasks ["compile"
+                          ["garden" "once"]
                           ["cljsbuild" "once" "min"]]
-             ;; add garden as well
-             ;;["garden" "once"]
-             ;; should we omit the source??
+
              :omit-source true
              :aot :all
              :main just-married.server}
@@ -107,10 +103,14 @@
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.1"]
                    ;; dependencies for the reloaded workflow
-                   [ns-tracker "0.3.1"]
                    [reloaded.repl "0.2.3"]]}}
 
 
+  :garden {:builds [{:id           "screen"
+                     :source-paths ["src/clj"]
+                     :stylesheet just-married.css/screen
+                     :compiler     {:output-to     "resources/public/css/screen.css"
+                                    :pretty-print? true}}]}
   :cljsbuild
   {:builds
    [{:id           "dev"
