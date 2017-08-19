@@ -81,7 +81,7 @@
   {:production {:env {:production true}}
    :uberjar {:hooks []
              :source-paths ["src/clj" "src/cljc"]
-             :prep-tasks ["compile"
+             :prep-tasks [["compile"]
                           ["garden" "once"]
                           ["cljsbuild" "once" "min"]]
 
