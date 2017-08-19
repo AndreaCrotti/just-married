@@ -48,19 +48,6 @@
   [:.language.selected {:padding-right "20px"}]
   [:.language.not-selected {:padding-right "20px"}]
 
-  ;; header settings
-  [:#header {:background-color (:amaranth COLOR-PALLETTE)
-             :font-color (:blue COLOR-PALLETTE)}]
-
-  [:#header [:a {:padding-right "20px"
-                 :font-weight "bold"
-                 :font-family (:open-sans FONT-FAMILIES)}]]
-
-  ;; boxing sections properly
-  [:.section {:border-width "2px"
-              ;;:border-style "solid"
-              }]
-
   [:app {:background-color (:marsala COLOR-PALLETTE)}]
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
