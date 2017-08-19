@@ -38,7 +38,7 @@
 
   (t/deftest test-add-confirmation
     (let [existing-person
-          (j/execute! DATABASE-URL (db/add-person "name" "my@mail.com"))])
+          (db/add-person "name" "my@mail.com")])
 
     (t/testing "Confirm existing person"
       (db/confirm! "name" "my@mail.com" true))))

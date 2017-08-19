@@ -27,7 +27,7 @@
   []
   (let [current-language (subscribe [:current-language])]
     (fn []
-      [:nav {:class "navbar navbar-default"}
+      [:nav {:class "navbar navbar-dark bg-primary"}
        [:div {:class "container-fluid"}
         [:div {:class "navbar-header"}
          [:a {:class "navbar-brand" :href "#"} "Home" ]]
@@ -94,7 +94,9 @@
              :class "btn btn-danger btn-medium"
              :on-click #(dispatch [:not-coming])}
     "Sadly can't join you!"]
-   ])
+
+   #_[:div {:class "g-recaptcha"
+          :data-sitekey settings/RECAPTCHA-KEY}]])
 
 ;; devtools does not seem to be set up correctly
 ;; since it doesn't find hints.js for example

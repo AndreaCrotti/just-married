@@ -12,29 +12,42 @@
 (defn add-person
   "Add a person and return the id"
   [name email]
-  (->
-   (h/insert-into :people)
-   (h/columns :first_name :email)
-   (h/values [[name email]])
-   ;; some way to return the id created??
-   (honey/format)))
+  (let [query
+        (->
+         (h/insert-into :people)
+         (h/columns :first_name :email-address)
+         (h/values [[name email]])
+         ;; some way to return the id created??
+         (honey/format))]
+    
+    (j/execute! DEFAULT-DB-URL query)))
 
 (defn get-person
   "Lookup someone by email and return its id or nil if not found"
   [email]
-  (->
-   ;; should use select for update here to be super picky??
-   (h/select :id)
-   (h/from :people)
-   (h/where [:= :email email])
-   (honey/format)))
+  (let [result
+        (j/query
+         DEFAULT-DB-URL
+         (->
+          ;; should use select for update here to be super picky??
+          (h/select :id)
+          (h/from :people)
+          (h/where [:= :email-address email])
+          (honey/format)))]
+
+    (when (not= result '())
+      (-> result (first) :id))))
 
 (defn add-confirmation
   [person-id coming]
-  (-> 
-   (h/insert-into :confirmation)
-   (h/columns :confirmed-by :coming)
-   (h/values [[person-id coming]])))
+  (let [query
+        (-> 
+         (h/insert-into :confirmation)
+         (h/columns :confirmed-by :coming)
+         (h/values [[person-id coming]])
+         (honey/format))]
+
+    (j/execute! DEFAULT-DB-URL query)))
 
 
 (defn confirm!
@@ -44,6 +57,6 @@
   ;; link it directly to the right person?
   (let [person-id
         (or (get-person email)
-            (j/execute! (add-person name email)))]
-
-    (j/execute! (add-confirmation person-id coming))))
+            (add-person name email))]
+    
+    (add-confirmation person-id coming)))

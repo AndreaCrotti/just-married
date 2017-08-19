@@ -21,6 +21,10 @@ wedding related website, and it's backend storing information about guests
 * TODO run tests in Circleci                              :infrastructure:v1:
 ** TODO run frontend tests in Circle
 
+** TODO run backend tests
+   This involves also finding a way to set up docker properly,
+   to be able to run integration tests.   
+
 * TODO use HTTPS everywhere                                  :infrastructure:
   This might potentially be expensive at least on Heroku, less so on Aws or digital ocean
 
@@ -87,9 +91,11 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
   This would allow to possibly test running everything in AWS/ECS or
   even kubernetes in the google cloud otherwise.
 
-* Graphics
+* TODO add a re-captcha on input forms to avoid being spammed badly      :v1:
 
-** TODO choose the right fonts
+https://www.google.com/recaptcha/admin#site/338522954?setup
+
+* TODO choose the right fonts                                   :graphics:v1:
 
 Nice possible fonts to use:
 
@@ -97,7 +103,7 @@ Nice possible fonts to use:
 - https://fonts.google.com/specimen/Dancing+Script
 - https://fonts.google.com/specimen/Abril+Fatface
 
-** TODO Get the right structure and graphics
+* TODO Get the right structure and graphics                     :graphics:v1:
 
 Check places like:
 

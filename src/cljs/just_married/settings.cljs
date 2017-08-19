@@ -15,3 +15,5 @@
 
 (def FATIDIC-TIME
   (time/date-time 2018 05 27 13))
+
+(def RECAPTCHA-KEY "6LdKcy0UAAAAAP6M0eWoFblIxnyJVTVxIQIfdilx")
