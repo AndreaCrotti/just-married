@@ -122,7 +122,8 @@
                     :output-to            "resources/public/js/compiled/app.js"
                     :output-dir           "resources/public/js/compiled/out"
                     :asset-path           "js/compiled/out"
-                    :source-map "app.js.map"
+                    :optimizations :none
+                    :source-map true
                     :source-map-timestamp true
                     :preloads             [devtools.preload]
                     :external-config      {:devtools/config {:features-to-install :all}}}}
@@ -132,6 +133,7 @@
      :compiler     {:main            just-married.core
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
+                    :source-map      "resources/public/js/compiled/app.js.map"
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false}}
 
