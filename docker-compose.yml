@@ -1,6 +1,23 @@
 version: '2'
 
 services:
+  app:
+    build: .
+
+  test-app:
+    build: .
+
+    depends_on:
+      - test-db
+
+    volumes:
+      - .:/just-married
+
+    command: lein test
+
+    environment:
+      DATABASE_URL: postgres://just_married:just_married@localhost:5440/just_married
+
   test-db:
     image: postgres:9.6
 
