@@ -133,9 +133,8 @@
      :compiler     {:main            just-married.core
                     :output-to       "resources/public/js/compiled/app.js"
                     :optimizations   :advanced
-                    ;; should add a path here to get the source map
-                    ;; available also in production
-                    ;; :source-map      "resources/public/js/compiled/app.js.map"
+                    :output-dir "resources/public/js/compiled"
+                    :source-map "resources/public/js/compiled/app.js.map"
                     :closure-defines {goog.DEBUG false}
                     :pretty-print    false}}
 
