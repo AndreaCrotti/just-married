@@ -38,6 +38,9 @@ wedding related website, and it's backend storing information about guests
    getting married, so they can be told, attached somewhere during the
    wedding itself.
 
+** TODO add an integration to add the date to the calendar               :v1:
+   and ideally to set some reminders automatically as well
+
 ** TODO add a way to collect stories about the couple,                   :v2:
    which can be written out/told during the wedding itself
 
