@@ -13,8 +13,6 @@ services:
     volumes:
       - .:/just-married
 
-    command: lein test
-
     environment:
       DATABASE_URL: postgres://just_married:just_married@test-db/just_married
 

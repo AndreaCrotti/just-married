@@ -94,7 +94,8 @@
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :plugins [[lein-figwheel "0.5.12"]
               [lein-doo "0.1.7"]
-              [migratus-lein "0.5.0"]]
+              [migratus-lein "0.5.0"]
+              [test2junit "1.3.3"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
