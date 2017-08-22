@@ -1,6 +1,21 @@
 version: '2'
 
 services:
+  app:
+    build: .
+
+  test-app:
+    build: .
+
+    depends_on:
+      - test-db
+
+    volumes:
+      - .:/just-married
+
+    environment:
+      DATABASE_URL: postgres://just_married:just_married@test-db/just_married
+
   test-db:
     image: postgres:9.6
 
