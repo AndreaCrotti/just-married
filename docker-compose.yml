@@ -16,7 +16,7 @@ services:
     command: lein test
 
     environment:
-      DATABASE_URL: postgres://just_married:just_married@localhost:5440/just_married
+      DATABASE_URL: postgres://just_married:just_married@test-db/just_married
 
   test-db:
     image: postgres:9.6
