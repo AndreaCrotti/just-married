@@ -31,14 +31,14 @@
 
 (t/use-fixtures :each setup-db)
 
-(when db-reachable?
-  (t/deftest test-db-migrates
-    (t/testing "check migration works"
-      (t/is (= 1 (inc 0)))))
+#_(when db-reachable?)
+(t/deftest test-db-migrates
+  (t/testing "check migration works"
+    (t/is (= 1 (inc 0)))))
 
-  (t/deftest test-add-confirmation
-    (let [existing-person
-          (db/add-person "name" "my@mail.com")])
+(t/deftest test-add-confirmation
+  (let [existing-person
+        (db/add-person "name" "my@mail.com")])
 
-    (t/testing "Confirm existing person"
-      (db/confirm! "name" "my@mail.com" true))))
+  (t/testing "Confirm existing person"
+    (db/confirm! "name" "my@mail.com" true)))
