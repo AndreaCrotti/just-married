@@ -72,6 +72,7 @@
 
   :main ^{:skip-aot true} just-married.server
   :target-path "target/%s"
+  :test2junit-output-dir "test-results"
 
   :doo {:alias {:browsers [:phantomjs]}}
 
