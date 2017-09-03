@@ -60,6 +60,8 @@ wedding related website, and it's backend storing information about guests
 
 - [ ] improve style for the countdown
 - [ ] add seconds as well if possible?
+- [ ] consider using https://www.timeanddate.com/clocks/freecountdown.html
+  and the wedding theme for the countdown
 
 ** TODO few pictures in main gallery                                     :v1:
 
@@ -140,3 +142,7 @@ Check places like:
   + song suggested
 
   How do we know who did what? Need some kind of basic authentication to keep track properly.
+
+# Local Variables:
+# mode: org
+# End:

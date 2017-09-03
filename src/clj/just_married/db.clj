@@ -9,46 +9,54 @@
 (def db-conn
   (get env :database-url DEFAULT-DB-URL))
 
-(defn add-person
+(defn- add-person
+  [name email]
+  (->
+   (h/insert-into :guest)
+   (h/columns :first_name :email-address)
+   (h/values [[name email]])
+   ;; some way to return the id created??
+   (honey/format)))
+
+(defn add-person!
   "Add a person and return the id"
   [name email]
-  (let [query
-        (->
-         (h/insert-into :people)
-         (h/columns :first_name :email-address)
-         (h/values [[name email]])
-         ;; some way to return the id created??
-         (honey/format))]
+  (let [query (add-person name email)]
     
     (j/execute! DEFAULT-DB-URL query)))
 
-(defn get-person
+(defn- get-person
+  [email]
+  (->
+   ;; should use select for update here to be super picky??
+   (h/select :id)
+   (h/from :guest)
+   (h/where [:= :email-address email])
+   (honey/format)))
+
+(defn get-person!
   "Lookup someone by email and return its id or nil if not found"
   [email]
   (let [result
         (j/query
          DEFAULT-DB-URL
-         (->
-          ;; should use select for update here to be super picky??
-          (h/select :id)
-          (h/from :people)
-          (h/where [:= :email-address email])
-          (honey/format)))]
+         (get-person email))]
 
     (when (not= result '())
       (-> result (first) :id))))
 
-(defn add-confirmation
+(defn- add-confirmation
   [person-id coming]
-  (let [query
-        (-> 
-         (h/insert-into :confirmation)
-         (h/columns :confirmed-by :coming)
-         (h/values [[person-id coming]])
-         (honey/format))]
+  (-> 
+   (h/insert-into :confirmation)
+   (h/columns :confirmed-by :coming)
+   (h/values [[person-id coming]])
+   (honey/format)))
 
+(defn add-confirmation!
+  [person-id coming]
+  (let [query (add-confirmation person-id coming)]
     (j/execute! DEFAULT-DB-URL query)))
-
 
 (defn confirm!
   "Add to the database that someone confirmed"
@@ -56,7 +64,7 @@
   ;; if the email address is not available then how do we
   ;; link it directly to the right person?
   (let [person-id
-        (or (get-person email)
-            (add-person name email))]
+        (or (get-person! email)
+            (add-person! name email))]
     
-    (add-confirmation person-id coming)))
+    (add-confirmation! person-id coming)))
