@@ -2,7 +2,9 @@
   (:require [clojure.java.jdbc :as j]
             [honeysql.core :as honey]
             [environ.core :refer [env]]
-            [honeysql.helpers :as h]))
+            [honeysql.helpers :as h]
+            [honeysql-postgres.helpers :as ph]
+            [honeysql-postgres.format :as pf]))
 
 (def DEFAULT-DB-URL "postgresql://just_married:just_married@localhost:5440/just_married")
 
@@ -16,14 +18,12 @@
    (h/columns :first_name :email-address)
    (h/values [[name email]])
    ;; some way to return the id created??
-   (honey/format)))
+   honey/format))
 
 (defn add-person!
   "Add a person and return the id"
   [name email]
-  (let [query (add-person name email)]
-    
-    (j/execute! DEFAULT-DB-URL query)))
+  (j/execute! DEFAULT-DB-URL (add-person name email)))
 
 (defn- get-person
   [email]
@@ -42,6 +42,7 @@
          DEFAULT-DB-URL
          (get-person email))]
 
+    ;; seems like a hacky way to do this
     (when (not= result '())
       (-> result (first) :id))))
 
