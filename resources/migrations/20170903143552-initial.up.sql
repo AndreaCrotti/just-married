@@ -1,6 +1,10 @@
+-- useful enums
 CREATE TYPE sposini AS ENUM ('enrica', 'andrea');
+CREATE TYPE gender as ENUM ('male', 'female');
+CREATE TYPE category AS ENUM ('family', 'work', 'friends');
 
-CREATE TABLE people  (
+-- guests table
+CREATE TABLE guest  (
        id serial PRIMARY KEY,
        first_name VARCHAR,
        last_name VARCHAR,
@@ -13,6 +17,7 @@ CREATE TABLE people  (
        -- could also be an array or a JSON field in theory
        speak_italian BOOLEAN,
        speak_english BOOLEAN,
+       gender gender,
 
        -- map of booleans which could default to
        -- {
@@ -33,24 +38,52 @@ CREATE TABLE people  (
        email_address VARCHAR
 );
 
+-- family table
 CREATE TABLE family (
        id serial PRIMARY KEY,
+       -- simply use the family name as key here
+       -- no need for extra fancy keys
+       family_name VARCHAR(32) NOT NULL,
+       category category,
+
        invited_by sposini NOT NULL,
        comment TEXT,
 
        lunch BOOLEAN,
        dinner BOOLEAN,
 
-       family_name VARCHAR NOT NULL,
        contact_person INTEGER,
-       -- unfortunately no way to enforce a foreign key constraint on
-       -- all the elements of the array
-       family_members INTEGER[10],
-       -- might need more structure if more analysis should be done or
-       -- could be a simple string if only used for shipping purposes
+
+       country VARCHAR(2),
+       -- address contains everything except for the country
        address VARCHAR,
 
        requires_accommodation BOOLEAN,
 
-       FOREIGN KEY(contact_person) REFERENCES people(id)
+       FOREIGN KEY(contact_person) REFERENCES guest(id)
+);
+
+
+CREATE TABLE family_members (
+       id serial PRIMARY KEY,
+       family_id INTEGER NOT NULL,
+       person_id INTEGER NOT NULL,
+
+       FOREIGN KEY(family_id) REFERENCES family(id),
+       FOREIGN KEY(person_id) REFERENCES guest(id)
+);
+
+CREATE UNIQUE INDEX family_members_idx ON family_members (family_id, person_id);
+
+CREATE TABLE confirmation (
+       id serial PRIMARY KEY,
+       coming BOOLEAN NOT NULL,
+
+       invited_in_date TIMESTAMP DEFAULT CURRENT_DATE,
+       -- person that confirmed, at this point it might not have been
+       -- already created in people, so should be created first
+       confirmed_by INTEGER NOT NULL,
+       confirmed_in_date TIMESTAMP DEFAULT CURRENT_DATE,
+
+       FOREIGN KEY(confirmed_by) REFERENCES guest(id)
 );
