@@ -6,6 +6,27 @@
   "All the available languages"
   #{:en :it})
 
+(defn- set-lang [lang]
+  (dispatch [:set-language lang]))
+
+(def flag-files
+  (zipmap AVAILABLE-LANGUAGES
+          (map #(subs (str % ".png") 1) AVAILABLE-LANGUAGES)))
+
+(defn make-lang [lang current-language]
+  (let [selected (= lang current-language)
+        png-file (lang flag-files)
+        props {:type "image" :src png-file :key lang}
+        full-props (if selected
+                     ;; the default language does not
+                     ;; get selected at the moment
+                     (assoc props :class "language.selected" )
+                     (assoc props
+                            :class "language.not-selected"
+                            :on-click #(dispatch [:set-language lang])))]
+
+    [:input full-props]))
+
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   [current-language]
@@ -18,26 +39,9 @@
   {:en {:welcome "Welcome"}
    :it {:welcome "Benvenuto"}})
 
-;; (def translate
-;;   (tongue/build-translate dicts))
+(def translate
+  (tongue/build-translate dicts))
 
-(defn- set-lang [lang]
-  (dispatch [:set-language lang]))
-
-(def flag-files
-  (zipmap AVAILABLE-LANGUAGES
-          (map #(subs (str % ".png") 1) AVAILABLE-LANGUAGES)))
-
-(defn make-lang [lang current-language]
-  (let [selected (= lang current-language)
-        png-file (lang flag-files)
-        props {:type "image" :src png-file}
-        full-props (if selected
-                     ;; the default language does not
-                     ;; get selected at the moment
-                     (assoc props :class "language.selected" )
-                     (assoc props
-                            :class "language.not-selected"
-                            :on-click #(dispatch [:set-language lang])))]
-
-    [:input full-props]))
+;; (translate :en :welcome)
+;; (update-in {:a :welcome} [:a] #(translate :en %))
+;; (translate :en {:a [:welcome]})

@@ -18,7 +18,7 @@
 ;; would be good to extract even further
 (defn navbar
   []
-  (let [current-language (subscribe [:current-language])]
+  (let [language (subscribe [:current-language])]
     (fn []
       [:nav {:class "navbar navbar-dark bg-primary"}
        [:div {:class "container-fluid"}
@@ -31,17 +31,17 @@
            [:li [:a {:href (str "#" href)} name]]))
 
         [:ul {:class "nav navbar-right"}
-         (lang-selection current-language)]]])))
+         (lang-selection @language)]]])))
 
 ;; should dispatch the right language also here of course
 (defn add-to-calendar
-  []
+  [language]
   [:div {:id "add-to-calendar"}
    [:a {:target "_blank"
-        :href (get settings/WEDDING-DAY :en)}
+        :href (get settings/WEDDING-DAY language)}
 
     ;; actually use current language
-    (condp = :en
+    (condp = language
       :en "Add to Calendar"
       :it "Aggiungi al calendario")
 
@@ -49,14 +49,16 @@
 
 (defn story
   []
-  [:div {:id "story" :class "section"}
-   [:div {:class "names"} "Andrea Crotti & Enrica Verrucci"]
-   [:div {:class "find-us"}
-    [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
+  (let [language (subscribe [:current-language])]
+    (fn []
+      [:div {:id "story" :class "section"}
+       [:div {:class "names"} "Andrea Crotti & Enrica Verrucci"]
+       [:div {:class "find-us"}
+        [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
 
-   [:div {:class "date"} "27th May, 2018"]
-   [:div {:id "countdown"} (countdown/countdown-component)]
-   (add-to-calendar)])
+       [:div {:class "date"} "27th May, 2018"]
+       [:div {:id "countdown"} (countdown/countdown-component)]
+       (add-to-calendar @language)])))
 
 (defn find-us
   []

@@ -50,7 +50,8 @@
                  [org.postgresql/postgresql "9.4-1201-jdbc41"]
 
                  [honeysql "0.9.0"]
-                 [migratus "0.9.8"]]
+                 [migratus "0.9.8"]
+                 [com.rpl/specter "1.0.3"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-cljsbuild "1.1.4"]
