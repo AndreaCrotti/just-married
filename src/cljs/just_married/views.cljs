@@ -33,6 +33,20 @@
         [:ul {:class "nav navbar-right"}
          (lang-selection current-language)]]])))
 
+;; should dispatch the right language also here of course
+(defn add-to-calendar
+  []
+  [:div {:id "add-to-calendar"}
+   [:a {:target "_blank"
+        :href (get settings/WEDDING-DAY :en)}
+
+    ;; actually use current language
+    (condp = :en
+      :en "Add to Calendar"
+      :it "Aggiungi al calendario")
+
+    [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])
+
 (defn story
   []
   [:div {:id "story" :class "section"}
@@ -41,7 +55,8 @@
     [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
 
    [:div {:class "date"} "27th May, 2018"]
-   [:div {:id "countdown"} (countdown/countdown-component)]])
+   [:div {:id "countdown"} (countdown/countdown-component)]
+   (add-to-calendar)])
 
 (defn find-us
   []
@@ -90,29 +105,11 @@
 ;; since it doesn't find hints.js for example
 ;; (log "hello")
 
-;; should dispatch the right language also here of course
-(defn add-to-calendar
-  []
-  (let [current-language (subscribe [:current-language])]
-    (js/console.log "current language is now " current-language)
-    (fn []
-      [:div {:id "add-to-calendar"}
-       [:a {:target "_blank"
-            :href (get settings/WEDDING-DAY :en)}
-
-        ;; actually use current language
-        (condp = :en
-          :en "Add to Calendar"
-          :it "Aggiungi al calendario")
-
-        [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])))
-
 (defn main-panel
   []
   (fn []
     [:g
      [navbar]
-     [add-to-calendar]
      ;; lang selection could be moved into the header potentially?
      [story]
      [find-us]

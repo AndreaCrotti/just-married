@@ -2,16 +2,16 @@
   (:require [tongue.core :as tongue]
             [re-frame.core :as re-frame :refer [dispatch subscribe]]))
 
+(def AVAILABLE-LANGUAGES
+  "All the available languages"
+  #{:en :it})
+
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   [current-language]
   [:div {:id "language-selection"}
    (for [lang AVAILABLE-LANGUAGES]
      (make-lang lang current-language))])
-
-(def AVAILABLE-LANGUAGES
-  "All the available languages"
-  #{:en :it})
 
 (def dicts
   "List of all the words/sentences that need localization"
