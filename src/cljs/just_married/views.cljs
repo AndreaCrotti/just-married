@@ -27,16 +27,11 @@
 
         (into
          [:ul {:class "nav navbar-nav"}]
-         (for [s SECTIONS]
-           [:li [:a {:href (str "#" (first s))} (second s)]]))
+         (for [[href name] SECTIONS]
+           [:li [:a {:href (str "#" href)} name]]))
 
         [:ul {:class "nav navbar-right"}
-         [:div {:class "bfh-selectbox bfh-languages"
-                :data-language "en_GB"
-                :data-available "en_GB,it_IT"
-                :data-flags true}
-          [:input {:type "hidden" :value ""}]]]]])))
-
+         (lang-selection current-language)]]])))
 
 (defn story
   []
@@ -117,7 +112,6 @@
   (fn []
     [:g
      [navbar]
-     [lang-selection]
      [add-to-calendar]
      ;; lang selection could be moved into the header potentially?
      [story]
