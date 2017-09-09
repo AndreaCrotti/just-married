@@ -40,6 +40,21 @@ wedding related website, and it's backend storing information about guests
 
 ** TODO add an integration to add the date to the calendar               :v1:
    and ideally to set some reminders automatically as well
+   One way is to generate the url manually:
+   https://stackoverflow.com/questions/10488831/link-to-add-to-google-calendar
+   otherwise there are products like
+   - https://www.eventable.com/docs
+   - https://addtocalendar.com/
+    
+   that do everything but it might be more fiddly.
+
+Easiest way is however to simply have a public calendar and include the HTML from there
+
+#+BEGIN_SRC html
+  <a target="_blank" href="https://calendar.google.com/calendar/event?action=TEMPLATE&amp;tmeid=M2doaHExNTQwbWM3ZzIyaGt0YnRraXFlc2kgdWQ2bmRiMWhnNWlyMzI5bWZsZzc5cWwxbDRAZw&amp;tmsrc=ud6ndb1hg5ir329mflg79ql1l4%40group.calendar.google.com">
+  <img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_it.gif">
+  </a>
+#+END_SRC
 
 ** TODO add a way to collect stories about the couple,                   :v2:
    which can be written out/told during the wedding itself

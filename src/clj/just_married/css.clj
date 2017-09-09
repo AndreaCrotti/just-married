@@ -69,4 +69,8 @@
   
   ;; find us settings
   [:#map {:width "400px" :height "400px"}]
+
+  ;; to add some extra styling to the calendar
+  [:#add-to-calendar {:background-image GOOGLE-CALENDAR-IMG
+                      :border 0}]
 )
