@@ -2,17 +2,24 @@
   (:require [tongue.core :as tongue]
             [re-frame.core :as re-frame :refer [dispatch subscribe]]))
 
+(defn lang-selection
+  "Define all the possible languages as sequences of clickable images"
+  [current-language]
+  [:div {:id "language-selection"}
+   (for [lang AVAILABLE-LANGUAGES]
+     (make-lang lang current-language))])
+
 (def AVAILABLE-LANGUAGES
   "All the available languages"
-  #{:english :italian})
+  #{:en :it})
 
 (def dicts
   "List of all the words/sentences that need localization"
   {:en {:welcome "Welcome"}
    :it {:welcome "Benvenuto"}})
 
-(def translate
-  (tongue/build-translate dicts))
+;; (def translate
+;;   (tongue/build-translate dicts))
 
 (defn- set-lang [lang]
   (dispatch [:set-language lang]))

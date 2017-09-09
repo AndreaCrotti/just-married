@@ -4,8 +4,8 @@
 (def STRIPE-IMG "https://stripe.com/img/documentation/checkout/marketplace.png")
 
 (def LANGUAGE-TO-CURRENCY
-  {:english "gbp"
-   :italian "euro"})
+  {:en "gbp"
+   :it "euro"})
 
 ;; should the wish list url be directly here or injected in some other way?
 (defn amazon-wish-list

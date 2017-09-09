@@ -1,11 +1,10 @@
 (ns just-married.views
   (:require
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
-   [just-married.language :refer [make-lang AVAILABLE-LANGUAGES]]
+   [just-married.language :refer [lang-selection]]
    [just-married.payment-views :as payment-views]
    [just-married.countdown :as countdown]
    [just-married.settings :as settings]))
-
 
 (def SECTIONS
   [["story" "Our Story"]
@@ -14,13 +13,6 @@
    ;; ["share" "Share Your Memories"]
    ["accomodation" "Accomodation"]
    ["contacts" "Contacts"]])
-
-
-(defn lang-selection
-  "Define all the possible languages as sequences of clickable images"
-  [current-language]
-  (for [lang AVAILABLE-LANGUAGES]
-    (make-lang lang current-language)))
 
 ;; this is quite bootstrap specific in a way
 ;; would be good to extract even further
@@ -107,23 +99,25 @@
 (defn add-to-calendar
   []
   (let [current-language (subscribe [:current-language])]
-    (fn [])
-    [:div {:id "add-to-calendar"}
-     [:a {:target "_blank"
-          :href (get settings/WEDDING-DAY :en)}
+    (js/console.log "current language is now " current-language)
+    (fn []
+      [:div {:id "add-to-calendar"}
+       [:a {:target "_blank"
+            :href (get settings/WEDDING-DAY :en)}
 
-      (condp = :en
-        :en "Add to Calendar"
-        :it "Aggiungi al calendario")
+        ;; actually use current language
+        (condp = :en
+          :en "Add to Calendar"
+          :it "Aggiungi al calendario")
 
-      [:img {:border "0"
-             :src settings/GOOGLE-CALENDAR-IMG}]]]))
+        [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])))
 
 (defn main-panel
   []
   (fn []
     [:g
      [navbar]
+     [lang-selection]
      [add-to-calendar]
      ;; lang selection could be moved into the header potentially?
      [story]
