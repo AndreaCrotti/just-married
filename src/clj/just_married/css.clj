@@ -51,8 +51,11 @@
   [:app {:background-color (:marsala COLOR-PALLETTE)}]
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
-  [:#story {:background-image
-            [(url (format "'%s'" (:bw-cats IMAGES)))]
+  [:#story {
+            ;; find a more suitable image for the background
+            ;; if possible
+            ;; :background-image
+            ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
             :background-repeat "no-repeat"
             :width "500px"
             :height "400px"
