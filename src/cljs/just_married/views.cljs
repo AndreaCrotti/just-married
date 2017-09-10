@@ -29,7 +29,8 @@
         (into
          [:ul {:class "nav navbar-nav"}]
          (for [sec SECTIONS-SIMPLE]
-           [:li [:a {:href (str "#" (name sec))} (tr sec)]]))
+           [:li
+            [:a {:href (str "#" (name sec))} (tr sec)]]))
 
         [:ul {:class "nav navbar-right"}
          (lang-selection @language)]]])))
@@ -63,12 +64,7 @@
 (defn find-us
   []
   [:div {:id "find-us" :class "section"}
-   [:div
-    [:a
-     {:href (-> settings/PLACES :parco :url)}
-     (-> settings/PLACES :parco :name)]]
-
-   [:div {:id "map"} "Map here"]])
+   [:div {:id "map"}]])
 
 (defn gifts
   []
