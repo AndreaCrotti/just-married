@@ -36,12 +36,27 @@
 
 (def dicts
   "List of all the words/sentences that need localization"
-  {:en {:welcome "Welcome"}
-   :it {:welcome "Benvenuto"}})
+  {:en {:story "Our Story"
+        :find-us "Find Us"
+        :rvsp "RVSP"
+        :accomodation "Accommodation"
+        :contacts "Contacts"
+        :add-to-calendar "Add to Calendar"
+        :date "27th May, 2018"
+        :days "Days"
+        :hours "Hours"
+        :minutes "Minutes"}
+
+   :it {:story "La Nostra Storia"
+        :find-us "Trovaci"
+        :rvsp "RVSP"
+        :accomodation "Dove Dormire"
+        :contacts "Contatti"
+        :add-to-calendar "Aggiungi al Calendario"
+        :date "27 Maggio 2018"
+        :days "Giorni"
+        :hours "Ore"
+        :minutes "Minuti"}})
 
 (def translate
   (tongue/build-translate dicts))
-
-;; (translate :en :welcome)
-;; (update-in {:a :welcome} [:a] #(translate :en %))
-;; (translate :en {:a [:welcome]})

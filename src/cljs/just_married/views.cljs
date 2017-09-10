@@ -1,24 +1,25 @@
 (ns just-married.views
   (:require
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
-   [just-married.language :refer [lang-selection]]
+   [just-married.language :refer [lang-selection translate]]
    [just-married.payment-views :as payment-views]
    [just-married.countdown :as countdown]
    [just-married.settings :as settings]))
 
-(def SECTIONS
-  [["story" "Our Story"]
-   ["find-us" "Find us"]
-   ["rvsp" "RVSP"]
-   ;; ["share" "Share Your Memories"]
-   ["accomodation" "Accomodation"]
-   ["contacts" "Contacts"]])
+(def SECTIONS-SIMPLE
+  [:story
+   :find-us
+   :rvsp
+   :accomodation
+   :contacts])
 
 ;; this is quite bootstrap specific in a way
 ;; would be good to extract even further
 (defn navbar
   []
-  (let [language (subscribe [:current-language])]
+  (let [language (subscribe [:current-language])
+        tr (fn [s] (translate @language s))]
+
     (fn []
       [:nav {:class "navbar navbar-dark bg-primary"}
        [:div {:class "container-fluid"}
@@ -27,8 +28,8 @@
 
         (into
          [:ul {:class "nav navbar-nav"}]
-         (for [[href name] SECTIONS]
-           [:li [:a {:href (str "#" href)} name]]))
+         (for [sec SECTIONS-SIMPLE]
+           [:li [:a {:href (str "#" (name sec))} (tr sec)]]))
 
         [:ul {:class "nav navbar-right"}
          (lang-selection @language)]]])))
@@ -41,10 +42,7 @@
         :href (get settings/WEDDING-DAY language)}
 
     ;; actually use current language
-    (condp = language
-      :en "Add to Calendar"
-      :it "Aggiungi al calendario")
-
+    (translate language :add-to-calendar)
     [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])
 
 (defn story
@@ -56,8 +54,10 @@
        [:div {:class "find-us"}
         [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
 
-       [:div {:class "date"} "27th May, 2018"]
-       [:div {:id "countdown"} (countdown/countdown-component)]
+       [:div {:class "date"} (translate @language :date)]
+       [:div {:id "countdown"}
+        (countdown/countdown-component @language)]
+
        (add-to-calendar @language)])))
 
 (defn find-us

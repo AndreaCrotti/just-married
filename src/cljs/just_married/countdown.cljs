@@ -1,6 +1,7 @@
 (ns just-married.countdown
   (:require [reagent.core :as r]
             [just-married.settings :refer [FATIDIC-TIME]]
+            [just-married.language :refer [translate]]
             [cljs-time.core :as time]
             [cljs-time.format :refer [unparse-duration]]
             [goog.date.duration :as duration]))
@@ -30,12 +31,12 @@
 
 (defn countdown-component
   "Generic component for the countdown"
-  []
+  [language]
   (r/with-let [timer-fn (js/setInterval #(swap! time-left reset-left-time) 1000)]
-
-    [:div.timer {:class ["col-xs" "row"]}
-     [:div (str (:days @time-left) " Days")]
-     [:div (str (:hours @time-left) " Hours")]
-     [:div (str (:minutes @time-left) " Minutes")]]
+    (let [tr (fn [s] (translate language s))]
+      [:div.timer {:class ["col-xs" "row"]}
+       [:div (str (:days @time-left) " " (tr :days))]
+       [:div (str (:hours @time-left) " " (tr :hours))]
+       [:div (str (:minutes @time-left) " " (tr :minutes))]])
 
     (finally (js/clearInterval timer-fn))))
