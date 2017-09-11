@@ -29,7 +29,7 @@
         (into
          [:ul {:class "nav navbar-nav"}]
          (for [sec SECTIONS-SIMPLE]
-           [:li
+           [:li {:key (name sec)}
             [:a {:href (str "#" (name sec))} (tr sec)]]))
 
         [:ul {:class "nav navbar-right"}
