@@ -20,18 +20,18 @@
                  [racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.0"]
-                 [clj-http "3.6.1"]
+                 [clj-http "3.7.0"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
-                 [re-frisk "0.4.5"]
-                 [re-frame "0.9.4"]
-                 [cljs-ajax "0.6.0"]
+                 [re-frisk "0.5.0"]
+                 [re-frame "0.10.1"]
+                 [cljs-ajax "0.7.2"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
-                 [garden "1.3.2"]
+                 [garden "1.3.3"]
                  [tongue "0.2.2"]
-                 [com.andrewmcveigh/cljs-time "0.5.0"]
+                 [com.andrewmcveigh/cljs-time "0.5.1"]
                  [com.taoensso/tempura "1.1.2"]
                  [cljs-http "0.1.43"]
 
@@ -46,11 +46,11 @@
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]
-                 [org.clojure/java.jdbc "0.7.0"]
-                 [org.postgresql/postgresql "9.4-1201-jdbc41"]
+                 [org.clojure/java.jdbc "0.7.1"]
+                 [org.postgresql/postgresql "42.1.4"]
 
-                 [honeysql "0.9.0"]
-                 [migratus "0.9.8"]
+                 [honeysql "0.9.1"]
+                 [migratus "1.0.0"]
                  [com.rpl/specter "1.0.3"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
@@ -101,10 +101,10 @@
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
                    [io.pedestal/pedestal.service-tools "0.5.2"]
-                   [figwheel "0.5.12"]
-                   [figwheel-sidecar "0.5.12"]
+                   [figwheel "0.5.13"]
+                   [figwheel-sidecar "0.5.13"]
                    [javax.servlet/servlet-api "2.5"]
-                   [lambdaisland/garden-watcher "0.3.1"]
+                   [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
                    [reloaded.repl "0.2.3"]]}}
 
