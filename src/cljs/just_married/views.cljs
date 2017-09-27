@@ -13,6 +13,16 @@
    :accomodation
    :contacts])
 
+(defn get-browser-language
+  "Return the language set in the browser, assuming that
+  the browser is actually setting correctly navigator.language.
+  Another way could be to use the geo-location potentially"
+  []
+  (let [browser-lang js/navigator.language]
+    (if (clojure.string/starts-with? browser-lang "it")
+      :italian
+      :english)))
+
 ;; this is quite bootstrap specific in a way
 ;; would be good to extract even further
 (defn navbar

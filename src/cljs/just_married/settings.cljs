@@ -9,9 +9,12 @@
   {:parco {:name "Parco Dei Principi, San Silvestro (Pescara)"
            :latitude "42.423608"
            :longitude "14.231041"
-           :url "http://www.masgrandieventi.it/matrimoni-banchetti/portfolio_page/parco-dei-principi/"}}
-  ;; add the list of suggested places to sleep here
-  )
+           :url "http://www.masgrandieventi.it/matrimoni-banchetti/portfolio_page/parco-dei-principi/"}
+   ;; add the list of suggested places to sleep here
+   :villa-maria {:name "Villa Maria Hotel Spa"
+                 :latitude "42.438338"
+                 :longitude "14.249940"
+                 :url "http://www.hvillamaria.it/en/"}})
 
 (def FATIDIC-TIME
   (time/date-time 2018 05 27 13))
