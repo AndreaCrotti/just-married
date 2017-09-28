@@ -25,10 +25,15 @@ wedding related website, and it's backend storing information about guests
    This involves also finding a way to set up docker properly,
    to be able to run integration tests.   
 
-* TODO use HTTPS everywhere                                  :infrastructure:
+* DONE use HTTPS everywhere                                  :infrastructure:
+  CLOSED: [2017-09-28 Thu 16:19]
+  - CLOSING NOTE [2017-09-28 Thu 16:19]
   This might potentially be expensive at least on Heroku, less so on Aws or digital ocean
 
-* TODO register and use a nice DNS name                      :infrastructure:v1:
+* DONE register and use a nice DNS name                   :infrastructure:v1:
+  CLOSED: [2017-09-28 Thu 16:20]
+  - CLOSING NOTE [2017-09-28 Thu 16:20] \\
+    using andreaenrica.life, so it can be also used in the future
   - andreaenrica.life
   - andreaenrica.wedding (more expensive)
 
@@ -99,6 +104,10 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 ** TODO nicely packaged android/ios app?                                 :v2:
 
 ** TODO authentication support                                           :v2:
+   This can be done with buddy or some other similar library.
+
+** TODO add a way to display bank coordinates (mabye followed by a re-captcha)
+   and use the N26 bank details for the transfer
 
 * Backend features
 
