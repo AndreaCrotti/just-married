@@ -10,3 +10,5 @@
 - circleci
 
 ## Database
+
+The database schema is managed using [Migratus](https://github.com/yogthos/migratus), which makes it easier to handle database schema migrations.
