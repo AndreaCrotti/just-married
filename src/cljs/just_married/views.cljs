@@ -41,9 +41,10 @@
          (for [sec SECTIONS-SIMPLE]
            [:li {:key (name sec)}
             [:a {:href (str "#" (name sec))} (tr sec)]]))
-
-        [:ul {:class "nav navbar-right"}
-         (lang-selection @language)]]])))
+        
+        [:ul {:class "nav navbar-right" :key "language"}
+         (lang-selection @language)]
+        ]])))
 
 ;; should dispatch the right language also here of course
 (defn add-to-calendar

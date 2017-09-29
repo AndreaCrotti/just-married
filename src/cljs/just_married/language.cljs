@@ -9,28 +9,29 @@
 (defn- set-lang [lang]
   (dispatch [:set-language lang]))
 
-(def flag-files
+(def LANG->FLAG-FILE
   (zipmap AVAILABLE-LANGUAGES
           (map #(subs (str % ".png") 1) AVAILABLE-LANGUAGES)))
 
+(defn language-selected->props
+  [lang]
+  {true {:class "language.selected"}
+   false {:class "language.not-selected"
+          :on-click #(dispatch [:set-language lang])}})
+
 (defn make-lang [lang current-language]
   (let [selected (= lang current-language)
-        png-file (lang flag-files)
+        png-file (lang LANG->FLAG-FILE)
         props {:type "image" :src png-file :key lang}
-        full-props (if selected
-                     ;; the default language does not
-                     ;; get selected at the moment
-                     (assoc props :class "language.selected" )
-                     (assoc props
-                            :class "language.not-selected"
-                            :on-click #(dispatch [:set-language lang])))]
+        selected-props (get language-selected->props selected)
+        full-props (merge props selected-props)]
 
     [:input full-props]))
 
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   [current-language]
-  [:div {:id "language-selection"}
+  [:div {:id "language-selection" :key "language-selection"}
    (for [lang AVAILABLE-LANGUAGES]
      (make-lang lang current-language))])
 
