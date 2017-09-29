@@ -64,7 +64,7 @@
       [:div {:id "story" :class "section"}
        [:div {:class "names"} "Andrea Crotti & Enrica Verrucci"]
        [:div {:class "find-us"}
-        [:a {:href "#find-us"} (-> settings/PLACES :parco :name)]]
+        [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
 
        [:div {:class "date"} (translate @language :date)]
        [:div {:id "countdown"}
