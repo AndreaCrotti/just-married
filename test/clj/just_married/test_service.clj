@@ -20,5 +20,5 @@
                                  "email" "friend@mail.com"
                                  "name" "friend"})]
     ;; this should actually fail!
-      (t/is
+    (t/is
      (= (:status confirm-positive 201)))))

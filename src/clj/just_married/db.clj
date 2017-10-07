@@ -65,7 +65,7 @@
   ;; if the email address is not available then how do we
   ;; link it directly to the right person?
   (let [person-id
-          (or (get-person! email)
+        (or (get-person! email)
             (add-person! name email))]
 
     (add-confirmation! person-id coming)))
