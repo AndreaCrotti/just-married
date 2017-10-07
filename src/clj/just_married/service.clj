@@ -39,5 +39,3 @@
                                         ;:ssl-port 8443
                                         ;;TODO: would be good to set SSL as well at this point
                                         :ssl? false}})
-
- 

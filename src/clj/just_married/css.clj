@@ -51,8 +51,7 @@
   [:app {:background-color (:marsala COLOR-PALLETTE)}]
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
-  [:#story {
-            ;; find a more suitable image for the background
+  [:#story {;; find a more suitable image for the background
             ;; if possible
             ;; :background-image
             ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
@@ -69,7 +68,6 @@
   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
-  
+
   ;; find us settings
-  [:#map {:width "400px" :height "400px"}]
-)
+  [:#map {:width "400px" :height "400px"}])

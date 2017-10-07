@@ -48,7 +48,7 @@
 
 (defn- add-confirmation
   [person-id coming]
-  (-> 
+  (->
    (h/insert-into :confirmation)
    (h/columns :confirmed-by :coming)
    (h/values [[person-id coming]])
@@ -67,5 +67,5 @@
   (let [person-id
         (or (get-person! email)
             (add-person! name email))]
-    
+
     (add-confirmation! person-id coming)))

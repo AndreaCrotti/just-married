@@ -4,7 +4,6 @@
             [io.pedestal.http :as http]
             [io.pedestal.test :as pt]))
 
-
 (def test-service
   (::http/service-fn (http/create-servlet service/service)))
 
@@ -12,7 +11,6 @@
   (t/is
    (= (:status (pt/response-for test-service :get "/")) 200)
    (= (:status (pt/response-for test-service :post "/")) 405)))
-
 
 (t/deftest confirmation-test
   (let [confirm-positive (pt/response-for
@@ -22,5 +20,5 @@
                                  "email" "friend@mail.com"
                                  "name" "friend"})]
     ;; this should actually fail!
-    (t/is 
+      (t/is
      (= (:status confirm-positive 201)))))
