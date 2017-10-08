@@ -6,12 +6,20 @@
    [just-married.countdown :as countdown]
    [just-married.settings :as settings]))
 
-(def SECTIONS-SIMPLE
-  [:story
-   :find-us
-   :rvsp
-   :accomodation
-   :contacts])
+(declare find-us)
+(declare rvsp)
+(declare accommodation)
+(declare contacts)
+(declare story)
+(declare gifts)
+
+(def SECTIONS
+  {:story story
+   :find-us find-us
+   :rvsp rvsp
+   :gifts gifts
+   :accomodation accommodation
+   :contacts contacts})
 
 (defn get-browser-language
   "Return the language set in the browser, assuming that
@@ -38,7 +46,7 @@
 
         (into
          [:ul {:class "nav navbar-nav"}]
-         (for [sec SECTIONS-SIMPLE]
+         (for [sec (keys SECTIONS)]
            [:li {:key (name sec)}
             [:a {:href (str "#" (name sec))} (tr sec)]]))
         
@@ -118,9 +126,5 @@
   []
   (fn []
     [:g
-     [navbar]
-     ;; lang selection could be moved into the header potentially?
-     [story]
-     [find-us]
-     [gifts]
-     #_[rvsp]]))
+     (into [navbar]
+           (vals SECTIONS))]))
