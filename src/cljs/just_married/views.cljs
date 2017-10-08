@@ -16,10 +16,11 @@
 (def SECTIONS
   {:story story
    :find-us find-us
-   :rvsp rvsp
-   :gifts gifts
-   :accomodation accommodation
-   :contacts contacts})
+   ;; :rvsp rvsp
+   ;; :gifts gifts
+   ;;:accomodation accommodation
+   ;;:contacts contacts
+   })
 
 (defn get-browser-language
   "Return the language set in the browser, assuming that
