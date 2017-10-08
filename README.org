@@ -117,8 +117,10 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 - [ ] add information about the actual amount of tables and their shape/number of seats
 - [ ] add a way to add extra constraints on families/people who should not be in the same table
 
-* TODO google analytics                                      :infrastructure:
+* DONE google analytics                                      :infrastructure:
+  CLOSED: [2017-10-08 Sun 22:26]
 
+  - CLOSING NOTE [2017-10-08 Sun 22:26]
 * TODO logentries                                               :infrastructure:
 
 * TODO fill in the database with all the invited people importing from existing data :v1:
@@ -144,6 +146,8 @@ Nice possible fonts to use:
 Check places like:
 
 - https://www.behance.net/
+
+* TODO get a few keywords into google to help searching                  :v1:
 
 * Database schema
 
