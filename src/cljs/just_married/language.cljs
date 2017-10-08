@@ -23,7 +23,7 @@
   (let [selected (= lang current-language)
         png-file (lang LANG->FLAG-FILE)
         props {:type "image" :src png-file :key lang}
-        selected-props (get language-selected->props selected)
+        selected-props (get (language-selected->props lang) selected)
         full-props (merge props selected-props)]
 
     [:input full-props]))
@@ -31,15 +31,15 @@
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   [current-language]
-  [:div {:id "language-selection" :key "language-selection"}
-   (for [lang AVAILABLE-LANGUAGES]
-     (make-lang lang current-language))])
+  (for [lang AVAILABLE-LANGUAGES]
+    (make-lang lang current-language)))
 
 (def dicts
   "List of all the words/sentences that need localization"
   {:en {:story "Our Story"
         :find-us "Find Us"
         :rvsp "RVSP"
+        :countdown "Countdown"
         :accomodation "Accommodation"
         :contacts "Contacts"
         :add-to-calendar "Add to Calendar"
@@ -51,6 +51,7 @@
    :it {:story "La Nostra Storia"
         :find-us "Trovaci"
         :rvsp "RVSP"
+        :countdown "Conto Alla Rovescia"
         :accomodation "Dove Dormire"
         :contacts "Contatti"
         :add-to-calendar "Aggiungi al Calendario"

@@ -4,7 +4,8 @@
    [just-married.language :refer [lang-selection translate]]
    [just-married.payment-views :as payment-views]
    [just-married.countdown :as countdown]
-   [just-married.settings :as settings]))
+   [just-married.settings :as settings]
+   [just-married.story :refer [STORY-TEXT]]))
 
 (defn get-browser-language
   "Return the language set in the browser, assuming that
@@ -27,11 +28,11 @@
     (translate language :add-to-calendar)
     [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])
 
-(defn story
+(defn countdown
   []
   (let [language (subscribe [:current-language])]
     (fn []
-      [:div {:id "story" :class "section"}
+      [:div {:id "countdown" :class "section"}
        [:div {:class "names"} "Andrea Crotti & Enrica Verrucci"]
        [:div {:class "find-us"}
         [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
@@ -41,6 +42,13 @@
         (countdown/countdown-component @language)]
 
        (add-to-calendar @language)])))
+
+(defn story
+  []
+  (let [language (subscribe [:current-language])]
+    (fn []
+      [:div {:id "story" :class "section"}
+       [:p (get STORY-TEXT @language "Not found")]])))
 
 (defn find-us
   []
@@ -86,7 +94,8 @@
     #_[:div {:class "email"} "Email Address"]))
 
 (def SECTIONS
-  {:story story
+  {:countdown countdown
+   ;;:story story
    :find-us find-us
    ;; :rvsp rvsp
    ;; :gifts gifts
@@ -113,9 +122,9 @@
            [:li {:key (name sec)}
             [:a {:href (str "#" (name sec))} (tr sec)]]))
         
-        #_[:ul {:class "nav navbar-right" :key "language"}
-         (lang-selection @language)]
-        ]])))
+        (into
+         [:ul {:class "nav navbar-right" :key "language"}]
+         (lang-selection @language))]])))
 
 ;; devtools does not seem to be set up correctly
 ;; since it doesn't find hints.js for example
