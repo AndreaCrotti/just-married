@@ -6,22 +6,6 @@
    [just-married.countdown :as countdown]
    [just-married.settings :as settings]))
 
-(declare find-us)
-(declare rvsp)
-(declare accommodation)
-(declare contacts)
-(declare story)
-(declare gifts)
-
-(def SECTIONS
-  {:story story
-   :find-us find-us
-   ;; :rvsp rvsp
-   ;; :gifts gifts
-   ;;:accomodation accommodation
-   ;;:contacts contacts
-   })
-
 (defn get-browser-language
   "Return the language set in the browser, assuming that
   the browser is actually setting correctly navigator.language.
@@ -31,29 +15,6 @@
     (if (clojure.string/starts-with? browser-lang "it")
       :italian
       :english)))
-
-;; this is quite bootstrap specific in a way
-;; would be good to extract even further
-(defn navbar
-  []
-  (let [language (subscribe [:current-language])
-        tr (fn [s] (translate @language s))]
-
-    (fn []
-      [:nav {:class "navbar navbar-dark bg-primary"}
-       [:div {:class "container-fluid"}
-        [:div {:class "navbar-header"}
-         [:a {:class "navbar-brand" :href "#"} "Home" ]]
-
-        (into
-         [:ul {:class "nav navbar-nav"}]
-         (for [sec (keys SECTIONS)]
-           [:li {:key (name sec)}
-            [:a {:href (str "#" (name sec))} (tr sec)]]))
-        
-        [:ul {:class "nav navbar-right" :key "language"}
-         (lang-selection @language)]
-        ]])))
 
 ;; should dispatch the right language also here of course
 (defn add-to-calendar
@@ -119,6 +80,43 @@
    #_[:div {:class "g-recaptcha"
           :data-sitekey settings/RECAPTCHA-KEY}]])
 
+(defn contacts
+  []
+  (let [language (subscribe [:current-language])]
+    #_[:div {:class "email"} "Email Address"]))
+
+(def SECTIONS
+  {:story story
+   :find-us find-us
+   ;; :rvsp rvsp
+   ;; :gifts gifts
+   ;;:accomodation accommodation
+   :contacts contacts
+   })
+
+;; this is quite bootstrap specific in a way
+;; would be good to extract even further
+(defn navbar
+  []
+  (let [language (subscribe [:current-language])
+        tr (fn [s] (translate @language s))]
+
+    (fn []
+      [:nav {:class "navbar navbar-dark bg-primary"}
+       [:div {:class "container-fluid"}
+        [:div {:class "navbar-header"}
+         [:a {:class "navbar-brand" :href "#"} "Home" ]]
+
+        (into
+         [:ul {:class "nav navbar-nav"}]
+         (for [sec (keys SECTIONS)]
+           [:li {:key (name sec)}
+            [:a {:href (str "#" (name sec))} (tr sec)]]))
+        
+        #_[:ul {:class "nav navbar-right" :key "language"}
+         (lang-selection @language)]
+        ]])))
+
 ;; devtools does not seem to be set up correctly
 ;; since it doesn't find hints.js for example
 ;; (log "hello")
@@ -126,6 +124,8 @@
 (defn main-panel
   []
   (fn []
-    [:g
-     (into [navbar]
-           (vals SECTIONS))]))
+    ;;TODO: there could be a better way to do this
+    (into [:g]
+          (map vector
+               (concat [navbar] (vals SECTIONS))))))
+
