@@ -18,6 +18,7 @@
                  [raven-clj "1.5.0"]
                  [clj-http "3.7.0"]
 
+                 [de.ubercode.clostache/clostache "1.4.0"]
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
                  [re-frisk "0.5.0"]
