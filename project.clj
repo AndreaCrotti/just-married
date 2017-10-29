@@ -10,7 +10,9 @@
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
 
-                 [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
+                 [org.clojure/tools.logging "0.4.0"]
+                 [io.sentry/sentry-clj "0.5.1"]
+
                  ;; various integrations
                  [racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
