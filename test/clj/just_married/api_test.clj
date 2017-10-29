@@ -14,6 +14,5 @@
 
     (t/testing "Homepage contains some valid content"
       (t/is (true? (includes?
-                    (slurp
-                     (.toString (:body resp)))
+                    (-> resp :body .toString slurp)
                     "Andrea"))))))
