@@ -7,6 +7,7 @@
             [compojure.core :refer [defroutes GET]]
             [environ.core :refer [env]]))
 
+(def security (= (env :secure) "true"))
 (def default-port 3000)
 
 (defn get-port
@@ -24,7 +25,9 @@
 (def app
   (-> app-routes
       (resources/wrap-resource "public")
-      (r-def/wrap-defaults r-def/site-defaults)))
+      (r-def/wrap-defaults (if security
+                             r-def/secure-site-defaults
+                             r-def/site-defaults))))
 
 (defn -main [& args]
   (jetty/run-jetty app {:port (get-port)}))
