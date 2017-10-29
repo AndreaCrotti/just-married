@@ -5,17 +5,13 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clojure-future-spec "1.9.0-alpha17"]
-                 ;; pedestal dependencies
-                 [io.pedestal/pedestal.service       "0.5.2"]
-                 [io.pedestal/pedestal.service-tools "0.5.2"]
-                 [io.pedestal/pedestal.jetty         "0.5.2"]
+                 ;; ring dependencies
+                 [ring/ring-core "1.6.2"]
+                 [ring/ring-jetty-adapter "1.6.2"]
+                 [ring/ring-defaults "0.3.1"]
+                 [compojure "1.6.0"]
+
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 [geheimtur "0.3.3"]
-
-                 [org.slf4j/jul-to-slf4j "1.7.25"]
-                 [org.slf4j/jcl-over-slf4j "1.7.25"]
-                 [org.slf4j/log4j-over-slf4j "1.7.25"]
-
                  ;; various integrations
                  [racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
@@ -54,6 +50,7 @@
                  [com.rpl/specter "1.0.3"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
+            [lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.4"]
             [lein-cljfmt "0.5.7"]
             [lein-garden "0.2.8"]]
@@ -72,7 +69,8 @@
              :server-logfile "log/figwheel.log"}
 
 
-  :main ^{:skip-aot true} just-married.server
+  :ring {:handler just-married.api/app}
+  :main ^{:skip-aot true} just-married.api
   :target-path "target/%s"
 
   :doo {:alias {:browsers [:phantomjs]}}
@@ -91,7 +89,7 @@
 
              :omit-source true
              :aot :all
-             :main just-married.server}
+             :main just-married.api}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :plugins [[lein-figwheel "0.5.12"]
@@ -101,14 +99,13 @@
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
-                   [io.pedestal/pedestal.service-tools "0.5.2"]
                    [figwheel "0.5.13"]
                    [figwheel-sidecar "0.5.13"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
-                   [reloaded.repl "0.2.3"]]}}
-
+                   [reloaded.repl "0.2.3"]
+                   [ring/ring-mock "0.3.1"]]}}
 
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]
