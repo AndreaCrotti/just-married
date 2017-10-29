@@ -14,7 +14,9 @@
   (Integer. (or (env :port) default-port)))
 
 (def home
-  (resp/file-response "index.html" {:root "resources/public"}))
+  (-> (resp/file-response "index.html"
+                          {:root "resources/public"})
+      (resp/content-type "text/html")))
 
 (defroutes app-routes
   (GET "/" [] home))
