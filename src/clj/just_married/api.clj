@@ -22,13 +22,18 @@
     :description "Matrimonio di Andrea Crotti e Enrica Verrucci"}})
 
 (defn render-homepage
+  "Render the homepage as string after spitting out a valid index.html
+  (which is just really to make figwheel happy)"
   [language]
-  (clostache/render-resource
-   "public/index.moustache"
-   (merge
-    ENV
-    {:language (str language)}
-    (get TEXT language))))
+  (let [rendered
+        (clostache/render-resource
+         "public/index.moustache"
+         (merge
+          ENV
+          {:language (str language)}
+          (get TEXT language)))]
+    (spit "resources/public/index.html" rendered)
+    rendered))
 
 (def default-port 3000)
 
@@ -36,12 +41,22 @@
   []
   (Integer. (or (env :port) default-port)))
 
-(def home
-  (-> (resp/response (render-homepage :en))
+(defn- detect-language
+  "Lookup in the request to find out what should be the default language to serve"
+  [request]
+  (print "Got request = " request)
+  :en)
+
+(defn home
+  [language]
+  (render-homepage language)
+  (-> (resp/file-response "index.html" {:root "resources/public"})
       (resp/content-type "text/html")))
 
 (defroutes app-routes
-  (GET "/" [] home))
+  (GET "/" request (home (detect-language request)))
+  (GET "/en" [] (home :en))
+  (GET "/it" [] (home :it)))
 
 (def app
   (-> app-routes
