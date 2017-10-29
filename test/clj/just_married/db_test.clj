@@ -1,9 +1,10 @@
-(ns just-married.test-db
+(ns just-married.db-test
   (:require [just-married.db :as db]
             [clojure.test :as t]
             [migratus.core :as migratus]
             [environ.core :refer [env]]
-            [clojure.java.jdbc :as j]))
+            [clojure.java.jdbc :as j])
+  (:import (org.postgresql.util PSQLException)))
 
 ;; this could be defaulting already somewhere else??
 ;; and make it also being directly available in cider?
@@ -26,7 +27,7 @@
 (def db-reachable?
   (= (try
        (j/execute! DATABASE-URL "")
-       (catch org.postgresql.util.PSQLException e))
+       (catch PSQLException e))
      [0]))
 
 (t/use-fixtures :each setup-db)
