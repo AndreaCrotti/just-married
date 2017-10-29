@@ -9,10 +9,10 @@
             [clostache.parser :as clostache]
             [just-married.settings :as settings]))
 
-(def ENV
-  {:google-analytics-id settings/GOOGLE-ANALYTICS-ID})
+(def base-vars
+  {:google-analytics-id settings/google-analytics-id})
 
-(def TEXT
+(def text
   {:en
    {:title "Andrea & Enrica"
     :description "Wedding Andrea Crotti and Enrica Verrucci"}
@@ -29,9 +29,10 @@
         (clostache/render-resource
          "public/index.moustache"
          (merge
-          ENV
-          {:language (str language)}
-          (get TEXT language)))]
+          base-vars
+          {:language (name language)}
+          (get text language)))]
+
     (spit "resources/public/index.html" rendered)
     rendered))
 

@@ -1,7 +1,7 @@
 (ns just-married.settings
   (:require [environ.core :refer [env]]))
 
-(def GOOGLE-ANALYTICS-ID
+(def google-analytics-id
   "UA-104116805-1")
 
 (def SENDGRID-CONFIG
