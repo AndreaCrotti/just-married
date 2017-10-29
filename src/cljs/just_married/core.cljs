@@ -22,6 +22,7 @@
                   (.getElementById js/document "app")))
 
 (defn ^:export init []
+  ;; at this point I could try to extract the language and use it accordingly
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
   (mount-root))

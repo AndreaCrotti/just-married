@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset='utf-8'>
-    <title>Andrea & Enrica</title>
+    <meta charset="utf-8"
+          description="{{description}}">
+    <title>{{title}}</title>
     <!-- Bootstrap stuff -->
     <link
       rel="stylesheet"
@@ -49,12 +50,11 @@
                             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-   ga('create', 'UA-104116805-1', 'auto');
+   ga('create', '{{google-analytics-id}}', 'auto');
    ga('send', 'pageview');
 
   </script>
   <!-- End Google Analytics -->
-
 
   <!-- Sentry configuration -->
   <!-- <script> -->
@@ -64,8 +64,12 @@
 
   <body>
     <div id="app"></div>
+    <script>
+      window.detected_language = "{{language}}";
+    </script>
     <script src="js/compiled/app.js"></script>
     <script>just_married.core.init();</script>
     <script src="markers.js"></script>
+    <!-- Variables shared with the frontend -- >
   </body>
 </html>

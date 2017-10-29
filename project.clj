@@ -6,8 +6,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [clojure-future-spec "1.9.0-alpha17"]
                  ;; ring dependencies
-                 [ring/ring-core "1.6.2"]
-                 [ring/ring-jetty-adapter "1.6.2"]
+                 [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
 
@@ -18,6 +17,7 @@
                  [raven-clj "1.5.0"]
                  [clj-http "3.7.0"]
 
+                 [de.ubercode.clostache/clostache "1.4.0"]
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
                  [re-frisk "0.5.0"]
@@ -60,14 +60,15 @@
   :source-paths ["src/clj" "src/cljc"]
   :test-paths ["test/clj" "test/cljc"]
   :resource-paths ["config" "resources"]
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"
+  :clean-targets ^{:protect false} ["resources/public/js/compiled"
+                                    "target"
                                     "test/js"
-                                    "resources/public/css"]
+                                    "resources/public/css"
+                                    "out"]
 
   :figwheel {:css-dirs ["resources/public/css"]
              :open-file-command "lein_opener.sh"
              :server-logfile "log/figwheel.log"}
-
 
   :ring {:handler just-married.api/app}
   :main ^{:skip-aot true} just-married.api
