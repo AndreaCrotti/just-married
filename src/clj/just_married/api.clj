@@ -45,7 +45,6 @@
 (defn- detect-language
   "Lookup in the request to find out what should be the default language to serve"
   [request]
-  (print "Got request = " request)
   :en)
 
 (defn home
