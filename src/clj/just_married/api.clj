@@ -1,4 +1,5 @@
 (ns just-married.api
+  (:gen-class)
   (:require [ring.middleware.defaults :as r-def]
             [ring.util.response :as resp]
             [ring.adapter.jetty :as jetty]
