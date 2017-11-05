@@ -68,6 +68,7 @@
 
   :figwheel {:css-dirs ["resources/public/css"]
              :open-file-command "lein_opener.sh"
+             :ring-handler just-married.api/app
              :server-logfile "log/figwheel.log"}
 
   :ring {:handler just-married.api/app}

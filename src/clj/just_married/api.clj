@@ -51,7 +51,8 @@
 (defn home
   [language]
   (render-homepage language)
-  (-> (resp/file-response "index.html" {:root "resources/public"})
+  (-> (resp/file-response "index.html"
+                          {:root "resources/public"})
       (resp/content-type "text/html")))
 
 (defroutes app-routes

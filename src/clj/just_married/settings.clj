@@ -1,22 +1,17 @@
 (ns just-married.settings
   (:require [environ.core :refer [env]]))
 
-(def google-analytics-id
-  "UA-104116805-1")
+(def google-analytics-id "UA-104116805-1")
 
-(def SENDGRID-CONFIG
+(def sendgrid-config
   {:api-user (:sendgrid-user env)
    :api-key (:sendgrid-password env)})
 
-(def TO-EMAIL
+(def to-email
   (:to-email env))
 
-(def FROM-EMAIL
+(def from-email
   (:from-email env))
 
-(def SENTRY-DSN
+(def sentry-dsn
   (:sentry-dsn env))
-
-(defn loaded?
-  []
-  (not (nil? (:api-key SENDGRID-CONFIG))))

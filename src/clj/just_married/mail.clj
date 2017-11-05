@@ -8,8 +8,8 @@
   ;; since this raises exceptions for anything
   ;; that is not 200
   (sendgrid/send-email
-   settings/SENDGRID-CONFIG
-   {:to settings/TO-EMAIL
-    :from settings/FROM-EMAIL
+   settings/sendgrid-config
+   {:to settings/to-email
+    :from settings/from-email
     :subject "Message for you"
     :text content}))
