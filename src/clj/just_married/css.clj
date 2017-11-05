@@ -95,9 +95,8 @@
 
   [:body {:background (:light-background COLOR-PALLETTE)}]
   ;; find us settings
-  [:#map {:width "400px"
-          :height "400px"
-          :background (:amaranth COLOR-PALLETTE)
+  [:#map {:width "500px"
+          :height "500px"
           :padding "15px"
           :box-shadow "0 0 20px #999"
           :border-radius "2px"}])
