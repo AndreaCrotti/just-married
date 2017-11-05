@@ -39,6 +39,8 @@ wedding related website, and it's backend storing information about guests
 
 * User facing features
 
+** TODO add "our story" section                                          :v1:
+
 ** TODO upload funny stories and pictures/videos of the two              :v2:
    getting married, so they can be told, attached somewhere during the
    wedding itself.

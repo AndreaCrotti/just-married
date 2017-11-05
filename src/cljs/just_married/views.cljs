@@ -48,7 +48,8 @@
   (let [language (subscribe [:current-language])]
     (fn []
       [:div {:id "story" :class "section"}
-       [:p (get STORY-TEXT @language "Not found")]])))
+       [:blockquote
+        (get STORY-TEXT @language "Not found")]])))
 
 (defn find-us
   []
@@ -95,7 +96,7 @@
 
 (def SECTIONS
   {:countdown countdown
-   ;;:story story
+   :story story
    :find-us find-us
    ;; :rvsp rvsp
    ;; :gifts gifts
