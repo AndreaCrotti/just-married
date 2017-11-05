@@ -8,6 +8,8 @@
 
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
+   ;; :light-background "#dcdcdc"
+   :light-background "#f9eef0"
    :dark-red "#8B0000"
    :blue "#4444FF"
    :marsala "#955251"
@@ -16,11 +18,13 @@
    :electric-blue "#2C75FF"
    :deep-electric-blue "#035096"
    :quote-background "#f9f9f9"
-   :quote-border-left "#ccc"})
+   :quote-border-left "#ccc"
+   :map-background "#fff"})
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"
-   :alex-brush "'Alex Brush', cursive"})
+   :alex-brush "'Alex Brush', cursive"
+   :rancho "'Rancho', cursive"})
 
 (def FONT-STYLES
   {:big
@@ -74,20 +78,26 @@
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
   [:#countdown {;; find a more suitable image for the background
-            ;; if possible
-            ;; :background-image
-            ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
-            :background-repeat "no-repeat"
-            :text-align "center"
-            :font-weight "bold"
-            :font-family (:alex-brush FONT-FAMILIES)
-            :font-size "x-large"
-            :color (:marsala COLOR-PALLETTE)}]
+                ;; if possible
+                ;; :background-image
+                ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
+                :background-repeat "no-repeat"
+                :text-align "center"
+                :font-weight "bold"
+                :font-family (:alex-brush FONT-FAMILIES)
+                :font-size "x-large"
+                :color (:marsala COLOR-PALLETTE)}]
 
   ;; countdown settings
   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
 
+  [:body {:background (:light-background COLOR-PALLETTE)}]
   ;; find us settings
-  [:#map {:width "400px" :height "400px"}])
+  [:#map {:width "400px"
+          :height "400px"
+          :background (:amaranth COLOR-PALLETTE)
+          :padding "15px"
+          :box-shadow "0 0 20px #999"
+          :border-radius "2px"}])
