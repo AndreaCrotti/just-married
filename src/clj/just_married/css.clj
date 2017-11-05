@@ -67,7 +67,8 @@
                       :font-size "4em"
                       :line-height ".1em"
                       :margin-right ".25em"
-                      :vertical-align "-.4em"}]
+                      :vertical-align "-.4em"
+                      :box-shadow "0 0 20px #999c"}]
 
   ;; various language settings
   [:.language-group {:padding-right "20px"}]
@@ -81,6 +82,7 @@
                 ;; if possible
                 ;; :background-image
                 ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
+                :background (:quote-background COLOR-PALLETTE)
                 :background-repeat "no-repeat"
                 :text-align "center"
                 :font-weight "bold"
@@ -98,5 +100,5 @@
   [:#map {:width "500px"
           :height "500px"
           :padding "15px"
-          :box-shadow "0 0 20px #999"
-          :border-radius "2px"}])
+          :box-shadow "10px 10px 20px #999"
+          :border-radius "10px"}])
