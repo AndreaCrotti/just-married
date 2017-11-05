@@ -14,7 +14,9 @@
    :royal-blue "#4169e1"
    :deep-blue "#00bfff"
    :electric-blue "#2C75FF"
-   :deep-electric-blue "#035096"})
+   :deep-electric-blue "#035096"
+   :quote-background "#f9f9f9"
+   :quote-border-left "#ccc"})
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"
@@ -43,6 +45,26 @@
   [:a:hover {:text-decoration "none"
              :color "inherit"}]
 
+  [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
+                       :content "open-quote"
+                       :font-size "4em"
+                       :line-height "0.2em"
+                       :margin-right "0.25em"
+                       :vertical-align "-0.4em"}]
+
+  [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
+                :background (:quote-background COLOR-PALLETTE)
+                :padding "0.5em 10px"
+                :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
+                :quotes "\201C\201D\2018\2019"}]
+
+  [:blockquote:after {:color "#B2AFCD"
+                      :content "close-quote"
+                      :font-size "4em"
+                      :line-height ".1em"
+                      :margin-right ".25em"
+                      :vertical-align "-.4em"}]
+
   ;; various language settings
   [:.language-group {:padding-right "20px"}]
   [:.language.selected {:padding-right "20px"}]
@@ -56,8 +78,6 @@
             ;; :background-image
             ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
             :background-repeat "no-repeat"
-            :width "500px"
-            :height "400px"
             :text-align "center"
             :font-weight "bold"
             :font-family (:alex-brush FONT-FAMILIES)
