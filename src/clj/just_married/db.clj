@@ -1,6 +1,6 @@
 (ns just-married.db
-  (:require [clojure.java.jdbc :as j]
-            [honeysql.core :as honey]
+  (:require [clojure.java.jdbc :as jdbc]
+            [honeysql.core :as sql]
             [environ.core :refer [env]]
             [honeysql.helpers :as h]
             [honeysql-postgres.helpers :as ph]
@@ -21,6 +21,21 @@
   :start (get-connection)
   :stop (close-connection conn))
 
+(defn- list-guests
+  []
+  (->
+   (h/select :first-name :last-name)
+   (h/from :guest)
+   (sql/format)))
+
+(defn guests-by-family
+  [name]
+  (->
+   (h/select :first-name :last-name)
+   (h/from :guest)
+   (h/where [:= :guest.family-name name])
+   (sql/format)))
+
 (defn- add-person
   [name email]
   (->
@@ -28,7 +43,7 @@
    (h/columns :first_name :email-address)
    (h/values [[name email]])
    ;; some way to return the id created??
-   honey/format))
+   (sql/format)))
 
 (defn add-person!
   "Add a person and return the id"
@@ -42,7 +57,7 @@
    (h/select :id)
    (h/from :guest)
    (h/where [:= :email-address email])
-   (honey/format)))
+   ((sql/format))))
 
 (defn get-person!
   "Lookup someone by email and return its id or nil if not found"
@@ -62,7 +77,7 @@
    (h/insert-into :confirmation)
    (h/columns :confirmed-by :coming)
    (h/values [[person-id coming]])
-   (honey/format)))
+   (sql/format)))
 
 (defn add-confirmation!
   [person-id coming]

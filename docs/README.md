@@ -3,7 +3,6 @@
 ## Components used
 
 - clojure
-- pedestal
 - clojurescript + reframe
 - Heroku
 - github
