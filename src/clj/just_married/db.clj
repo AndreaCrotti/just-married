@@ -4,12 +4,22 @@
             [environ.core :refer [env]]
             [honeysql.helpers :as h]
             [honeysql-postgres.helpers :as ph]
-            [honeysql-postgres.format :as pf]))
+            [honeysql-postgres.format :as pf]
+            [mount.core :as mount]))
 
 (def DEFAULT-DB-URL "postgresql://just_married:just_married@localhost:5440/just_married")
 
-(def db-conn
-  (get env :database-url DEFAULT-DB-URL))
+(defn get-connection
+  []
+  (j/get-connection DEFAULT-DB-URL))
+
+(defn close-connection
+  [conn]
+  (.close conn))
+
+(mount/defstate conn
+  :start (get-connection)
+  :stop (close-connection conn))
 
 (defn- add-person
   [name email]

@@ -47,7 +47,8 @@
 
                  [honeysql "0.9.1"]
                  [migratus "1.0.0"]
-                 [com.rpl/specter "1.0.3"]]
+                 [com.rpl/specter "1.0.3"]
+                 [mount "0.1.11"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
@@ -94,15 +95,15 @@
              :main just-married.api}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
-    :plugins [[lein-figwheel "0.5.12"]
+    :plugins [[lein-figwheel "0.5.14"]
               [lein-doo "0.1.7"]
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.4"]
                    [com.cemerick/piggieback "0.2.2"]
-                   [figwheel "0.5.13"]
-                   [figwheel-sidecar "0.5.13"]
+                   [figwheel "0.5.14"]
+                   [figwheel-sidecar "0.5.14"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
