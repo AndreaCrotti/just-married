@@ -48,7 +48,9 @@
                  [honeysql "0.9.1"]
                  [migratus "1.0.0"]
                  [com.rpl/specter "1.0.3"]
-                 [mount "0.1.11"]]
+                 [mount "0.1.11"]
+                 [buddy "2.0.0"]
+                 [buddy/buddy-auth "2.1.0"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
