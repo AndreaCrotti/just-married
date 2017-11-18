@@ -2,6 +2,7 @@
   (:gen-class)
   (:require [buddy.auth.backends.session :refer [session-backend]]
             [buddy.auth :refer [authenticated?]]
+            [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [ring.middleware.defaults :as r-def]
             [ring.util.response :as resp]
