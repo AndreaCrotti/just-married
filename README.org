@@ -41,6 +41,8 @@ wedding related website, and it's backend storing information about guests
 
 ** TODO add "our story" section                                          :v1:
 
+*** TODO proof read our story and translate it in italian
+
 ** TODO upload funny stories and pictures/videos of the two              :v2:
    getting married, so they can be told, attached somewhere during the
    wedding itself.
@@ -67,6 +69,7 @@ Easiest way is however to simply have a public calendar and include the HTML fro
    which can be written out/told during the wedding itself
 
 ** TODO smart notifications via sms/email                                :v2:
+   Might not be so necessary if using the google calendar integration already??
 
 ** TODO accommodation suggestions                                        :v2:
 
@@ -76,6 +79,7 @@ Easiest way is however to simply have a public calendar and include the HTML fro
    - [ ] try to get everything working with clojurescript without
      having to resort to use javascript directly
      (use this library for example: https://github.com/tgetgood/gmaps-cljs)
+   - make the language of the map reflect the actual language
 
 ** TODO playlist suggestion                                              :v2:
 
