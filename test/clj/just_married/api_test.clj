@@ -16,3 +16,23 @@
       (t/is (true? (includes?
                     (-> resp :body .toString slurp)
                     "Andrea"))))))
+
+(t/deftest authentication-helpers-test
+  (t/testing "Can happily authenticate"
+    (let [req (mock/request :get "/login" {:password "wrong"})
+          resp (app req)]))
+  (t/testing "Not able to authenticate"
+    (let [req (mock/request :get "/login" {:password "secure-password"})
+          resp (app req)])))
+
+(t/deftest guest-list-test
+  (t/testing "Without being authenticated we get 401"
+    (let [req (mock/request :get "/guests")
+          resp (app req)]
+      (t/is (= 401 (-> resp :status)))))
+
+  (t/testing "With authentication we get a 200"
+    (let [req (mock/request :get "/guests")
+          authed-req (assoc req :identity "admin")
+          resp (app authed-req)]
+      (t/is (= 200 (-> resp :status))))))

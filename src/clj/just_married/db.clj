@@ -11,7 +11,7 @@
 
 (defn get-connection
   []
-  (j/get-connection DEFAULT-DB-URL))
+  (jdbc/get-connection DEFAULT-DB-URL))
 
 (defn close-connection
   [conn]
@@ -48,7 +48,7 @@
 (defn add-person!
   "Add a person and return the id"
   [name email]
-  (j/execute! DEFAULT-DB-URL (add-person name email)))
+  (jdbc/execute! DEFAULT-DB-URL (add-person name email)))
 
 (defn- get-person
   [email]
@@ -63,7 +63,7 @@
   "Lookup someone by email and return its id or nil if not found"
   [email]
   (let [result
-        (j/query
+        (jdbc/query
          DEFAULT-DB-URL
          (get-person email))]
 
@@ -82,7 +82,7 @@
 (defn add-confirmation!
   [person-id coming]
   (let [query (add-confirmation person-id coming)]
-    (j/execute! DEFAULT-DB-URL query)))
+    (jdbc/execute! DEFAULT-DB-URL query)))
 
 (defn confirm!
   "Add to the database that someone confirmed"
