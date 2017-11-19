@@ -14,7 +14,7 @@
 
     (t/testing "Homepage contains some valid content"
       (t/is (true? (includes?
-                    (-> resp :body .toString slurp)
+                    (-> resp :body)
                     "Andrea"))))))
 
 (t/deftest authentication-helpers-test

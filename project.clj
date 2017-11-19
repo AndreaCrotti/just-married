@@ -17,7 +17,6 @@
                  [raven-clj "1.5.0"]
                  [clj-http "3.7.0"]
 
-                 [de.ubercode.clostache/clostache "1.4.0"]
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
                  [re-frisk "0.5.0"]
@@ -50,7 +49,8 @@
                  [com.rpl/specter "1.0.3"]
                  [mount "0.1.11"]
                  [buddy "2.0.0"]
-                 [buddy/buddy-auth "2.1.0"]]
+                 [buddy/buddy-auth "2.1.0"]
+                 [hiccup "1.0.5"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]

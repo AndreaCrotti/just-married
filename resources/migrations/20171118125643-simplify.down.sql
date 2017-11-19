@@ -1,7 +1,7 @@
-ALTER TABLE family DROP PRIMARY KEY (family_name);
+ALTER TABLE family DROP CONSTRAINT family_pkey;
 ALTER TABLE family ADD COLUMN id SERIAL;
 
-ALTER TABLE guest DROP column family_name;
+ALTER TABLE guest DROP COLUMN family_name;
 
 CREATE TABLE family_members (
        id serial PRIMARY KEY,
