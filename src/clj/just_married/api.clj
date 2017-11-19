@@ -1,8 +1,9 @@
 (ns just-married.api
   (:gen-class)
   (:require [buddy.auth.backends.session :refer [session-backend]]
-            [buddy.auth :refer [authenticated?]]
+            [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.accessrules :refer [restrict]]
+            [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [ring.middleware.defaults :as r-def]
             [ring.util.response :as resp]
@@ -58,8 +59,24 @@
   "Page showing the list of guests, needs to be authenticated"
   [request]
   (if (authenticated? request)
-    {:status 200 :body "Here is your list of guests"}
-    {:status 401 :body "I'm sorry you are not allowed to see this"}))
+    (resp/content-type
+     {:status 200 :body "Here is your list of guests"}
+     "application-json")
+    (throw-unauthorized)))
+
+(def authdata
+  "All possible authenticated users"
+  {:admin settings/admin-password})
+
+(defn authenticate
+  [req {:keys [username password]}]
+  (when-let [user-password (get authdata (keyword username))]
+    (when (= password user-password)
+      (keyword username))))
+
+(def basic-auth-backend
+  (http-basic-backend {:realm "andreaenrica.life"
+                       :authfn authenticate}))
 
 (defn home
   [language]
@@ -84,8 +101,8 @@
   (GET "/" request (home (detect-language request)))
   (GET "/en" [] (home :en))
   (GET "/it" [] (home :it))
-  (POST "/login" request (do-login request))
-  (POST "/logout" request (do-logout request))
+  ;; (POST "/login" request (do-login request))
+  ;; (POST "/logout" request (do-logout request))
   (GET "/guests" request (guest-list request)))
 
 (def app
@@ -94,7 +111,8 @@
       (r-def/wrap-defaults (if security
                              r-def/secure-site-defaults
                              (assoc-in r-def/site-defaults [:security :anti-forgery] false)))
-      (wrap-authentication auth-backend)))
+      (wrap-authorization basic-auth-backend)
+      (wrap-authentication basic-auth-backend)))
 
 ;; (assoc-in r-def/site-defaults [:security :anti-forgery] false)
 

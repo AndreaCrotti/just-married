@@ -15,3 +15,6 @@
 
 (def sentry-dsn
   (:sentry-dsn env))
+
+(def admin-password
+  (:admin-password env))
