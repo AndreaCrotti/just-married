@@ -9,6 +9,7 @@
 
 (def DEFAULT-DB-URL "postgresql://just_married:just_married@localhost:5440/just_married")
 
+;;TODO: check if it's actually worth to use mount at all for this purpose
 (defn get-connection
   []
   (jdbc/get-connection DEFAULT-DB-URL))
@@ -20,6 +21,20 @@
 (mount/defstate conn
   :start (get-connection)
   :stop (close-connection conn))
+
+(defn all-guests
+  []
+  (->
+   (h/select :*)
+   (h/from :guest)
+   (sql/format)))
+
+(defn all-families
+  []
+  (->
+   (h/select :*)
+   (h/from :family)
+   (sql/format)))
 
 (defn- list-guests
   []
@@ -36,21 +51,28 @@
    (h/where [:= :guest.family-name name])
    (sql/format)))
 
-(defn- add-person
-  [name email]
-  (->
-   (h/insert-into :guest)
-   (h/columns :first_name :email-address)
-   (h/values [[name email]])
-   ;; some way to return the id created??
-   (sql/format)))
+(defn- to-underscore
+  [f]
+  (-> f
+      name
+      (clojure.string/replace "-" "_")))
 
-(defn add-person!
-  "Add a person and return the id"
-  [name email]
-  (jdbc/execute! DEFAULT-DB-URL (add-person name email)))
+(defn- insert-into!
+  [data table]
+  (jdbc/insert! DEFAULT-DB-URL
+                table
+                (map to-underscore (keys data))
+                (vals data)))
 
-(defn- get-person
+(defn add-guest!
+  [guest]
+  (insert-into! guest :guest))
+
+(defn add-family!
+  [family]
+  (insert-into! family :family))
+
+(defn- get-guest
   [email]
   (->
    ;; should use select for update here to be super picky??
@@ -59,38 +81,38 @@
    (h/where [:= :email-address email])
    ((sql/format))))
 
-(defn get-person!
+(defn get-guest!
   "Lookup someone by email and return its id or nil if not found"
   [email]
   (let [result
         (jdbc/query
          DEFAULT-DB-URL
-         (get-person email))]
+         (get-guest email))]
 
     ;; seems like a hacky way to do this
     (when (not= result '())
       (-> result (first) :id))))
 
 (defn- add-confirmation
-  [person-id coming]
+  [guest-id coming]
   (->
    (h/insert-into :confirmation)
    (h/columns :confirmed-by :coming)
-   (h/values [[person-id coming]])
+   (h/values [[guest-id coming]])
    (sql/format)))
 
 (defn add-confirmation!
-  [person-id coming]
-  (let [query (add-confirmation person-id coming)]
+  [guest-id coming]
+  (let [query (add-confirmation guest-id coming)]
     (jdbc/execute! DEFAULT-DB-URL query)))
 
 (defn confirm!
   "Add to the database that someone confirmed"
   [name email coming]
   ;; if the email address is not available then how do we
-  ;; link it directly to the right person?
-  (let [person-id
-        (or (get-person! email)
-            (add-person! name email))]
+  ;; link it directly to the right guest?
+  (let [guest-id
+        (or (get-guest! email)
+            (add-guest! name email))]
 
-    (add-confirmation! person-id coming)))
+    (add-confirmation! guest-id coming)))
