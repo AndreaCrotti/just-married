@@ -3,14 +3,12 @@
             [environ.core :refer [env]])
   (:import (org.postgresql.util PSQLException)))
 
-;; this could be defaulting already somewhere else??
-;; and make it also being directly available in cider?
-(def DEFAULT-TEST-DB "postgresql://just_married:just_married@localhost:5440/just_married")
+(def default-test-db "postgresql://just_married:just_married@localhost:5440/just_married")
 
-(def DATABASE-URL (get env :database-url DEFAULT-TEST-DB))
+(def database-url (get env :database-url default-test-db))
 
 (def db-reachable?
   (= (try
-       (j/execute! DATABASE-URL "")
+       (j/execute! database-url "")
        (catch PSQLException e))
      [0]))

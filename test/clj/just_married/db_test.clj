@@ -1,6 +1,6 @@
 (ns just-married.db-test
   (:require [just-married.db :as db]
-            [just-married.utils :refer [db-reachable? DATABASE-URL]]
+            [just-married.utils :refer [db-reachable? database-url]]
             [clojure.test :refer :all]
             [migratus.core :as migratus]
             [environ.core :refer [env]]
@@ -10,7 +10,7 @@
 ;; should we default to something maybe?
 (def config {:store :database
              :migration-dir "migrations"
-             :db DATABASE-URL})
+             :db database-url})
 
 (defn setup-db [f]
   (migratus/migrate config)
@@ -42,5 +42,5 @@
                       :last-name "bros"
                       :family-name "Plumbers"})
 
-      (let [res (j/query DATABASE-URL)]
+      (let [res (j/query database-url)]
         (is (= 2 (count res)))))))
