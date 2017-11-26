@@ -3,6 +3,7 @@
             [clojure.string :refer [includes?]]
             [ring.mock.request :as mock]
             [just-married.api :refer [app]]
+            [just-married.utils :refer [db-reachable?]]
             [clojure.java.io :as jio]))
 
 (t/deftest homepage-test
@@ -25,14 +26,15 @@
     (let [req (mock/request :get "/login" {:password "secure-password"})
           resp (app req)])))
 
-(t/deftest guest-list-test
-  (t/testing "Without being authenticated we get 401"
-    (let [req (mock/request :get "/guests")
-          resp (app req)]
-      (t/is (= 401 (-> resp :status)))))
+(when db-reachable?
+  (t/deftest guest-list-test
+    (t/testing "Without being authenticated we get 401"
+      (let [req (mock/request :get "/guests")
+            resp (app req)]
+        (t/is (= 401 (-> resp :status)))))
 
-  (t/testing "With authentication we get a 200"
-    (let [req (mock/request :get "/guests")
-          authed-req (assoc req :identity "admin")
-          resp (app authed-req)]
-      (t/is (= 200 (-> resp :status))))))
+    (t/testing "With authentication we get a 200"
+      (let [req (mock/request :get "/guests")
+            authed-req (assoc req :identity "admin")
+            resp (app authed-req)]
+        (t/is (= 200 (-> resp :status)))))))

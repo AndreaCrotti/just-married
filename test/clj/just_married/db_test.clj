@@ -1,16 +1,11 @@
 (ns just-married.db-test
   (:require [just-married.db :as db]
+            [just-married.utils :refer [db-reachable? DATABASE-URL]]
             [clojure.test :refer :all]
             [migratus.core :as migratus]
             [environ.core :refer [env]]
             [clojure.java.jdbc :as j])
   (:import (org.postgresql.util PSQLException)))
-
-;; this could be defaulting already somewhere else??
-;; and make it also being directly available in cider?
-(def DEFAULT-TEST-DB "postgresql://just_married:just_married@localhost:5440/just_married")
-
-(def DATABASE-URL (get env :database-url DEFAULT-TEST-DB))
 
 ;; should we default to something maybe?
 (def config {:store :database
@@ -23,12 +18,6 @@
   (migratus/reset config))
 
 ;; how do I find out if the database is actually reachable?
-
-(def db-reachable?
-  (= (try
-       (j/execute! DATABASE-URL "")
-       (catch PSQLException e))
-     [0]))
 
 (use-fixtures :each setup-db)
 
@@ -53,6 +42,5 @@
                       :last-name "bros"
                       :family-name "Plumbers"})
 
-      (let [res (j/query DEFAULT-TEST-DB
-                         (db/all-guests))]
+      (let [res (j/query DATABASE-URL)]
         (is (= 2 (count res)))))))
