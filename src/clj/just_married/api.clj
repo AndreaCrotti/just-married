@@ -12,8 +12,10 @@
             [ring.middleware.resource :as resources]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
-            [just-married.settings :as settings]
-            [just-married.pages :as pages]))
+            [just-married
+             [settings :as settings]
+             [pages :as pages]
+             [db :as db]]))
 
 (def auth-backend (session-backend))
 
@@ -34,7 +36,8 @@
   [request]
   (if (authenticated? request)
     (resp/content-type
-     {:status 200 :body "Here is your list of guests"}
+     {:status 200
+      :body (db/all-guests!)}
      "application-json")
     (throw-unauthorized)))
 

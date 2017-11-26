@@ -29,6 +29,10 @@
    (h/from :guest)
    (sql/format)))
 
+(defn all-guests!
+  []
+  (jdbc/query DEFAULT-DB-URL (all-guests)))
+
 (defn all-families
   []
   (->

@@ -50,4 +50,8 @@
 
       (db/add-guest! {:first-name "Luigi"
                       :last-name "bros"
-                      :family-name "Plumbers"}))))
+                      :family-name "Plumbers"})
+
+      (let [res (j/query DEFAULT-TEST-DB
+                         (db/all-guests))]
+        (is (= 2 (count res)))))))
