@@ -20,4 +20,6 @@ jobs:
     
     steps:
       - checkout
-      - run: lein test
+      - run:
+          name: Lein test
+          command: lein test
