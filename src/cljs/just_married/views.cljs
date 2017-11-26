@@ -127,6 +127,12 @@
          [:ul {:class "nav navbar-right" :key "language"}]
          (lang-selection @language))]])))
 
+(defn guests
+  []
+  (fn []
+    [:div {:class "hello"}
+     [:p "Hello world"]]))
+
 ;; devtools does not seem to be set up correctly
 ;; since it doesn't find hints.js for example
 ;; (log "hello")

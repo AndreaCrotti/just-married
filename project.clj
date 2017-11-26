@@ -50,7 +50,8 @@
                  [mount "0.1.11"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [secretary "1.2.3"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]

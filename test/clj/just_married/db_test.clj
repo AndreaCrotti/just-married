@@ -32,6 +32,7 @@
 
 (use-fixtures :each setup-db)
 
+;; use a test selector instead of doing it this way
 (when db-reachable?
   (deftest test-db-migrates
     (testing "check migration works"

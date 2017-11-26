@@ -39,3 +39,8 @@
  :not-coming
  (fn [db [_]]
    (confirm db false)))
+
+(reg-event-db
+ :set-current-page
+ (fn [db [_ page]]
+   (assoc db :current-page page)))

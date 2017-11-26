@@ -4,4 +4,11 @@
 ;; get the current language
 (reg-sub
  :current-language
- :language)
+ ;; is it the same as simply saying ":language"
+ (fn [db _]
+   (:language db)))
+
+(reg-sub
+ :current-page
+ (fn [db _]
+   (:current-page db)))

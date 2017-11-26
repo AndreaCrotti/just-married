@@ -4,4 +4,5 @@
   ;; what other possibly useful information could be here?
   {:language :en
    :name ""
-   :email ""})
+   :email ""
+   :current-page nil})
