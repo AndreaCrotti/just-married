@@ -5,7 +5,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/clojure:lein-2.7.1
         environment:
-          - DATABASE_URL=postgres://just_married:just-married@localhost
+          - DATABASE_URL=postgresql://just_married:just-married@localhost
 
       - image: postgres:9.6
         environment:
