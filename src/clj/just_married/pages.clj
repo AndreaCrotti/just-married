@@ -41,17 +41,27 @@ ga('send', 'pageview');"
    (google-font "Rancho")
    (google-font "Alex+Brush")
 
+   [:link {:rel "stylesheet"
+           :href "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+           :integrity "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+           :crossorigin "anonymous"}]
+
+   ;; optional bootstrap theme
+   [:link {:rel "stylesheet"
+           :href "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+           :integrity "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+           :crossorigin "anonymous"}]
+
+   [:link {:href "css/screen.css"
+           :rel "stylesheet"
+           :type "text/css"}]
+
+   [:script {:src "//www.google.com/recaptcha/api.js"}]
    [:script {:href "//cdn.ravenjs.com/3.17.0/raven.min.js"
              :crossorigin "anonymous"}]
 
-   [:script {:href "css/screen.css"
-             :rel "stylesheet"
-             :type "text/css"}]
-
    [:script {:src "gmaps.js"}]
-   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]
-
-   [:script ga-js]])
+   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
 
 (defn home-page
   [language]
@@ -59,8 +69,10 @@ ga('send', 'pageview');"
     [:html {:lang (name language)}
 
      (header env)
+     [:script ga-js]
      [:body [:div {:id "app"}]
       ;; now we can easily generate some JS that can be then loaded by
       ;; the frontend to decide which page to display for example
       [:script {:src "js/compiled/app.js"}]
+      [:script "just_married.core.init();"]
       [:script {:src "markers.js"}]]]))
