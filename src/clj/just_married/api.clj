@@ -5,43 +5,17 @@
             [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [hiccup.core :as html]
             [ring.middleware.defaults :as r-def]
             [ring.util.response :as resp]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.resource :as resources]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
-            [clostache.parser :as clostache]
-            [just-married.settings :as settings]))
+            [just-married.settings :as settings]
+            [just-married.pages :as pages]))
 
 (def auth-backend (session-backend))
-
-(def base-vars
-  {:google-analytics-id settings/google-analytics-id})
-
-(def text
-  {:en
-   {:title "Andrea & Enrica"
-    :description "Wedding Andrea Crotti and Enrica Verrucci"}
-
-   :it
-   {:title "Andrea e Enrica"
-    :description "Matrimonio di Andrea Crotti e Enrica Verrucci"}})
-
-(defn render-homepage
-  "Render the homepage as string after spitting out a valid index.html
-  (which is just really to make figwheel happy)"
-  [language]
-  (let [rendered
-        (clostache/render-resource
-         "public/index.moustache"
-         (merge
-          base-vars
-          {:language (name language)}
-          (get text language)))]
-
-    (spit "resources/public/index.html" rendered)
-    rendered))
 
 (def security (= (env :secure) "true"))
 (def default-port 3000)
@@ -80,9 +54,7 @@
 
 (defn home
   [language]
-  (render-homepage language)
-  (-> (resp/file-response "index.html"
-                          {:root "resources/public"})
+  (-> (resp/response (html/html (pages/home-page language)))
       (resp/content-type "text/html")))
 
 (defn do-login [{{password "password" next "next"} :params
