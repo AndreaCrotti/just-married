@@ -42,5 +42,5 @@
                       :last-name "bros"
                       :family-name "Plumbers"})
 
-      (let [res (j/query database-url)]
+      (let [res (db/all-guests!)]
         (is (= 2 (count res)))))))
