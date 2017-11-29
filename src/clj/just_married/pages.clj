@@ -76,3 +76,12 @@ ga('send', 'pageview');"
       [:script {:src "js/compiled/app.js"}]
       [:script "just_married.core.init();"]
       [:script {:src "markers.js"}]]]))
+
+(defn guest-list
+  [_]
+  [:html {:lang "en"}
+   (header (:en text))
+   [:body
+    ;; find how to render a different page with javascript
+    [:div
+     "This is the list of invited people"]]])

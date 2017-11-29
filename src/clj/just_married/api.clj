@@ -19,10 +19,14 @@
 
 (def auth-backend (session-backend))
 
+(def pages
+  {:guests pages/guest-list
+   :home pages/home-page})
+
 (def security (= (env :secure) "true"))
 (def default-port 3000)
 
-(defn get-port
+(defn- get-port
   []
   (Integer. (or (env :port) default-port)))
 
@@ -55,9 +59,9 @@
   (http-basic-backend {:realm "andreaenrica.life"
                        :authfn authenticate}))
 
-(defn home
-  [language]
-  (-> (resp/response (html/html (pages/home-page language)))
+(defn- render-page
+  [page language]
+  (-> (resp/response (html/html ((page pages) language)))
       (resp/content-type "text/html")))
 
 (defn do-login [{{password "password" next "next"} :params
@@ -73,12 +77,11 @@
       (assoc :session (dissoc session :identity))))
 
 (defroutes app-routes
-  (GET "/" request (home (detect-language request)))
-  (GET "/en" [] (home :en))
-  (GET "/it" [] (home :it))
-  ;; (POST "/login" request (do-login request))
-  ;; (POST "/logout" request (do-logout request))
-  (GET "/guests" request (guest-list request)))
+  (GET "/" request (render-page :home (detect-language request)))
+  (GET "/en" [] (render-page :home :en))
+  (GET "/it" [] (render-page :home :it))
+  ;; add back authentication possibly with restrict??
+  (GET "/guests" [] (render-page :guests :en)))
 
 (def app
   (-> app-routes
@@ -86,6 +89,7 @@
       (r-def/wrap-defaults (if security
                              r-def/secure-site-defaults
                              (assoc-in r-def/site-defaults [:security :anti-forgery] false)))
+
       (wrap-authorization basic-auth-backend)
       (wrap-authentication basic-auth-backend)))
 

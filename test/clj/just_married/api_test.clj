@@ -29,7 +29,7 @@
 (when db-reachable?
   (t/deftest guest-list-test
     (t/testing "Without being authenticated we get 401"
-      (let [req (mock/request :get "/guests")
+      #_(let [req (mock/request :get "/guests")
             resp (app req)]
         (t/is (= 401 (-> resp :status)))))
 
