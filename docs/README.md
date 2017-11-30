@@ -1,12 +1,12 @@
-# Building your wedding website
+# Build your webbing website without a single line of CSS/HTML/Javascript
 
 ## Components used
 
 - clojure
 - clojurescript + reframe
-- Heroku
-- github
-- circleci
+- garden to generate the CSS
+
+And deploy everything to Heroku with CircleCI and Github.
 
 ## Database
 
