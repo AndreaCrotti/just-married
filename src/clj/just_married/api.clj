@@ -23,6 +23,11 @@
   {:guests pages/guest-list
    :home pages/home-page})
 
+(defn- render-page
+  [page language]
+  (-> (resp/response (html/html ((page pages) language)))
+      (resp/content-type "text/html")))
+
 (def security (= (env :secure) "true"))
 (def default-port 3000)
 
@@ -41,7 +46,7 @@
   (if (authenticated? request)
     (resp/content-type
      {:status 200
-      :body (db/all-guests!)}
+      :body (render-page :guests :en)}
      "application-json")
     (throw-unauthorized)))
 
@@ -59,11 +64,6 @@
   (http-basic-backend {:realm "andreaenrica.life"
                        :authfn authenticate}))
 
-(defn- render-page
-  [page language]
-  (-> (resp/response (html/html ((page pages) language)))
-      (resp/content-type "text/html")))
-
 (defn do-login [{{password "password" next "next"} :params
                  session :session :as req}]
   ;; get the password from an env variable at least
@@ -80,8 +80,7 @@
   (GET "/" request (render-page :home (detect-language request)))
   (GET "/en" [] (render-page :home :en))
   (GET "/it" [] (render-page :home :it))
-  ;; add back authentication possibly with restrict??
-  (GET "/guests" [] (render-page :guests :en)))
+  (GET "/guests" request (guest-list request)))
 
 (def app
   (-> app-routes
@@ -92,8 +91,6 @@
 
       (wrap-authorization basic-auth-backend)
       (wrap-authentication basic-auth-backend)))
-
-;; (assoc-in r-def/site-defaults [:security :anti-forgery] false)
 
 (defn -main [& args]
   (jetty/run-jetty app {:port (get-port)}))

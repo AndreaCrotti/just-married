@@ -1,23 +1,10 @@
 (ns just-married.core
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
-            ;; how do I make it happen only on dev?
-            [secretary.core :as secretary :refer-macros [defroute]]
             [re-frisk.core :refer [enable-re-frisk!]]
             [just-married.events]
             [just-married.subs]
             [just-married.views :as views]))
-
-(defn page []
-  #_(if-let [current-page
-           @(re-frame/subscribe [:current-page])])
-  views/main-panel)
-
-(defroute "/" []
-  (re-frame/dispatch-sync [:set-current-page views/main-panel]))
-
-(defroute "/guests" []
-  (re-frame/dispatch-sync [:set-current-page views/guests]))
 
 (def debug?
   ^boolean js/goog.DEBUG)
@@ -27,13 +14,23 @@
     (enable-console-print!)
     (enable-re-frisk!)))
 
-(defn mount-root []
+(defn mount-root [page]
   (re-frame/clear-subscription-cache!)
-  (js/console.log "page is now " (page))
-  (reagent/render [#'page]
+  (reagent/render [page]
                   (.getElementById js/document "app")))
+
+;; TODO the db should be split using namespaced keywords for example??
+(defn ^:export init-home []
+  (re-frame/dispatch-sync [:initialize-db])
+  (dev-setup)
+  (mount-root views/main-panel))
 
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
-  (mount-root))
+  (mount-root views/main-panel))
+
+(defn ^:export init-guests []
+  (re-frame/dispatch-sync [:initialize-db])
+  (dev-setup)
+  (mount-root views/guests))

@@ -29,7 +29,7 @@
 (when db-reachable?
   (t/deftest guest-list-test
     (t/testing "Without being authenticated we get 401"
-      #_(let [req (mock/request :get "/guests")
+      (let [req (mock/request :get "/guests")
             resp (app req)]
         (t/is (= 401 (-> resp :status)))))
 
@@ -37,4 +37,5 @@
       (let [req (mock/request :get "/guests")
             authed-req (assoc req :identity "admin")
             resp (app authed-req)]
-        (t/is (= 200 (-> resp :status)))))))
+        (t/is (= 200 (-> resp :status)))
+        (t/is (= [] (-> resp :body)))))))
