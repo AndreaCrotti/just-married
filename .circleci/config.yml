@@ -4,8 +4,8 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/clojure:lein-2.7.1
-        environment:
-          - DATABASE_URL=postgresql://just_married:just_married@localhost
+        # environment:
+        #   - DATABASE_URL=postgresql://just_married:just_married@localhost
 
       - image: postgres:9.6
         environment:
