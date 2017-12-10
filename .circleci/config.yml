@@ -9,7 +9,7 @@ jobs:
 
       - image: postgres:9.6
         environment:
-          - POSTGRES_USER=localhost
+          - POSTGRES_USER=just_married
           - POSTGRES_PASSWORD=just_married
           - POSTGRES_DB=just_married
         ports:
