@@ -84,8 +84,7 @@ ga('send', 'pageview');"
    (header (:en text))
    [:body [:div {:id "app"}]
     ;; find how to render a different page with javascript
-    [:div
-     [:p
-      "This is the list of invited people"]]]])
+    [:script {:src "js/compiled/app.js"}]
+    [:script "just_married.core.init_guests();"]]])
 
- 
+

@@ -130,12 +130,7 @@
 (defn guests
   []
   (fn []
-    [:div {:class "hello"}
-     [:p "Hello world"]]))
-
-;; devtools does not seem to be set up correctly
-;; since it doesn't find hints.js for example
-;; (log "hello")
+    [:p "Here is the list of guests"]))
 
 (defn main-panel
   []

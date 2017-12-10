@@ -1,7 +1,6 @@
 (ns just-married.api
   (:gen-class)
-  (:require [buddy.auth.backends.session :refer [session-backend]]
-            [buddy.auth :refer [authenticated? throw-unauthorized]]
+  (:require [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
@@ -17,8 +16,6 @@
              [pages :as pages]
              [db :as db]]))
 
-(def auth-backend (session-backend))
-
 (def pages
   {:guests pages/guest-list
    :home pages/home-page})
@@ -28,8 +25,8 @@
   (-> (resp/response (html/html ((page pages) language)))
       (resp/content-type "text/html")))
 
-(def security (= (env :secure) "true"))
-(def default-port 3000)
+(def ^:private security (= (env :secure) "true"))
+(def ^:private default-port 3000)
 
 (defn- get-port
   []
@@ -44,10 +41,7 @@
   "Page showing the list of guests, needs to be authenticated"
   [request]
   (if (authenticated? request)
-    (resp/content-type
-     {:status 200
-      :body (render-page :guests :en)}
-     "application-json")
+    (render-page :guests :en)
     (throw-unauthorized)))
 
 (def authdata

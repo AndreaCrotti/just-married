@@ -4,23 +4,9 @@
             [environ.core :refer [env]]
             [honeysql.helpers :as h]
             [honeysql-postgres.helpers :as ph]
-            [honeysql-postgres.format :as pf]
-            [mount.core :as mount]))
+            [honeysql-postgres.format :as pf]))
 
 (def DEFAULT-DB-URL "postgresql://just_married:just_married@localhost:5440/just_married")
-
-;;TODO: check if it's actually worth to use mount at all for this purpose
-(defn get-connection
-  []
-  (jdbc/get-connection DEFAULT-DB-URL))
-
-(defn close-connection
-  [conn]
-  (.close conn))
-
-(mount/defstate conn
-  :start (get-connection)
-  :stop (close-connection conn))
 
 (defn all-guests
   []

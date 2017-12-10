@@ -19,12 +19,6 @@
   (reagent/render [page]
                   (.getElementById js/document "app")))
 
-;; TODO the db should be split using namespaced keywords for example??
-(defn ^:export init-home []
-  (re-frame/dispatch-sync [:initialize-db])
-  (dev-setup)
-  (mount-root views/main-panel))
-
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
