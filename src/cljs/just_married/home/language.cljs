@@ -1,4 +1,4 @@
-(ns just-married.language
+(ns just-married.home.language
   (:require [tongue.core :as tongue]
             [re-frame.core :as re-frame :refer [dispatch subscribe]]))
 

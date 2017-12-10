@@ -1,7 +1,6 @@
 (ns just-married.api
   (:gen-class)
-  (:require [buddy.auth.backends.session :refer [session-backend]]
-            [buddy.auth :refer [authenticated? throw-unauthorized]]
+  (:require [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
@@ -12,15 +11,24 @@
             [ring.middleware.resource :as resources]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
-            [just-married.settings :as settings]
-            [just-married.pages :as pages]))
+            [just-married
+             [settings :as settings]
+             [pages :as pages]
+             [db :as db]]))
 
-(def auth-backend (session-backend))
+(def pages
+  {:guests pages/guest-list
+   :home pages/home-page})
 
-(def security (= (env :secure) "true"))
-(def default-port 3000)
+(defn- render-page
+  [page language]
+  (-> (resp/response (html/html ((page pages) language)))
+      (resp/content-type "text/html")))
 
-(defn get-port
+(def ^:private security (= (env :secure) "true"))
+(def ^:private default-port 3000)
+
+(defn- get-port
   []
   (Integer. (or (env :port) default-port)))
 
@@ -33,9 +41,7 @@
   "Page showing the list of guests, needs to be authenticated"
   [request]
   (if (authenticated? request)
-    (resp/content-type
-     {:status 200 :body "Here is your list of guests"}
-     "application-json")
+    (render-page :guests :en)
     (throw-unauthorized)))
 
 (def authdata
@@ -52,11 +58,6 @@
   (http-basic-backend {:realm "andreaenrica.life"
                        :authfn authenticate}))
 
-(defn home
-  [language]
-  (-> (resp/response (html/html (pages/home-page language)))
-      (resp/content-type "text/html")))
-
 (defn do-login [{{password "password" next "next"} :params
                  session :session :as req}]
   ;; get the password from an env variable at least
@@ -70,11 +71,9 @@
       (assoc :session (dissoc session :identity))))
 
 (defroutes app-routes
-  (GET "/" request (home (detect-language request)))
-  (GET "/en" [] (home :en))
-  (GET "/it" [] (home :it))
-  ;; (POST "/login" request (do-login request))
-  ;; (POST "/logout" request (do-logout request))
+  (GET "/" request (render-page :home (detect-language request)))
+  (GET "/en" [] (render-page :home :en))
+  (GET "/it" [] (render-page :home :it))
   (GET "/guests" request (guest-list request)))
 
 (def app
@@ -83,10 +82,9 @@
       (r-def/wrap-defaults (if security
                              r-def/secure-site-defaults
                              (assoc-in r-def/site-defaults [:security :anti-forgery] false)))
+
       (wrap-authorization basic-auth-backend)
       (wrap-authentication basic-auth-backend)))
-
-;; (assoc-in r-def/site-defaults [:security :anti-forgery] false)
 
 (defn -main [& args]
   (jetty/run-jetty app {:port (get-port)}))

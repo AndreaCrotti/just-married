@@ -1,5 +1,6 @@
 (ns just-married.pages
-  (:require [just-married.settings :as settings]))
+  (:require [just-married.settings :as settings]
+            [clojure.data.json :as json]))
 
 (def ga-js (format "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -76,3 +77,14 @@ ga('send', 'pageview');"
       [:script {:src "js/compiled/app.js"}]
       [:script "just_married.core.init();"]
       [:script {:src "markers.js"}]]]))
+
+(defn guest-list
+  [_]
+  [:html {:lang "en"}
+   (header (:en text))
+   [:body [:div {:id "app"}]
+    ;; find how to render a different page with javascript
+    [:script {:src "js/compiled/app.js"}]
+    [:script "just_married.core.init_guests();"]]])
+
+

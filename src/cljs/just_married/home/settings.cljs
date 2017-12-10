@@ -1,4 +1,4 @@
-(ns just-married.settings
+(ns just-married.home.settings
   (:require [cljs-time.core :as time]))
 
 (def GOOGLE-MAPS-KEY "AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM")

@@ -1,7 +1,8 @@
-(ns just-married.db)
+(ns just-married.home.db)
 
 (def default-db
   ;; what other possibly useful information could be here?
   {:language :en
    :name ""
-   :email ""})
+   :email ""
+   :current-page nil})

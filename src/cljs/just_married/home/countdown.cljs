@@ -1,7 +1,7 @@
-(ns just-married.countdown
+(ns just-married.home.countdown
   (:require [reagent.core :as r]
-            [just-married.settings :refer [FATIDIC-TIME]]
-            [just-married.language :refer [translate]]
+            [just-married.home.settings :refer [FATIDIC-TIME]]
+            [just-married.home.language :refer [translate]]
             [cljs-time.core :as time]
             [cljs-time.format :refer [unparse-duration]]
             [goog.date.duration :as duration]))

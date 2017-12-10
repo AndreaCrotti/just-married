@@ -1,13 +1,17 @@
-# Clojure CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-clojure/ for more details
-#
 version: 2
 jobs:
   build:
     docker:
       # specify the version you desire here
       - image: circleci/clojure:lein-2.7.1
+        # environment:
+        #   - DATABASE_URL=postgresql://just_married:just_married@localhost
+
+      - image: postgres:9.6
+        environment:
+          - POSTGRES_USER=localhost
+          - POSTGRES_PASSWORD=just_married
+          - POSTGRES_DB=just_married
 
     working_directory: ~/just-married
 
@@ -16,4 +20,6 @@ jobs:
     
     steps:
       - checkout
-      - run: lein test
+      - run:
+          name: Lein test
+          command: lein test

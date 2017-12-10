@@ -2,6 +2,7 @@
   (:require [environ.core :refer [env]]))
 
 (def google-analytics-id "UA-104116805-1")
+(def ^:private local-pwd "secret")
 
 (def sendgrid-config
   {:api-user (:sendgrid-user env)
@@ -17,4 +18,4 @@
   (:sentry-dsn env))
 
 (def admin-password
-  (:admin-password env))
+  (:admin-password env local-pwd))
