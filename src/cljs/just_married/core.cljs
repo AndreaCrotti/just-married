@@ -2,9 +2,10 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [re-frisk.core :refer [enable-re-frisk!]]
-            [just-married.events]
-            [just-married.subs]
-            [just-married.views :as views]))
+            [just-married.home.events]
+            [just-married.home.subs]
+            [just-married.home.views :as home-views]
+            [just-married.guests.views :as guest-views]))
 
 (def debug?
   ^boolean js/goog.DEBUG)
@@ -22,9 +23,9 @@
 (defn ^:export init []
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
-  (mount-root views/main-panel))
+  (mount-root home-views/main-panel))
 
 (defn ^:export init-guests []
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
-  (mount-root views/guests))
+  (mount-root guest-views/main-panel))

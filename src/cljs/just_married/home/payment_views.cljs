@@ -1,4 +1,4 @@
-(ns just-married.payment-views)
+(ns just-married.home.payment-views)
 
 (def STRIPE-KEY "pk_test_qtDjM2KBQgYX9vVBhbzrU27F")
 (def STRIPE-IMG "https://stripe.com/img/documentation/checkout/marketplace.png")

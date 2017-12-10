@@ -1,11 +1,11 @@
-(ns just-married.views
+(ns just-married.home.views
   (:require
    [re-frame.core :as re-frame :refer [dispatch subscribe]]
-   [just-married.language :refer [lang-selection translate]]
-   [just-married.payment-views :as payment-views]
-   [just-married.countdown :as countdown]
-   [just-married.settings :as settings]
-   [just-married.story :refer [STORY-TEXT]]))
+   [just-married.home.language :refer [lang-selection translate]]
+   [just-married.home.payment-views :as payment-views]
+   [just-married.home.countdown :as countdown]
+   [just-married.home.settings :as settings]
+   [just-married.home.story :refer [STORY-TEXT]]))
 
 (defn get-browser-language
   "Return the language set in the browser, assuming that
@@ -126,11 +126,6 @@
         (into
          [:ul {:class "nav navbar-right" :key "language"}]
          (lang-selection @language))]])))
-
-(defn guests
-  []
-  (fn []
-    [:p "Here is the list of guests"]))
 
 (defn main-panel
   []

@@ -1,8 +1,9 @@
 (ns just-married.db
   (:require [clojure.java.jdbc :as jdbc]
-            [honeysql.core :as sql]
+            [honeysql
+             [core :as sql]
+             [helpers :as h]]
             [environ.core :refer [env]]
-            [honeysql.helpers :as h]
             [honeysql-postgres.helpers :as ph]
             [honeysql-postgres.format :as pf]))
 

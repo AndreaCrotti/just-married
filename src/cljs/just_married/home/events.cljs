@@ -1,7 +1,7 @@
-(ns just-married.events
+(ns just-married.home.events
   (:require [re-frame.core :as re-frame :refer [dispatch reg-event-db]]
-            [just-married.db :as db]
-            [just-married.language :refer [AVAILABLE-LANGUAGES]]
+            [just-married.home.db :as db]
+            [just-married.home.language :refer [AVAILABLE-LANGUAGES]]
             [ajax.core :refer [GET]]))
 
 (reg-event-db

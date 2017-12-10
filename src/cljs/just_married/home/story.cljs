@@ -1,4 +1,4 @@
-(ns just-married.story)
+(ns just-married.home.story)
 
 (def STORY-TEXT
   {:en
