@@ -38,4 +38,4 @@
             authed-req (assoc req :identity "admin")
             resp (app authed-req)]
         (t/is (= 200 (-> resp :status)))
-        (t/is (= [] (-> resp :body)))))))
+        (t/is (clojure.string/includes? (-> resp :body) "init_guests()"))))))
