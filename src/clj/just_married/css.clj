@@ -77,6 +77,8 @@
   [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
                 :background (:quote-background COLOR-PALLETTE)
                 :padding "0.5em 10px"
+                :font-size "1em"
+                :font-family (:open-sans FONT-FAMILIES)
                 :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
                 :quotes "\201C\201D\2018\2019"}]
 
