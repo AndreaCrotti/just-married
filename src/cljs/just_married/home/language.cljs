@@ -2,16 +2,16 @@
   (:require [tongue.core :as tongue]
             [re-frame.core :as re-frame :refer [dispatch subscribe]]))
 
-(def AVAILABLE-LANGUAGES
+(def available-languages
   "All the available languages"
   #{:en :it})
 
 (defn- set-lang [lang]
   (dispatch [:set-language lang]))
 
-(def LANG->FLAG-FILE
-  (zipmap AVAILABLE-LANGUAGES
-          (map #(subs (str % ".png") 1) AVAILABLE-LANGUAGES)))
+(def lang->flag-file
+  (zipmap available-languages
+          (map #(subs (str % ".png") 1) available-languages)))
 
 (defn language-selected->props
   [lang]
@@ -21,7 +21,7 @@
 
 (defn make-lang [lang current-language]
   (let [selected (= lang current-language)
-        png-file (lang LANG->FLAG-FILE)
+        png-file (lang lang->flag-file)
         props {:type "image" :src png-file :key lang}
         selected-props (get (language-selected->props lang) selected)
         full-props (merge props selected-props)]
@@ -31,13 +31,14 @@
 (defn lang-selection
   "Define all the possible languages as sequences of clickable images"
   [current-language]
-  (for [lang AVAILABLE-LANGUAGES]
+  (for [lang available-languages]
     (make-lang lang current-language)))
 
 (def dicts
   "List of all the words/sentences that need localization"
   {:en {:story "Our Story"
         :find-us "Find Us"
+        :find-us-text "The wedding will be done in the beautiful Abruzzo region, between Chieti and Pescara."
         :rvsp "RVSP"
         :countdown "Countdown"
         :accomodation "Accommodation"

@@ -95,7 +95,7 @@
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
 
-  [:body {:background (:light-background COLOR-PALLETTE)}]
+  ;[:body {:background (:light-background COLOR-PALLETTE)}]
   ;; find us settings
   [:#map {:width "500px"
           :height "500px"

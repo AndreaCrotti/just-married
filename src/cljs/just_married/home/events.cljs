@@ -1,14 +1,14 @@
 (ns just-married.home.events
   (:require [re-frame.core :as re-frame :refer [dispatch reg-event-db]]
             [just-married.home.db :as db]
-            [just-married.home.language :refer [AVAILABLE-LANGUAGES]]
+            [just-married.home.language :refer [available-languages]]
             [ajax.core :refer [GET]]))
 
 (reg-event-db
  :initialize-db
  (fn  [_ _]
    (let [parsed-language (keyword js/window.detected_language)
-         language (get (set AVAILABLE-LANGUAGES) parsed-language :en)]
+         language (get (set available-languages) parsed-language :en)]
      (assoc db/default-db :language language))))
 
 (reg-event-db

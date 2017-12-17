@@ -7,16 +7,6 @@
    [just-married.home.settings :as settings]
    [just-married.home.story :refer [STORY-TEXT]]))
 
-(defn get-browser-language
-  "Return the language set in the browser, assuming that
-  the browser is actually setting correctly navigator.language.
-  Another way could be to use the geo-location potentially"
-  []
-  (let [browser-lang js/navigator.language]
-    (if (clojure.string/starts-with? browser-lang "it")
-      :italian
-      :english)))
-
 ;; should dispatch the right language also here of course
 (defn add-to-calendar
   [language]
@@ -27,6 +17,14 @@
     ;; actually use current language
     (translate language :add-to-calendar)
     [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])
+
+;;TODO: evaluate using a macro to avoid redefining the same king
+;;of function every time
+
+(defn timeline
+  []
+  (let [language (subscribe [:current-language])]
+    ))
 
 (defn countdown
   []
@@ -53,8 +51,11 @@
 
 (defn find-us
   []
-  [:div {:id "find-us" :class "section"}
-   [:div {:id "map"}]])
+  (let [language (subscribe [:current-language])]
+    [:div {:id "find-us" :class "section"}
+     [:p {:id "find-us-text"}
+      (translate @language :find-us-text)]
+     [:div {:id "map"}]]))
 
 (defn gifts
   []
