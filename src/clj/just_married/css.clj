@@ -50,11 +50,18 @@
              :color "inherit"}]
 
   [:.container {:display "grid"
-                :grid-gap "20px"
-                :grid-template-columns "auto"
-                :grid-template-rows "auto auto auto auto"}]
+                :grid-gap "5px"
+                :grid-template-columns "auto auto"
+                :grid-template-rows "auto auto"}]
 
-  ;; [:.section ]
+  [:.countdown {:grid-column 1
+               :grid-row 1}]
+
+  [:.story {:grid-column 2
+            :grid-row 1}]
+
+  [:find-us {:grid-column "1 / span 2"
+             :grid-row 2}]
 
   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                        :content "open-quote"
