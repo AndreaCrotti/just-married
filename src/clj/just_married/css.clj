@@ -49,6 +49,13 @@
   [:a:hover {:text-decoration "none"
              :color "inherit"}]
 
+  [:.container {:display "grid"
+                :grid-gap "20px"
+                :grid-template-columns "auto"
+                :grid-template-rows "auto auto auto auto"}]
+
+  ;; [:.section ]
+
   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                        :content "open-quote"
                        :font-size "4em"
