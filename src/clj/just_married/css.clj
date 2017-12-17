@@ -69,9 +69,9 @@
 
   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                        :content "open-quote"
-                       :font-size "4em"
-                       :line-height "0.2em"
-                       :margin-right "0.25em"
+                       :font-size "3em"
+                       :line-height ".1em"
+                       :margin-right ".25em"
                        :vertical-align "-0.4em"}]
 
   [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
@@ -82,12 +82,12 @@
                 :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
                 :quotes "\201C\201D\2018\2019"}]
 
-  [:blockquote:after {:color "#B2AFCD"
+  [:blockquote:after {:color (:quote-border-left COLOR-PALLETTE)
                       :content "close-quote"
-                      :font-size "4em"
+                      :font-size "2em"
                       :line-height ".1em"
                       :margin-right ".25em"
-                      :vertical-align "-.4em"
+                      :vertical-align "-.2em"
                       :box-shadow "0 0 20px #999c"}]
 
   ;; various language settings
