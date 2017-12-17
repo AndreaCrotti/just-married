@@ -78,33 +78,6 @@
    [:div {:id "amazon-wish-list"}
     [:a {:href settings/AMAZON-WISH-LIST} "Amazon wish list"]]])
 
-(defn rvsp
-  []
-  [:div.section {:id "rvsp"}
-   [:input {:type "text"
-            :placeholder "Your name"
-            :class "form-control"
-            :on-change #(dispatch [:name (-> % .-target .-value)])}]
-
-   [:input {:type "email"
-            :placeholder "Your email address"
-            :class "form-control"
-            :on-change #(dispatch [:email (-> % .-target .-value)])}]
-
-   ;; add something about dietary requirements here if possible
-   [:button {:id "confirm-coming"
-             :class "btn btn-success btn-medium"
-             :on-click #(dispatch [:coming])}
-    "Pleasure to join you!"]
-
-   [:button {:id "confirm-not-coming"
-             :class "btn btn-danger btn-medium"
-             :on-click #(dispatch [:not-coming])}
-    "Sadly can't join you!"]
-
-   #_[:div {:class "g-recaptcha"
-          :data-sitekey settings/RECAPTCHA-KEY}]])
-
 (defn contacts
   []
   (let [language (subscribe [:current-language])]
@@ -114,7 +87,6 @@
   {:countdown countdown
    :story story
    :find-us find-us
-   ;; :rvsp rvsp
    ;; :gifts gifts
    ;;:accomodation accommodation
    ;; :contacts contacts

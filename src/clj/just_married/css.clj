@@ -51,17 +51,21 @@
 
   [:.container {:display "grid"
                 :grid-gap "5px"
-                :grid-template-columns "auto auto"
+                :grid-template-columns "300px auto"
                 :grid-template-rows "auto auto"}]
 
   [:.countdown {:grid-column 1
-               :grid-row 1}]
+                :grid-row 1
+                :color (:marsala COLOR-PALLETTE)
+                :font-weight "bold"
+                :font-family (:alex-brush FONT-FAMILIES)
+                :font-size "x-large"}]
 
   [:.story {:grid-column 2
             :grid-row 1}]
 
-  [:find-us {:grid-column "1 / span 2"
-             :grid-row 2}]
+  [:.find-us {:grid-column "span 1 / 2"
+              :grid-row 2}]
 
   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                        :content "open-quote"
@@ -92,24 +96,16 @@
   [:app {:background-color (:marsala COLOR-PALLETTE)}]
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
-  [:#countdown {;; find a more suitable image for the background
-                ;; if possible
-                ;; :background-image
-                ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
-                :background (:quote-background COLOR-PALLETTE)
+  [:#countdown {:background (:quote-background COLOR-PALLETTE)
                 :background-repeat "no-repeat"
-                :text-align "center"
-                :font-weight "bold"
-                :font-family (:alex-brush FONT-FAMILIES)
-                :font-size "x-large"
-                :color (:marsala COLOR-PALLETTE)}]
+                :text-align "center"}]
 
   ;; countdown settings
   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
 
-  ;[:body {:background (:light-background COLOR-PALLETTE)}]
+                                        ;[:body {:background (:light-background COLOR-PALLETTE)}]
   ;; find us settings
   [:#map {:width "500px"
           :height "500px"

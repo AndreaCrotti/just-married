@@ -39,7 +39,6 @@
   {:en {:story "Our Story"
         :find-us "Find Us"
         :find-us-text "The wedding will be done in the beautiful Abruzzo region, between Chieti and Pescara."
-        :rvsp "RVSP"
         :countdown "Countdown"
         :accomodation "Accommodation"
         :contacts "Contacts"
@@ -53,7 +52,6 @@
 
    :it {:story "La Nostra Storia"
         :find-us "Trovaci"
-        :rvsp "RVSP"
         :countdown "Conto Alla Rovescia"
         :accomodation "Dove Dormire"
         :contacts "Contatti"
