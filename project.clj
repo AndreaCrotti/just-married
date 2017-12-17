@@ -96,12 +96,13 @@
              :main just-married.api}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
+    :env {:devtools-debug "true"}
     :plugins [[lein-figwheel "0.5.14"]
               [lein-doo "0.1.7"]
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-    :dependencies [#_[binaryage/devtools "0.9.8"]
+    :dependencies [[binaryage/devtools "0.9.8"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel "0.5.14"]
                    [figwheel-sidecar "0.5.14"]
@@ -128,9 +129,10 @@
                     :optimizations :none
                     :source-map true
                     :source-map-timestamp true
-                    ;;:preloads             [devtools.preload]
-                    ;;:external-config      {:devtools/config {:features-to-install :all}}
-                    }}
+                    :preloads             [devtools.preload]
+                    :external-config      {:devtools/config {:features-to-install [:formatters
+                                                                                   :async
+                                                                                   :hints]}}}}
 
     {:id           "min"
      :source-paths ["src/cljs" "src/cljc"]
