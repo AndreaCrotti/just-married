@@ -47,7 +47,9 @@
         :date "27th May, 2018"
         :days "Days"
         :hours "Hours"
-        :minutes "Minutes"}
+        :minutes "Minutes"
+        :read-more "Read More"
+        :read-less "Read Less"}
 
    :it {:story "La Nostra Storia"
         :find-us "Trovaci"
@@ -59,7 +61,9 @@
         :date "27 Maggio 2018"
         :days "Giorni"
         :hours "Ore"
-        :minutes "Minuti"}})
+        :minutes "Minuti"
+        :read-more "Leggi di piu'"
+        :read-less "Leggi di meno"}})
 
 (def translate
   (tongue/build-translate dicts))

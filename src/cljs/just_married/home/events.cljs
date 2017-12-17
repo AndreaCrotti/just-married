@@ -7,9 +7,7 @@
 (reg-event-db
  :initialize-db
  (fn  [_ _]
-   (let [parsed-language (keyword js/window.detected_language)
-         language (get (set available-languages) parsed-language :en)]
-     (assoc db/default-db :language language))))
+   db/default-db))
 
 (reg-event-db
  :set-language
@@ -17,30 +15,6 @@
    (assoc db :language language)))
 
 (reg-event-db
- :name
- (fn [db [_ name]]
-   (assoc db :name name)))
-
-(reg-event-db
- :email
- (fn [db [_ name]]
-   (assoc db :email name)))
-
-(defn confirm
-  [coming db]
-  (print "Calling function to record coming"))
-
-(reg-event-db
- :coming
- (fn [db [_]]
-   (confirm db true)))
-
-(reg-event-db
- :not-coming
- (fn [db [_]]
-   (confirm db false)))
-
-(reg-event-db
- :set-current-page
- (fn [db [_ page]]
-   (assoc db :current-page page)))
+ :set-expanded-story
+ (fn [db [_ expanded-story]]
+   (assoc db :expanded-story expanded-story)))

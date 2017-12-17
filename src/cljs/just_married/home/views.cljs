@@ -7,6 +7,8 @@
    [just-married.home.settings :as settings]
    [just-married.home.story :refer [STORY-TEXT]]))
 
+(def ^:private max-story-length 140)
+
 ;; should dispatch the right language also here of course
 (defn add-to-calendar
   [language]
@@ -43,11 +45,24 @@
 
 (defn story
   []
-  (let [language (subscribe [:current-language])]
+  (let [language (subscribe [:current-language])
+        expanded-story (subscribe [:expanded-story])]
     (fn []
-      [:div.story.section
-       [:blockquote
-        (get STORY-TEXT @language "Not found")]])))
+      (let [text (get STORY-TEXT @language "Not found")
+            trimmed-text (if @expanded-story
+                           text
+                           (subs text 0 max-story-length))]
+        [:div.story.section
+         [:blockquote trimmed-text]
+         (if @expanded-story
+           [:button.btn {:id "collapse-story"
+                         :on-click #(dispatch [:set-expanded-story false])}
+
+            (translate @language :read-less)]
+
+           [:button.btn {:id "expand-story"
+                         :on-click #(dispatch [:set-expanded-story true])}
+            (translate @language :read-more)])]))))
 
 (defn find-us
   []
