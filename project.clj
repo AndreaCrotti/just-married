@@ -3,13 +3,11 @@
   :url "https://github.com/AndreaCrotti/just-married"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [clojure-future-spec "1.9.0-beta4"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  ;; ring dependencies
                  [ring "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
-
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  ;; various integrations
                  [racehub/stripe-clj "0.3.5"]
