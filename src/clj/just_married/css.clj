@@ -49,25 +49,45 @@
   [:a:hover {:text-decoration "none"
              :color "inherit"}]
 
+  [:.container {:display "grid"
+                :grid-gap "5px"
+                :grid-template-columns "300px auto"
+                :grid-template-rows "auto auto"}]
+
+  [:.countdown {:grid-column 1
+                :grid-row 1
+                :color (:marsala COLOR-PALLETTE)
+                :font-weight "bold"
+                :font-family (:alex-brush FONT-FAMILIES)
+                :font-size "x-large"}]
+
+  [:.story {:grid-column 2
+            :grid-row 1}]
+
+  [:.find-us {:grid-column "span 1 / 2"
+              :grid-row 2}]
+
   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                        :content "open-quote"
-                       :font-size "4em"
-                       :line-height "0.2em"
-                       :margin-right "0.25em"
+                       :font-size "3em"
+                       :line-height ".1em"
+                       :margin-right ".25em"
                        :vertical-align "-0.4em"}]
 
   [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
                 :background (:quote-background COLOR-PALLETTE)
                 :padding "0.5em 10px"
+                :font-size "1em"
+                :font-family (:open-sans FONT-FAMILIES)
                 :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
                 :quotes "\201C\201D\2018\2019"}]
 
-  [:blockquote:after {:color "#B2AFCD"
+  [:blockquote:after {:color (:quote-border-left COLOR-PALLETTE)
                       :content "close-quote"
-                      :font-size "4em"
+                      :font-size "2em"
                       :line-height ".1em"
                       :margin-right ".25em"
-                      :vertical-align "-.4em"
+                      :vertical-align "-.2em"
                       :box-shadow "0 0 20px #999c"}]
 
   ;; various language settings
@@ -78,24 +98,16 @@
   [:app {:background-color (:marsala COLOR-PALLETTE)}]
   ;; maybe the image containing the rest should actually be an element
   ;; by itself?
-  [:#countdown {;; find a more suitable image for the background
-                ;; if possible
-                ;; :background-image
-                ;;[(url (format "'%s'" (:bw-cats IMAGES)))]
-                :background (:quote-background COLOR-PALLETTE)
+  [:#countdown {:background (:quote-background COLOR-PALLETTE)
                 :background-repeat "no-repeat"
-                :text-align "center"
-                :font-weight "bold"
-                :font-family (:alex-brush FONT-FAMILIES)
-                :font-size "x-large"
-                :color (:marsala COLOR-PALLETTE)}]
+                :text-align "center"}]
 
   ;; countdown settings
   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
             :font-weight "bolder"
             :color (:deep-blue COLOR-PALLETTE)}]
 
-  ;[:body {:background (:light-background COLOR-PALLETTE)}]
+                                        ;[:body {:background (:light-background COLOR-PALLETTE)}]
   ;; find us settings
   [:#map {:width "500px"
           :height "500px"

@@ -5,10 +5,8 @@
 (reg-sub
  :current-language
  ;; is it the same as simply saying ":language"
- (fn [db _]
-   (:language db)))
+ :language)
 
 (reg-sub
- :current-page
- (fn [db _]
-   (:current-page db)))
+ :expanded-story
+ :expanded-story)
