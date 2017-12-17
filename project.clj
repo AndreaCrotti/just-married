@@ -16,7 +16,7 @@
                  [clj-http "3.7.0"]
 
                  ;; clojurescript dependencies
-                 [org.clojure/clojurescript "1.9.854"]
+                 [org.clojure/clojurescript "1.9.946"]
                  [re-frisk "0.5.3"]
                  [re-frame "0.10.2"]
                  [cljs-ajax "0.7.3"]
@@ -101,7 +101,7 @@
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-    :dependencies [[binaryage/devtools "0.9.8"]
+    :dependencies [#_[binaryage/devtools "0.9.8"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel "0.5.14"]
                    [figwheel-sidecar "0.5.14"]
@@ -128,8 +128,9 @@
                     :optimizations :none
                     :source-map true
                     :source-map-timestamp true
-                    :preloads             [devtools.preload]
-                    :external-config      {:devtools/config {:features-to-install :all}}}}
+                    ;;:preloads             [devtools.preload]
+                    ;;:external-config      {:devtools/config {:features-to-install :all}}
+                    }}
 
     {:id           "min"
      :source-paths ["src/cljs" "src/cljc"]
