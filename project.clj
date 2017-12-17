@@ -3,35 +3,33 @@
   :url "https://github.com/AndreaCrotti/just-married"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[org.clojure/clojure "1.8.0"]
-                 [clojure-future-spec "1.9.0-beta4"]
+  :dependencies [[org.clojure/clojure "1.9.0"]
                  ;; ring dependencies
                  [ring "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
-
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  ;; various integrations
-                 [racehub/stripe-clj "0.3.5"]
+                 #_[racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
-                 [raven-clj "1.5.0"]
+                 [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.854"]
-                 [re-frisk "0.5.0"]
-                 [re-frame "0.10.1"]
-                 [cljs-ajax "0.7.2"]
+                 [re-frisk "0.5.3"]
+                 [re-frame "0.10.2"]
+                 [cljs-ajax "0.7.3"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
                  [garden "1.3.3"]
-                 [tongue "0.2.2"]
-                 [com.andrewmcveigh/cljs-time "0.5.1"]
+                 [tongue "0.2.3"]
+                 [com.andrewmcveigh/cljs-time "0.5.2"]
                  [com.taoensso/tempura "1.1.2"]
-                 [cljs-http "0.1.43"]
+                 [cljs-http "0.1.44"]
 
                  ;; testing libraries, could they also not be in here at all?
-                 [doo "0.1.7"]
+                 [doo "0.1.8"]
                  [day8.re-frame/test "0.1.5"]
                  [clj-recaptcha "0.0.2"]
 
@@ -41,12 +39,12 @@
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]
-                 [org.clojure/java.jdbc "0.7.1"]
+                 [org.clojure/java.jdbc "0.7.4"]
                  [org.postgresql/postgresql "42.1.4"]
 
                  [honeysql "0.9.1"]
-                 [migratus "1.0.0"]
-                 [com.rpl/specter "1.0.3"]
+                 [migratus "1.0.2"]
+                 [com.rpl/specter "1.0.5"]
                  [mount "0.1.11"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
@@ -103,15 +101,15 @@
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-    :dependencies [[binaryage/devtools "0.9.4"]
+    :dependencies [[binaryage/devtools "0.9.8"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel "0.5.14"]
                    [figwheel-sidecar "0.5.14"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
-                   [reloaded.repl "0.2.3"]
-                   [ring/ring-mock "0.3.1"]]}}
+                   [reloaded.repl "0.2.4"]
+                   [ring/ring-mock "0.3.2"]]}}
 
   :garden {:builds [{:id           "screen"
                      :source-paths ["src/clj"]
