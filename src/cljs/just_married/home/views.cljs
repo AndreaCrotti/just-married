@@ -119,12 +119,7 @@
   []
   ;;TODO: there could be a better way to do this
   (into [:g]
-        (concat
-         [[navbar]]
-         ;; too much vector stuff here
-         (vector
-          (into [:div.container]
-                (map vector (vals SECTIONS)))))))
-
-
-(main-panel)
+        (cons
+         [navbar]
+         (vector (into [:div.container]
+                       (map vector (vals SECTIONS)))))))
