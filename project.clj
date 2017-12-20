@@ -51,6 +51,7 @@
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
                  [secretary "1.2.3"]
+                 [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  [reframe-utils "0.1.4"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
@@ -131,7 +132,8 @@
                     :optimizations :none
                     :source-map true
                     :source-map-timestamp true
-                    :preloads             [devtools.preload]
+                    :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
+                    :preloads             [devtools.preload day8.re-frame.trace.preload]
                     :external-config      {:devtools/config {:features-to-install [:formatters
                                                                                    :async
                                                                                    :hints]}}}}
