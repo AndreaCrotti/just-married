@@ -1,7 +1,6 @@
 (ns just-married.core
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
-            [re-frisk.core :refer [enable-re-frisk!]]
             [just-married.home.events]
             [just-married.home.subs]
             [just-married.home.views :as home-views]
@@ -12,8 +11,7 @@
 
 (defn dev-setup []
   (when debug?
-    (enable-console-print!)
-    (enable-re-frisk!)))
+    (enable-console-print!)))
 
 (defn mount-root [page]
   (re-frame/clear-subscription-cache!)

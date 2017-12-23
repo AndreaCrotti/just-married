@@ -17,7 +17,6 @@
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
-                 [re-frisk "0.5.3"]
                  [re-frame "0.10.2"]
                  [cljs-ajax "0.7.3"]
                  ;; also ns-tracker is needed not only in dev
