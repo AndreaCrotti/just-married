@@ -12,6 +12,7 @@
    :light-background "#f9eef0"
    :dark-red "#8B0000"
    :blue "#4444FF"
+   :gold "#FFd700"
    :marsala "#955251"
    :royal-blue "#4169e1"
    :deep-blue "#00bfff"
@@ -113,4 +114,20 @@
           :height "500px"
           :padding "15px"
           :box-shadow "10px 10px 20px #999"
-          :border-radius "10px"}])
+          :border-radius "10px"}]
+
+  [:.initial__root {:display "grid"
+                    :width "100%"
+                    :height "auto"
+                    :bottom "0px"
+                    :top "0px"
+                    :left 0
+                    :position "absolute"
+                    :justify-items "center"
+                    :grid-template-columns "auto"
+                    :grid-template-rows "auto auto auto"
+                    :background-color (:dark-red COLOR-PALLETTE)}]
+
+  [:.date__container {:font-weight "bolder"
+                      :font-family (:open-sans FONT-FAMILIES)
+                      :color (:gold COLOR-PALLETTE)}])

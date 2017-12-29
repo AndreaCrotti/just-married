@@ -64,6 +64,8 @@ ga('send', 'pageview');"
    [:script {:src "gmaps.js"}]
    [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
 
+(def ^:private app-js [:script {:src "js/compiled/app.js"}])
+
 (defn home-page
   [language]
   (let [env (language text)]
@@ -71,10 +73,11 @@ ga('send', 'pageview');"
 
      (header env)
      [:script ga-js]
-     [:body [:div {:id "app"}]
+     [:body
+      [:div {:id "app"}]
       ;; now we can easily generate some JS that can be then loaded by
       ;; the frontend to decide which page to display for example
-      [:script {:src "js/compiled/app.js"}]
+      app-js
       [:script "just_married.core.init();"]
       [:script {:src "markers.js"}]]]))
 
@@ -82,9 +85,27 @@ ga('send', 'pageview');"
   [_]
   [:html {:lang "en"}
    (header (:en text))
-   [:body [:div {:id "app"}]
+   [:body
+    [:div {:id "app"}]
     ;; find how to render a different page with javascript
-    [:script {:src "js/compiled/app.js"}]
+    app-js
     [:script "just_married.core.init_guests();"]]])
 
+(defn initial-page
+  [_]
+  [:html {:lang "en"}
+   (header (:en text))
+   [:body
+    [:div.initial__root
+     [:div.monogram__container
+      "A & E"]
 
+     [:div.date__container
+      "23 / 05 / 2018"]
+
+     [:div.language__detector
+      [:div.language__detector__english
+       [:a {:href "main?language=en"} "English"]]
+
+      [:div.language__detector__italian
+       [:a {:href "main?language=it"} "Italian"]]]]]])
