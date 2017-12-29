@@ -124,10 +124,23 @@
                     :left 0
                     :position "absolute"
                     :justify-items "center"
-                    :grid-template-columns "auto"
+                    :grid-template-columns "auto auto"
                     :grid-template-rows "auto auto auto"
                     :background-color (:dark-red COLOR-PALLETTE)}]
 
-  [:.date__container {:font-weight "bolder"
+  [:.monogram__container {:grid-row "1"
+                          :grid-column "span 2"}]
+
+  [:.date__container {:grid-column "span 2"
+                      :grid-row "2"
+                      :font-weight "bolder"
+                      :font-size "xx-large"
+                      :text-shadow "2px 2px 2px"
                       :font-family (:open-sans FONT-FAMILIES)
-                      :color (:gold COLOR-PALLETTE)}])
+                      :color (:gold COLOR-PALLETTE)}]
+
+  [:.language__detector__english {:grid-column "1"
+                                  :grid-row "3"}]
+
+  [:.language__detector__italian {:grid-column "2"
+                                  :grid-row "3"}])

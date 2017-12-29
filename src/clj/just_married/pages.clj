@@ -98,14 +98,20 @@ ga('send', 'pageview');"
    [:body
     [:div.initial__root
      [:div.monogram__container
-      "A & E"]
+      [:img {:src "images/cats_heart.jpg"
+             :alt "A & E"}]]
 
      [:div.date__container
       "23 / 05 / 2018"]
 
-     [:div.language__detector
-      [:div.language__detector__english
-       [:a {:href "main?language=en"} "English"]]
+     [:div.language__detector__english
+      [:a {:href "main?language=en"}
+       [:img {:src "images/gb_large.png"
+              :alt "English"
+              :width "100px"}]]]
 
-      [:div.language__detector__italian
-       [:a {:href "main?language=it"} "Italian"]]]]]])
+     [:div.language__detector__italian
+      [:a {:href "main?language=it"}
+       [:img {:src "images/it_large.png"
+              :width "100px"
+              :alt "Italiano"}]]]]]])
