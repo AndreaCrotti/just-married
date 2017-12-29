@@ -102,7 +102,7 @@ ga('send', 'pageview');"
              :alt "A & E"}]]
 
      [:div.date__container
-      "23 / 05 / 2018"]
+      "27 / 05 / 2018"]
 
      [:div.language__detector__english
       [:a {:href "main?language=en"}
