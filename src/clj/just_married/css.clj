@@ -140,7 +140,11 @@
                       :color (:gold COLOR-PALLETTE)}]
 
   [:.language__detector__english {:grid-column "1"
+                                  :justify-items "right"
                                   :grid-row "3"}]
 
   [:.language__detector__italian {:grid-column "2"
-                                  :grid-row "3"}])
+                                  :justify-items "left"
+                                  :grid-row "3"}]
+
+  [:navbar {:background-color (:dark-red COLOR-PALLETTE)}])
