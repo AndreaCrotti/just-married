@@ -40,111 +40,113 @@
   {:bw-cats "../images/cats_heart.jpg"
    :small-cats "../images/small_cats.jpg"})
 
+(def common
+  [[]])
+
+(def main-page
+  [[:a {:color "inherit"
+        :text-decoration "none"}]
+
+   [:a:hover {:text-decoration "none"
+              :color "inherit"}]
+
+   [:.container {:display "grid"
+                 :grid-gap "5px"
+                 :grid-template-columns "300px auto"
+                 :grid-template-rows "auto auto"}]
+
+   [:.countdown {:grid-column 1
+                 :grid-row 1
+                 :color (:marsala COLOR-PALLETTE)
+                 :font-weight "bold"
+                 :font-family (:alex-brush FONT-FAMILIES)
+                 :font-size "x-large"}]
+
+   [:.story {:grid-column 2
+             :grid-row 1}]
+
+   [:.find-us {:grid-column "span 1 / 2"
+               :grid-row 2}]
+
+   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
+                        :content "open-quote"
+                        :font-size "3em"
+                        :line-height ".1em"
+                        :margin-right ".25em"
+                        :vertical-align "-0.4em"}]
+
+   [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
+                 :background (:quote-background COLOR-PALLETTE)
+                 :padding "0.5em 10px"
+                 :font-size "1em"
+                 :font-family (:open-sans FONT-FAMILIES)
+                 :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
+                 :quotes "\201C\201D\2018\2019"}]
+
+   [:blockquote:after {:color (:quote-border-left COLOR-PALLETTE)
+                       :content "close-quote"
+                       :font-size "2em"
+                       :line-height ".1em"
+                       :margin-right ".25em"
+                       :vertical-align "-.2em"
+                       :box-shadow "0 0 20px #999c"}]
+
+   [:app {:background-color (:marsala COLOR-PALLETTE)}]
+   ;; maybe the image containing the rest should actually be an element
+   ;; by itself?
+   [:#countdown {:background (:quote-background COLOR-PALLETTE)
+                 :background-repeat "no-repeat"
+                 :text-align "center"}]
+
+   ;; countdown settings
+   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
+             :font-weight "bolder"
+             :color (:deep-blue COLOR-PALLETTE)}]
+
+                                        ;[:body {:background (:light-background COLOR-PALLETTE)}]
+   ;; find us settings
+   [:#map {:width "500px"
+           :height "500px"
+           :padding "15px"
+           :box-shadow "10px 10px 20px #999"
+           :border-radius "10px"}]
+
+   [:navbar {:background-color (:dark-red COLOR-PALLETTE)}]])
+
+(def enter-page
+  [[:.initial__root {:display "grid"
+                     :width "100%"
+                     :height "auto"
+                     :bottom "0px"
+                     :top "0px"
+                     :left 0
+                     :justify-items "center"
+                     :position "absolute"
+                     :grid-template-columns "auto auto"
+                     :grid-template-rows "auto auto auto"
+                     :background-color (:dark-red COLOR-PALLETTE)}]
+
+   [:.monogram__container {:grid-row "1"
+                           :grid-column "span 2"}]
+
+   [:.date__container {:grid-column "span 2"
+                       :grid-row "2"
+                       :font-weight "bolder"
+                       :font-size "4em"
+                       :text-shadow "2px 2px 2px"
+                       :font-family (:open-sans FONT-FAMILIES)
+                       :color (:gold COLOR-PALLETTE)}]
+
+   [:.language__detector__english {:grid-column "1"
+                                   :grid-row "3"}]
+
+   [:.language__detector__italian {:grid-column "2"
+                                   :grid-row "3"}]])
+
 ;; each style defines a new file, could simply also generate
 ;; many different files ideally
 (defstyles screen
   ;;TODO: make it actually still look nice though
-  [:a {:color "inherit"
-       :text-decoration "none"}]
-
-  [:a:hover {:text-decoration "none"
-             :color "inherit"}]
-
-  [:.container {:display "grid"
-                :grid-gap "5px"
-                :grid-template-columns "300px auto"
-                :grid-template-rows "auto auto"}]
-
-  [:.countdown {:grid-column 1
-                :grid-row 1
-                :color (:marsala COLOR-PALLETTE)
-                :font-weight "bold"
-                :font-family (:alex-brush FONT-FAMILIES)
-                :font-size "x-large"}]
-
-  [:.story {:grid-column 2
-            :grid-row 1}]
-
-  [:.find-us {:grid-column "span 1 / 2"
-              :grid-row 2}]
-
-  [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
-                       :content "open-quote"
-                       :font-size "3em"
-                       :line-height ".1em"
-                       :margin-right ".25em"
-                       :vertical-align "-0.4em"}]
-
-  [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
-                :background (:quote-background COLOR-PALLETTE)
-                :padding "0.5em 10px"
-                :font-size "1em"
-                :font-family (:open-sans FONT-FAMILIES)
-                :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
-                :quotes "\201C\201D\2018\2019"}]
-
-  [:blockquote:after {:color (:quote-border-left COLOR-PALLETTE)
-                      :content "close-quote"
-                      :font-size "2em"
-                      :line-height ".1em"
-                      :margin-right ".25em"
-                      :vertical-align "-.2em"
-                      :box-shadow "0 0 20px #999c"}]
-
-  ;; various language settings
-  [:.language-group {:padding-right "20px"}]
-  [:.language.selected {:padding-right "20px"}]
-  [:.language.not-selected {:padding-right "20px"}]
-
-  [:app {:background-color (:marsala COLOR-PALLETTE)}]
-  ;; maybe the image containing the rest should actually be an element
-  ;; by itself?
-  [:#countdown {:background (:quote-background COLOR-PALLETTE)
-                :background-repeat "no-repeat"
-                :text-align "center"}]
-
-  ;; countdown settings
-  [:.timer {;:background-color (:marsala COLOR-PALLETTE)
-            :font-weight "bolder"
-            :color (:deep-blue COLOR-PALLETTE)}]
-
-                                        ;[:body {:background (:light-background COLOR-PALLETTE)}]
-  ;; find us settings
-  [:#map {:width "500px"
-          :height "500px"
-          :padding "15px"
-          :box-shadow "10px 10px 20px #999"
-          :border-radius "10px"}]
-
-  [:.initial__root {:display "grid"
-                    :width "100%"
-                    :height "auto"
-                    :bottom "0px"
-                    :top "0px"
-                    :left 0
-                    :position "absolute"
-                    :justify-items "center"
-                    :grid-template-columns "auto auto"
-                    :grid-template-rows "auto auto auto"
-                    :background-color (:dark-red COLOR-PALLETTE)}]
-
-  [:.monogram__container {:grid-row "1"
-                          :grid-column "span 2"}]
-
-  [:.date__container {:grid-column "span 2"
-                      :grid-row "2"
-                      :font-weight "bolder"
-                      :font-size "xx-large"
-                      :text-shadow "2px 2px 2px"
-                      :font-family (:open-sans FONT-FAMILIES)
-                      :color (:gold COLOR-PALLETTE)}]
-
-  [:.language__detector__english {:grid-column "1"
-                                  :justify-items "right"
-                                  :grid-row "3"}]
-
-  [:.language__detector__italian {:grid-column "2"
-                                  :justify-items "left"
-                                  :grid-row "3"}]
-
-  [:navbar {:background-color (:dark-red COLOR-PALLETTE)}])
+  (into []
+        (concat main-page
+                enter-page)))
