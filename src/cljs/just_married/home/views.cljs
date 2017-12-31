@@ -37,13 +37,13 @@
   []
   (let [language (get-language)]
     (fn []
-      [:div.countdown.section
+      [:div.countdown.section {:id "countdown"}
        [:div.names "Andrea Crotti & Enrica Verrucci"]
        [:div.find-us
         [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
 
        [:div.date (translate language :date)]
-       [:div {:id "countdown"}
+       [:div.countdown__internal
         (countdown/countdown-component language)]
 
        (add-to-calendar language)])))
@@ -57,7 +57,7 @@
           trimmed-text (if @expanded-story
                          text
                          (str (subs text 0 max-story-length) "..."))]
-      [:div.story.section
+      [:div.story.section {:id "story"}
        [:blockquote trimmed-text]
        (if @expanded-story
          [:button.btn {:id "collapse-story"
@@ -72,7 +72,7 @@
 (defn find-us
   []
   [:div.find-us.section
-   [:p {:id "find-us-text"}
+   [:p {:id "find-us"}
     (translate (get-language) :find-us-text)]
    [:div {:id "map"}]])
 

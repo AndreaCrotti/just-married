@@ -89,9 +89,9 @@
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
    ;; maybe the image containing the rest should actually be an element
    ;; by itself?
-   [:#countdown {:background (:quote-background COLOR-PALLETTE)
-                 :background-repeat "no-repeat"
-                 :text-align "center"}]
+   [:.countdown__internal {:background (:quote-background COLOR-PALLETTE)
+                           :background-repeat "no-repeat"
+                           :text-align "center"}]
 
    ;; countdown settings
    [:.timer {;:background-color (:marsala COLOR-PALLETTE)
