@@ -2,10 +2,6 @@
   (:require [garden.def :refer [defstyles defcssfn]]
             [garden.core :refer [css]]))
 
-;; for some reason this is not already available but at least it's
-;; very easy to define
-(defcssfn url)
-
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :white "#FFFFFF"
@@ -71,8 +67,7 @@
                         :margin-right ".25em"
                         :vertical-align "-0.4em"}]
 
-   [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
-                 :background (:quote-background COLOR-PALLETTE)lock
+   [:blockquote {:background (:quote-background COLOR-PALLETTE)
                  :padding "0.5em 10px"
                  :font-size "1em"
                  :font-family (:open-sans FONT-FAMILIES)
