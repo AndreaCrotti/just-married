@@ -108,7 +108,7 @@
    [:.navbar__container {:background-color (:dark-red COLOR-PALLETTE)
                          :font-weight "bolder"
                          :display "grid"
-                         :font-size "1.5em"
+                         :font-size "1.2em"
                          :grid-template-columns "repeat(5, 1fr)"
                          :grid-auto-rows "auto"
                          :grid-gap "1em"
@@ -123,6 +123,7 @@
         :text-decoration "none"}]
 
    [:a:hover {:color (:gold COLOR-PALLETTE)
+              :text-decoration "none"
               :border-left "1px solid white"
               :border-right "1px solid white"}]])
 
