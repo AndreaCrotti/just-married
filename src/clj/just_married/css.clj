@@ -112,7 +112,9 @@
                          :text-align "center"
                          :text-decoration "none"
                          :color (:gold COLOR-PALLETTE)
-                         :margin-bottom "50px"}
+                         :margin-bottom "50px"
+                         :position "sticky"
+                         :top "0"}
 
     ;; FIXME: should be less generic here
     [:a {:color (:white COLOR-PALLETTE)}]
