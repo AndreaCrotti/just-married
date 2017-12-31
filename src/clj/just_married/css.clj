@@ -118,8 +118,10 @@
                          :color (:gold COLOR-PALLETTE)
                          :margin-bottom "50px"}]
 
-   [:.navbar__link {:text-decoration "none"}]
-   [:a {:color (:white COLOR-PALLETTE)}]
+   ;; FIXME: should be less generic here
+   [:a {:color (:white COLOR-PALLETTE)
+        :text-decoration "none"}]
+
    [:a:hover {:color (:gold COLOR-PALLETTE)
               :border-left "1px solid white"
               :border-right "1px solid white"}]])
