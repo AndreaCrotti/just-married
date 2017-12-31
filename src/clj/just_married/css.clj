@@ -57,8 +57,11 @@
    [:.story {:grid-column 2
              :grid-row 1}]
 
-   [:.find-us {:grid-column "span 1 / 2"
+   [:.find-us {:grid-column 1
                :grid-row 2}]
+
+   [:.timeline {:grid-column 2
+                :grid-row 2}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                         :content "open-quote"
