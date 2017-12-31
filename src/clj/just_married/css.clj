@@ -114,7 +114,9 @@
                          :color (:gold COLOR-PALLETTE)
                          :margin-bottom "50px"
                          :position "sticky"
-                         :top "0"}
+                         :top "0"
+                         ;; to avoid making it go behind the map
+                         :z-index 100}
 
     ;; FIXME: should be less generic here
     [:a {:color (:white COLOR-PALLETTE)}]
