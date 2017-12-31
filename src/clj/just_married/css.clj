@@ -42,7 +42,8 @@
    :small-cats "../images/small_cats.jpg"})
 
 (def common
-  [[]])
+  [[:a {:text-decoration "none"}]
+   [:a:hover {:text-decoration "none"}]])
 
 (def main-page
   [[:.container {:display "grid"
@@ -71,7 +72,7 @@
                         :vertical-align "-0.4em"}]
 
    [:blockquote {;;:display "inline" ;; TODO: check if we need this as well
-                 :background (:quote-background COLOR-PALLETTE)
+                 :background (:quote-background COLOR-PALLETTE)lock
                  :padding "0.5em 10px"
                  :font-size "1em"
                  :font-family (:open-sans FONT-FAMILIES)
@@ -116,16 +117,14 @@
                          :text-align "center"
                          :text-decoration "none"
                          :color (:gold COLOR-PALLETTE)
-                         :margin-bottom "50px"}]
+                         :margin-bottom "50px"}
 
-   ;; FIXME: should be less generic here
-   [:a {:color (:white COLOR-PALLETTE)
-        :text-decoration "none"}]
+    ;; FIXME: should be less generic here
+    [:a {:color (:white COLOR-PALLETTE)}]
 
-   [:a:hover {:color (:gold COLOR-PALLETTE)
-              :text-decoration "none"
-              :border-left "1px solid white"
-              :border-right "1px solid white"}]])
+    [:a:hover {:color (:gold COLOR-PALLETTE)
+               :border-left "1px solid white"
+               :border-right "1px solid white"}]]])
 
 (def enter-page
   [[:.initial__root {:display "grid"
@@ -160,5 +159,6 @@
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?
   (into []
-        (concat main-page
+        (concat common
+                main-page
                 enter-page)))
