@@ -51,7 +51,8 @@
                  [hiccup "1.0.5"]
                  [secretary "1.2.3"]
                  [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
-                 [reframe-utils "0.1.4"]]
+                 [reframe-utils "0.1.4"]
+                 [com.cemerick/url "0.1.1"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]

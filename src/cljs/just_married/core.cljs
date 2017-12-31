@@ -1,8 +1,7 @@
 (ns just-married.core
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
-            [just-married.home.events]
-            [just-married.home.subs]
+            [just-married.home.handlers]
             [just-married.home.views :as home-views]
             [just-married.guests.views :as guest-views]))
 

@@ -155,6 +155,8 @@ Check places like:
 
 * TODO get a few keywords into google to help searching                  :v1:
 
+* TODO add a cache buster to make sure browsers don't get the old version
+
 * Database schema
 
 - invited (every person invited):

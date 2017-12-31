@@ -18,7 +18,8 @@
 
 (def pages
   {:guests pages/guest-list
-   :home pages/home-page})
+   :home pages/home-page
+   :initial pages/initial-page})
 
 (defn- render-page
   [page language]
@@ -71,9 +72,9 @@
       (assoc :session (dissoc session :identity))))
 
 (defroutes app-routes
-  (GET "/" request (render-page :home (detect-language request)))
-  (GET "/en" [] (render-page :home :en))
-  (GET "/it" [] (render-page :home :it))
+  (GET "/" [] (render-page :initial :en))
+  (GET "/enter" [] (render-page :initial :en))
+  (GET "/main" request (render-page :home (detect-language request)))
   (GET "/guests" request (guest-list request)))
 
 (def app

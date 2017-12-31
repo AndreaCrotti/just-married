@@ -1,6 +1,7 @@
 (ns just-married.pages
   (:require [just-married.settings :as settings]
-            [clojure.data.json :as json]))
+            [environ.core :refer [env]])
+  (:import (java.util UUID)))
 
 (def ga-js (format "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -15,6 +16,13 @@ ga('send', 'pageview');"
   ["Open+Sans"
    "Rancho"
    "Alex+Brush"])
+
+(defn- cache-buster
+  [path]
+  ;; fallback to a random git sha when nothing is found
+  (format "%s?git_sha=%s"
+          path
+          (:heroku-slug-commit env (str (UUID/randomUUID)))))
 
 (defn- google-font
   [font-name]
@@ -42,18 +50,7 @@ ga('send', 'pageview');"
    (google-font "Rancho")
    (google-font "Alex+Brush")
 
-   [:link {:rel "stylesheet"
-           :href "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-           :integrity "sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-           :crossorigin "anonymous"}]
-
-   ;; optional bootstrap theme
-   [:link {:rel "stylesheet"
-           :href "//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-           :integrity "sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-           :crossorigin "anonymous"}]
-
-   [:link {:href "css/screen.css"
+   [:link {:href (cache-buster "css/screen.css")
            :rel "stylesheet"
            :type "text/css"}]
 
@@ -64,6 +61,9 @@ ga('send', 'pageview');"
    [:script {:src "gmaps.js"}]
    [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
 
+(def ^:private app-js
+  [:script {:src (cache-buster "js/compiled/app.js")}])
+
 (defn home-page
   [language]
   (let [env (language text)]
@@ -71,10 +71,11 @@ ga('send', 'pageview');"
 
      (header env)
      [:script ga-js]
-     [:body [:div {:id "app"}]
+     [:body
+      [:div {:id "app"}]
       ;; now we can easily generate some JS that can be then loaded by
       ;; the frontend to decide which page to display for example
-      [:script {:src "js/compiled/app.js"}]
+      app-js
       [:script "just_married.core.init();"]
       [:script {:src "markers.js"}]]]))
 
@@ -82,9 +83,34 @@ ga('send', 'pageview');"
   [_]
   [:html {:lang "en"}
    (header (:en text))
-   [:body [:div {:id "app"}]
+   [:body
+    [:div {:id "app"}]
     ;; find how to render a different page with javascript
-    [:script {:src "js/compiled/app.js"}]
+    app-js
     [:script "just_married.core.init_guests();"]]])
 
+(defn initial-page
+  [_]
+  [:html {:lang "en"}
+   (header (:en text))
+   [:body
+    [:div.initial__root
+     [:div.monogram__container
+      [:img {:src "images/cats_heart.jpg"
+             :width "500px"
+             :alt "A & E"}]]
 
+     [:div.date__container
+      "27 / 05 / 2018"]
+
+     [:div.language__detector__english
+      [:a {:href "main?language=en"}
+       [:img {:src "images/gb_large.png"
+              :alt "English"
+              :width "100px"}]]]
+
+     [:div.language__detector__italian
+      [:a {:href "main?language=it"}
+       [:img {:src "images/it_large.png"
+              :width "100px"
+              :alt "Italiano"}]]]]]])
