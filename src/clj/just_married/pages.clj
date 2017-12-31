@@ -22,7 +22,7 @@ ga('send', 'pageview');"
   ;; fallback to a random git sha when nothing is found
   (format "%s?git_sha=%s"
           path
-          (:source-version env (str (UUID/randomUUID)))))
+          (:heroku-slug-commit env (str (UUID/randomUUID)))))
 
 (defn- google-font
   [font-name]
