@@ -8,6 +8,7 @@
 
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
+   :white "#FFFFFF"
    ;; :light-background "#dcdcdc"
    :light-background "#f9eef0"
    :dark-red "#8B0000"
@@ -44,13 +45,7 @@
   [[]])
 
 (def main-page
-  [[:a {:color "inherit"
-        :text-decoration "none"}]
-
-   [:a:hover {:text-decoration "none"
-              :color "inherit"}]
-
-   [:.container {:display "grid"
+  [[:.container {:display "grid"
                  :grid-gap "5px"
                  :grid-template-columns "300px auto"
                  :grid-template-rows "auto auto"}]
@@ -103,7 +98,6 @@
              :font-weight "bolder"
              :color (:deep-blue COLOR-PALLETTE)}]
 
-                                        ;[:body {:background (:light-background COLOR-PALLETTE)}]
    ;; find us settings
    [:#map {:width "500px"
            :height "500px"
@@ -111,7 +105,24 @@
            :box-shadow "10px 10px 20px #999"
            :border-radius "10px"}]
 
-   [:navbar {:background-color (:dark-red COLOR-PALLETTE)}]])
+   [:.navbar__container {:background-color (:dark-red COLOR-PALLETTE)
+                         :font-weight "bolder"
+                         :display "grid"
+                         :font-size "1.5em"
+                         :grid-template-columns "repeat(5, 1fr)"
+                         :grid-auto-rows "auto"
+                         :grid-gap "1em"
+                         :align-items "center"
+                         :text-align "center"
+                         :text-decoration "none"
+                         :color (:gold COLOR-PALLETTE)
+                         :margin-bottom "50px"}]
+
+   [:.navbar__link {:text-decoration "none"}]
+   [:a {:color (:white COLOR-PALLETTE)}]
+   [:a:hover {:color (:gold COLOR-PALLETTE)
+              :border-left "1px solid white"
+              :border-right "1px solid white"}]])
 
 (def enter-page
   [[:.initial__root {:display "grid"
@@ -143,10 +154,8 @@
    [:.language__detector__italian {:grid-column "2"
                                    :grid-row "3"}]])
 
-;; each style defines a new file, could simply also generate
-;; many different files ideally
 (defstyles screen
-  ;;TODO: make it actually still look nice though
+  ;; could maybe even split creating multiple CSS files?
   (into []
         (concat main-page
                 enter-page)))

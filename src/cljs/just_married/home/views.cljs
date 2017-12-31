@@ -96,23 +96,22 @@
    ;; :contacts contacts
    })
 
-;; this is quite bootstrap specific in a way
-;; would be good to extract even further
+
 (defn navbar
   []
   (let [language (get-language)
-        tr (fn [s] (translate language s))]
+        tr (fn [s] (translate language s))
+        sections (cons :home (keys SECTIONS))]
 
-    [:nav.navbar.navbar-inverse.navbar-static-top
-     [:div.container-fluid
-      [:div.navbar-header
-       [:a.navbar-brand {:href "#"} "Home" ]]
+    (into [:div.navbar__container]
+          (for [sec sections]
+            ;; could avoid the special case maybe somehow
+            (let [href (if (= sec :home)
+                         "#"
+                         (str "#" (name sec)))]
 
-      (into
-       [:ul.nav.navbar-nav]
-       (for [sec (keys SECTIONS)]
-         [:li {:key (name sec)}
-          [:a {:href (str "#" (name sec))} (tr sec)]]))]]))
+              [:div.navbar__link
+               [:a {:href href} (tr sec)]])))))
 
 (defn main-panel
   []

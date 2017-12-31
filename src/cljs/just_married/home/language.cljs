@@ -7,7 +7,8 @@
 
 (def dicts
   "List of all the words/sentences that need localization"
-  {:en {:story "Our Story"
+  {:en {:home "Home"
+        :story "Our Story"
         :find-us "Find Us"
         :find-us-text "The wedding will be done in the beautiful Abruzzo region, between Chieti and Pescara."
         :countdown "Countdown"
@@ -21,7 +22,8 @@
         :read-more "Read More"
         :read-less "Read Less"}
 
-   :it {:story "La Nostra Storia"
+   :it {:home "Home"
+        :story "La Nostra Storia"
         :find-us "Trovaci"
         :countdown "Conto Alla Rovescia"
         :accomodation "Dove Dormire"
