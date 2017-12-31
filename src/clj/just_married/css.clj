@@ -2,6 +2,8 @@
   (:require [garden.def :refer [defstyles defcssfn]]
             [garden.core :refer [css]]))
 
+(def ^:private map-width "500px")
+
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :white "#FFFFFF"
@@ -44,7 +46,7 @@
 (def main-page
   [[:.container {:display "grid"
                  :grid-gap "5px"
-                 :grid-template-columns "300px auto"
+                 :grid-template-columns (str "550px" " auto")
                  :grid-template-rows "auto auto"}]
 
    [:.countdown {:grid-column 1
@@ -98,8 +100,8 @@
              :color (:deep-blue COLOR-PALLETTE)}]
 
    ;; find us settings
-   [:#map {:width "500px"
-           :height "500px"
+   [:#map {:width map-width
+           :height map-width
            :padding "15px"
            :box-shadow "10px 10px 20px #999"
            :border-radius "10px"}]
