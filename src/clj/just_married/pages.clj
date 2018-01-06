@@ -91,6 +91,9 @@ ga('send', 'pageview');"
     app-js
     [:script "just_married.core.init_guests();"]]])
 
+(def ^:private date
+  "27th May 2018")
+
 (defn initial-page
   [_]
   [:html {:lang "en"}
@@ -98,21 +101,16 @@ ga('send', 'pageview');"
    [:body
     [:div.initial__root
      [:div.monogram__container
-      [:img {:src "images/cats_heart.jpg"
-             :width "500px"
-             :alt "A & E"}]]
+      [:img.monogram {:src "images/monogram_navy.png"
+                      :alt "Andrea & Enrica"}]]
 
-     [:div.date__container
-      "27 / 05 / 2018"]
-
+     [:div.date__container date]
      [:div.language__detector__english
       [:a {:href "main?language=en"}
-       [:img {:src "images/gb_large.png"
-              :alt "English"
-              :width "100px"}]]]
+       [:img.flag {:src "images/gb_large.png"
+                   :alt "English"}]]]
 
      [:div.language__detector__italian
       [:a {:href "main?language=it"}
-       [:img {:src "images/it_large.png"
-              :width "100px"
-              :alt "Italiano"}]]]]]])
+       [:img.flag {:src "images/it_large.png"
+                   :alt "Italiano"}]]]]]])
