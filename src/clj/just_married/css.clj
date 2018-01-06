@@ -97,20 +97,20 @@
 (def main-page
   [[:.container (:desktop grid-config)]
 
-   [:.countdown {:grid-column 1
+   [:.countdown {:grid-column "span 2"
                  :grid-row 1
                  :color (:marsala COLOR-PALLETTE)
                  :font-weight "bold"
                  :font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
-   [:.story {:grid-column 2
-             :grid-row 1}]
+   ;; [:.story {:grid-column 2
+   ;;           :grid-row 1}]
 
    [:.find-us {:grid-column 1
                :grid-row 2}]
 
-   [:.timeline {:grid-column 2
+   [:.timeline {:grid-column 1
                 :grid-row 2}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
