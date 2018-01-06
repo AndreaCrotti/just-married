@@ -44,6 +44,44 @@
    :mobile (merge common-grid-options {:grid-template-columns "auto"
                                        :grid-template-rows "auto auto auto auto"})})
 
+(def ^:private navbar-grid-config
+  {:desktop {:background-color (:dark-red COLOR-PALLETTE)
+             :font-weight "bolder"
+             :display "grid"
+             :font-size "1.2em"
+             :grid-template-columns "repeat(5, 1fr)"
+             :grid-auto-rows "auto"
+             :grid-gap "1em"
+             :align-items "center"
+             :text-align "center"
+             :text-decoration "none"
+             :color (:gold COLOR-PALLETTE)
+             :margin-bottom "50px"
+             :position "sticky"
+             :top "0"
+             ;; to avoid making it go behind the map
+             :z-index 100}
+
+   :mobile {:background-color (:dark-red COLOR-PALLETTE)
+            :font-weight "bolder"
+            :display "grid"
+            :font-size "2em"
+            :grid-template-columns "auto"
+            :grid-template-rows "repeat(4, 1fr)"
+            :grid-auto-rows "auto"
+            :grid-gap "1em"
+            :align-items "left"
+            :text-align "left"
+            :text-decoration "none"
+            :color (:gold COLOR-PALLETTE)
+            :margin-bottom "50px"
+            :padding-top "10px"
+            :padding-left "10px"
+            :position "sticky"
+            :top "0"
+            ;; to avoid making it go behind the map
+            :z-index 100}})
+
 ;; define various font styles that can be used here
 
 ;; the base path in this case refers to where the css will be
@@ -116,22 +154,7 @@
            :box-shadow "10px 10px 20px #999"
            :border-radius "10px"}]
 
-   [:.navbar__container {:background-color (:dark-red COLOR-PALLETTE)
-                         :font-weight "bolder"
-                         :display "grid"
-                         :font-size "1.2em"
-                         :grid-template-columns "repeat(5, 1fr)"
-                         :grid-auto-rows "auto"
-                         :grid-gap "1em"
-                         :align-items "center"
-                         :text-align "center"
-                         :text-decoration "none"
-                         :color (:gold COLOR-PALLETTE)
-                         :margin-bottom "50px"
-                         :position "sticky"
-                         :top "0"
-                         ;; to avoid making it go behind the map
-                         :z-index 100}
+   [:.navbar__container (:desktop navbar-grid-config)
 
     ;; FIXME: should be less generic here
     [:a {:color (:white COLOR-PALLETTE)}]
@@ -174,6 +197,7 @@
   [[(at-media {:screen true
                :max-device-width max-width-mobile}
 
+              [:.navbar__container (:mobile navbar-grid-config)]
               [:.container (:mobile grid-config)])]])
 
 (defstyles screen
