@@ -9,11 +9,14 @@
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :white "#FFFFFF"
+   :navy "#0e0e4c"
    ;; :light-background "#dcdcdc"
    :light-background "#f9eef0"
    :dark-red "#8B0000"
    :blue "#4444FF"
    :gold "#FFd700"
+   :golden-yellow "#FFDF00"
+   :metallic-gold "#D4AF37"
    :marsala "#955251"
    :royal-blue "#4169e1"
    :deep-blue "#00bfff"
@@ -82,14 +85,6 @@
             ;; to avoid making it go behind the map
             :z-index 100}})
 
-;; define various font styles that can be used here
-
-;; the base path in this case refers to where the css will be
-;; generated into
-(def IMAGES
-  {:bw-cats "../images/cats_heart.jpg"
-   :small-cats "../images/small_cats.jpg"})
-
 (def common
   [[:a {:text-decoration "none"}]
    [:a:hover {:text-decoration "none"}]])
@@ -101,6 +96,8 @@
                  :grid-row 1
                  :color (:marsala COLOR-PALLETTE)
                  :font-weight "bold"
+                 ;; might be nice to shrink this in theory??
+                 ;; :width "50%"
                  :font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
@@ -182,16 +179,21 @@
    [:.date__container {:grid-column "span 2"
                        :grid-row "2"
                        :font-weight "bolder"
-                       :font-size "4em"
+                       :font-size "5em"
                        :text-shadow "2px 2px 2px"
-                       :font-family (:open-sans FONT-FAMILIES)
-                       :color (:gold COLOR-PALLETTE)}]
+                       :font-family (:alex-brush FONT-FAMILIES)
+                       :color (:navy COLOR-PALLETTE)}]
+
+   [:.flag {:width "100px"}]
 
    [:.language__detector__english {:grid-column "1"
-                                   :grid-row "3"}]
+                                   :grid-row "3"
+                                   :padding-left "150px"}]
 
+   [:.monogram {:width "400px"}]
    [:.language__detector__italian {:grid-column "2"
-                                   :grid-row "3"}]])
+                                   :grid-row "3"
+                                   :padding-right "150px"}]])
 
 (def responsive
   [[(at-media {:screen true
