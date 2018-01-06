@@ -9,7 +9,7 @@
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :white "#FFFFFF"
-   :navy "#114b87"
+   :navy "#0e0e4c"
    ;; :light-background "#dcdcdc"
    :light-background "#f9eef0"
    :dark-red "#8B0000"
