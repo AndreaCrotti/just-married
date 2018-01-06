@@ -1,8 +1,10 @@
 (ns just-married.css
   (:require [garden.def :refer [defstyles defcssfn]]
+            [garden.stylesheet :refer [at-media]]
             [garden.core :refer [css]]))
 
 (def ^:private map-width "500px")
+(def ^:private max-width-mobile "480px")
 
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
@@ -31,6 +33,17 @@
    {:font-weight "bolder"
     :font-family (:open-sans FONT-FAMILIES)}})
 
+(def ^:private common-grid-options
+  {:display "grid"
+   :grid-gap "5px"})
+
+(def ^:private grid-config
+  {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
+                                        :grid-template-rows "auto auto"})
+
+   :mobile (merge common-grid-options {:grid-template-columns "auto"
+                                       :grid-template-rows "auto auto auto auto"})})
+
 ;; define various font styles that can be used here
 
 ;; the base path in this case refers to where the css will be
@@ -44,10 +57,7 @@
    [:a:hover {:text-decoration "none"}]])
 
 (def main-page
-  [[:.container {:display "grid"
-                 :grid-gap "5px"
-                 :grid-template-columns (str "550px" " auto")
-                 :grid-template-rows "auto auto"}]
+  [[:.container (:desktop grid-config)]
 
    [:.countdown {:grid-column 1
                  :grid-row 1
@@ -160,9 +170,16 @@
    [:.language__detector__italian {:grid-column "2"
                                    :grid-row "3"}]])
 
+(def responsive
+  [[(at-media {:screen true
+               :max-device-width max-width-mobile}
+
+              [:.container (:mobile grid-config)])]])
+
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?
   (into []
         (concat common
                 main-page
-                enter-page)))
+                enter-page
+                responsive)))
