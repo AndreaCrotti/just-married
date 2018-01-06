@@ -1,6 +1,10 @@
 (ns just-married.css
   (:require [garden.def :refer [defstyles defcssfn]]
+            [garden.stylesheet :refer [at-media]]
             [garden.core :refer [css]]))
+
+(def ^:private map-width "500px")
+(def ^:private max-width-mobile "480px")
 
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
@@ -29,6 +33,55 @@
    {:font-weight "bolder"
     :font-family (:open-sans FONT-FAMILIES)}})
 
+(def ^:private common-grid-options
+  {:display "grid"
+   :grid-gap "5px"})
+
+(def ^:private grid-config
+  {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
+                                        :grid-template-rows "auto auto"})
+
+   :mobile (merge common-grid-options {:grid-template-columns "auto"
+                                       :grid-template-rows "auto auto auto auto"})})
+
+(def ^:private navbar-grid-config
+  {:desktop {:background-color (:dark-red COLOR-PALLETTE)
+             :font-weight "bolder"
+             :display "grid"
+             :font-size "1.2em"
+             :grid-template-columns "repeat(5, 1fr)"
+             :grid-auto-rows "auto"
+             :grid-gap "1em"
+             :align-items "center"
+             :text-align "center"
+             :text-decoration "none"
+             :color (:gold COLOR-PALLETTE)
+             :margin-bottom "50px"
+             :position "sticky"
+             :top "0"
+             ;; to avoid making it go behind the map
+             :z-index 100}
+
+   :mobile {:background-color (:dark-red COLOR-PALLETTE)
+            :font-weight "bolder"
+            :display "grid"
+            :font-size "2em"
+            :grid-template-columns "auto"
+            :grid-template-rows "repeat(4, 1fr)"
+            :grid-auto-rows "auto"
+            :grid-gap "1em"
+            :align-items "left"
+            :text-align "left"
+            :text-decoration "none"
+            :color (:gold COLOR-PALLETTE)
+            :margin-bottom "50px"
+            :padding-top "10px"
+            :padding-left "10px"
+            :position "sticky"
+            :top "0"
+            ;; to avoid making it go behind the map
+            :z-index 100}})
+
 ;; define various font styles that can be used here
 
 ;; the base path in this case refers to where the css will be
@@ -42,10 +95,7 @@
    [:a:hover {:text-decoration "none"}]])
 
 (def main-page
-  [[:.container {:display "grid"
-                 :grid-gap "5px"
-                 :grid-template-columns "300px auto"
-                 :grid-template-rows "auto auto"}]
+  [[:.container (:desktop grid-config)]
 
    [:.countdown {:grid-column 1
                  :grid-row 1
@@ -57,8 +107,11 @@
    [:.story {:grid-column 2
              :grid-row 1}]
 
-   [:.find-us {:grid-column "span 1 / 2"
+   [:.find-us {:grid-column 1
                :grid-row 2}]
+
+   [:.timeline {:grid-column 2
+                :grid-row 2}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                         :content "open-quote"
@@ -95,28 +148,13 @@
              :color (:deep-blue COLOR-PALLETTE)}]
 
    ;; find us settings
-   [:#map {:width "500px"
-           :height "500px"
+   [:#map {:width map-width
+           :height map-width
            :padding "15px"
            :box-shadow "10px 10px 20px #999"
            :border-radius "10px"}]
 
-   [:.navbar__container {:background-color (:dark-red COLOR-PALLETTE)
-                         :font-weight "bolder"
-                         :display "grid"
-                         :font-size "1.2em"
-                         :grid-template-columns "repeat(5, 1fr)"
-                         :grid-auto-rows "auto"
-                         :grid-gap "1em"
-                         :align-items "center"
-                         :text-align "center"
-                         :text-decoration "none"
-                         :color (:gold COLOR-PALLETTE)
-                         :margin-bottom "50px"
-                         :position "sticky"
-                         :top "0"
-                         ;; to avoid making it go behind the map
-                         :z-index 100}
+   [:.navbar__container (:desktop navbar-grid-config)
 
     ;; FIXME: should be less generic here
     [:a {:color (:white COLOR-PALLETTE)}]
@@ -155,9 +193,17 @@
    [:.language__detector__italian {:grid-column "2"
                                    :grid-row "3"}]])
 
+(def responsive
+  [[(at-media {:screen true
+               :max-device-width max-width-mobile}
+
+              [:.navbar__container (:mobile navbar-grid-config)]
+              [:.container (:mobile grid-config)])]])
+
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?
   (into []
         (concat common
                 main-page
-                enter-page)))
+                enter-page
+                responsive)))

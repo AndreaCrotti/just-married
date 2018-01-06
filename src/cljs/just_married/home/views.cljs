@@ -71,9 +71,8 @@
 
 (defn find-us
   []
-  [:div.find-us.section
-   [:p {:id "find-us"}
-    (translate (get-language) :find-us-text)]
+  [:div.section {:id "find-us"}
+   [:p (translate (get-language) :find-us-text)]
    [:div {:id "map"}]])
 
 (defn gifts
@@ -81,6 +80,13 @@
   [:div.section {:id "gifts"}
    [:div {:id "amazon-wish-list"}
     [:a {:href settings/AMAZON-WISH-LIST} "Amazon wish list"]]])
+
+(defn timeline
+  []
+  [:div {:id "timeline"}
+   [:ul
+    [:li "11am Palazzo Lepri (Ceremony)"]
+    [:li "13am Parco Dei Principi (Party starting)"]]])
 
 (defn contacts
   []
@@ -91,6 +97,7 @@
   {:countdown countdown
    ;; :story story
    :find-us find-us
+   :timeline timeline
    ;; :gifts gifts
    ;;:accomodation accommodation
    ;; :contacts contacts
