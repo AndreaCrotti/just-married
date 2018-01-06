@@ -89,7 +89,7 @@
 
 (def SECTIONS
   {:countdown countdown
-   :story story
+   ;; :story story
    :find-us find-us
    ;; :gifts gifts
    ;;:accomodation accommodation
