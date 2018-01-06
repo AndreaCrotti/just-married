@@ -102,7 +102,8 @@ ga('send', 'pageview');"
     [:div.initial__root
      [:div.monogram__container
       [:img.monogram {:src "images/monogram_navy.png"
-                      :alt "Andrea & Enrica"}]]
+                      :alt "Andrea & Enrica"}]
+      ]
 
      [:div.date__container date]
      [:div.language__detector__english

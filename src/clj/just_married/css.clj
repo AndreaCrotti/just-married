@@ -184,7 +184,7 @@
                        :font-family (:alex-brush FONT-FAMILIES)
                        :color (:navy COLOR-PALLETTE)}]
 
-   [:.flag {:width "140px"}]
+   [:.flag {:width "100px"}]
 
    [:.language__detector__english {:grid-column "1"
                                    :grid-row "3"
