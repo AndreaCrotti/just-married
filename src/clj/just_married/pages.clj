@@ -58,8 +58,10 @@ ga('send', 'pageview');"
    [:script {:href "//cdn.ravenjs.com/3.17.0/raven.min.js"
              :crossorigin "anonymous"}]
 
-   [:script {:src "gmaps.js"}]
-   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
+   ;; should be also async defer but the silly hiccup doesn't seem to
+   ;; render that
+   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]
+   ])
 
 (def ^:private app-js
   [:script {:src (cache-buster "js/compiled/app.js")}])
@@ -77,7 +79,7 @@ ga('send', 'pageview');"
       ;; the frontend to decide which page to display for example
       app-js
       [:script "just_married.core.init();"]
-      [:script {:src "markers.js"}]]]))
+      [:script {:src "map.js"}]]]))
 
 (defn guest-list
   [_]
