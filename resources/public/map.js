@@ -14,14 +14,14 @@ var places = [
         'title': 'Parco dei principi',
         'icon': 'images/party_small.png',
         'info': 'Parco dei Principi'
-    },
-    {
-        'lat': 42.421552,
-        'lng': 14.230742,
-        'title': 'Parc Hotel Villa Immacolata',
-        'icon': 'images/hotel_small.png',
-        'info': 'Hotel Villa Immacolata'
-    }
+    }// ,
+    // {
+    //     'lat': 42.421552,
+    //     'lng': 14.230742,
+    //     'title': 'Parc Hotel Villa Immacolata',
+    //     'icon': 'images/hotel_small.png',
+    //     'info': 'Hotel Villa Immacolata'
+    // }
 ]
 var mapOptions = {
     zoom: zoom,
