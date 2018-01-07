@@ -107,8 +107,10 @@
    [:.find-us {:grid-column 1
                :grid-row 2}]
 
-   [:.timeline {:grid-column 1
+   [:.timeline {:grid-column 2
                 :grid-row 2}]
+
+   [:.timeline__time {:padding-right "10px"}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                         :content "open-quote"
@@ -200,7 +202,9 @@
                :max-device-width max-width-mobile}
 
               [:.navbar__container (:mobile navbar-grid-config)]
-              [:.container (:mobile grid-config)])]])
+              [:.container (:mobile grid-config)]
+              [:.timeline {:grid-column 1
+                           :grid-row 3}])]])
 
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?

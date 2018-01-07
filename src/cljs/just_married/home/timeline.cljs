@@ -24,6 +24,7 @@
         :games-kick-off "Games kick-off"
         :evening-reception "Evening Reception"
         :music-party "Music and Evening After Party"
+        :cake-champagne "Cake and Champagne"
         :final-cake "Cake and Champagne"}
 
    :it {:waiting "Waiting for the bride aperitif"
@@ -35,11 +36,13 @@
         :games-kick-off "Games kick-off"
         :evening-reception "Evening Reception"
         :music-party "Music and Evening After Party"
+        :cake-champagne "Cake and Champagne"
         :final-cake "Cake and Champagne"}})
 
 (defn timeline
   []
-  [:div {:id "timeline"}
+  [:div.timeline
+   [:h3 "Timeline"]
    (into [:ul]
          (for [[time key] timeline-def]
            [:li
