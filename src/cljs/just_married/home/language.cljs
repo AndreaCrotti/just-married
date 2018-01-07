@@ -1,9 +1,20 @@
 (ns just-married.home.language
-  (:require [tongue.core :as tongue]))
+  (:require [tongue.core :as tongue]
+            [cemerick.url :refer [url]]))
 
 (def available-languages
   "All the available languages"
   #{:en :it})
+
+(defn get-language
+  []
+  (-> js/window
+      .-location
+      .-href
+      url
+      :query
+      (get "language" "en")
+      keyword))
 
 (def dicts
   "List of all the words/sentences that need localization"
@@ -21,7 +32,11 @@
         :hours "Hours"
         :minutes "Minutes"
         :read-more "Read More"
-        :read-less "Read Less"}
+        :read-less "Read Less"
+
+        ;; timeline translation
+        :waiting "Waiting for the bride Aperitif"
+        }
 
    :it {:home "Home"
         :timeline "Programma"
@@ -38,5 +53,6 @@
         :read-more "Leggi di piu'"
         :read-less "Leggi di meno"}})
 
-(def translate
-  (tongue/build-translate dicts))
+(defn translate
+  [dict key]
+  ((tongue/build-translate dict) (get-language) key))
