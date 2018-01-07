@@ -92,6 +92,8 @@
 (def main-page
   [[:.container (:desktop grid-config)]
 
+   [:h3 {:color "white"
+         :background-color (:dark-red COLOR-PALLETTE)}]
    [:.countdown {:grid-column "span 2"
                  :grid-row 1
                  :color (:marsala COLOR-PALLETTE)
