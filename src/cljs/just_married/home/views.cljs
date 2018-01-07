@@ -5,6 +5,7 @@
    [just-married.home.language :refer [translate]]
    [just-married.home.countdown :as countdown]
    [just-married.home.settings :as settings]
+   [just-married.home.maps :as maps]
    [just-married.home.story :refer [STORY-TEXT]]))
 
 (def ^:private max-story-length 300)
@@ -69,6 +70,7 @@
                        :on-click #(dispatch [:set-expanded-story true])}
           (translate language :read-more)])])))
 
+
 (defn find-us
   []
   [:div.section {:id "find-us"}
@@ -101,6 +103,7 @@
    ;; :gifts gifts
    ;;:accomodation accommodation
    ;; :contacts contacts
+   :map-new maps/gmap-component
    })
 
 
