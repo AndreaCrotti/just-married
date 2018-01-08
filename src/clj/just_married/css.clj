@@ -178,7 +178,8 @@
                      :background-color (:dark-red COLOR-PALLETTE)}]
 
    [:.monogram__container {:grid-row "1"
-                           :grid-column "span 2"}]
+                           :grid-column "span 2"
+                           :margin-top "100px"}]
 
    [:.date__container {:grid-column "span 2"
                        :grid-row "2"
