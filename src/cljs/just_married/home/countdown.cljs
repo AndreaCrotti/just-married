@@ -8,18 +8,21 @@
 
 ;; sample code found https://stackoverflow.com/questions/30280484/making-a-simple-countdown-timer-with-clojure-reagent
 
+
 (def ^:private countdown-dict
   {:en {:add-to-calendar "Add to Calendar"
         :date "27th May, 2018"
         :days "Days"
         :hours "Hours"
-        :minutes "Minutes"}
+        :minutes "Minutes"
+        :calendar "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N2NtOHFmYm1tYnIzamY2Zzc4aDFnMWl2NXMgdWQ2bmRiMWhnNWlyMzI5bWZsZzc5cWwxbDRAZw&tmsrc=ud6ndb1hg5ir329mflg79ql1l4%40group.calendar.google.com"}
 
    :it {:add-to-calendar "Aggiungi al Calendario"
         :date "27 Maggio 2018"
         :days "Giorni"
         :hours "Ore"
-        :minutes "Minuti"}})
+        :minutes "Minuti"
+        :calendar "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=M2doaHExNTQwbWM3ZzIyaGt0YnRraXFlc2kgdWQ2bmRiMWhnNWlyMzI5bWZsZzc5cWwxbDRAZw&tmsrc=ud6ndb1hg5ir329mflg79ql1l4%40group.calendar.google.com"}})
 
 (defn get-time-left
   []
@@ -58,13 +61,12 @@
 
 (defn add-to-calendar
   []
-  [:div.add-to-calendar
-   [:a {:target "_blank"
-        :href (get settings/WEDDING-DAY (get-language))}
+  [:a {:target "_blank"
+       :href (translate countdown-dict :calendar)}
 
-    ;; actually use current language
-    (translate countdown-dict :add-to-calendar)
-    [:img {:src settings/GOOGLE-CALENDAR-IMG}]]])
+   ;; actually use current language
+   (translate countdown-dict :add-to-calendar)
+   [:img {:src settings/GOOGLE-CALENDAR-IMG}]])
 
 ;;TODO: evaluate using a macro to avoid redefining the same king
 ;;of function every time
@@ -75,11 +77,10 @@
    [:h3 "Countdown"]
    [:div.countdown.section {:id "countdown"}
     [:div.names "Andrea Crotti & Enrica Verrucci"]
-    [:div.find-us
+    #_[:div.find-us
      [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
 
     [:div.date (translate countdown-dict :date)]
+    (add-to-calendar)
     [:div.countdown__internal
-     (countdown-component)]
-
-    (add-to-calendar)]])
+     (countdown-component)]]])

@@ -51,7 +51,7 @@
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
              :font-weight "bolder"
              :display "grid"
-             :font-size "1.2em"
+             :font-size "1.5em"
              :grid-template-columns "repeat(5, 1fr)"
              :grid-auto-rows "auto"
              :grid-gap "1em"
@@ -92,15 +92,16 @@
 (def main-page
   [[:.container (:desktop grid-config)]
 
-   [:h3 {:color "white"
+   [:h3 {:color (:gold COLOR-PALLETTE)
          :background-color (:dark-red COLOR-PALLETTE)}]
+
    [:.countdown {:grid-column "span 2"
                  :grid-row 1
                  :color (:marsala COLOR-PALLETTE)
                  :font-weight "bold"
                  ;; might be nice to shrink this in theory??
                  ;; :width "50%"
-                 :font-family (:alex-brush FONT-FAMILIES)
+                 ;;:font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
    ;; [:.story {:grid-column 2
@@ -139,12 +140,15 @@
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
    ;; maybe the image containing the rest should actually be an element
    ;; by itself?
-   [:.countdown__internal {:background (:quote-background COLOR-PALLETTE)
-                           :background-repeat "no-repeat"
+   [:.countdown__internal {;;:background (:quote-background COLOR-PALLETTE)
+                           ;;:background-repeat "no-repeat"
                            :text-align "center"}]
 
    ;; countdown settings
    [:.timer {;:background-color (:marsala COLOR-PALLETTE)
+             :border-width "1px"
+             :border-style "solid"
+             :border-color (:dark-red COLOR-PALLETTE)
              :font-weight "bolder"
              :color (:deep-blue COLOR-PALLETTE)}]
 

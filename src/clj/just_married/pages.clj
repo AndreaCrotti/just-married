@@ -60,8 +60,7 @@ ga('send', 'pageview');"
 
    ;; should be also async defer but the silly hiccup doesn't seem to
    ;; render that
-   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]
-   ])
+   [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
 
 (def ^:private app-js
   [:script {:src (cache-buster "js/compiled/app.js")}])
