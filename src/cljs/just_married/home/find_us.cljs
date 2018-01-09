@@ -7,7 +7,7 @@
 
 (defn find-us
   []
-  [:div.find-us
+  [:div.find-us {:id "find-us"}
    [:h3 "Find Us"]
    [:p (translate find-us-dict :find-us-text)]
    [:div {:id "map"}]])

@@ -41,7 +41,7 @@
 
 (defn timeline
   []
-  [:div.timeline
+  [:div.timeline {:id "timeline"}
    [:h3 "Timeline"]
    (into [:ul]
          (for [[time key] timeline-def]

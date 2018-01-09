@@ -73,14 +73,13 @@
 
 (defn countdown
   []
-  [:div
+  [:div.countdown.section {:id "countdown"}
    [:h3 "Countdown"]
-   [:div.countdown.section {:id "countdown"}
-    [:div.names "Andrea Crotti & Enrica Verrucci"]
-    #_[:div.find-us
-     [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
+   [:div.names "Andrea Crotti & Enrica Verrucci"]
+   #_[:div.find-us
+      [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
 
-    [:div.date (translate countdown-dict :date)]
-    (add-to-calendar)
-    [:div.countdown__internal
-     (countdown-component)]]])
+   [:div.date (translate countdown-dict :date)]
+   (add-to-calendar)
+   [:div.countdown__internal
+    (countdown-component)]])
