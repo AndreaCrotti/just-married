@@ -10,6 +10,7 @@
   {:amaranth "#E52B50"
    :white "#FFFFFF"
    :navy "#0e0e4c"
+   :light-grey "#DDDDDD"
    ;; :light-background "#dcdcdc"
    :light-background "#f9eef0"
    :dark-red "#8B0000"
@@ -156,7 +157,7 @@
    [:#map {:width map-width
            :height map-width
            :padding "15px"
-           :box-shadow "10px 10px 20px #999"
+           :box-shadow (format "10px 10px 20px %s" (:light-grey COLOR-PALLETTE))
            :border-radius "10px"}]
 
    [:.navbar__container (:desktop navbar-grid-config)
