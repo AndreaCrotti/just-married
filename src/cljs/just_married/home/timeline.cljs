@@ -16,6 +16,7 @@
 
 (def ^:private timeline-dict
   {:en {:waiting "Waiting for the bride aperitif"
+        :timeline "Timeline"
         :civil-start "Civil cerimony starts"
         :civil-end "Civil cerimony ends"
         :cheers "Cheers and Greetings to Mr and Mrs Andrea Crotti - Moving to Parco dei Principi"
@@ -28,6 +29,7 @@
         :final-cake "Cake and Champagne"}
 
    :it {:waiting "Waiting for the bride aperitif"
+        :timeline "Programma Della Giornata"
         :civil-start "Civil cerimony starts"
         :civil-end "Civil cerimony ends"
         :cheers "Cheers and Greetings to Mr and Mrs Andrea Crotti - Moving to Parco dei Principi"
@@ -39,12 +41,14 @@
         :cake-champagne "Cake and Champagne"
         :final-cake "Cake and Champagne"}})
 
+(def ^:private tr (partial translate timeline-dict))
+
 (defn timeline
   []
   [:div.timeline {:id "timeline"}
-   [:h3 "Timeline"]
+   [:h3 (tr :timeline)]
    (into [:ul]
          (for [[time key] timeline-def]
            [:li
             [:span.timeline__time time]
-            [:span.timeline__msg (translate timeline-dict key)]]))])
+            [:span.timeline__msg (tr key)]]))])
