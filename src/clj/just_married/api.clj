@@ -1,22 +1,29 @@
 (ns just-married.api
   (:gen-class)
-  (:require [clojure.string :as string]
+  (:require [clojure.walk :refer [keywordize-keys]]
+            [clojure.string :as string]
+            [clojure.tools.logging :as log]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [hiccup.core :as html]
-            [just-married.shared :refer [available-languages]]
-            [just-married.language :refer [detect-language]]
-            [ring.adapter.jetty :as jetty]
             [ring.middleware.defaults :as r-def]
             [ring.middleware.resource :as resources]
+            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
+            [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.util.response :as resp]
+            [ring.adapter.jetty :as jetty]
+            [just-married.language :refer [detect-language]]
+            [just-married.shared :refer [available-languages]]
+            [compojure.core :refer [defroutes GET POST]]
+            [environ.core :refer [env]]
             [just-married
              [settings :as settings]
              [pages :as pages]
-             [db :as db]]))
+             [db :as db]
+             [mail :refer [send-email]]]))
 
 (defn get-language
   [request]
@@ -30,11 +37,11 @@
    :initial pages/initial-page})
 
 (defn- render-page
-  [page language]
-  (-> (resp/response (html/html ((page pages) language)))
+  [page kwargs]
+  (-> (resp/response (html/html ((page pages) kwargs)))
       (resp/content-type "text/html")))
 
-(def ^:private security (= (env :secure) "true"))
+(def ^:private secure? (= (env :secure) "true"))
 (def ^:private default-port 3000)
 
 (defn- get-port
@@ -77,7 +84,7 @@
 (defn enter-page
   [request]
   (let [language (get-language request)]
-    (render-page :initial language)))
+    (render-page :initial {:language language})))
 
 (defn main-page
   [request]
@@ -86,22 +93,50 @@
 
     (if (nil? current-language)
       (resp/redirect (format "/main?language=%s" (name preferred-language)))
-      (render-page :home preferred-language))))
+      (render-page :home {:language preferred-language}))))
+
+(defn notify
+  [request]
+  (let [params
+        (-> request
+            :params
+            ;; this keywordize should not be
+            ;; actually needed in theory
+            keywordize-keys)]
+    (log/info "passing to send-emails parameters"
+              params)
+
+    {:status 201
+     :body (-> (send-email params)
+               :message)}))
+
+(defn mirror
+  [request]
+  (clojure.pprint/pprint request)
+  {:status 201
+   :body ""})
 
 (defroutes app-routes
   (GET "/" request (enter-page request))
+  (GET "/rvsp" request (render-page :initial {:language :en
+                                              :redirect-to "rvsp"}))
+  (POST "/notify" request (notify request))
+  ;; do a redirect adding the extra information
   (GET "/main" request (main-page request))
+  (POST "/mirror" request (mirror request))
   (GET "/guests" request (guest-list request)))
 
 (def app
   (-> app-routes
       (resources/wrap-resource "public")
-      (r-def/wrap-defaults (if security
+      (r-def/wrap-defaults (if secure?
                              r-def/secure-site-defaults
                              (assoc-in r-def/site-defaults [:security :anti-forgery] false)))
 
       (wrap-authorization basic-auth-backend)
-      (wrap-authentication basic-auth-backend)))
+      (wrap-authentication basic-auth-backend)
+      wrap-keyword-params
+      wrap-json-params))
 
 (defn -main [& args]
   (jetty/run-jetty app {:port (get-port)}))

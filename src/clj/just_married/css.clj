@@ -43,7 +43,7 @@
 
 (def ^:private grid-config
   {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
-                                        :grid-template-rows "auto auto"})
+                                        :grid-template-rows "auto auto auto"})
 
    :mobile (merge common-grid-options {:grid-template-columns "auto"
                                        :grid-template-rows "auto auto auto auto"})})
@@ -115,7 +115,25 @@
    [:.timeline__icon {:width "22px"
                       :padding-right "5px"}]
 
+   [:.rvsp {:grid-column 1
+            :grid-row 3}]
+
    [:ul {:list-style "none"}]
+
+   [:.rvsp__confirm {:border-radius "4px"
+                     :padding "10px"
+                     :font-size "1.3em"
+                     :text-decoration "none"
+                     :display "inline-block"
+                     :border "none"
+                     :cursor "hand"
+                     :color (:white COLOR-PALLETTE)}]
+
+   [:.rvsp__confirm:hover {:font-size "1.5em"}]
+
+   [:.rvsp__coming {:background-color (:dark-red COLOR-PALLETTE)}]
+
+   [:.rvsp__not_coming {:background-color (:navy COLOR-PALLETTE)}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                         :content "open-quote"
@@ -190,7 +208,7 @@
                        :font-size "5em"
                        :text-shadow "2px 2px 2px"
                        :font-family (:alex-brush FONT-FAMILIES)
-                       :color (:navy COLOR-PALLETTE)}]
+                       :color (:white COLOR-PALLETTE)}]
 
    [:.flag {:width "100px"}]
 
