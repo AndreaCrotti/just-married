@@ -135,7 +135,7 @@
                        :line-height ".1em"
                        :margin-right ".25em"
                        :vertical-align "-.2em"
-                       :box-shadow "0 0 20px #999c"}]
+                       :box-shadow (format "0 0 20px %s" (:dark-red COLOR-PALLETTE))}]
 
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
    ;; maybe the image containing the rest should actually be an element
