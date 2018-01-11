@@ -105,16 +105,19 @@
                  ;;:font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
-   ;; [:.story {:grid-column 2
-   ;;           :grid-row 1}]
-
    [:.find-us {:grid-column 1
                :grid-row 2}]
 
    [:.timeline {:grid-column 2
                 :grid-row 2}]
 
-   [:.timeline__time {:padding-right "10px"}]
+   [:.timeline__time {:padding-right "10px"
+                      :font-weight "bolder"}]
+
+   [:.timeline__icon {:width "20px"
+                      :padding-right "5px"}]
+
+   [:ul {:list-style "none"}]
 
    [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
                         :content "open-quote"
