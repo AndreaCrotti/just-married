@@ -93,12 +93,11 @@
 (def main-page
   [[:.container (:desktop grid-config)]
 
-   [:h3 {:color (:gold COLOR-PALLETTE)
-         :background-color (:dark-red COLOR-PALLETTE)}]
+   [:h3 {:color (:dark-red COLOR-PALLETTE)}]
 
-   [:.countdown {:grid-column "span 2"
+   [:.countdown {:grid-column 1
                  :grid-row 1
-                 :color (:marsala COLOR-PALLETTE)
+                 ;; :color (:marsala COLOR-PALLETTE)
                  :font-weight "bold"
                  ;; might be nice to shrink this in theory??
                  ;; :width "50%"
@@ -144,17 +143,15 @@
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
    ;; maybe the image containing the rest should actually be an element
    ;; by itself?
-   [:.countdown__internal {;;:background (:quote-background COLOR-PALLETTE)
-                           ;;:background-repeat "no-repeat"
-                           :text-align "center"}]
+   [:.countdown__internal {:text-align "center"}]
 
    ;; countdown settings
    [:.timer {;:background-color (:marsala COLOR-PALLETTE)
              :border-width "1px"
              :border-style "solid"
-             :border-color (:dark-red COLOR-PALLETTE)
-             :font-weight "bolder"
-             :color (:deep-blue COLOR-PALLETTE)}]
+             :font-size "2em"
+             :font-family (:alex-brush FONT-FAMILIES)
+             :border-color (:dark-red COLOR-PALLETTE)}]
 
    ;; find us settings
    [:#map {:width map-width
@@ -202,7 +199,7 @@
    [:.language__detector__english {:grid-column "1"
                                    :grid-row "3"
                                    :padding-left "150px"}]
-
+   
    [:.monogram {:width "400px"}]
    [:.language__detector__italian {:grid-column "2"
                                    :grid-row "3"
