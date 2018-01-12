@@ -113,7 +113,7 @@
    [:.timeline__time {:padding-right "10px"
                       :font-weight "bolder"}]
 
-   [:.timeline__icon {:width "20px"
+   [:.timeline__icon {:width "22px"
                       :padding-right "5px"}]
 
    [:ul {:list-style "none"}]
