@@ -55,5 +55,5 @@
          (for [[time place key] timeline-def]
            [:li {:class (place icons)}
             [:img.timeline__icon {:src (place icons)}]
-            [:span.timeline__time (str time ":")]
+            [:span.timeline__time time]
             [:span.timeline__msg (tr key)]]))])
