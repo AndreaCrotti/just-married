@@ -60,6 +60,7 @@ ga('send', 'pageview');"
 
    ;; should be also async defer but the silly hiccup doesn't seem to
    ;; render that
+   [:script {:src "css-polyfills.min.js"}]
    [:script {:src "//maps.googleapis.com/maps/api/js?key=AIzaSyBmKQyNoVO3nj08cxIJMRREPDWpJxWOpgM"}]])
 
 (def ^:private app-js
