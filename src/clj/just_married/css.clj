@@ -98,7 +98,7 @@
    [:.countdown {:grid-column 1
                  :grid-row 1
                  ;; :color (:marsala COLOR-PALLETTE)
-                 :font-weight "bold"
+                 ;:font-weight "bold"
                  ;; might be nice to shrink this in theory??
                  ;; :width "50%"
                  ;;:font-family (:alex-brush FONT-FAMILIES)
