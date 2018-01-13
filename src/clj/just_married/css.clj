@@ -187,7 +187,6 @@
 
    [:.date__container {:grid-column "span 2"
                        :grid-row "2"
-                       :font-weight "bolder"
                        :font-size "5em"
                        :text-shadow "2px 2px 2px"
                        :font-family (:alex-brush FONT-FAMILIES)

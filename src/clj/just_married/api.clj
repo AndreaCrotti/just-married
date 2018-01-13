@@ -8,6 +8,7 @@
             [ring.util.response :as resp]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.resource :as resources]
+            [just-married.shared :refer [available-languages]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [just-married
@@ -28,7 +29,6 @@
 (def ^:private security (= (env :secure) "true"))
 (def ^:private default-port 3000)
 (def ^:private default-language :en)
-(def ^:private available-languages #{:en :it})
 
 (defn- get-port
   []

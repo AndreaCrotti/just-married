@@ -2,10 +2,6 @@
   (:require [tongue.core :as tongue]
             [cemerick.url :refer [url]]))
 
-(def available-languages
-  "All the available languages"
-  #{:en :it})
-
 (defn get-language
   []
   (-> js/window
