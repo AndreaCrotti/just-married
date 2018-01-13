@@ -1,7 +1,6 @@
 (ns just-married.api
   (:gen-class)
   (:require [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [hiccup.core :as html]
@@ -28,6 +27,8 @@
 
 (def ^:private security (= (env :secure) "true"))
 (def ^:private default-port 3000)
+(def ^:private default-language :en)
+(def ^:private available-languages #{:en :it})
 
 (defn- get-port
   []
@@ -35,8 +36,13 @@
 
 (defn- detect-language
   "Lookup in the request to find out what should be the default language to serve"
-  [request]
-  :en)
+  [request available-languages]
+  (let [accept-language (get  (:headers request) "accept-language")
+        parsed-languages (map (comp keyword first) (map #(clojure.string/split % #";")
+                                                        (clojure.string/split accept-language #",")))
+        only-available (filter #(contains? available-languages %) parsed-languages)]
+
+    (or (first only-available) default-language)))
 
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
@@ -74,7 +80,8 @@
 (defroutes app-routes
   (GET "/" [] (render-page :initial :en))
   (GET "/enter" [] (render-page :initial :en))
-  (GET "/main" request (render-page :home (detect-language request)))
+  ;; do a redirect adding the extra information
+  (GET "/main" request (render-page :home (detect-language request available-languages)))
   (GET "/guests" request (guest-list request)))
 
 (def app
