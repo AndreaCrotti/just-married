@@ -1,7 +1,6 @@
 (ns just-married.api
   (:gen-class)
   (:require [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [buddy.auth.accessrules :refer [restrict]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [hiccup.core :as html]
@@ -9,6 +8,7 @@
             [ring.util.response :as resp]
             [ring.adapter.jetty :as jetty]
             [ring.middleware.resource :as resources]
+            [just-married.shared :refer [available-languages]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [just-married
@@ -28,15 +28,23 @@
 
 (def ^:private security (= (env :secure) "true"))
 (def ^:private default-port 3000)
+(def ^:private default-language :en)
 
 (defn- get-port
   []
   (Integer. (or (env :port) default-port)))
 
-(defn- detect-language
+(defn detect-language
   "Lookup in the request to find out what should be the default language to serve"
-  [request]
-  :en)
+  [accept-language available-languages]
+  (if accept-language
+    (let [parsed-languages (map (comp keyword first) (map #(clojure.string/split % #";")
+                                                          (clojure.string/split accept-language #",")))
+          only-available (filter #(contains? available-languages %) parsed-languages)]
+
+      (or (first only-available) default-language))
+
+    default-language))
 
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
@@ -71,10 +79,22 @@
   (-> (resp/redirect "/login")
       (assoc :session (dissoc session :identity))))
 
+(defn main-page
+  [request]
+  (let [preferred-language (detect-language
+                            (get-in request [:headers "accept-language"])
+                            available-languages)
+        current-language (-> request :params :language keyword)]
+
+    (if (nil? current-language)
+      (resp/redirect (format "/main?language=%s" (name preferred-language)))
+      (render-page :home preferred-language))))
+
 (defroutes app-routes
   (GET "/" [] (render-page :initial :en))
   (GET "/enter" [] (render-page :initial :en))
-  (GET "/main" request (render-page :home (detect-language request)))
+  ;; do a redirect adding the extra information
+  (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request)))
 
 (def app
