@@ -18,8 +18,6 @@
                     (-> resp :body)
                     "Andrea"))))))
 
-(clojure.string/includes? "12" "1")
-
 (t/deftest language-detection-test
   (t/testing "detect language from header"
     (t/are [req available detected] (= (api/detect-language req available) detected)
