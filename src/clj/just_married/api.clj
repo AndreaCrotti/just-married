@@ -34,15 +34,17 @@
   []
   (Integer. (or (env :port) default-port)))
 
-(defn- detect-language
+(defn detect-language
   "Lookup in the request to find out what should be the default language to serve"
-  [request available-languages]
-  (let [accept-language (get  (:headers request) "accept-language")
-        parsed-languages (map (comp keyword first) (map #(clojure.string/split % #";")
-                                                        (clojure.string/split accept-language #",")))
-        only-available (filter #(contains? available-languages %) parsed-languages)]
+  [accept-language available-languages]
+  (if accept-language
+    (let [parsed-languages (map (comp keyword first) (map #(clojure.string/split % #";")
+                                                          (clojure.string/split accept-language #",")))
+          only-available (filter #(contains? available-languages %) parsed-languages)]
 
-    (or (first only-available) default-language)))
+      (or (first only-available) default-language))
+
+    default-language))
 
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
@@ -77,11 +79,22 @@
   (-> (resp/redirect "/login")
       (assoc :session (dissoc session :identity))))
 
+(defn main-page
+  [request]
+  (let [preferred-language (detect-language
+                            (get-in request [:headers "accept-language"])
+                            available-languages)
+        current-language (-> request :params :language keyword)]
+
+    (if (nil? current-language)
+      (resp/redirect (format "/main?language=%s" (name preferred-language)))
+      (render-page :home preferred-language))))
+
 (defroutes app-routes
   (GET "/" [] (render-page :initial :en))
   (GET "/enter" [] (render-page :initial :en))
   ;; do a redirect adding the extra information
-  (GET "/main" request (render-page :home (detect-language request available-languages)))
+  (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request)))
 
 (def app

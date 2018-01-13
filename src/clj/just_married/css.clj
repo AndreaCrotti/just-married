@@ -1,7 +1,7 @@
 (ns just-married.css
   (:require [garden.def :refer [defstyles defcssfn]]
             [garden.stylesheet :refer [at-media]]
-            [garden.core :refer [css]]))
+            #_[garden.core :refer [css]]))
 
 (def ^:private map-width "500px")
 (def ^:private max-width-mobile "480px")
@@ -92,7 +92,6 @@
 
 (def main-page
   [[:.container (:desktop grid-config)]
-
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
 
    [:.countdown {:grid-column 1
