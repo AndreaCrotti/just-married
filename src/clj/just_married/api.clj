@@ -1,6 +1,7 @@
 (ns just-married.api
   (:gen-class)
-  (:require [buddy.auth :refer [authenticated? throw-unauthorized]]
+  (:require [clojure.string :as string]
+            [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [hiccup.core :as html]
@@ -38,13 +39,21 @@
   "Lookup in the request to find out what should be the default language to serve"
   [accept-language available-languages]
   (if accept-language
-    (let [parsed-languages (map (comp keyword first) (map #(clojure.string/split % #";")
-                                                          (clojure.string/split accept-language #",")))
+    (let [languages (string/split accept-language #",")
+          ;; can probably be done a bit more easily
+          parsed-languages (map #(-> %
+                                     (string/split #",")
+                                     first
+                                     (string/split #"-")
+                                     first
+                                     keyword)
+                                languages)
+
           only-available (filter #(contains? available-languages %) parsed-languages)]
 
       (or (first only-available) default-language))
-
     default-language))
+
 
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
