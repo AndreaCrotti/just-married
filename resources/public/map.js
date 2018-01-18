@@ -1,13 +1,6 @@
 var config = window.config;
 
-var mapOptions = {
-    zoom: config.zoom,
-    center: new google.maps.LatLng(config.center.lat, config.center.lng),
-    mapTypeId: config['map-type-id']
-}
-var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
-function addMarker(place) {
+function addMarker(map, place) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(place.lat, place.lng),
         icon: place.icon,
@@ -21,5 +14,19 @@ function addMarker(place) {
     });
 }
 
-addMarker(config.places.lepri);
-addMarker(config.places.princi);
+function addMap(mapConfig) {
+    var mapOptions = {
+        zoom: mapConfig.zoom,
+        center: new google.maps.LatLng(mapConfig.center.lat, mapConfig.center.lng),
+        mapTypeId: mapConfig['map-type-id']
+    }
+    console.log("using id", mapConfig['element-id'], mapOptions);
+    var map = new google.maps.Map(document.getElementById(mapConfig['element-id']), mapOptions);
+
+    mapConfig.places.forEach(function(placeName) {
+        var placeConfig = config.places[placeName];
+        addMarker(map, placeConfig);
+    });
+}
+
+addMap(config['maps']['wedding']);

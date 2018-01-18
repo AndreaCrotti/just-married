@@ -23,3 +23,18 @@
            :lng 14.230742
            :icon "images/hotel_small.png"
            :info "Hotel Villa Immacolata"}})
+
+(def map-configs
+  {:wedding {:element-id "wedding-map"
+             :places [:lepri :princi]
+             :center {:lat 42.4
+                      :lng 14.2}
+             :zoom 12
+             :map-type-id "roadmap"}
+
+   :accommodation {:element-id "accommodation-map"
+                   :places [:princi :villa]
+                   :center {:lat 42.4
+                            :lng 14.2}
+                   :zoom 13
+                   :map-type-id "roadmap"}})

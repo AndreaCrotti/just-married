@@ -9,4 +9,5 @@
   {:places geo/places
    :zoom geo/zoom
    :map-type-id geo/map-type-id
-   :center geo/map-center})
+   :center geo/map-center
+   :maps geo/map-configs})
