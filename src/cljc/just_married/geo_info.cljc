@@ -25,7 +25,7 @@
            :info "Hotel Villa Immacolata"}})
 
 (def map-configs
-  {:wedding {:element-id "wedding-map"
+  {:wedding {:element-id "map"
              :places [:lepri :princi]
              :center {:lat 42.4
                       :lng 14.2}

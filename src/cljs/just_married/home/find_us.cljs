@@ -16,4 +16,4 @@
   [:div.find-us {:id "find-us"}
    [:h3 (tr :find-us)]
    [:p (tr :find-us-text)]
-   [:div {:id "wedding-map"}]])
+   [:div {:id "map"}]])

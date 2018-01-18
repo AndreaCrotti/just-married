@@ -20,7 +20,6 @@ function addMap(mapConfig) {
         center: new google.maps.LatLng(mapConfig.center.lat, mapConfig.center.lng),
         mapTypeId: mapConfig['map-type-id']
     }
-    console.log("using id", mapConfig['element-id'], mapOptions);
     var map = new google.maps.Map(document.getElementById(mapConfig['element-id']), mapOptions);
 
     mapConfig.places.forEach(function(placeName) {
