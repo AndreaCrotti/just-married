@@ -197,7 +197,7 @@
    [:.language__detector__english {:grid-column "1"
                                    :grid-row "3"
                                    :padding-left "150px"}]
-   
+
    [:.monogram {:width "400px"}]
    [:.language__detector__italian {:grid-column "2"
                                    :grid-row "3"

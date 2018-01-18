@@ -54,7 +54,6 @@
       (or (first only-available) default-language))
     default-language))
 
-
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
   [request]
