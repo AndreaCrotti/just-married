@@ -1,7 +1,9 @@
 (ns just-married.settings
   (:require [environ.core :refer [env]]))
 
-(def google-analytics-id "UA-104116805-1")
+(def google-analytics-key
+  (:google-analytics-key env))
+
 (def ^:private local-pwd "secret")
 
 (def sendgrid-config
