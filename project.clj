@@ -7,6 +7,7 @@
                  ;; ring dependencies
                  [ring "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
+                 [com.taoensso/timbre "4.10.0"]
                  [compojure "1.6.0"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  ;; various integrations

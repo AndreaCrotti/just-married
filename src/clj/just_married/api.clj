@@ -1,6 +1,7 @@
 (ns just-married.api
   (:gen-class)
   (:require [clojure.string :as string]
+            [taoensso.timbre :as tm]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
@@ -16,6 +17,10 @@
              [settings :as settings]
              [pages :as pages]
              [db :as db]]))
+
+(def ^:private timbre-configuration
+  {:level :info
+   :ns-blacklist ["org.eclipse.jetty.*"]})
 
 (def pages
   {:guests pages/guest-list
@@ -116,4 +121,6 @@
       (wrap-authentication basic-auth-backend)))
 
 (defn -main [& args]
+  (tm/merge-config! timbre-configuration)
+
   (jetty/run-jetty app {:port (get-port)}))
