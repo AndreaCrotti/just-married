@@ -106,6 +106,9 @@ ga('send', 'pageview');"
   [_]
   [:html {:lang "en"}
    (header (:en text))
+   (when settings/google-analytics-key
+     [:script ga-js])
+
    [:body
     [:div.initial__root
      [:div.monogram__container
