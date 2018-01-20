@@ -12,7 +12,7 @@
 
 ga('create', '%s', 'auto');
 ga('send', 'pageview');"
-                   settings/google-analytics-id))
+                   settings/google-analytics-key))
 
 (def google-fonts-used
   ["Open+Sans"
@@ -77,7 +77,9 @@ ga('send', 'pageview');"
   (let [env (language text)]
     [:html {:lang (name language)}
      (header env)
-     [:script ga-js]
+     (when settings/google-analytics-key
+       [:script ga-js])
+
      [:body
       [:script (format "window['config']=%s" (client-side-config))]
       [:div {:id "app"}]
