@@ -7,9 +7,12 @@
                  ;; ring dependencies
                  [ring "1.6.3"]
                  [ring/ring-defaults "0.3.1"]
-                 [com.taoensso/timbre "4.10.0"]
                  [compojure "1.6.0"]
-                 [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
+                 [com.taoensso/timbre "4.10.0"]
+                 [com.fzakaria/slf4j-timbre "0.3.8"]
+                 [org.slf4j/log4j-over-slf4j "1.7.14"]
+                 [org.slf4j/jul-to-slf4j "1.7.14"]
+                 [org.slf4j/jcl-over-slf4j "1.7.14"]
                  ;; various integrations
                  #_[racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
