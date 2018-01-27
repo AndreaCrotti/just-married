@@ -98,28 +98,30 @@ ga('send', 'pageview');"
     [:script "just_married.core.init_guests();"]]])
 
 (def ^:private date
-  "27th May 2018")
+  {:en "27th May 2018"
+   :it "27 Maggio 2018"})
 
 (defn initial-page
-  [_]
-  [:html {:lang "en"}
-   (header (:en text))
-   (when settings/google-analytics-key
-     [:script ga-js])
+  [language]
+  (let [env (language text)]
+    [:html {:lang (name language)}
+     (header env)
+     (when settings/google-analytics-key
+       [:script ga-js])
 
-   [:body
-    [:div.initial__root
-     [:div.monogram__container
-      [:img.monogram {:src "images/monogram_navy.png"
-                      :alt "Andrea & Enrica"}]]
+     [:body
+      [:div.initial__root
+       [:div.monogram__container
+        [:img.monogram {:src "images/monogram_navy.png"
+                        :alt "Andrea & Enrica"}]]
 
-     [:div.date__container date]
-     [:div.language__detector__english
-      [:a {:href "main?language=en"}
-       [:img.flag {:src "images/gb_large.png"
-                   :alt "English"}]]]
+       [:div.date__container (language date)]
+       [:div.language__detector__english
+        [:a {:href "main?language=en"}
+         [:img.flag {:src "images/gb_large.png"
+                     :alt "English"}]]]
 
-     [:div.language__detector__italian
-      [:a {:href "main?language=it"}
-       [:img.flag {:src "images/it_large.png"
-                   :alt "Italiano"}]]]]]])
+       [:div.language__detector__italian
+        [:a {:href "main?language=it"}
+         [:img.flag {:src "images/it_large.png"
+                     :alt "Italiano"}]]]]]]))
