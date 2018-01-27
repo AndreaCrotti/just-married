@@ -1,8 +1,8 @@
 (ns just-married.pages
   (:require [just-married.settings :as settings]
+            [just-married.shared :refer [config]]
             [clojure.data.json :as json]
-            [environ.core :refer [env]]
-            [just-married.shared :refer [config]])
+            [environ.core :refer [env]])
   (:import (java.util UUID)))
 
 (def ga-js (format "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -68,20 +68,18 @@ ga('send', 'pageview');"
 (def ^:private app-js
   [:script {:src (cache-buster "js/compiled/app.js")}])
 
-(defn client-side-config
-  []
-  (json/write-str config))
-
 (defn home-page
   [language]
-  (let [env (language text)]
+  (let [env (language text)
+        client-side-config (json/write-str (assoc config
+                                                  :language language))]
     [:html {:lang (name language)}
      (header env)
      (when settings/google-analytics-key
        [:script ga-js])
 
      [:body
-      [:script (format "window['config']=%s" (client-side-config))]
+      [:script (format "window['config']=%s" client-side-config)]
       [:div {:id "app"}]
       ;; now we can easily generate some JS that can be then loaded by
       ;; the frontend to decide which page to display for example
