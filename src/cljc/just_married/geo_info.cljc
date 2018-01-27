@@ -11,7 +11,9 @@
            :lng 14.164534,
            :title "Palazzo Lepri",
            :icon "images/rings_small.png",
-           :info "Palazzo Lepri"}
+           :info "Palazzo Lepri"
+           :description {:it "Palazzo Lepri"
+                         :en "Lepri Palace"}}
 
    :princi {:lat 42.423608
             :lng 14.231041
