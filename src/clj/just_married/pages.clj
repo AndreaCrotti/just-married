@@ -122,7 +122,7 @@ ga('send', 'pageview');"
      [:body
       [:div.initial__root
        [:div.monogram__container
-        [:img.monogram {:src "images/monogram_navy.png"
+        [:img.monogram {:src "images/monogram_white.png"
                         :alt "Andrea & Enrica"}]]
 
        [:div.date__container (language date)]
