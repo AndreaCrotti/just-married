@@ -7,6 +7,9 @@ function addMarker(map, place) {
         map: map
     });
     var infowindow = new google.maps.InfoWindow({
+        // replace it with this and use hiccup to generate the content
+        // in the geo_info.cljc file
+        // content: place.description[config.language]
         content: place.info
     });
     marker.addListener('click', function() {

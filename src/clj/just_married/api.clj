@@ -4,18 +4,25 @@
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
-            [hiccup.core :as html]
-            [ring.middleware.defaults :as r-def]
-            [ring.util.response :as resp]
-            [ring.adapter.jetty :as jetty]
-            [ring.middleware.resource :as resources]
-            [just-married.shared :refer [available-languages]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
+            [hiccup.core :as html]
+            [just-married.shared :refer [available-languages]]
+            [just-married.language :refer [detect-language]]
+            [ring.adapter.jetty :as jetty]
+            [ring.middleware.defaults :as r-def]
+            [ring.middleware.resource :as resources]
+            [ring.util.response :as resp]
             [just-married
              [settings :as settings]
              [pages :as pages]
              [db :as db]]))
+
+(defn get-language
+  [request]
+  (detect-language
+   (get-in request [:headers "accept-language"])
+   available-languages))
 
 (def pages
   {:guests pages/guest-list
@@ -29,30 +36,10 @@
 
 (def ^:private security (= (env :secure) "true"))
 (def ^:private default-port 3000)
-(def ^:private default-language :en)
 
 (defn- get-port
   []
   (Integer. (or (env :port) default-port)))
-
-(defn detect-language
-  "Lookup in the request to find out what should be the default language to serve"
-  [accept-language available-languages]
-  (if accept-language
-    (let [languages (string/split accept-language #",")
-          ;; can probably be done a bit more easily
-          parsed-languages (map #(-> %
-                                     (string/split #",")
-                                     first
-                                     (string/split #"-")
-                                     first
-                                     keyword)
-                                languages)
-
-          only-available (filter #(contains? available-languages %) parsed-languages)]
-
-      (or (first only-available) default-language))
-    default-language))
 
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
@@ -87,11 +74,14 @@
   (-> (resp/redirect "/login")
       (assoc :session (dissoc session :identity))))
 
+(defn enter-page
+  [request]
+  (let [language (get-language request)]
+    (render-page :initial language)))
+
 (defn main-page
   [request]
-  (let [preferred-language (detect-language
-                            (get-in request [:headers "accept-language"])
-                            available-languages)
+  (let [preferred-language (get-language request)
         current-language (-> request :params :language keyword)]
 
     (if (nil? current-language)
@@ -99,9 +89,7 @@
       (render-page :home preferred-language))))
 
 (defroutes app-routes
-  (GET "/" [] (render-page :initial :en))
-  (GET "/enter" [] (render-page :initial :en))
-  ;; do a redirect adding the extra information
+  (GET "/" request (enter-page request))
   (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request)))
 

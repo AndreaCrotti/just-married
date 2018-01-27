@@ -1,8 +1,8 @@
 (ns just-married.pages
   (:require [just-married.settings :as settings]
+            [just-married.shared :refer [config]]
             [clojure.data.json :as json]
-            [environ.core :refer [env]]
-            [just-married.shared :refer [config]])
+            [environ.core :refer [env]])
   (:import (java.util UUID)))
 
 (def ga-js (format "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -68,20 +68,18 @@ ga('send', 'pageview');"
 (def ^:private app-js
   [:script {:src (cache-buster "js/compiled/app.js")}])
 
-(defn client-side-config
-  []
-  (json/write-str config))
-
 (defn home-page
   [language]
-  (let [env (language text)]
+  (let [env (language text)
+        client-side-config (json/write-str (assoc config
+                                                  :language language))]
     [:html {:lang (name language)}
      (header env)
      (when settings/google-analytics-key
        [:script ga-js])
 
      [:body
-      [:script (format "window['config']=%s" (client-side-config))]
+      [:script (format "window['config']=%s" client-side-config)]
       [:div {:id "app"}]
       ;; now we can easily generate some JS that can be then loaded by
       ;; the frontend to decide which page to display for example
@@ -100,28 +98,30 @@ ga('send', 'pageview');"
     [:script "just_married.core.init_guests();"]]])
 
 (def ^:private date
-  "27th May 2018")
+  {:en "27th May 2018"
+   :it "27 Maggio 2018"})
 
 (defn initial-page
-  [_]
-  [:html {:lang "en"}
-   (header (:en text))
-   (when settings/google-analytics-key
-     [:script ga-js])
+  [language]
+  (let [env (language text)]
+    [:html {:lang (name language)}
+     (header env)
+     (when settings/google-analytics-key
+       [:script ga-js])
 
-   [:body
-    [:div.initial__root
-     [:div.monogram__container
-      [:img.monogram {:src "images/monogram_navy.png"
-                      :alt "Andrea & Enrica"}]]
+     [:body
+      [:div.initial__root
+       [:div.monogram__container
+        [:img.monogram {:src "images/monogram_navy.png"
+                        :alt "Andrea & Enrica"}]]
 
-     [:div.date__container date]
-     [:div.language__detector__english
-      [:a {:href "main?language=en"}
-       [:img.flag {:src "images/gb_large.png"
-                   :alt "English"}]]]
+       [:div.date__container (language date)]
+       [:div.language__detector__english
+        [:a {:href "main?language=en"}
+         [:img.flag {:src "images/gb_large.png"
+                     :alt "English"}]]]
 
-     [:div.language__detector__italian
-      [:a {:href "main?language=it"}
-       [:img.flag {:src "images/it_large.png"
-                   :alt "Italiano"}]]]]]])
+       [:div.language__detector__italian
+        [:a {:href "main?language=it"}
+         [:img.flag {:src "images/it_large.png"
+                     :alt "Italiano"}]]]]]]))
