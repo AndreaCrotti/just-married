@@ -18,6 +18,12 @@
              [pages :as pages]
              [db :as db]]))
 
+(defn get-language
+  [request]
+  (detect-language
+   (get-in request [:headers "accept-language"])
+   available-languages))
+
 (def pages
   {:guests pages/guest-list
    :home pages/home-page
@@ -68,11 +74,14 @@
   (-> (resp/redirect "/login")
       (assoc :session (dissoc session :identity))))
 
+(defn enter-page
+  [request]
+  (let [language (get-language request)]
+    (render-page :initial language)))
+
 (defn main-page
   [request]
-  (let [preferred-language (detect-language
-                            (get-in request [:headers "accept-language"])
-                            available-languages)
+  (let [preferred-language (get-language request)
         current-language (-> request :params :language keyword)]
 
     (if (nil? current-language)
@@ -80,9 +89,7 @@
       (render-page :home preferred-language))))
 
 (defroutes app-routes
-  (GET "/" [] (render-page :initial :en))
-  (GET "/enter" [] (render-page :initial :en))
-  ;; do a redirect adding the extra information
+  (GET "/" request (enter-page request))
   (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request)))
 
