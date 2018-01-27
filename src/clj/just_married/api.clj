@@ -17,8 +17,6 @@
             [ring.adapter.jetty :as jetty]
             [just-married.language :refer [detect-language]]
             [just-married.shared :refer [available-languages]]
-            [compojure.core :refer [defroutes GET POST]]
-            [environ.core :refer [env]]
             [just-married
              [settings :as settings]
              [pages :as pages]
@@ -82,9 +80,10 @@
       (assoc :session (dissoc session :identity))))
 
 (defn enter-page
-  [request]
+  [request & {:keys [redirect-to]}]
   (let [language (get-language request)]
-    (render-page :initial {:language language})))
+    (render-page :initial {:language language
+                           :redirect-to redirect-to})))
 
 (defn main-page
   [request]
@@ -118,8 +117,7 @@
 
 (defroutes app-routes
   (GET "/" request (enter-page request))
-  (GET "/rvsp" request (render-page :initial {:language :en
-                                              :redirect-to "rvsp"}))
+  (GET "/rvsp" request (enter-page request :redirect-to "rvsp"))
   (POST "/notify" request (notify request))
   ;; do a redirect adding the extra information
   (GET "/main" request (main-page request))
