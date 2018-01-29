@@ -120,7 +120,13 @@
 
    [:ul {:list-style "none"}]
 
-   [:.rvsp__confirm {:border-radius "4px"
+   [:.rvsp__form {:display "grid"
+                  :grid-gap "10px"
+                  :grid-template-columns "auto auto"
+                  :grid-template-rows "auto auto auto auto auto"}]
+
+   [:.rvsp__confirm {:width "200px"
+                     :border-radius "4px"
                      :padding "10px"
                      :font-size "1.3em"
                      :text-decoration "none"

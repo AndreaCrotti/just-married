@@ -8,4 +8,5 @@
    :email nil
    :comments nil
    :show-confirmation-success false
-   :show-confirmation-failure false})
+   :show-confirmation-failure false
+   :confirmation-sent false})
