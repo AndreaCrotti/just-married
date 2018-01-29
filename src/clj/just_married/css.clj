@@ -123,7 +123,7 @@
    [:.rvsp__form {:display "grid"
                   :grid-gap "10px"
                   :grid-template-columns "auto auto"
-                  :grid-template-rows "auto auto auto auto auto"}]
+                  :grid-template-rows "auto auto auto auto auto auto"}]
 
    [:.rvsp__confirm {:width "200px"
                      :border-radius "4px"

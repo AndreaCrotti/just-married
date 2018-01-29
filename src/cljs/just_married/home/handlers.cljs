@@ -1,8 +1,17 @@
 (ns just-married.home.handlers
   (:require [re-frame.core :as re-frame :refer [reg-sub dispatch reg-event-db reg-event-fx]]
             [ajax.core :as ajax]
-            [day8.re-frame.http-fx]
-            [just-married.home.db :as db]))
+            [day8.re-frame.http-fx]))
+
+(def default-db
+  ;; what other possibly useful information could be here?
+  {:language :en
+   :expanded-story false
+   :rvsp {:name nil
+          :email nil
+          :how-many nil
+          :comments nil 
+          :show-confirmation-msg false}})
 
 (defn- getter
   [key]
@@ -12,12 +21,7 @@
 (defn- setter
   [key]
   (fn [db [_ val]]
-    (assoc db key val)))
-
-(defn- switch-on
-  [key]
-  (fn [db _]
-    (assoc db key true)))
+    (assoc-in db key val)))
 
 (reg-sub
  :expanded-story
@@ -31,21 +35,21 @@
  :email
  (getter :email))
 
-(reg-sub
- :dietary
- (getter :dietary))
-
 (reg-event-db
  :set-name
- (setter :name))
+ (setter [:rvsp :name]))
 
 (reg-event-db
  :set-email
- (setter :email))
+ (setter [:rvsp :email]))
+
+(reg-event-db
+ :set-how-many
+ (setter [:rvsp :how-many]))
 
 (reg-event-db
  :set-comment
- (setter :comments))
+ (setter [:rvsp :comments]))
 
 (reg-sub
  :show-confirmation-success
@@ -68,24 +72,33 @@
                 :response-format (ajax/json-response-format
                                   {:keywords? true})
                 :on-success [:confirmation-sent]
-                :on-failure [:confirmation-not-sent]}})
+                :on-failure [:confirmation-not-sent]
+                }})
 
 (reg-event-fx
  :send-notification
  notify)
 
 (reg-sub
+ :show-confirmation-msg
+ (getter :show-confirmation-msg))
+
+(reg-event-db
  :confirmation-sent
- (switch-on :show-confirmation-success))
+ (fn [db _]
+   (assoc-in db [:rvsp :show-confirmation-msg] true)))
 
 (reg-event-db
  :confirmation-not-sent
- (switch-on :show-confirmation-failure))
+ (fn [db _]
+   ;; should actually handle the error and/or log
+   ;; it properly somewhere
+   (assoc-in db [:rvsp :show-confirmation-msg] true)))
 
 (reg-event-db
  :initialize-db
  (fn  [_ _]
-   db/default-db))
+   default-db))
 
 (reg-event-db
  :set-expanded-story
