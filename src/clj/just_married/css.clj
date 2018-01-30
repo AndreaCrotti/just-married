@@ -46,7 +46,7 @@
                                         :grid-template-rows "auto auto auto"})
 
    :mobile (merge common-grid-options {:grid-template-columns "auto"
-                                       :grid-template-rows "auto auto auto auto"})})
+                                       :grid-template-rows "auto auto auto auto auto"})})
 
 (def ^:private navbar-grid-config
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
@@ -233,6 +233,8 @@
 
               [:.navbar__container (:mobile navbar-grid-config)]
               [:.container (:mobile grid-config)]
+              ;; should I simply change the layout
+              ;; entirely moving with everything on the same column??
               [:.timeline {:grid-column 1
                            :grid-row 3}])]])
 
