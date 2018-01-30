@@ -6,6 +6,8 @@
 (def ^:private map-width "500px")
 (def ^:private max-width-mobile "480px")
 
+(defcssfn url)
+
 (def COLOR-PALLETTE
   {:amaranth "#E52B50"
    :white "#FFFFFF"
@@ -159,8 +161,12 @@
            :box-shadow (format "10px 10px 20px %s" (:light-grey COLOR-PALLETTE))
            :border-radius "10px"}]
 
+   [:.navbar__backlink {:background-image (url "../images/monogram_navy.png")
+                        :background-size "10px"
+                        :backgrond-repeat "no-repeat"
+                        :background-position "center"}]
    [:.navbar__container (:desktop navbar-grid-config)
-
+    
     ;; FIXME: should be less generic here
     [:a {:color (:white COLOR-PALLETTE)}]
 

@@ -2,16 +2,14 @@
   (:require [just-married.home.language :refer [translate get-language]]))
 
 (def ^:private navbar-dict
-  {:en {:home "Home"
-        :timeline "Timeline"
+  {:en {:timeline "Timeline"
         :story "Our Story"
         :find-us "Find Us"
         :countdown "Countdown"
         :accomodation "Accommodation"
         :contacts "Contacts"}
 
-   :it {:home "Home"
-        :timeline "Programma"
+   :it {:timeline "Programma"
         :story "La Nostra Storia"
         :find-us "Trovaci"
         :countdown "Conto Alla Rovescia"
@@ -20,16 +18,10 @@
 
 (defn navbar
   [sections]
-  (let [sections (cons :home sections)]
-
-    (into [:div.navbar__container]
-          (for [sec sections]
-            ;; could avoid the special case maybe somehow
-            (let [href (if (= sec :home)
-                         "#"
-                         (str "#" (name sec)))]
-
-              [:div.navbar__link
-               [:a {:href href}
-                (translate navbar-dict sec)]])))))
-
+  (into [:div.navbar__container]
+        (cons
+         [:a.navbar__backlink {:href "/"}]
+         (for [sec sections]
+           [:div.navbar__link
+            [:a {:href (str "#" (name sec))}
+             (translate navbar-dict sec)]]))))
