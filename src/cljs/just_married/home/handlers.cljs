@@ -1,15 +1,104 @@
 (ns just-married.home.handlers
-  (:require [re-frame.core :as re-frame :refer [reg-sub dispatch reg-event-db]]
-            [just-married.home.db :as db]))
+  (:require [re-frame.core :as re-frame :refer [reg-sub dispatch reg-event-db reg-event-fx]]
+            [ajax.core :as ajax]
+            [day8.re-frame.http-fx]))
+
+(def default-db
+  ;; what other possibly useful information could be here?
+  {:language :en
+   :expanded-story false
+   :rvsp {:name nil
+          :email nil
+          :how-many nil
+          :comments nil 
+          :show-confirmation-msg false}})
+
+(defn- getter
+  [key]
+  (fn [db _]
+    (key db)))
+
+(defn- setter
+  [key]
+  (fn [db [_ val]]
+    (assoc-in db key val)))
 
 (reg-sub
  :expanded-story
- :expanded-story)
+ (getter :expanded-story))
+
+(reg-sub
+ :name
+ (getter :name))
+
+(reg-sub
+ :email
+ (getter :email))
+
+(reg-event-db
+ :set-name
+ (setter [:rvsp :name]))
+
+(reg-event-db
+ :set-email
+ (setter [:rvsp :email]))
+
+(reg-event-db
+ :set-how-many
+ (setter [:rvsp :how-many]))
+
+(reg-event-db
+ :set-comment
+ (setter [:rvsp :comments]))
+
+(reg-sub
+ :show-confirmation-success
+ (getter :show-confirmation-success))
+
+(reg-sub
+ :show-confirmation-failure
+ (getter :show-confirmation-failure))
+
+(defn notify
+  [{:keys [db]} [_ value]]
+  {:db db
+   :http-xhrio {:method :post
+                :uri "/notify"
+                :params {:coming value
+                         :name (:name db)
+                         :email (:email db)
+                         :comments (:comments db)}
+                :format (ajax/json-request-format)
+                :response-format (ajax/json-response-format
+                                  {:keywords? true})
+                :on-success [:confirmation-sent]
+                :on-failure [:confirmation-not-sent]
+                }})
+
+(reg-event-fx
+ :send-notification
+ notify)
+
+(reg-sub
+ :show-confirmation-msg
+ (getter :show-confirmation-msg))
+
+(reg-event-db
+ :confirmation-sent
+ (fn [db _]
+   (assoc-in db [:rvsp :show-confirmation-msg] true)))
+
+(reg-event-db
+ :confirmation-not-sent
+ (fn [db _]
+   ;; should actually handle the error and/or log
+   ;; it properly somewhere
+   (assoc-in db [:rvsp :show-confirmation-msg] true)))
 
 (reg-event-db
  :initialize-db
  (fn  [_ _]
-   db/default-db))
+   default-db))
 
 (reg-event-db
  :set-expanded-story

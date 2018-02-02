@@ -5,6 +5,7 @@
    [just-married.home.timeline :refer [timeline]]
    [just-married.home.find-us :refer [find-us]]
    [just-married.home.navbar :refer [navbar]]
+   #_[just-married.home.rvsp :refer [rvsp]]
    #_[just-married.home.story :refer [story]]))
 
 
@@ -21,6 +22,7 @@
    ;; :story story
    :find-us find-us
    :timeline timeline
+   ;; :rvsp rvsp
    ;; :gifts gifts
    ;;:accomodation accommodation
    ;; :contacts contacts
@@ -35,11 +37,3 @@
          [navbar (keys SECTIONS)]
          (vector (into [:div.container]
                        (map vector (vals SECTIONS)))))))
-
-;; (defn main-panel
-;;   []
-;;   ;;TODO: there could be a better way to do this
-;;   (into [:g]
-;;         [navbar (keys SECTIONS)]))
-
-;; (main-panel)

@@ -69,7 +69,7 @@ ga('send', 'pageview');"
   [:script {:src (cache-buster "js/compiled/app.js")}])
 
 (defn home-page
-  [language]
+  [{:keys [language]}]
   (let [env (language text)
         client-side-config (json/write-str (assoc config
                                                   :language language))]
@@ -101,8 +101,18 @@ ga('send', 'pageview');"
   {:en "27th May 2018"
    :it "27 Maggio 2018"})
 
+(defn- make-url
+  [language redirect-to]
+  (let [url (format "main?language=%s" language)
+        full-url (if redirect-to
+                   (clojure.string/join "#" [url redirect-to])
+                   url)]
+
+    full-url))
+
 (defn initial-page
-  [language]
+
+  [{:keys [language redirect-to]}]
   (let [env (language text)]
     [:html {:lang (name language)}
      (header env)
@@ -112,16 +122,16 @@ ga('send', 'pageview');"
      [:body
       [:div.initial__root
        [:div.monogram__container
-        [:img.monogram {:src "images/monogram_navy.png"
+        [:img.monogram {:src "images/monogram_white.png"
                         :alt "Andrea & Enrica"}]]
 
        [:div.date__container (language date)]
        [:div.language__detector__english
-        [:a {:href "main?language=en"}
+        [:a {:href (make-url "en" redirect-to)}
          [:img.flag {:src "images/gb_large.png"
                      :alt "English"}]]]
 
        [:div.language__detector__italian
-        [:a {:href "main?language=it"}
+        [:a {:href (make-url "it" redirect-to)}
          [:img.flag {:src "images/it_large.png"
                      :alt "Italiano"}]]]]]]))

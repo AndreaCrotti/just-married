@@ -18,6 +18,7 @@
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.2"]
+                 [day8.re-frame/http-fx "0.1.4"]
                  [cljs-ajax "0.7.3"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
@@ -52,7 +53,8 @@
                  [secretary "1.2.3"]
                  [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  [reframe-utils "0.1.4"]
-                 [com.cemerick/url "0.1.1"]]
+                 [com.cemerick/url "0.1.1"]
+                 [ring/ring-json "0.4.0"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
@@ -116,7 +118,7 @@
                    [ring/ring-mock "0.3.2"]]}}
 
   :garden {:builds [{:id           "screen"
-                     :source-paths ["src/clj"]
+                     :source-paths ["src/clj" "src/cljc"]
                      :stylesheet just-married.css/screen
                      :compiler     {:output-to     "resources/public/css/screen.css"
                                     :pretty-print? true}}]}
