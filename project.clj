@@ -42,7 +42,8 @@
                  [prone "1.1.4"]
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.3"]
-                 [clj-postgresql "0.7.0"]
+                 [clj-postgresql "0.7.0" :exclusions [ch.qos.logback/logback-classic
+                                                      ch.qos.logback/logback-core]]
                  [org.clojure/java.jdbc "0.7.4"]
                  [org.postgresql/postgresql "42.1.4"]
 
