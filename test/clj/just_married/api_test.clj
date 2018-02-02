@@ -33,8 +33,8 @@
           resp (sut/app req)]
       (is (= (-> resp :status) 302))
       (is (true? (clojure.string/includes?
-                    (get-in resp [:headers "Location"])
-                    "main?language=it")))))
+                  (get-in resp [:headers "Location"])
+                  "main?language=it")))))
 
   (testing "No redirect if language set manually"
     (let [req (mock/request :get "/main?language=it")
@@ -49,15 +49,15 @@
     (let [req (mock/request :get "/login" {:password "secure-password"})
           resp (sut/app req)])))
 
-(deftest notify-test
-  (testing "Send a notification"
-    (let [req
-          (-> (mock/request :post "/notify")
-              (mock/json-body {:email "friend@mail.com"
-                               :name "friend"}))
-          resp (sut/app req)]
+#_(deftest notify-test
+    (testing "Send a notification"
+      (let [req
+            (-> (mock/request :post "/notify")
+                (mock/json-body {:email "friend@mail.com"
+                                 :name "friend"}))
+            resp (sut/app req)]
 
-      (is (= (-> resp :status) 201)))))
+        (is (= (-> resp :status) 201)))))
 
 (when db-reachable?
   (deftest guest-list-test
