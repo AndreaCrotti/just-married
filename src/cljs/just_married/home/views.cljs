@@ -5,7 +5,7 @@
    [just-married.home.timeline :refer [timeline]]
    [just-married.home.find-us :refer [find-us]]
    [just-married.home.navbar :refer [navbar]]
-   #_[just-married.home.rvsp :refer [rvsp]]
+   [just-married.home.rvsp :refer [rvsp]]
    #_[just-married.home.story :refer [story]]))
 
 
@@ -22,7 +22,7 @@
    ;; :story story
    :find-us find-us
    :timeline timeline
-   ;; :rvsp rvsp
+   :rvsp rvsp
    ;; :gifts gifts
    ;;:accomodation accommodation
    ;; :contacts contacts
