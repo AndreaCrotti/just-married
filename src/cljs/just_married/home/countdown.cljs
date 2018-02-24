@@ -7,7 +7,7 @@
             [goog.date.duration :as duration]))
 
 (def ^:private countdown-dict
-  {:en {:add-to-calendar "Add to Calendar"
+  {:en {:add-to-calendar "Add to Google Calendar"
         :countdown "Countdown"
         :date "27th May, 2018"
         :days "Days"
@@ -15,7 +15,7 @@
         :minutes "Minutes"
         :calendar "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=N2NtOHFmYm1tYnIzamY2Zzc4aDFnMWl2NXMgdWQ2bmRiMWhnNWlyMzI5bWZsZzc5cWwxbDRAZw&tmsrc=ud6ndb1hg5ir329mflg79ql1l4%40group.calendar.google.com"}
 
-   :it {:add-to-calendar "Aggiungi al Calendario"
+   :it {:add-to-calendar "Aggiungi al Calendario di Google"
         :countdown "Conto alla rovescia"
         :date "27 Maggio 2018"
         :days "Giorni"
@@ -67,9 +67,7 @@
   [:a {:target "_blank"
        :href (tr :calendar)}
 
-   ;; actually use current language
-   (tr :add-to-calendar)
-   [:img {:src settings/GOOGLE-CALENDAR-IMG}]])
+   [:button.button__add-to-calendar (tr :add-to-calendar)]])
 
 ;;TODO: evaluate using a macro to avoid redefining the same king
 ;;of function every time

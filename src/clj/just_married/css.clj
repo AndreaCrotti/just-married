@@ -104,6 +104,8 @@
                  ;;:font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
+   [:.button__add-to-calendar {:background-color (:dark-red COLOR-PALLETTE)
+                                      :color (:white COLOR-PALLETTE)}]
    [:.find-us {:grid-column 1
                :grid-row 2}]
 
