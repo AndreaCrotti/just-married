@@ -6,6 +6,7 @@
    [just-married.home.find-us :refer [find-us]]
    [just-married.home.navbar :refer [navbar]]
    [just-married.home.accommodation :refer [accommodation]]
+   [just-married.home.gift :refer [gift]]
    #_[just-married.home.rvsp :refer [rvsp]]
    #_[just-married.home.story :refer [story]]))
 
