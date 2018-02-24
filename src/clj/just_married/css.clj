@@ -93,7 +93,8 @@
 (def main-page
   [[:.container (:desktop grid-config)]
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
-
+   [:body {:color (:navy COLOR-PALLETTE)
+           :font-family (:alex-brush FONT-FAMILIES)}]
    [:.countdown {:grid-column 1
                  :grid-row 1
                  ;; :color (:marsala COLOR-PALLETTE)
