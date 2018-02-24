@@ -10,7 +10,6 @@
                  [compojure "1.6.0"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  ;; various integrations
-                 #_[racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
@@ -45,8 +44,6 @@
 
                  [honeysql "0.9.1"]
                  [migratus "1.0.2"]
-                 [com.rpl/specter "1.0.5"]
-                 [mount "0.1.11"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
