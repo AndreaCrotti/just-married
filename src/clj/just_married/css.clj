@@ -93,7 +93,8 @@
 (def main-page
   [[:.container (:desktop grid-config)]
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
-
+   [:body {:color (:navy COLOR-PALLETTE)
+           :font-family (:alex-brush FONT-FAMILIES)}]
    [:.countdown {:grid-column 1
                  :grid-row 1
                  ;; :color (:marsala COLOR-PALLETTE)
@@ -103,6 +104,8 @@
                  ;;:font-family (:alex-brush FONT-FAMILIES)
                  :font-size "x-large"}]
 
+   [:.button__add-to-calendar {:background-color (:dark-red COLOR-PALLETTE)
+                               :color (:white COLOR-PALLETTE)}]
    [:.find-us {:grid-column 1
                :grid-row 2}]
 
