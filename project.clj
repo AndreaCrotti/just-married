@@ -30,7 +30,7 @@
                  ;; testing libraries, could they also not be in here at all?
                  [doo "0.1.8"]
                  [day8.re-frame/test "0.1.5"]
-                 [day8.re-frame/trace "0.1.22"]
+                 [day8.re-frame/re-frame-10x "0.2.0-react16"]
                  [clj-recaptcha "0.0.2"]
 
                  [environ "1.1.0"]
@@ -132,7 +132,7 @@
                     :source-map true
                     :source-map-timestamp true
                     :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-                    :preloads             [devtools.preload day8.re-frame.trace.preload]
+                    :preloads             [devtools.preload day8.re-frame-10x.preload]
                     :external-config      {:devtools/config {:features-to-install [:formatters
                                                                                    :async
                                                                                    :hints]}}}}
