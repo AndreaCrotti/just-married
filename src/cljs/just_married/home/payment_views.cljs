@@ -9,13 +9,11 @@
 
 ;; should the wish list url be directly here or injected in some other way?
 (defn amazon-wish-list
-  ;; does it need to subscribe to anything here?
-  ;; maybe extract the user name or something like that?
-  []
   "Amazon wish list view"
-  (fn []
-    [:div {:class "amazon-wish-list"}
-     [:a {:href "http://amzn.eu/hzWt6gk"} "Amazon wish list"]]))
+  []
+  [:div {:class "amazon-wish-list"}
+   [:h3 "Amazon Wish list"]
+   [:a {:href "http://amzn.eu/hzWt6gk"} "Amazon wish list"]])
 
 (defn stripe-form
   [language]
