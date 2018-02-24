@@ -36,7 +36,7 @@
 
    :accommodation {:element-id "accommodation-map"
                    :places [:princi :villa]
-                   :center {:lat 42.4
-                            :lng 14.2}
+                   :center {(-> places :villa :lat)
+                            (-> places :villa :lng)}
                    :zoom 13
                    :map-type-id "roadmap"}})

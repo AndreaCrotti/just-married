@@ -43,7 +43,7 @@
 
 (def ^:private grid-config
   {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
-                                        :grid-template-rows "auto auto auto"})
+                                        :grid-template-rows "auto auto auto auto"})
 
    :mobile (merge common-grid-options {:grid-template-columns "auto"
                                        :grid-template-rows "auto auto auto auto auto"})})
@@ -98,7 +98,7 @@
    [:.countdown {:grid-column 1
                  :grid-row 1
                  ;; :color (:marsala COLOR-PALLETTE)
-                 ;:font-weight "bold"
+                                        ;:font-weight "bold"
                  ;; might be nice to shrink this in theory??
                  ;; :width "50%"
                  ;;:font-family (:alex-brush FONT-FAMILIES)
@@ -118,8 +118,11 @@
    [:.timeline__icon {:width "22px"
                       :padding-right "5px"}]
 
-   [:.rvsp {:grid-column 1
-            :grid-row 3}]
+   #_[:.rvsp {:grid-column 1
+              :grid-row 3}]
+
+   [:.accommodation {:grid-column 1
+                     :grid-row 3}]
 
    [:ul {:list-style "none"}]
 
@@ -180,11 +183,11 @@
              :border-color (:dark-red COLOR-PALLETTE)}]
 
    ;; find us settings
-   [:#map {:width map-width
-           :height map-width
-           :padding "15px"
-           :box-shadow (format "10px 10px 20px %s" (:light-grey COLOR-PALLETTE))
-           :border-radius "10px"}]
+   [:.google-map {:width map-width
+                  :height map-width
+                  :padding "15px"
+                  :box-shadow (format "10px 10px 20px %s" (:light-grey COLOR-PALLETTE))
+                  :border-radius "10px"}]
 
    [:.navbar__container (:desktop navbar-grid-config)
 
