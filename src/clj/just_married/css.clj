@@ -116,6 +116,13 @@
    [:.gift {:grid-column 1
             :grid-row 5}]
 
+   [:.bank_table {:font-family (:open-sans FONT-FAMILIES)}]
+
+   [:th {:padding "4px"}]
+   [:td {:padding "5px"
+         :text-align "left"
+         :border (format "0.8px solid %s" (:navy COLOR-PALLETTE))}]
+
    [:.accommodation__villa-immacolata {:padding-bottom "20px"}]
 
    [:ul {:list-style "none"}]
