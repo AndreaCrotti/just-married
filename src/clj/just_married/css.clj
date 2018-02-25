@@ -32,10 +32,10 @@
 
 (def ^:private grid-config
   {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
-                                        :grid-template-rows "auto auto auto auto"})
+                                        :grid-template-rows "auto auto auto auto auto"})
 
    :mobile (merge common-grid-options {:grid-template-columns "auto"
-                                       :grid-template-rows "auto auto auto auto auto"})})
+                                       :grid-template-rows "auto auto auto auto auto auto"})})
 
 (def ^:private navbar-grid-config
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
@@ -112,6 +112,9 @@
 
    [:.accommodation {:grid-column 1
                      :grid-row 4}]
+
+   [:.gift {:grid-column 1
+            :grid-row 5}]
 
    [:.accommodation__villa-immacolata {:padding-bottom "20px"}]
 

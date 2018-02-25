@@ -1,14 +1,12 @@
 (ns just-married.home.find-us
   (:require [just-married.home.language :refer [translate]]))
 
-;; add information about how to actually get there.
-
 (def ^:private find-us-dict
   {:en {:find-us "Find Us"
         :find-us-text "The wedding will be celebrated in the beautiful Abruzzo region, between Chieti and Pescara."}
 
    :it {:find-us "Come Trovarci"
-        :find-us-text ""}})
+        :find-us-text "Il matrimonio verrà celebrato nella bellissima regione Abruzzese, tra le provicine di Chieti e Pescara."}})
 
 (def ^:private tr
   (partial translate find-us-dict))

@@ -1,52 +1,42 @@
 (ns just-married.home.gift
   (:require [just-married.home.language :refer [translate]]))
 
-;;TODO: remove if not using stripe after all
-(def STRIPE-KEY "pk_test_qtDjM2KBQgYX9vVBhbzrU27F")
-(def STRIPE-IMG "https://stripe.com/img/documentation/checkout/marketplace.png")
-
 (def LANGUAGE-TO-CURRENCY
   {:en "gbp"
    :it "euro"})
 
 (def coordinates
-  {:gbp {:name "name"
-         :iban "long-iban"}
+  {:eur {:name "Andrea Crotti"
+         :iban "DE70100110012629402677"}
 
-   :eur {:name "name"
-         :iban "long-iban-n26"}})
+   ;;TODO: fix the naem
+   :gbp {:name "Andrea & Enrica"
+         :iban "GB19ABBY09012921859069"
+         :number "21859069"
+         :sort-code "09-01-29"}})
 
 (def gift-dict
-  {})
+  {:en {:gift "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon at the Seychelles you can do use these bank coordinates:"}
+
+   :it {:gift "La vostra presenza in questo giorno speciale sarà il regalo più importante.
+Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo usando queste coordinate bancarie:"}})
 
 (def ^:private tr
   (partial translate gift-dict))
 
-;; should the wish list url be directly here or injected in some other way?
-(defn amazon-wish-list
-  "Amazon wish list view"
-  []
-  [:div {:class "amazon-wish-list"}
-   [:h3 "Amazon Wish list"]
-   [:a {:href "http://amzn.eu/hzWt6gk"} "Amazon wish list"]])
-
-(defn stripe-form
-  [language]
-  [:form {:action "/stripe-checkout" :method "POST"}
-   [:script
-    {:src "https://checkout.stripe.com/checkout.js" :class "stripe-button"
-     :data-key STRIPE-KEY
-     :data-amount 100
-     :data-name "Demo Payment"
-     :data-description "Widget"
-     :data-image STRIPE-IMG
-     :data-locale "auto"
-     :data-zip-code "true"
-     ;; the gbp should change depending on the language automatically
-     :data-currency (get LANGUAGE-TO-CURRENCY language)}
-    ]])
-
 (defn gift
   []
   [:div.gift {:id "gift"}
-   [:h3 "Gift"]])
+   [:h3 "Gift"]
+   (tr :gift)
+   [:h4 "Euros"]
+   [:ul
+    [:li "NAME:" (-> coordinates :eur :name)]
+    [:li "IBAN:" (-> coordinates :eur :iban)]]
+
+   [:h4 "Pounds"]
+   [:ul
+    [:li "NAME:" (-> coordinates :gbp :name)]
+    [:li "IBAN:" (-> coordinates :gbp :iban)]
+    [:li "SORT CODE:" (-> coordinates :gbp :sort-code)]
+    [:li "NUMBER:" (-> coordinates :gbp :number)]]])

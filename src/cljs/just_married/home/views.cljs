@@ -10,26 +10,14 @@
    #_[just-married.home.rvsp :refer [rvsp]]
    #_[just-married.home.story :refer [story]]))
 
-
-;; should dispatch the right language also here of course
-
-(defn gifts
-  []
-  [:div.section {:id "gifts"}
-   [:div {:id "amazon-wish-list"}
-    [:a {:href settings/AMAZON-WISH-LIST} "Amazon wish list"]]])
-
 (def SECTIONS
   {:countdown countdown
    ;; :story story
    :find-us find-us
    :timeline timeline
    ;; :rvsp rvsp
-   ;; :gifts gifts
    :accommodation accommodation
-   ;; :contacts contacts
-   })
-
+   :gift gift})
 
 (defn main-panel
   []
