@@ -3,6 +3,7 @@
             [goog.string]
             [re-frame.core :refer [dispatch subscribe]]))
 
+;; keeping this here in case we want to show all the information available?
 (def prices
   {:single    58.5
    :double    71
