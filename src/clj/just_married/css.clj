@@ -122,7 +122,7 @@
               :grid-row 3}]
 
    [:.accommodation {:grid-column 1
-                     :grid-row 3}]
+                     :grid-row 4}]
 
    [:ul {:list-style "none"}]
 
