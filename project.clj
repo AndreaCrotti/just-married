@@ -10,6 +10,7 @@
                  [compojure "1.6.0"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
                  ;; various integrations
+                 #_[racehub/stripe-clj "0.3.5"]
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
@@ -17,11 +18,11 @@
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.2"]
-                 [day8.re-frame/http-fx "0.1.5"]
+                 [day8.re-frame/http-fx "0.1.4"]
                  [cljs-ajax "0.7.3"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
-                 [garden "1.3.4"]
+                 [garden "1.3.3"]
                  [tongue "0.2.3"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]
                  [com.taoensso/tempura "1.1.2"]
@@ -30,26 +31,28 @@
                  ;; testing libraries, could they also not be in here at all?
                  [doo "0.1.8"]
                  [day8.re-frame/test "0.1.5"]
-                 [day8.re-frame/re-frame-10x "0.2.0-react16"]
+                 [day8.re-frame/trace "0.1.13"]
                  [clj-recaptcha "0.0.2"]
 
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
-                 [prone "1.5.0"]
+                 [prone "1.1.4"]
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.3"]
                  [clj-postgresql "0.7.0"]
-                 [org.clojure/java.jdbc "0.7.5"]
-                 [org.postgresql/postgresql "42.2.1"]
+                 [org.clojure/java.jdbc "0.7.4"]
+                 [org.postgresql/postgresql "42.1.4"]
 
                  [honeysql "0.9.1"]
-                 [migratus "1.0.6"]
+                 [migratus "1.0.2"]
+                 [com.rpl/specter "1.0.5"]
+                 [mount "0.1.11"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
                  [secretary "1.2.3"]
                  [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
-                 [reframe-utils "0.2.0"]
+                 [reframe-utils "0.1.4"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]]
 
@@ -104,7 +107,7 @@
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-    :dependencies [[binaryage/devtools "0.9.9"]
+    :dependencies [[binaryage/devtools "0.9.8"]
                    [com.cemerick/piggieback "0.2.2"]
                    [figwheel "0.5.14"]
                    [figwheel-sidecar "0.5.14"]
@@ -132,7 +135,7 @@
                     :source-map true
                     :source-map-timestamp true
                     :closure-defines      {"re_frame.trace.trace_enabled_QMARK_" true}
-                    :preloads             [devtools.preload day8.re-frame-10x.preload]
+                    :preloads             [devtools.preload day8.re-frame.trace.preload]
                     :external-config      {:devtools/config {:features-to-install [:formatters
                                                                                    :async
                                                                                    :hints]}}}}

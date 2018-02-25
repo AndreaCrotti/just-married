@@ -52,9 +52,9 @@
 
    :accommodation {:element-id "accommodation-map"
                    :places [:princi :villa]
-                   :center {(-> places :villa :lat)
-                            (-> places :villa :lng)}
-                   :zoom 13
+                   :center {:lat (-> places :villa :lat)
+                            :lng (-> places :villa :lng)}
+                   :zoom 15
                    :map-type-id "roadmap"}
 
    ;; use this merged map somewhere

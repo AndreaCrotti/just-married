@@ -36,4 +36,3 @@ function addMap(mapConfig) {
 
 addMap(config['maps']['wedding']);
 addMap(config['maps']['accommodation']);
-

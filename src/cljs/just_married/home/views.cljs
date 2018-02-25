@@ -25,7 +25,7 @@
    :timeline timeline
    ;; :rvsp rvsp
    ;; :gifts gifts
-   :accomodation accommodation
+   :accommodation accommodation
    ;; :contacts contacts
    })
 
