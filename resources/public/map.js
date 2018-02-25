@@ -1,5 +1,8 @@
 var config = window.config;
 
+// TODO: can we not convert this to Clojurescript even eventually just
+// by using the Javascript interop?
+
 function addMarker(map, place) {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(place.lat, place.lng),
@@ -32,3 +35,4 @@ function addMap(mapConfig) {
 }
 
 addMap(config['maps']['wedding']);
+addMap(config['maps']['accommodation']);

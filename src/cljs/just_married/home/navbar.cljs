@@ -8,7 +8,7 @@
         :story "Our Story"
         :find-us "Find Us"
         :countdown "Countdown"
-        :accomodation "Accommodation"
+        :accommodation "Accommodation"
         :contacts "Contacts"}
 
    :it {:home "Home"
@@ -17,7 +17,7 @@
         :find-us "Trovaci"
         :rvsp "RVSP"
         :countdown "Conto Alla Rovescia"
-        :accomodation "Dove Dormire"
+        :accommodation "Dove Dormire"
         :contacts "Contatti"}})
 
 (defn navbar
