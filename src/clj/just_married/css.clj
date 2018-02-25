@@ -113,6 +113,8 @@
    [:.accommodation {:grid-column 1
                      :grid-row 4}]
 
+   [:.accommodation__villa-immacolata {:padding-bottom "20px"}]
+
    [:ul {:list-style "none"}]
 
    [:.rvsp__form {:display "grid"
