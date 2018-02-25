@@ -7,25 +7,14 @@
 (def ^:private max-width-mobile "480px")
 
 (def COLOR-PALLETTE
-  {:amaranth "#E52B50"
-   :white "#FFFFFF"
+  {:white "#FFFFFF"
    :navy "#0e0e4c"
    :light-grey "#DDDDDD"
-   ;; :light-background "#dcdcdc"
-   :light-background "#f9eef0"
    :dark-red "#8B0000"
-   :blue "#4444FF"
    :gold "#FFd700"
-   :golden-yellow "#FFDF00"
-   :metallic-gold "#D4AF37"
    :marsala "#955251"
-   :royal-blue "#4169e1"
-   :deep-blue "#00bfff"
-   :electric-blue "#2C75FF"
-   :deep-electric-blue "#035096"
    :quote-background "#f9f9f9"
-   :quote-border-left "#ccc"
-   :map-background "#fff"})
+   :quote-border-left "#ccc"})
 
 (def FONT-FAMILIES
   {:open-sans "'Open Sans', sans-serif"
