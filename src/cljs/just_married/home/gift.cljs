@@ -18,11 +18,13 @@
 
 (def gift-dict
   {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon at the Seychelles you can do use these bank coordinates:"
-        :pounds "British Pounds"}
+        :pounds "British Pounds"
+        :title  "Contribute"}
 
    :it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante.
 Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo usando queste coordinate bancarie:"
-        :pounds "Sterline"}})
+        :pounds "Sterline"
+        :title  "Contributo"}})
 
 (def ^:private tr
   (partial translate gift-dict))
@@ -41,7 +43,7 @@ Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo 
 (defn gift
   []
   [:div.gift {:id "gift"}
-   [:h3 "Gift"]
+   [:h3 (tr :title)]
    (tr :gift)
    [:h4 "Euros (€)"]
    (coords-table [:name :iban] :eur)
