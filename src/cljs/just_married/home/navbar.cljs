@@ -10,7 +10,7 @@
         :countdown "Countdown"
         :accommodation "Accommodation"
         :contacts "Contacts"
-        :gift "Contribute"}
+        :gift "Wedding Registry"}
 
    :it {:home "Home"
         :timeline "Programma"
@@ -20,7 +20,7 @@
         :countdown "Conto Alla Rovescia"
         :accommodation "Dove Dormire"
         :contacts "Contatti"
-        :gift "Contributo"}})
+        :gift "Lista Nozze"}})
 
 (defn navbar
   [sections]
