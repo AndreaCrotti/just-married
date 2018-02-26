@@ -14,7 +14,7 @@
    ["14:00" :parco :lunch-reception]
    ["16:00" :parco :cake-champagne]
    ["16:30" :parco :games-kick-off]
-   ["19:00" :parco :evening-reception]
+   ["19:30" :parco :evening-reception]
    ["21:00" :parco :music-party]
    ["23:00" :parco :final-cake]])
 
@@ -23,7 +23,7 @@
         :timeline "Timeline"
         :civil-start "Civil cerimony starts"
         :civil-end "Civil cerimony ends"
-        :cheers "Cheers and Greetings to Mr and Mrs Andrea Crotti"
+        :cheers "Cheers and Greetings to Andrea & Enrica"
         :grand-buffet "Grand Buffet"
         :lunch-reception "Lunch Reception"
         :games-kick-off "Games kick-off"
@@ -36,12 +36,12 @@
         :timeline "Programma Della Giornata"
         :civil-start "Inizio cerimonia civile"
         :civil-end "Fine cerimonia civile"
-        :cheers "Saluti agli sposi Crotti - trasferimento al Parco dei Principi"
+        :cheers "Saluti agli sposi - trasferimento al Parco dei Principi"
         :grand-buffet "Grand Buffet"
         :lunch-reception "Pranzo"
         :games-kick-off "Inizio dei giochi"
-        :evening-reception "Cena"
-        :music-party "Musica e serata"
+        :evening-reception "Ricevimento cenato"
+        :music-party "Festeggiamenti serali"
         :cake-champagne "Torta e Champagne"
         :final-cake "Torta e Champagne"}})
 
