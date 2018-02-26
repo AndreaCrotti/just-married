@@ -28,14 +28,9 @@
 
 (def ^:private common-grid-options
   {:display "grid"
-   :grid-gap "5px"})
-
-(def ^:private grid-config
-  {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
-                                        :grid-template-rows "auto auto auto auto auto"})
-
-   :mobile (merge common-grid-options {:grid-template-columns "auto"
-                                       :grid-template-rows "auto auto auto auto auto auto"})})
+   :grid-gap "5px"
+   :grid-template-columns "auto"
+   :grid-template-rows "auto auto auto auto auto"})
 
 (def ^:private navbar-grid-config
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
@@ -80,7 +75,7 @@
    [:a:hover {:text-decoration "none"}]])
 
 (def main-page
-  [[:.container (:desktop grid-config)]
+  [[:.container common-grid-options]
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
    [:body {:color (:navy COLOR-PALLETTE)
            :font-family (:alex-brush FONT-FAMILIES)}]
@@ -95,26 +90,12 @@
 
    [:.button__add-to-calendar {:background-color (:dark-red COLOR-PALLETTE)
                                :color (:white COLOR-PALLETTE)}]
-   [:.find-us {:grid-column 1
-               :grid-row 2}]
-
-   [:.timeline {:grid-column 2
-                :grid-row 2}]
 
    [:.timeline__time {:padding-right "10px"
                       :font-weight "bolder"}]
 
    [:.timeline__icon {:width "22px"
                       :padding-right "5px"}]
-
-   #_[:.rvsp {:grid-column 1
-              :grid-row 3}]
-
-   [:.accommodation {:grid-column 1
-                     :grid-row 4}]
-
-   [:.gift {:grid-column 1
-            :grid-row 5}]
 
    [:.bank_table {:font-family (:open-sans FONT-FAMILIES)}]
 
@@ -173,7 +154,8 @@
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
    ;; maybe the image containing the rest should actually be an element
    ;; by itself?
-   [:.countdown__internal {:text-align "center"}]
+   [:.countdown__internal {:text-align "center"
+                           :width "500px"}]
 
    ;; countdown settings
    [:.timer {;:background-color (:marsala COLOR-PALLETTE)
@@ -239,7 +221,7 @@
                :max-device-width max-width-mobile}
 
               [:.navbar__container (:mobile navbar-grid-config)]
-              [:.container (:mobile grid-config)]
+              [:.container common-grid-options]
               ;; should I simply change the layout
               ;; entirely moving with everything on the same column??
               [:.timeline {:grid-column 1
