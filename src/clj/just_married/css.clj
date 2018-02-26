@@ -32,17 +32,17 @@
 
 (def ^:private grid-config
   {:desktop (merge common-grid-options {:grid-template-columns "550px auto"
-                                        :grid-template-rows "auto auto auto auto"})
+                                        :grid-template-rows "auto auto auto auto auto"})
 
    :mobile (merge common-grid-options {:grid-template-columns "auto"
-                                       :grid-template-rows "auto auto auto auto auto"})})
+                                       :grid-template-rows "auto auto auto auto auto auto"})})
 
 (def ^:private navbar-grid-config
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
              :font-weight "bolder"
              :display "grid"
              :font-size "1.5em"
-             :grid-template-columns "repeat(5, 1fr)"
+             :grid-template-columns "repeat(6, 1fr)"
              :grid-auto-rows "auto"
              :grid-gap "1em"
              :align-items "center"
@@ -60,7 +60,7 @@
             :display "grid"
             :font-size "2em"
             :grid-template-columns "auto"
-            :grid-template-rows "repeat(4, 1fr)"
+            :grid-template-rows "repeat(6, 1fr)"
             :grid-auto-rows "auto"
             :grid-gap "1em"
             :align-items "left"
@@ -112,6 +112,16 @@
 
    [:.accommodation {:grid-column 1
                      :grid-row 4}]
+
+   [:.gift {:grid-column 1
+            :grid-row 5}]
+
+   [:.bank_table {:font-family (:open-sans FONT-FAMILIES)}]
+
+   [:th {:padding "4px"}]
+   [:td {:padding "5px"
+         :text-align "left"
+         :border (format "0.8px solid %s" (:navy COLOR-PALLETTE))}]
 
    [:.accommodation__villa-immacolata {:padding-bottom "20px"}]
 

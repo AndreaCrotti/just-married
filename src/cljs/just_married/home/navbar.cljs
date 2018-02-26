@@ -9,7 +9,8 @@
         :find-us "Find Us"
         :countdown "Countdown"
         :accommodation "Accommodation"
-        :contacts "Contacts"}
+        :contacts "Contacts"
+        :gift "Contribute"}
 
    :it {:home "Home"
         :timeline "Programma"
@@ -18,7 +19,8 @@
         :rvsp "RVSP"
         :countdown "Conto Alla Rovescia"
         :accommodation "Dove Dormire"
-        :contacts "Contatti"}})
+        :contacts "Contatti"
+        :gift "Contributo"}})
 
 (defn navbar
   [sections]
