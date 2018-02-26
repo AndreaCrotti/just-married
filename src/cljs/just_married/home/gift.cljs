@@ -17,12 +17,11 @@
          :sort-code "09-01-29"}})
 
 (def gift-dict
-  {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon at the Seychelles you can do use these bank coordinates:"
+  {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon trip to the Seychelles you can do use these bank coordinates:"
         :pounds "British Pounds"
         :title  "Contribute"}
 
-   :it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante.
-Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo usando queste coordinate bancarie:"
+   :it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo usando queste coordinate bancarie:"
         :pounds "Sterline"
         :title  "Contributo"}})
 
