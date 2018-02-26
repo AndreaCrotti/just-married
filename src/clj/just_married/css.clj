@@ -46,7 +46,6 @@
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
              :font-weight "bolder"
              :display "grid"
-             :font-size "1.5em"
              :grid-template-columns menu-size
              :grid-auto-rows "auto"
              :grid-gap "1em"
@@ -63,7 +62,6 @@
    :mobile {:background-color (:dark-red COLOR-PALLETTE)
             :font-weight "bolder"
             :display "grid"
-            :font-size "2em"
             :grid-template-columns "auto"
             :grid-template-rows menu-size
             :grid-auto-rows "auto"
