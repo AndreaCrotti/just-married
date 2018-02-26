@@ -36,7 +36,7 @@
         :timeline "Programma Della Giornata"
         :civil-start "Inizio cerimonia civile"
         :civil-end "Fine cerimonia civile"
-        :cheers "Saluti agli sposi - trasferimento al Parco dei Principi"
+        :cheers "Saluti agli sposi - trasferimento al Ristorante Parco dei Principi"
         :grand-buffet "Grand Buffet"
         :lunch-reception "Pranzo"
         :games-kick-off "Inizio dei giochi"
