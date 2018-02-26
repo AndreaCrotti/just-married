@@ -69,17 +69,11 @@
 
    [:button.button__add-to-calendar (tr :add-to-calendar)]])
 
-;;TODO: evaluate using a macro to avoid redefining the same king
-;;of function every time
-
 (defn countdown
   []
   [:div.countdown.section {:id "countdown"}
    [:h3 (tr :countdown)]
    [:div.names "Andrea Crotti & Enrica Verrucci"]
-   #_[:div.find-us
-      [:a {:href "#find-us"} (-> settings/PLACES :wedding :name)]]
-
    [:div.date (tr :date)]
    (add-to-calendar)
    [:div.countdown__internal

@@ -1,10 +1,18 @@
 (ns just-married.css
   (:require [garden.def :refer [defstyles defcssfn]]
             [garden.stylesheet :refer [at-media]]
+            [just-married.shared :refer [sections]]
             #_[garden.core :refer [css]]))
 
 (def ^:private map-width "500px")
 (def ^:private max-width-mobile "480px")
+(def num-sections (-> sections count))
+(def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
+
+(defn repeat-word
+  [word times]
+  (clojure.string/join " "
+                       (take times (cycle [word]))))
 
 (def COLOR-PALLETTE
   {:white "#FFFFFF"
@@ -27,17 +35,19 @@
     :font-family (:open-sans FONT-FAMILIES)}})
 
 (def ^:private common-grid-options
-  {:display "grid"
-   :grid-gap "5px"
+  {:display               "grid"
+   :grid-gap              "5px"
    :grid-template-columns "auto"
-   :grid-template-rows "auto auto auto auto auto"})
+   :grid-template-rows    (repeat-word "auto" num-sections)
+   :padding-left          "40px"
+   :width                 "600px"})
 
 (def ^:private navbar-grid-config
   {:desktop {:background-color (:dark-red COLOR-PALLETTE)
              :font-weight "bolder"
              :display "grid"
              :font-size "1.5em"
-             :grid-template-columns "repeat(6, 1fr)"
+             :grid-template-columns menu-size
              :grid-auto-rows "auto"
              :grid-gap "1em"
              :align-items "center"
@@ -55,7 +65,7 @@
             :display "grid"
             :font-size "2em"
             :grid-template-columns "auto"
-            :grid-template-rows "repeat(6, 1fr)"
+            :grid-template-rows menu-size
             :grid-auto-rows "auto"
             :grid-gap "1em"
             :align-items "left"
