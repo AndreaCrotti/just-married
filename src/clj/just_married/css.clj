@@ -87,16 +87,20 @@
 (def main-page
   [[:.container common-grid-options]
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
-   [:body {:color (:navy COLOR-PALLETTE)
-           :font-family (:alex-brush FONT-FAMILIES)}]
+   [:body {:color       (:navy COLOR-PALLETTE)
+           :font-family (:alex-brush FONT-FAMILIES)
+           :font-size   "1.4em"}]
+
    [:.countdown {:grid-column 1
-                 :grid-row 1
-                 ;; :color (:marsala COLOR-PALLETTE)
-                                        ;:font-weight "bold"
-                 ;; might be nice to shrink this in theory??
-                 ;; :width "50%"
-                 ;;:font-family (:alex-brush FONT-FAMILIES)
-                 :font-size "x-large"}]
+                 :grid-row    1}]
+
+   [:.countdown__internal {:text-align "center"
+                           :width      "500px"}]
+
+   [:.timer {:font-size "1.5em"
+             :font-family (:alex-brush FONT-FAMILIES)
+             :border-color (:dark-red COLOR-PALLETTE)
+             :margin-top "10px"}]
 
    [:.button__add-to-calendar {:background-color (:dark-red COLOR-PALLETTE)
                                :color (:white COLOR-PALLETTE)}]
@@ -162,18 +166,6 @@
                        :box-shadow (format "0 0 20px %s" (:dark-red COLOR-PALLETTE))}]
 
    [:app {:background-color (:marsala COLOR-PALLETTE)}]
-   ;; maybe the image containing the rest should actually be an element
-   ;; by itself?
-   [:.countdown__internal {:text-align "center"
-                           :width "500px"}]
-
-   ;; countdown settings
-   [:.timer {;:background-color (:marsala COLOR-PALLETTE)
-             :border-width "1px"
-             :border-style "solid"
-             :font-size "2em"
-             :font-family (:alex-brush FONT-FAMILIES)
-             :border-color (:dark-red COLOR-PALLETTE)}]
 
    ;; find us settings
    [:.google-map {:width map-width
