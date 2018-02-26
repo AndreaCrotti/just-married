@@ -32,18 +32,18 @@
         :cake-champagne "Cake and Champagne"
         :final-cake "Cake and Champagne"}
 
-   :it {:waiting "Waiting for the bride aperitif"
+   :it {:waiting "Aperitivo aspettando la sposa"
         :timeline "Programma Della Giornata"
-        :civil-start "Civil cerimony starts"
-        :civil-end "Civil cerimony ends"
-        :cheers "Cheers and Greetings to Mr and Mrs Andrea Crotti - Moving to Parco dei Principi"
+        :civil-start "Inizio cerimonia civile"
+        :civil-end "Fine cerimonia civile"
+        :cheers "Saluti agli sposi Crotti - trasferimento al Parco dei Principi"
         :grand-buffet "Grand Buffet"
-        :lunch-reception "Lunch Reception"
-        :games-kick-off "Games kick-off"
-        :evening-reception "Evening Reception"
-        :music-party "Music and Evening After Party"
-        :cake-champagne "Cake and Champagne"
-        :final-cake "Cake and Champagne"}})
+        :lunch-reception "Pranzo"
+        :games-kick-off "Inizio dei giochi"
+        :evening-reception "Cena"
+        :music-party "Musica e serata"
+        :cake-champagne "Torta e Champagne"
+        :final-cake "Torta e Champagne"}})
 
 (def ^:private tr (partial translate timeline-dict))
 
