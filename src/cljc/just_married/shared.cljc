@@ -11,3 +11,9 @@
    :map-type-id geo/map-type-id
    :center geo/map-center
    :maps geo/map-configs})
+
+(def sections
+  [:countdown
+   :find-us
+   :timeline
+   :accommodation])
