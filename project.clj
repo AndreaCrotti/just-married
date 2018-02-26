@@ -76,7 +76,9 @@
   :figwheel {:css-dirs ["resources/public/css"]
              :open-file-command "lein_opener.sh"
              :ring-handler just-married.api/app
-             :server-logfile "log/figwheel.log"}
+             :server-logfile "log/figwheel.log"
+             :server-port 3450
+             :server-ip "127.0.0.1"}
 
   :ring {:handler just-married.api/app}
   :main ^{:skip-aot true} just-married.api
