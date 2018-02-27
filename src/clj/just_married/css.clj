@@ -25,9 +25,10 @@
    :quote-border-left "#ccc"})
 
 (def FONT-FAMILIES
-  {:open-sans "'Open Sans', sans-serif"
+  {:open-sans  "'Open Sans', sans-serif"
    :alex-brush "'Alex Brush', cursive"
-   :rancho "'Rancho', cursive"})
+   :rancho     "'Rancho', cursive"
+   :satisfy    "'Satisfy', cursive"})
 
 (def FONT-STYLES
   {:big
@@ -86,7 +87,7 @@
   [[:.container common-grid-options]
    [:h3 {:color (:dark-red COLOR-PALLETTE)}]
    [:body {:color       (:navy COLOR-PALLETTE)
-           :font-family (:alex-brush FONT-FAMILIES)
+           :font-family (:satisfy FONT-FAMILIES)
            :font-size   "1.4em"}]
 
    [:.countdown {:grid-column 1
