@@ -51,6 +51,10 @@ ga('send', 'pageview');"
    (google-font "Open+Sans")
    (google-font "Rancho")
    (google-font "Alex+Brush")
+   (google-font "Kaushan+Script")
+   (google-font "Satisfy")
+   (google-font "Great+Vibes")
+   (google-font "Tangerine")
 
    [:link {:href (cache-buster "css/screen.css")
            :rel "stylesheet"
