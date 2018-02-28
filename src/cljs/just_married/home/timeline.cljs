@@ -49,7 +49,7 @@
 
 (defn timeline
   []
-  [:div.timeline {:id "timeline"}
+  [:div.timeline.section {:id "timeline"}
    [:h3 (tr :timeline)]
    (into [:ul]
          (for [[time place key] timeline-def]

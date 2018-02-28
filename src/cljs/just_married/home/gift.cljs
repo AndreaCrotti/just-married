@@ -31,19 +31,19 @@
 (defn coords-table
   [fields key]
   [:table.bank_table
-   [:thead
+   [:tbody
     (into [:tr]
           (for [f fields]
-            [:th (-> f name string/upper-case)]))]
+            [:th (-> f name string/upper-case)]))
 
-   [:tbody
+
     (into [:tr]
           (for [f fields]
             [:td (-> coordinates key f)]))]])
 
 (defn gift
   []
-  [:div.gift {:id "gift"}
+  [:div.gift.section {:id "gift"}
    [:h3 (tr :title)]
    (tr :gift)
    [:h4 "Euros (€)"]

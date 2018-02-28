@@ -31,7 +31,7 @@
 
 (defn accommodation
   []
-  [:div.accommodation {:id "accommodation"}
+  [:div.accommodation.section {:id "accommodation"}
    [:h3 (tr :title)]
    [:div.accommodation__villa-immacolata
     [:div (tr :suggest)]
