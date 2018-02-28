@@ -31,12 +31,12 @@
 (defn coords-table
   [fields key]
   [:table.bank_table
-   [:thead
+   [:tbody
     (into [:tr]
           (for [f fields]
-            [:th (-> f name string/upper-case)]))]
+            [:th (-> f name string/upper-case)]))
 
-   [:tbody
+
     (into [:tr]
           (for [f fields]
             [:td (-> coordinates key f)]))]])
