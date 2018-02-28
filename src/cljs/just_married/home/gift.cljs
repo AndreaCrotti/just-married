@@ -43,7 +43,7 @@
 
 (defn gift
   []
-  [:div.gift {:id "gift"}
+  [:div.gift.section {:id "gift"}
    [:h3 (tr :title)]
    (tr :gift)
    [:h4 "Euros (€)"]

@@ -1,11 +1,13 @@
 (ns just-married.css
   (:require [garden.def :refer [defstyles defcssfn]]
             [garden.stylesheet :refer [at-media]]
-            [just-married.shared :refer [sections]]
-            #_[garden.core :refer [css]]))
+            [just-married.shared :refer [sections]]))
 
-(def ^:private map-width "500px")
+;; (def ^:private map-width "500px")
+(def ^:private map-height "500px")
 (def ^:private max-width-mobile "480px")
+
+;; dynamically get the grid size from the actual sections declared
 (def num-sections (-> sections count))
 (def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
 
@@ -14,7 +16,7 @@
   (clojure.string/join " "
                        (take times (cycle [word]))))
 
-(def COLOR-PALLETTE
+(def color-pallette
   {:white "#FFFFFF"
    :navy "#0e0e4c"
    :light-grey "#DDDDDD"
@@ -24,60 +26,46 @@
    :quote-background "#f9f9f9"
    :quote-border-left "#ccc"})
 
-(def FONT-FAMILIES
+(def font-families
   {:open-sans  "'Open Sans', sans-serif"
    :alex-brush "'Alex Brush', cursive"
    :rancho     "'Rancho', cursive"
    :satisfy    "'Satisfy', cursive"})
 
-(def FONT-STYLES
-  {:big
-   {:font-weight "bolder"
-    :font-family (:open-sans FONT-FAMILIES)}})
-
 (def ^:private common-grid-options
   {:display               "grid"
    :grid-gap              "5px"
-   :grid-template-columns "auto"
+   :grid-template-columns "auto 80% auto"
    :grid-template-rows    (repeat-word "auto" num-sections)
-   :padding-left          "40px"
-   :width                 "600px"})
+   ;; :padding-left          "30px"
+   :justify-items         "left"
+   :justify-content       "center"
+   :width                 "90%"})
+
+(def ^:private grid-config
+  {:background-color      (:dark-red color-pallette)
+   :font-weight           "bolder"
+   :display               "grid"
+   :grid-gap              "1em"
+   :align-items           "center"
+   :text-align            "center"
+   :text-decoration       "none"
+   :margin-bottom         "50px"
+   :position              "sticky"
+   :top                   "0"
+   ;; to avoid making it go behind the map
+   :z-index               100})
 
 (def ^:private navbar-grid-config
-  {:desktop {:background-color (:dark-red COLOR-PALLETTE)
-             :font-weight "bolder"
-             :display "grid"
-             :grid-template-columns menu-size
-             :grid-auto-rows "auto"
-             :grid-gap "1em"
-             :align-items "center"
-             :text-align "center"
-             :text-decoration "none"
-             :color (:gold COLOR-PALLETTE)
-             :margin-bottom "50px"
-             :position "sticky"
-             :top "0"
-             ;; to avoid making it go behind the map
-             :z-index 100}
+  ;; simply invert rows and columns while using the same grid
+  ;; otherwise
+  {:desktop (merge grid-config
+                   {:grid-template-columns menu-size
+                    :grid-template-rows    "auto"})
 
-   :mobile {:background-color (:dark-red COLOR-PALLETTE)
-            :font-weight "bolder"
-            :display "grid"
-            :grid-template-columns "auto"
-            :grid-template-rows menu-size
-            :grid-auto-rows "auto"
-            :grid-gap "1em"
-            :align-items "left"
-            :text-align "left"
-            :text-decoration "none"
-            :color (:gold COLOR-PALLETTE)
-            :margin-bottom "50px"
-            :padding-top "10px"
-            :padding-left "10px"
-            :position "sticky"
-            :top "0"
-            ;; to avoid making it go behind the map
-            :z-index 100}})
+   :mobile (merge grid-config
+                  {:grid-template-columns "auto"
+                   :grid-template-rows    menu-size})})
 
 (def common
   [[:a {:text-decoration "none"}]
@@ -85,24 +73,28 @@
 
 (def main-page
   [[:.container common-grid-options]
-   [:h3 {:color (:dark-red COLOR-PALLETTE)}]
-   [:body {:color       (:navy COLOR-PALLETTE)
-           :font-family (:satisfy FONT-FAMILIES)
-           :font-size   "1.4em"}]
+   ;; [:.section {:grid-column "1"}]
+   [:.find-us {:grid-column "2"}]
+   [:.countdown {:grid-column "2"}]
+   [:.timeline {:grid-column "2"}]
+   [:.gift {:grid-column "2"}]
+   [:.accommodation {:grid-column "2"}]
 
-   [:.countdown {:grid-column 1
-                 :grid-row    1}]
+   [:h3 {:color (:dark-red color-pallette)}]
+   [:body {:color       (:navy color-pallette)
+           :font-family (:satisfy font-families)
+           :font-size   "1.4em"}]
 
    [:.countdown__internal {:text-align "center"
                            :width      "500px"}]
 
    [:.timer {:font-size "1.5em"
-             :font-family (:alex-brush FONT-FAMILIES)
-             :border-color (:dark-red COLOR-PALLETTE)
+             :font-family (:alex-brush font-families)
+             :border-color (:dark-red color-pallette)
              :margin-top "10px"}]
 
-   [:.button__add-to-calendar {:background-color (:dark-red COLOR-PALLETTE)
-                               :color (:white COLOR-PALLETTE)}]
+   [:.button__add-to-calendar {:background-color (:dark-red color-pallette)
+                               :color (:white color-pallette)}]
 
    [:.timeline__time {:padding-right "10px"
                       :font-weight "bolder"}]
@@ -110,12 +102,12 @@
    [:.timeline__icon {:width "22px"
                       :padding-right "5px"}]
 
-   [:.bank_table {:font-family (:open-sans FONT-FAMILIES)}]
+   [:.bank_table {:font-family (:open-sans font-families)}]
 
    [:th {:padding "4px"}]
    [:td {:padding "5px"
          :text-align "left"
-         :border (format "0.8px solid %s" (:navy COLOR-PALLETTE))}]
+         :border (format "0.8px solid %s" (:navy color-pallette))}]
 
    [:.accommodation__villa-immacolata {:padding-bottom "20px"}]
 
@@ -134,51 +126,53 @@
                      :display "inline-block"
                      :border "none"
                      :cursor "hand"
-                     :color (:white COLOR-PALLETTE)}]
+                     :color (:white color-pallette)}]
 
    [:.rvsp__confirm:hover {:font-size "1.5em"}]
 
-   [:.rvsp__coming {:background-color (:dark-red COLOR-PALLETTE)}]
+   [:.rvsp__coming {:background-color (:dark-red color-pallette)}]
 
-   [:.rvsp__not_coming {:background-color (:navy COLOR-PALLETTE)}]
+   [:.rvsp__not_coming {:background-color (:navy color-pallette)}]
 
-   [:blockquote:before {:color (:quote-border-left COLOR-PALLETTE)
+   [:blockquote:before {:color (:quote-border-left color-pallette)
                         :content "open-quote"
                         :font-size "3em"
                         :line-height ".1em"
                         :margin-right ".25em"
                         :vertical-align "-0.4em"}]
 
-   [:blockquote {:background (:quote-background COLOR-PALLETTE)
+   [:blockquote {:background (:quote-background color-pallette)
                  :padding "0.5em 10px"
                  :font-size "1em"
-                 :font-family (:open-sans FONT-FAMILIES)
-                 :border-left (format "10px solid %s" (:quote-border-left COLOR-PALLETTE))
+                 :font-family (:open-sans font-families)
+                 :border-left (format "10px solid %s" (:quote-border-left color-pallette))
                  :quotes "\201C\201D\2018\2019"}]
 
-   [:blockquote:after {:color (:quote-border-left COLOR-PALLETTE)
+   [:blockquote:after {:color (:quote-border-left color-pallette)
                        :content "close-quote"
                        :font-size "2em"
                        :line-height ".1em"
                        :margin-right ".25em"
                        :vertical-align "-.2em"
-                       :box-shadow (format "0 0 20px %s" (:dark-red COLOR-PALLETTE))}]
+                       :box-shadow (format "0 0 20px %s" (:dark-red color-pallette))}]
 
-   [:app {:background-color (:marsala COLOR-PALLETTE)}]
+   [:app {:background-color (:marsala color-pallette)}]
 
    ;; find us settings
-   [:.google-map {:width map-width
-                  :height map-width
+   [:.google-map {:width "90%"
+                  :height map-height
                   :padding "15px"
-                  :box-shadow (format "10px 10px 20px %s" (:light-grey COLOR-PALLETTE))
+                  :box-shadow (format "10px 10px 20px %s" (:light-grey color-pallette))
                   :border-radius "10px"}]
+
+   [:.find-us-text {:padding-bottom "30px"}]
 
    [:.navbar__container (:desktop navbar-grid-config)
 
     ;; FIXME: should be less generic here
-    [:a {:color (:white COLOR-PALLETTE)}]
+    [:a {:color (:white color-pallette)}]
 
-    [:a:hover {:color (:gold COLOR-PALLETTE)
+    [:a:hover {:color (:gold color-pallette)
                :border-left "1px solid white"
                :border-right "1px solid white"}]]])
 
@@ -193,7 +187,7 @@
                      :position "absolute"
                      :grid-template-columns "auto auto"
                      :grid-template-rows "auto auto auto"
-                     :background-color (:dark-red COLOR-PALLETTE)}]
+                     :background-color (:dark-red color-pallette)}]
 
    [:.monogram__container {:grid-row "1"
                            :grid-column "span 2"
@@ -203,8 +197,8 @@
                        :grid-row "2"
                        :font-size "5em"
                        :text-shadow "2px 2px 2px"
-                       :font-family (:alex-brush FONT-FAMILIES)
-                       :color (:white COLOR-PALLETTE)}]
+                       :font-family (:alex-brush font-families)
+                       :color (:white color-pallette)}]
 
    [:.flag {:width "100px"}]
 
@@ -222,11 +216,7 @@
                :max-device-width max-width-mobile}
 
               [:.navbar__container (:mobile navbar-grid-config)]
-              [:.container common-grid-options]
-              ;; should I simply change the layout
-              ;; entirely moving with everything on the same column??
-              [:.timeline {:grid-column 1
-                           :grid-row 3}])]])
+              [:.container common-grid-options])]])
 
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?

@@ -12,7 +12,7 @@
 
 (defn find-us
   []
-  [:div.find-us {:id "find-us"}
+  [:div.find-us.section {:id "find-us"}
    [:h3 (tr :find-us)]
    [:div.find-us-text (tr :find-us-text)]
    [:div.google-map {:id "map"}]])
