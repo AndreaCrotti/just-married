@@ -1,5 +1,6 @@
 (ns just-married.home.find-us
-  (:require [just-married.home.language :refer [translate]]))
+  (:require [just-married.home.language :refer [translate]]
+            [just-married.geo-info :refer [place-detail]]))
 
 (def ^:private find-us-dict
   {:en {:find-us "Find Us"
@@ -15,4 +16,8 @@
   [:div.find-us.section {:id "find-us"}
    [:h3 (tr :find-us)]
    [:div.find-us-text (tr :find-us-text)]
-   [:div.google-map {:id "map"}]])
+   [:div.google-map {:id "map"}]
+
+   (into [:ul]
+         (for [k [:lepri :princi]]
+           [:li (place-detail k)]))])
