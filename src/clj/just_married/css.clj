@@ -39,8 +39,7 @@
    :grid-template-rows    (repeat-word "auto" num-sections)
    :justify-items         "left"
    :justify-content       "center"
-   :width                 "90%"
-   :padding-top           "100px"})
+   :width                 "90%"})
 
 (def ^:private navbar-grid-config
   {:background-color      (:dark-red color-pallette)
@@ -216,7 +215,7 @@
                :max-device-width max-width-mobile}
 
               [:.navbar__container (:mobile navbar-grid-config)]
-              [:.container common-grid-options])]])
+              [:.container body-grid-config])]])
 
 (defstyles screen
   ;; could maybe even split creating multiple CSS files?
