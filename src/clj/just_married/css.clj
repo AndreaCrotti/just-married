@@ -32,22 +32,21 @@
    :rancho     "'Rancho', cursive"
    :satisfy    "'Satisfy', cursive"})
 
-(def ^:private common-grid-options
+(def ^:private body-grid-config
   {:display               "grid"
    :grid-gap              "5px"
    :grid-template-columns "auto 80% auto"
    :grid-template-rows    (repeat-word "auto" num-sections)
-   ;; :padding-left          "30px"
    :justify-items         "left"
    :justify-content       "center"
-   :width                 "90%"})
+   :width                 "90%"
+   :padding-top           "100px"})
 
-(def ^:private grid-config
+(def ^:private navbar-grid-config
   {:background-color      (:dark-red color-pallette)
    :font-weight           "bolder"
    :display               "grid"
    :grid-gap              "1em"
-   :align-items           "center"
    :text-align            "center"
    :text-decoration       "none"
    :margin-bottom         "50px"
@@ -59,20 +58,21 @@
 (def ^:private navbar-grid-config
   ;; simply invert rows and columns while using the same grid
   ;; otherwise
-  {:desktop (merge grid-config
+  {:desktop (merge navbar-grid-config
                    {:grid-template-columns menu-size
                     :grid-template-rows    "auto"})
 
-   :mobile (merge grid-config
+   :mobile (merge navbar-grid-config
                   {:grid-template-columns "auto"
-                   :grid-template-rows    menu-size})})
+                   :grid-template-rows    menu-size
+                   :font-size             "1.9em"})})
 
 (def common
   [[:a {:text-decoration "none"}]
    [:a:hover {:text-decoration "none"}]])
 
 (def main-page
-  [[:.container common-grid-options]
+  [[:.container body-grid-config]
    ;; [:.section {:grid-column "1"}]
    [:.find-us {:grid-column "2"}]
    [:.countdown {:grid-column "2"}]

@@ -79,4 +79,4 @@
      [:span.place__name (str (:title place-info) ": ")]
      [:div.place__address (:address place-info)]
      [:span.place__website
-      [:a {:href (:website place-info)} " (visit website) "]]]))
+      [:a {:href (:website place-info)} (:website place-info)]]]))
