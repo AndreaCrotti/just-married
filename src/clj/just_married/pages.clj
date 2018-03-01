@@ -1,8 +1,10 @@
 (ns just-married.pages
   (:require [just-married.settings :as settings]
             [just-married.shared :refer [config]]
+            [just-married.geo-info :as geo]
             [clojure.data.json :as json]
-            [environ.core :refer [env]])
+            [environ.core :refer [env]]
+            [hiccup.core :refer [html]])
   (:import (java.util UUID)))
 
 (def ga-js (format "(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -13,6 +15,12 @@
 ga('create', '%s', 'auto');
 ga('send', 'pageview');"
                    settings/google-analytics-key))
+
+
+(def html-places
+  (zipmap (keys geo/places)
+          (map #(html (geo/place-detail %))
+               (keys geo/places))))
 
 (def google-fonts-used
   ["Open+Sans"
@@ -76,7 +84,8 @@ ga('send', 'pageview');"
   [{:keys [language]}]
   (let [env (language text)
         client-side-config (json/write-str (assoc config
-                                                  :language language))]
+                                                  :language language
+                                                  :html html-places))]
     [:html {:lang (name language)}
      (header env)
      (when settings/google-analytics-key
@@ -115,7 +124,6 @@ ga('send', 'pageview');"
     full-url))
 
 (defn initial-page
-
   [{:keys [language redirect-to]}]
   (let [env (language text)]
     [:html {:lang (name language)}
