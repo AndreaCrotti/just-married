@@ -81,3 +81,9 @@
      [:div.place__address (:address place-info)]
      [:span.place__website
       [:a {:href (:website place-info)} (:website place-info)]]]))
+
+(defn place-detail-list
+  [places]
+  (into [:ul]
+        (for [k places]
+          [:li (place-detail k)])))

@@ -1,7 +1,7 @@
 (ns just-married.home.accommodation
   (:require [just-married.home.language :refer [translate]]
             [goog.string]
-            [just-married.geo-info :refer [place-detail]]
+            [just-married.geo-info :refer [place-detail-list]]
             [re-frame.core :refer [dispatch subscribe]]))
 
 ;; keeping this here in case we want to show all the information available?
@@ -43,6 +43,4 @@
    
    [:div.google-map {:id "accommodation-map"}]
 
-   (into [:ul]
-         (for [k [:villa :princi]]
-           [:li (place-detail k)]))])
+   (place-detail-list [:villa :princi])])
