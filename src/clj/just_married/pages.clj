@@ -115,7 +115,6 @@ ga('send', 'pageview');"
     full-url))
 
 (defn initial-page
-
   [{:keys [language redirect-to]}]
   (let [env (language text)]
     [:html {:lang (name language)}
