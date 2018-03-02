@@ -30,6 +30,7 @@
            :address "Strada Comunale San Silvestro, 340, 65129 Pescara PE, Italy"
            :website "http://www.hotelvillaimmacolata.it/"
            :icon "images/hotel_small.png"
+           :title "Parc Hotel Villa Immacolata"
            :info "Hotel Villa Immacolata"}
 
    ;;TODO: get the right coordinates

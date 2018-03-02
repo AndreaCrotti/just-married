@@ -1,6 +1,7 @@
 (ns just-married.home.accommodation
   (:require [just-married.home.language :refer [translate]]
             [goog.string]
+            [just-married.geo-info :refer [place-detail]]
             [re-frame.core :refer [dispatch subscribe]]))
 
 ;; keeping this here in case we want to show all the information available?
@@ -40,4 +41,8 @@
     [:a {:href (goog.string/format "mailto:%s" email-hotel)}
      (goog.string/format (tr :contact) email-hotel)]]
    
-   [:div.google-map {:id "accommodation-map"}]])
+   [:div.google-map {:id "accommodation-map"}]
+
+   (into [:ul]
+         (for [k [:villa :princi]]
+           [:li (place-detail k)]))])
