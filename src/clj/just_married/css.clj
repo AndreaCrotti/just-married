@@ -77,6 +77,7 @@
    [:.section {:padding-top "40px"}]
    [:.find-us {:grid-column "2"}]
    [:.countdown {:grid-column "2"}]
+
    [:.timeline {:grid-column "2"}]
    [:.gift {:grid-column "2"}]
    [:.accommodation {:grid-column "2"}]
@@ -86,11 +87,13 @@
            :font-family (:satisfy font-families)
            :font-size   "1.4em"}]
 
+   [:.names {:font-size "1.4em"
+             :padding-bottom "10px"}]
+   [:.date {:font-size "1.4em"}]
    [:.countdown__internal {:text-align "center"
                            :width      "500px"}]
 
    [:.timer {:font-size    "1.5em"
-             :font-family  (:alex-brush font-families)
              :border-color (:dark-red color-pallette)
              :margin-top   "10px"}]
 

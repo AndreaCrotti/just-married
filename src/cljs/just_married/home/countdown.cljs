@@ -65,16 +65,16 @@
 (defn add-to-calendar
   []
   [:a {:target "_blank"
-       :href (tr :calendar)}
+       :href   (tr :calendar)}
+   [:img {:src "images/calendar.jpg" :width "80px"}]])
 
-   [:button.button__add-to-calendar (tr :add-to-calendar)]])
 
 (defn countdown
   []
   [:div.countdown.section {:id "countdown"}
    [:h3 (tr :countdown)]
    [:div.names "Andrea Crotti & Enrica Verrucci"]
-   [:div.date (tr :date)]
-   (add-to-calendar)
+   [:span.date (tr :date)]
+   [:span.add-to-calendar (add-to-calendar)]
    [:div.countdown__internal
     (countdown-component)]])
