@@ -1,3 +1,5 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- useful enums
 CREATE TYPE sposini AS ENUM ('enrica', 'andrea');
 CREATE TYPE gender as ENUM ('male', 'female');
@@ -6,7 +8,7 @@ CREATE TYPE category AS ENUM ('family', 'work', 'friends');
 CREATE CAST (varchar AS "sposini") WITH INOUT AS IMPLICIT;
 -- guests table
 CREATE TABLE guest  (
-       id UUID PRIMARY KEY,
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
 
        first_name VARCHAR,
        last_name VARCHAR,
@@ -41,7 +43,7 @@ CREATE TABLE guest  (
 
 -- guests_group table
 CREATE TABLE guests_group (
-       id UUID PRIMARY KEY,
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
        group_name VARCHAR(32) NOT NULL,
        category category,
 
@@ -65,7 +67,7 @@ CREATE TABLE guests_group (
 ALTER TABLE guest ADD FOREIGN KEY(group_id) REFERENCES guests_group(id);
 
 CREATE TABLE confirmation (
-       id UUID PRIMARY KEY,
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
        coming BOOLEAN NOT NULL,
        guest_id UUID NOT NULL,
 
