@@ -3,14 +3,18 @@
             [just-married.utils :refer [db-reachable? database-url]]
             [clojure.test :refer :all]
             [migratus.core :as migratus]
-            [environ.core :refer [env]]
             [clojure.java.jdbc :as j])
-  (:import (org.postgresql.util PSQLException)))
+  (:import (org.postgresql.util PSQLException)
+           (java.util UUID)))
 
 ;; should we default to something maybe?
 (def config {:store :database
              :migration-dir "migrations"
              :db database-url})
+
+(defn gen-uuid
+  []
+  (UUID/randomUUID))
 
 (defn setup-db [f]
   (migratus/migrate config)
@@ -29,18 +33,24 @@
 
   (deftest test-list-all-members
     (testing "adding guest"
-      (db/add-guest! {:first-name "Mario"
-                      :last-name "Bros"}))
+      (let [group-id (gen-uuid)]
 
-    (testing "Adding guest with a family name"
-      ;; if I had a clojure spec to represent data I could the right
-      ;; magic in transforming the data
-      (db/add-family! {:invited-by "andrea"
-                       :family-name "Plumbers"})
+        (db/add-guest-group! {:id group-id})
+        (db/add-guest! {:first-name "Mario"
+                        :last-name  "Bros"
+                        :group-id   group-id})))
 
-      (db/add-guest! {:first-name "Luigi"
-                      :last-name "bros"
-                      :family-name "Plumbers"})
+    (testing "Adding guest with a guest-group name"
+      (let [group-id (gen-uuid)]
+        ;; if I had a clojure spec to represent data I could the right
+        ;; magic in transforming the data
+        (db/add-guest-group! {:invited-by "andrea"
+                              :group-name "Plumbers"
+                              :id group-id})
 
-      (let [res (db/all-guests!)]
-        (is (= 2 (count res)))))))
+        (db/add-guest! {:first-name "Luigi"
+                        :last-name  "bros"
+                        :group-id group-id})
+
+        (let [res (db/all-guests!)]
+          (is (= 2 (count res))))))))
