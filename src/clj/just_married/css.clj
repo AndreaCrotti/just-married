@@ -82,6 +82,8 @@
    [:.gift {:grid-column "2"}]
    [:.accommodation {:grid-column "2"}]
 
+   [:.accommodation-prices {:padding-bottom "30px"}]
+
    [:h3 {:color (:dark-red color-pallette)}]
    [:body {:color       (:navy color-pallette)
            :font-family (:satisfy font-families)
