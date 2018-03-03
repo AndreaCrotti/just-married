@@ -20,48 +20,40 @@
   []
   (jdbc/query DEFAULT-DB-URL (all-guests)))
 
-(defn all-families
+(defn all-groups
   []
   (->
    (h/select :*)
-   (h/from :family)
+   (h/from :guests-group)
    (sql/format)))
 
-(defn- list-guests
-  []
+(defn guests-by-group
+  [group-id]
   (->
    (h/select :first-name :last-name)
    (h/from :guest)
+   (h/where [:= :guest.group-id group-id])
    (sql/format)))
-
-(defn guests-by-family
-  [name]
-  (->
-   (h/select :first-name :last-name)
-   (h/from :guest)
-   (h/where [:= :guest.family-name name])
-   (sql/format)))
-
-(defn- to-underscore
-  [f]
-  (-> f
-      name
-      (clojure.string/replace "-" "_")))
 
 (defn- insert-into!
-  [data table]
-  (jdbc/insert! DEFAULT-DB-URL
-                table
-                (map to-underscore (keys data))
-                (vals data)))
+  [sql-map]
+  (let [query (-> sql-map
+                  (ph/returning :id)
+                  sql/format)]
+
+    (jdbc/execute! DEFAULT-DB-URL  query)))
 
 (defn add-guest!
   [guest]
-  (insert-into! guest :guest))
+  (insert-into!
+   (-> (h/insert-into :guest)
+       (h/values [guest]))))
 
-(defn add-family!
-  [family]
-  (insert-into! family :family))
+(defn add-guest-group!
+  [guest-group]
+  (insert-into!
+   (-> (h/insert-into :guests-group)
+       (h/values [guest-group]))))
 
 (defn- get-guest
   [email]

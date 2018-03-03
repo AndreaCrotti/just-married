@@ -1,11 +1,15 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- useful enums
 CREATE TYPE sposini AS ENUM ('enrica', 'andrea');
 CREATE TYPE gender as ENUM ('male', 'female');
 CREATE TYPE category AS ENUM ('family', 'work', 'friends');
 
+CREATE CAST (varchar AS "sposini") WITH INOUT AS IMPLICIT;
 -- guests table
 CREATE TABLE guest  (
-       id serial PRIMARY KEY,
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+
        first_name VARCHAR,
        last_name VARCHAR,
        comment TEXT,
@@ -13,10 +17,6 @@ CREATE TABLE guest  (
        -- threshold for that
        kid BOOLEAN,
 
-       -- possibly useful to make the tables
-       -- could also be an array or a JSON field in theory
-       speak_italian BOOLEAN,
-       speak_english BOOLEAN,
        gender gender,
 
        -- map of booleans which could default to
@@ -32,58 +32,48 @@ CREATE TABLE guest  (
        -- validate in some other way that it's actually a valid
        -- phone number at least before using it in twillio??
        phone_number VARCHAR,
+
        -- should be required at least for the main contact person, not
        -- sure how to add that kind of constraint directly inside
        -- Postgres and if that's actually possible
-       email_address VARCHAR
+       email_address VARCHAR,
+
+       group_id UUID NOT NULL
 );
 
--- family table
-CREATE TABLE family (
-       id serial PRIMARY KEY,
-       -- simply use the family name as key here
-       -- no need for extra fancy keys
-       family_name VARCHAR(32) NOT NULL,
+-- guests_group table
+CREATE TABLE guests_group (
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+       group_name VARCHAR(32) NOT NULL,
        category category,
 
        invited_by sposini NOT NULL,
        comment TEXT,
+       invitation_sent BOOLEAN default FALSE,
 
+       ceremony BOOLEAN,
        lunch BOOLEAN,
        dinner BOOLEAN,
 
-       contact_person INTEGER,
+       contact_person UUID,
 
        country VARCHAR(2),
        -- address contains everything except for the country
        address VARCHAR,
 
-       requires_accommodation BOOLEAN,
-
        FOREIGN KEY(contact_person) REFERENCES guest(id)
 );
 
-
-CREATE TABLE family_members (
-       id serial PRIMARY KEY,
-       family_id INTEGER NOT NULL,
-       person_id INTEGER NOT NULL,
-
-       FOREIGN KEY(family_id) REFERENCES family(id),
-       FOREIGN KEY(person_id) REFERENCES guest(id)
-);
-
-CREATE UNIQUE INDEX family_members_idx ON family_members (family_id, person_id);
+ALTER TABLE guest ADD FOREIGN KEY(group_id) REFERENCES guests_group(id);
 
 CREATE TABLE confirmation (
-       id serial PRIMARY KEY,
+       id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
        coming BOOLEAN NOT NULL,
+       guest_id UUID NOT NULL,
 
-       invited_in_date TIMESTAMP DEFAULT CURRENT_DATE,
        -- person that confirmed, at this point it might not have been
        -- already created in people, so should be created first
-       confirmed_by INTEGER NOT NULL,
        confirmed_in_date TIMESTAMP DEFAULT CURRENT_DATE,
 
-       FOREIGN KEY(confirmed_by) REFERENCES guest(id)
+       FOREIGN KEY(guest_id) REFERENCES guest(id)
 );

@@ -1,0 +1,9 @@
+BEGIN;
+DROP TABLE guest CASCADE;
+DROP TABLE guests_group CASCADE;
+DROP TABLE confirmation;
+
+DROP TYPE sposini CASCADE;
+DROP TYPE gender;
+DROP TYPE category;
+COMMIT;
