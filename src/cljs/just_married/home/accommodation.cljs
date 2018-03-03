@@ -26,7 +26,7 @@
         :contact   "Contact the hotel at %s for booking and more information."}
 
    :it {:title     "Dove Dormire"
-        :single    "singla"
+        :single    "singola"
         :double    "doppia"
         :triple    "tripla"
         :quadruple "quadrupla"
