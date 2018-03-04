@@ -17,9 +17,11 @@
             [ring.adapter.jetty :as jetty]
             [just-married.language :refer [detect-language]]
             [just-married.shared :refer [available-languages]]
+            [just-married.pages.home :as home-page]
+            [just-married.pages.guests :as guest-page]
+            [just-married.pages.enter :as enter]
             [just-married
              [settings :as settings]
-             [pages :as pages]
              [db :as db]
              [mail :refer [send-email]]]))
 
@@ -30,9 +32,9 @@
    available-languages))
 
 (def pages
-  {:guests pages/guest-list
-   :home pages/home-page
-   :initial pages/initial-page})
+  {:guests  guest-page/guest-list
+   :home    home-page/home-page
+   :initial enter/initial-page})
 
 (defn- render-page
   [page kwargs]
