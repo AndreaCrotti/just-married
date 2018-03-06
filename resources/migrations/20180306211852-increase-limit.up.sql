@@ -1,0 +1,2 @@
+ALTER TABLE guests_group
+ALTER COLUMN group_name TYPE VARCHAR(100);
