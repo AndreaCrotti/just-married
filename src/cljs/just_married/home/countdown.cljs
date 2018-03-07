@@ -68,8 +68,7 @@
   []
   [:a {:target "_blank"
        :href   (tr :calendar)}
-   [:img {:src "images/calendar.jpg" :width "80px"}]])
-
+   [:img.add_to_calendar_button {:src "images/gc_button.gif" :width "100px"}]])
 
 (defn countdown
   []

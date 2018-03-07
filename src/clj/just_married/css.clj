@@ -94,6 +94,7 @@
    [:.date {:font-size "1.4em"}]
    [:.countdown__internal {:text-align "center"
                            :width      "500px"}]
+   [:.add_to_calendar_button {:padding-left "30px"}]
 
    [:.timer {:font-size    "1.5em"
              :border-color (:dark-red color-pallette)
