@@ -1,7 +1,7 @@
 (ns just-married.home.accommodation
   (:require [just-married.home.language :refer [translate]]
             [goog.string]
-            [clojure.string :refer [capitalize]]
+            [clojure.string :refer [upper-case]]
             [just-married.geo-info :refer [place-detail-list]]
             [re-frame.core :refer [dispatch subscribe]]))
 
@@ -43,7 +43,7 @@
   [:table.accommodation-prices
    (into [:tr]
          (for [pr (keys prices)]
-           [:th (-> pr tr name capitalize)]))
+           [:th (-> pr tr name upper-case)]))
 
    (into [:tr]
          (for [pr (keys prices)]

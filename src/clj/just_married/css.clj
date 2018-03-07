@@ -110,6 +110,9 @@
                       :padding-right "5px"}]
 
    [:.bank_table {:font-family (:open-sans font-families)}]
+   [:.accommodation-prices {:font-family (:open-sans font-families)
+                            :padding-top "10px"
+                            :padding-left "30px"}]
 
    [:th {:padding "4px"}]
    [:td {:padding    "5px"
