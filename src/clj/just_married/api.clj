@@ -69,18 +69,6 @@
   (http-basic-backend {:realm "andreaenrica.life"
                        :authfn authenticate}))
 
-(defn do-login [{{password "password" next "next"} :params
-                 session :session :as req}]
-  ;; get the password from an env variable at least
-  (if (= password "secure-password")
-    (assoc (resp/redirect next "/")
-           :session (assoc session :identity "admin"))
-    (resp/response "Could not authenticate")))
-
-(defn do-logout [{session :session}]
-  (-> (resp/redirect "/login")
-      (assoc :session (dissoc session :identity))))
-
 (defn enter-page
   [request & {:keys [redirect-to]}]
   (let [language (get-language request)]
@@ -108,23 +96,36 @@
               params)
 
     {:status 201
-     :body (-> (send-email params)
-               :message)}))
+     :body   (-> (send-email params)
+                 :message)}))
 
-(defn mirror
+(defn confirm
   [request]
-  (clojure.pprint/pprint request)
-  {:status 201
-   :body ""})
+  (let [params (-> request
+                   :params
+                   keywordize-keys)]
+
+    {:status 201
+     :body   "Done"}))
+
+(defn guest-list-api
+  [request]
+  (let [guests (->> (db/all-guests!)
+                    (map #(select-keys % [:id :first_name :last_name])))]
+
+    (-> {:status 200
+         :body   guests}
+        (resp/content-type "application/edn"))))
 
 (defroutes app-routes
   (GET "/" request (enter-page request))
   (GET "/rvsp" request (enter-page request :redirect-to "rvsp"))
   (POST "/notify" request (notify request))
+  (POST "/confirm" request (confirm request))
   ;; do a redirect adding the extra information
   (GET "/main" request (main-page request))
-  (POST "/mirror" request (mirror request))
-  (GET "/guests" request (guest-list request)))
+  (GET "/guests" request (guest-list request))
+  (GET "/api/guests" request (guest-list-api request)))
 
 (def app
   (-> app-routes
