@@ -2,6 +2,7 @@
   (:gen-class)
   (:require [clojure.walk :refer [keywordize-keys]]
             [clojure.string :as string]
+            [clojure.java.io :as io]
             [clojure.tools.logging :as log]
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
@@ -9,6 +10,7 @@
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [hiccup.core :as html]
+            [ring.util.io :as ring-io]
             [ring.middleware.defaults :as r-def]
             [ring.middleware.resource :as resources]
             [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
@@ -20,6 +22,7 @@
             [just-married.pages.home :as home-page]
             [just-married.pages.guests :as guest-page]
             [just-married.pages.enter :as enter]
+            [just-married.labels :refer [labels]]
             [just-married
              [settings :as settings]
              [db :as db]
@@ -47,13 +50,6 @@
 (defn- get-port
   []
   (Integer. (or (env :port) default-port)))
-
-(defn guest-list
-  "Page showing the list of guests, needs to be authenticated"
-  [request]
-  (if (authenticated? request)
-    (render-page :guests :en)
-    (throw-unauthorized)))
 
 (def authdata
   "All possible authenticated users"
@@ -108,14 +104,33 @@
     {:status 201
      :body   "Done"}))
 
+(defmacro with-basic-auth
+  [request body]
+  `(if (authenticated? ~request)
+     (~@body)
+     (throw-unauthorized)))
+
+(defn guest-list
+  "Page showing the list of guests, needs to be authenticated"
+  [request]
+  (with-basic-auth request
+    (render-page :guests :en)))
+
 (defn guest-list-api
   [request]
   (let [guests (->> (db/all-guests!)
-                    (map #(select-keys % [:id :first_name :last_name])))]
+                    (map #(select-keys % [:id :first_name :last_name])))] (-> {:status 200
+                                                                               :body   guests}
+                                                                              (resp/content-type "application/edn"))))
 
-    (-> {:status 200
-         :body   guests}
-        (resp/content-type "application/edn"))))
+(defn labels-api
+  [request]
+  (with-basic-auth request
+    (let [labels-data     (db/labels!)
+          labels-pdf-file (labels labels-data)]
+
+      (-> (resp/file-response labels-pdf-file)
+          (resp/content-type "application/pdf")))))
 
 (defroutes app-routes
   (GET "/" request (enter-page request))
@@ -125,6 +140,7 @@
   ;; do a redirect adding the extra information
   (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request))
+  (GET "/api/labels" request (labels-api request))
   (GET "/api/guests" request (guest-list-api request)))
 
 (def app
