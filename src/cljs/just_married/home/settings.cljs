@@ -30,7 +30,7 @@
                      :longitude "14.207303"}}})
 
 (def FATIDIC-TIME
-  (time/date-time 2018 05 27 13))
+  (time/date-time 2018 05 27 11 30))
 
 (def RECAPTCHA-KEY "6LdKcy0UAAAAAP6M0eWoFblIxnyJVTVxIQIfdilx")
 
