@@ -56,11 +56,10 @@
                (js/setInterval
                 #(swap! time-left reset-left-time) 1000)]
 
-    (let [tr (fn [s] (tr s))]
-      [:div.timer {:class ["col-xs" "row"]}
-       [:div (str (:days @time-left) " " (tr :days))]
-       [:div (str (:hours @time-left) " " (tr :hours))]
-       [:div (str (:minutes @time-left) " " (tr :minutes))]])
+    [:div.timer {:class ["col-xs" "row"]}
+     [:div (str (:days @time-left) " " (tr :days))]
+     [:div (str (:hours @time-left) " " (tr :hours))]
+     [:div (str (:minutes @time-left) " " (tr :minutes))]]
 
     (finally (js/clearInterval timer-fn))))
 
