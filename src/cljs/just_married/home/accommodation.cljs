@@ -12,7 +12,7 @@
    :triple    89
    :quadruple 107})
 
-(def email-hotel "info@villaimmacolata.it")
+(def email-hotel "info@hotelvillaimmacolata.it")
 
 (def ^:private accommodation-dict
   {:en {:title     "Accommodation"
