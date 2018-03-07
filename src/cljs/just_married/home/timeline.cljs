@@ -14,7 +14,7 @@
    ["14:00" :parco :lunch-reception]
    ["16:00" :parco :cake-champagne]
    ["16:30" :parco :games-kick-off]
-   ["19:30" :parco :evening-reception]
+   ["20:00" :parco :evening-reception]
    ["21:00" :parco :music-party]
    ["23:00" :parco :final-cake]])
 
