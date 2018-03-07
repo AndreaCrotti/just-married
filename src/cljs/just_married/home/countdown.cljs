@@ -1,10 +1,12 @@
 (ns just-married.home.countdown
   (:require [reagent.core :as r]
-            [just-married.home.settings :refer [FATIDIC-TIME] :as settings]
             [just-married.home.language :refer [translate get-language]]
             [cljs-time.core :as time]
             [cljs-time.format :refer [unparse-duration]]
             [goog.date.duration :as duration]))
+
+(def fatidic-time
+  (time/date-time 2018 05 27 11 30))
 
 (def ^:private countdown-dict
   {:en {:add-to-calendar "Add to Google Calendar"
@@ -28,7 +30,7 @@
 
 (defn get-time-left
   []
-  (time/interval (time/now) FATIDIC-TIME))
+  (time/interval (time/now) fatidic-time))
 
 (defonce time-left
   (r/atom (get-time-left)))

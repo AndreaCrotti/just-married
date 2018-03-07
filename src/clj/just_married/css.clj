@@ -47,7 +47,7 @@
    :text-align            "center"
    :text-decoration       "none"
    ;; to avoid making it go behind the map
-   })
+})
 
 (def ^:private navbar-grid-config
   ;; simply invert rows and columns while using the same grid
