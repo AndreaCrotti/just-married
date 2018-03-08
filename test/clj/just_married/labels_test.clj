@@ -14,7 +14,7 @@
 
     (testing "three columns sort"
       (is (= [[longer full no-address]]
-             (sut/group-addresses [full no-address longer]))))))
+             (sut/group-addresses [full no-address longer] 3))))))
 
 (deftest gen-table-test
   (testing "gen table with one address"
@@ -25,4 +25,4 @@
               {:align :right
                :padding (repeat 4 8)}
               "Long group name\nMy street 42, Town 10022 (PR)\nItaly"]]]
-           (sut/gen-table [sample-address])))))
+           (sut/gen-table [sample-address] 3)))))

@@ -4,25 +4,23 @@
             [clojure.string :as string]
             [clojure.java.io :as io]
             [clojure.tools.logging :as log]
-            [buddy.auth :refer [authenticated? throw-unauthorized]]
-            [buddy.auth.backends.httpbasic :refer [http-basic-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [hiccup.core :as html]
-            [ring.util.io :as ring-io]
             [ring.middleware.defaults :as r-def]
             [ring.middleware.resource :as resources]
             [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
             [ring.middleware.keyword-params :refer [wrap-keyword-params]]
             [ring.util.response :as resp]
             [ring.adapter.jetty :as jetty]
+            [just-married.auth :refer [with-basic-auth basic-auth-backend]]
             [just-married.language :refer [detect-language]]
             [just-married.shared :refer [available-languages]]
             [just-married.pages.home :as home-page]
             [just-married.pages.guests :as guest-page]
             [just-married.pages.enter :as enter]
-            [just-married.labels :refer [labels]]
+            [just-married.labels :refer [labels-api]]
             [just-married
              [settings :as settings]
              [db :as db]
@@ -50,20 +48,6 @@
 (defn- get-port
   []
   (Integer. (or (env :port) default-port)))
-
-(def authdata
-  "All possible authenticated users"
-  {:admin settings/admin-password})
-
-(defn authenticate
-  [req {:keys [username password]}]
-  (when-let [user-password (get authdata (keyword username))]
-    (when (= password user-password)
-      (keyword username))))
-
-(def basic-auth-backend
-  (http-basic-backend {:realm "andreaenrica.life"
-                       :authfn authenticate}))
 
 (defn enter-page
   [request & {:keys [redirect-to]}]
@@ -104,12 +88,6 @@
     {:status 201
      :body   "Done"}))
 
-(defmacro with-basic-auth
-  [request body]
-  `(if (authenticated? ~request)
-     ~body
-     (throw-unauthorized)))
-
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
   [request]
@@ -122,15 +100,6 @@
                     (map #(select-keys % [:id :first_name :last_name])))] (-> {:status 200
                                                                                :body   guests}
                                                                               (resp/content-type "application/edn"))))
-
-(defn labels-api
-  [request]
-  (with-basic-auth request
-    (let [labels-data     (db/labels!)
-          labels-pdf-file (labels labels-data)]
-
-      (-> (resp/file-response labels-pdf-file)
-          (resp/content-type "application/pdf")))))
 
 (defroutes app-routes
   (GET "/" request (enter-page request))

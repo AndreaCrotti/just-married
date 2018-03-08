@@ -1,9 +1,12 @@
 (ns just-married.labels
   (:require [clj-pdf.core :as pdf]
             [clojure.java.io :as io]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [ring.util.response :as resp]
+            [just-married.auth :refer [with-basic-auth]]
+            [just-married.db :as db]))
 
-(def ^:private n-cols 3)
+(def ^:private default-n-cols 3)
 (def ^:private file-name "labels.pdf")
 
 (def table-options
@@ -16,7 +19,7 @@
 
 (def countries-mappping
   {"IT" "Italy"
-   "GB" "United Kingdom"
+   "UK" "United Kingdom"
    "US" "United States"})
 
 (defn- tot-chars
@@ -25,23 +28,24 @@
 
 (defn format-address
   [{:keys [group_name country address]}]
-  ;;TODO: add some defaults or make sure it's all populated?
-  #_{:pre [(contains? (set (keys countries-mappping)) country)]}
+  {:pre [(or (nil? country)
+             (contains? (set (keys countries-mappping)) country))]}
+
   (format "%s\n%s\n%s"
           group_name
           (or address "")
           (or (countries-mappping country) "")))
 
 (defn group-addresses
-  [addresses]
+  [addresses n-cols]
   (->> addresses
        (sort-by tot-chars)
        (reverse)
        (partition-all n-cols)))
 
 (defn gen-table
-  [addresses]
-  (let [grouped-addresses (group-addresses addresses)]
+  [addresses n-cols]
+  (let [grouped-addresses (group-addresses addresses n-cols)]
     (into [:pdf-table
            table-options
            (repeat n-cols 10)]
@@ -52,11 +56,18 @@
 (defn labels
   "Place all the labels in a table generating the right pdf code"
   [addresses]
-  ;; (fn [out])
-  ;; (with-open [wtr (io/writer out)])
   (pdf/pdf
    [{}
-    (gen-table addresses)]
+    (gen-table addresses default-n-cols)]
    file-name)
 
   file-name)
+
+(defn labels-api
+  [request]
+  (with-basic-auth request
+    (let [labels-data     (db/labels!)
+          labels-pdf-file (labels labels-data)]
+
+      (-> (resp/file-response labels-pdf-file)
+          (resp/content-type "application/pdf")))))
