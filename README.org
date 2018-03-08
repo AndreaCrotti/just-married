@@ -129,58 +129,40 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
   - CLOSING NOTE [2017-10-08 Sun 22:26]
 * TODO logentries                                               :infrastructure:
 
-* TODO fill in the database with all the invited people importing from existing data :v1:
+* DONE fill in the database with all the invited people importing from existing data :v1:
+  CLOSED: [2018-03-08 Thu 14:01]
+  - CLOSING NOTE [2018-03-08 Thu 14:01]
 * TODO restrict the google maps key to avoid [[https://console.developers.google.com/apis/credentials/key/226?authuser=0&project=getting-married-1499546104310&pli=1][quota thefts]]   :infrastructure:
-* TODO add a way to run everything inside docker             :infrastructure:
-  This would allow to possibly test running everything in AWS/ECS or
-  even kubernetes in the google cloud otherwise.
 
 * TODO add a re-captcha on input forms to avoid being spammed badly      :v1:
 
 https://www.google.com/recaptcha/admin#site/338522954?setup
 
-* TODO choose the right fonts                                   :graphics:v1:
+* DONE choose the right fonts                                   :graphics:v1:
+  CLOSED: [2018-03-08 Thu 14:02]
 
+  - CLOSING NOTE [2018-03-08 Thu 14:02]
 Nice possible fonts to use:
 
 - https://fonts.google.com/specimen/Courgette
 - https://fonts.google.com/specimen/Dancing+Script
 - https://fonts.google.com/specimen/Abril+Fatface
 
-* TODO Get the right structure and graphics                     :graphics:v1:
+* DONE Get the right structure and graphics                     :graphics:v1:
+  CLOSED: [2018-03-08 Thu 14:02]
 
+  - CLOSING NOTE [2018-03-08 Thu 14:02]
 Check places like:
 
 - https://www.behance.net/
 
 * TODO get a few keywords into google to help searching                  :v1:
 
-* TODO add a cache buster to make sure browsers don't get the old version
+* DONE add a cache buster to make sure browsers don't get the old version
+  CLOSED: [2018-03-08 Thu 14:02]
 
-* Database schema
+  - CLOSING NOTE [2018-03-08 Thu 14:02]
 
-- invited (every person invited):
-  + age
-  + name
-  + dietary requirements
-  + lunch/dinner flags (or in the family this one?)
-
-- family (collection of invited people, sharing contact details)
-  + O2M: invited
-  + contact person
-  + phone
-  + email address
-  + should be notified flag?
-  + requires accommodation?
-
-- table of events, collecting all the interactions such as:
-  + rvsp yes
-  + rvsp no
-  + email sent
-  + sms sent
-  + song suggested
-
-  How do we know who did what? Need some kind of basic authentication to keep track properly.
 
 # Local Variables:
 # mode: org
