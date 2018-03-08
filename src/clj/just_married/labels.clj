@@ -11,7 +11,8 @@
    :horizontal-align :right})
 
 (def cell-options
-  {:align :right})
+  {:align :right
+   :padding (repeat 4 8)})
 
 (def countries-mappping
   {"IT" "Italy"
@@ -43,7 +44,7 @@
   (let [grouped-addresses (group-addresses addresses)]
     (into [:pdf-table
            table-options
-           (repeat n-cols 20)]
+           (repeat n-cols 10)]
           (map #(for [addr %]
                   [:pdf-cell cell-options (format-address addr)])
                grouped-addresses))))
