@@ -6,6 +6,13 @@
 (def ^:private n-cols 3)
 (def ^:private file-name "labels.pdf")
 
+(def table-options
+  {:width-percent    100
+   :horizontal-align :right})
+
+(def cell-options
+  {:align :right})
+
 (def countries-mappping
   {"IT" "Italy"
    "GB" "United Kingdom"
@@ -17,15 +24,17 @@
   #_{:pre [(contains? (set (keys countries-mappping)) country)]}
   (format "%s\n%s\n%s"
           group_name
-          address
-          (countries-mappping country)))
+          (or address "")
+          (or (countries-mappping country) "")))
 
 (defn gen-table
   [addresses]
   (let [grouped-addresses (partition-all n-cols addresses)]
-    (into [:pdf-table (repeat n-cols 20)]
+    (into [:pdf-table
+           table-options
+           (repeat n-cols 20)]
           (map #(for [addr %]
-                  [:pdf-cell (format-address addr)])
+                  [:pdf-cell cell-options (format-address addr)])
                grouped-addresses))))
 
 (defn labels
