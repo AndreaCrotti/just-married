@@ -40,7 +40,7 @@
 
 (defn gen-table
   [addresses]
-  (let [grouped-addresses (partition-all n-cols addresses)]
+  (let [grouped-addresses (group-addresses addresses)]
     (into [:pdf-table
            table-options
            (repeat n-cols 20)]
