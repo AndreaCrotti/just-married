@@ -18,6 +18,10 @@
    "GB" "United Kingdom"
    "US" "United States"})
 
+(defn- tot-chars
+  [address]
+  (apply + (map count (vals address))))
+
 (defn format-address
   [{:keys [group_name country address]}]
   ;;TODO: add some defaults or make sure it's all populated?
@@ -26,6 +30,13 @@
           group_name
           (or address "")
           (or (countries-mappping country) "")))
+
+(defn group-addresses
+  [addresses]
+  (->> addresses
+       (sort-by tot-chars)
+       (reverse)
+       (partition-all n-cols)))
 
 (defn gen-table
   [addresses]
