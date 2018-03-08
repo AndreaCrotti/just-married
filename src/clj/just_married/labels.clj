@@ -9,12 +9,23 @@
 (def ^:private default-n-cols 3)
 (def ^:private file-name "labels.pdf")
 
+(def pdf-options
+  {:title                  "Address List"
+   :left-margin            2
+   :right-margin           2
+   :top-margin             2
+   :bottom-margin          2
+   :size                   :a4
+   :font                   {:size     12
+                            :encoding :unicode}
+   :register-system-fonts? true})
+
 (def table-options
   {:width-percent    100
    :horizontal-align :right})
 
 (def cell-options
-  {:align :right
+  {:align   :right
    :padding (repeat 4 8)})
 
 (def countries-mappping
@@ -57,7 +68,7 @@
   "Place all the labels in a table generating the right pdf code"
   [addresses]
   (pdf/pdf
-   [{}
+   [pdf-options
     (gen-table addresses default-n-cols)]
    file-name)
 
