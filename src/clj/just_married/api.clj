@@ -107,7 +107,7 @@
 (defmacro with-basic-auth
   [request body]
   `(if (authenticated? ~request)
-     (~@body)
+     ~body
      (throw-unauthorized)))
 
 (defn guest-list
