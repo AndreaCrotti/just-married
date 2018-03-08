@@ -19,10 +19,9 @@
 
 (defn all-guests
   []
-  (->
-   (h/select :*)
-   (h/from :guest)
-   (sql/format)))
+  (-> (h/select :*)
+      (h/from :guest)
+      (sql/format)))
 
 (defn all-guests!
   []
