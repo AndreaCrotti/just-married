@@ -20,7 +20,7 @@
             [just-married.pages.home :as home-page]
             [just-married.pages.guests :as guest-page]
             [just-married.pages.enter :as enter]
-            [just-married.labels :refer [labels-api]]
+            [just-married.api.labels :refer [labels-api]]
             [just-married
              [settings :as settings]
              [db :as db]

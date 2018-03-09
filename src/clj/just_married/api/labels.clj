@@ -1,4 +1,4 @@
-(ns just-married.labels
+(ns just-married.api.labels
   (:require [clj-pdf.core :as pdf]
             [clojure.java.io :as io]
             [clojure.string :as string]

@@ -1,6 +1,6 @@
-(ns just-married.labels-test
-  (:require [just-married.labels :as sut]
-            [clojure.test :refer [deftest testing is]]))
+(ns just-married.api.labels-test
+  (:require [clojure.test :refer [deftest is testing]]
+            [just-married.api.labels :as sut]))
 
 (def sample-address
   {:group_name "Long group name"
@@ -19,10 +19,13 @@
 (deftest gen-table-test
   (testing "gen table with one address"
     (is (= [:pdf-table
-            {:width-percent 100, :horizontal-align :right}
+            {:width-percent    100
+             :border           false
+             :horizontal-align :right
+             }
             [10 10 10]
             [[:pdf-cell
-              {:align :right
+              {:align   :right
                :padding (repeat 4 8)}
               "Long group name\nMy street 42, Town 10022 (PR)\nItaly"]]]
            (sut/gen-table [sample-address] 3)))))
