@@ -12,6 +12,7 @@
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
+                 [cljsjs/moment "2.17.1-1"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
