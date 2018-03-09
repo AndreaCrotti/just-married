@@ -92,7 +92,7 @@
 (defn labels-api
   [request]
   (with-basic-auth request
-    (let [labels-data     (db/labels!)
+    (let [labels-data     (get-labels!)
           labels-pdf-file (labels labels-data)]
 
       (-> (resp/file-response labels-pdf-file)
