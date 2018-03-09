@@ -1,11 +1,31 @@
 (ns just-married.api.labels-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [clojure.test :refer [deftest is testing use-fixtures]]
+            [just-married.db-setup :refer [setup]]
+            [just-married.db :as db]
             [just-married.api.labels :as sut]))
+
+(use-fixtures :each setup)
 
 (def sample-address
   {:group_name "Long group name"
    :country    "IT"
    :address    "My street 42, Town 10022 (PR)"})
+
+(deftest fetch-labels-test
+  (testing "Fetching labels work correctly"
+    (let [not-invited     {:group_name "sample group"
+                           :invited_by "andrea"}
+          invited-already {:group_name      "sample group already invited"
+                           :invited_by      "andrea"
+                           :invitation_sent true}]
+
+      (db/add-guest-group! not-invited)
+      (db/add-guest-group! invited-already)
+
+      (let [labels (sut/get-labels!)]
+        (is (= [{:group_name "sample group"
+                 :address    nil
+                 :country    nil}] labels))))))
 
 (deftest group-addresses-test
   (let [full sample-address

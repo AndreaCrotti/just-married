@@ -4,8 +4,7 @@
              [core :as sql]
              [helpers :as h]]
             [environ.core :refer [env]]
-            [honeysql-postgres.helpers :as ph]
-            [honeysql-postgres.format :as pf]))
+            [honeysql-postgres.helpers :as ph]))
 
 (def ^:dynamic override-db-spec
   nil)
@@ -32,16 +31,6 @@
   (-> (h/select :*)
       (h/from :guests-group)
       (sql/format)))
-
-(defn labels
-  []
-  (-> (h/select :group_name :country :address)
-      (h/from :guests-group)
-      (sql/format)))
-
-(defn labels!
-  []
-  (jdbc/query (db-spec) (labels)))
 
 (defn guests-by-group
   [group-id]

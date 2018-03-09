@@ -2,12 +2,26 @@
   (:require [clj-pdf.core :as pdf]
             [clojure.java.io :as io]
             [clojure.string :as string]
+            [clojure.java.jdbc :as jdbc]
             [ring.util.response :as resp]
+            [honeysql.core :as sql]
+            [honeysql.helpers :as h]
             [just-married.auth :refer [with-basic-auth]]
             [just-married.db :as db]))
 
 (def ^:private default-n-cols 3)
 (def ^:private file-name "labels.pdf")
+
+(defn labels-sql
+  []
+  (-> (h/select :group_name :country :address)
+      (h/from :guests-group)
+      (h/where [:= :invitation_sent false])
+      (sql/format)))
+
+(defn get-labels!
+  []
+  (jdbc/query (db/db-spec) (labels-sql)))
 
 (def pdf-options
   {:title                  "Address List"
