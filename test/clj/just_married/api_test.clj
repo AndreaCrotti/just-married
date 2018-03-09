@@ -45,14 +45,6 @@
           resp (sut/app req)]
       (is (= (-> resp :status) 200)))))
 
-(deftest authentication-helpers-test
-  (testing "Can happily authenticate"
-    (let [req (mock/request :get "/login" {:password "wrong"})
-          resp (sut/app req)]))
-  (testing "Not able to authenticate"
-    (let [req (mock/request :get "/login" {:password "secure-password"})
-          resp (sut/app req)])))
-
 (deftest list-of-guests-test
   (testing "No guests is empty set"
     (let [req  (mock/request :get "/api/guests")
