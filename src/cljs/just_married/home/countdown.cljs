@@ -5,6 +5,8 @@
             [cljs-time.format :refer [unparse-duration]]
             [goog.date.duration :as duration]))
 
+(def ^:private reload-time-ms 1000)
+
 (def fatidic-time
   (time/date-time 2018 05 27 11 30))
 
@@ -32,9 +34,6 @@
   []
   (time/interval (time/now) fatidic-time))
 
-(defonce time-left
-  (r/atom (get-time-left)))
-
 (defn extract
   [interval]
   (let [[days hours minutes]
@@ -43,6 +42,9 @@
     {:days days
      :hours hours
      :minutes minutes}))
+
+(defonce time-left
+  (r/atom (extract (get-time-left))))
 
 (defn reset-left-time
   []
@@ -58,7 +60,7 @@
   []
   (r/with-let [timer-fn
                (js/setInterval
-                #(swap! time-left reset-left-time) 1000)]
+                #(swap! time-left reset-left-time) reload-time-ms)]
 
     [:div.timer {:class ["col-xs" "row"]}
      [:div (str (or-zero :days) " " (tr :days))]
