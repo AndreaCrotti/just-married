@@ -21,8 +21,7 @@
     (is (= [:pdf-table
             {:width-percent    100
              :border           false
-             :horizontal-align :right
-             }
+             :horizontal-align :right}
             [10 10 10]
             [[:pdf-cell
               {:align   :right
