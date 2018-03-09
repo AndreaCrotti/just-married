@@ -11,12 +11,18 @@
 
 (def ^:private default-n-cols 3)
 (def ^:private file-name "labels.pdf")
+(def ^:private default-font "Helvetica")
 
 (defn labels-sql
   []
   (-> (h/select :group_name :country :address)
       (h/from :guests-group)
-      (h/where [:= :invitation_sent false])
+      (h/where [:and
+                [:= :invitation_sent false]
+                ;; could add this if we don't need labels for manually handed over anyway
+                ;; [:not= :address nil]
+                ;; [:not= :country nil]
+                ])
       (sql/format)))
 
 (defn get-labels!
@@ -31,6 +37,9 @@
    :bottom-margin          2
    :size                   :a4
    :font                   {:size     12
+                            :family   default-font
+                            ;;TODO: change the font in this way if you want to
+                            ;; :ttf-name "resources/public/fonts/OpenSans-Regular.ttf"
                             :encoding :unicode}
    :register-system-fonts? true})
 
