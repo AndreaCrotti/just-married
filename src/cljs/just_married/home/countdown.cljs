@@ -48,6 +48,10 @@
   []
   (reset! time-left (extract (get-time-left))))
 
+(defn- or-zero
+  [unit]
+  (or (unit @time-left) 0))
+
 ;; sample code found https://stackoverflow.com/questions/30280484/making-a-simple-countdown-timer-with-clojure-reagent
 (defn countdown-component
   "Generic component for the countdown"
@@ -57,9 +61,9 @@
                 #(swap! time-left reset-left-time) 1000)]
 
     [:div.timer {:class ["col-xs" "row"]}
-     [:div (str (:days @time-left) " " (tr :days))]
-     [:div (str (:hours @time-left) " " (tr :hours))]
-     [:div (str (:minutes @time-left) " " (tr :minutes))]]
+     [:div (str (or-zero :days) " " (tr :days))]
+     [:div (str (or-zero :hours) " " (tr :hours))]
+     [:div (str (or-zero :minutes) " " (tr :minutes))]]
 
     (finally (js/clearInterval timer-fn))))
 
