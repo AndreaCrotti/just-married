@@ -43,12 +43,16 @@
      :hours hours
      :minutes minutes}))
 
+(defn- init-time-left
+  []
+  (extract (get-time-left)))
+
 (defonce time-left
-  (r/atom (extract (get-time-left))))
+  (r/atom (init-time-left)))
 
 (defn reset-left-time
   []
-  (reset! time-left (extract (get-time-left))))
+  (reset! time-left (init-time-left)))
 
 (defn- or-zero
   [unit]
