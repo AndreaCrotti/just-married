@@ -22,6 +22,7 @@
 
 (def table-options
   {:width-percent    100
+   :border           false
    :horizontal-align :right})
 
 (def cell-options
