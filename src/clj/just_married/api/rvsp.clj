@@ -1,11 +1,11 @@
 (ns just-married.api.rvsp
   (:require [just-married.db :as db]
+            [clojure.walk :refer [keywordize-keys]]
             [clojure.spec.alpha :as s]
             [honeysql.core :as sql]
             [honeysql.helpers :as h]
             [clojure.java.jdbc :as jdbc]))
 
-;; (s/def ::rvsp-input )
 (defn- coming?
   [coming-str]
   (= coming-str "true"))
@@ -25,11 +25,12 @@
 
 (defn rvsp!
   [request]
-  (let [params     (:json-params request)
+  ;;TODO: should mabye just return 400 if parameters are missing or
+  ;;are not the right type at the beginning
+  (let [params     (-> request :json-params keywordize-keys)
         insert-sql (rvsp-insert-sql params)]
 
     ;;TODO:  check for exceptions or the return code of the write maybe?
-    (jdbc/execute! (db/db-spec)
-                   insert-sql)
+    (jdbc/execute! (db/db-spec) insert-sql)
     {:status 201
      :body   "Thanks for responding"}))
