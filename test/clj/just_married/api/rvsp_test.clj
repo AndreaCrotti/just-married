@@ -17,13 +17,21 @@
 
 (deftest rvsp-api-test
   (testing "Rvsp test"
-    (let [response
-          (sut/rvsp! {:json-params {:name     "Name"
-                                    :email    "My email"
-                                    :how-many "3"
-                                    :comment  "My comment"
-                                    :coming   "true"}})]
+    (let [params   {:name     "Name"
+                    :email    "My email"
+                    :how-many "3"
+                    :comment  "My comment"
+                    :coming   "true"}
+          ;; bit of a hack to get transform the data
+          params-from-db (dissoc (assoc params
+                                       :how_many 3
+                                       :coming true)
+                                 :how-many)
+
+          response (sut/rvsp! {:json-params params})]
 
       (is (= 201 (-> response :status)))
       (let [rows (jdbc/query (db/db-spec) (get-rvsps))]
-        (is (= 1 (count rows)))))))
+        (is (= [params-from-db]
+               (map #(dissoc % :id :created_at :phone_number)
+                    rows)))))))
