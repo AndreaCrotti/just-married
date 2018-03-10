@@ -8,7 +8,6 @@
   ;; what other possibly useful information could be here?
   {:language              :en
    :expanded-story        false
-   :show-confirmation-msg false
    :rvsp                  {:name     nil
                            :email    nil
                            :how-many config/default-how-many
@@ -28,37 +27,11 @@
  :expanded-story
  (getter :expanded-story))
 
-(reg-sub
- :name
- (getter :name))
-
-(reg-sub
- :email
- (getter :email))
-
-(reg-event-db
- :set-name
- (setter [:rvsp :name]))
-
-(reg-event-db
- :set-email
- (setter [:rvsp :email]))
-
-(reg-event-db
- :set-how-many
- (setter [:rvsp :how-many]))
-
-(reg-event-db
- :set-comment
- (setter [:rvsp :comment]))
-
-(reg-sub
- :show-confirmation-success
- (getter :show-confirmation-success))
-
-(reg-sub
- :show-confirmation-failure
- (getter :show-confirmation-failure))
+;; register simple setters for all the rvsp fields dynamically
+(for [field (default-db :rvsp keys)]
+  (reg-event-db
+   (keyword (str "set-" (name field)))
+   (setter [:rvsp field])))
 
 (defn rvsp
   [{:keys [db]} [_ value]]
@@ -76,21 +49,17 @@
  :send-notification
  rvsp)
 
-(reg-sub
- :show-confirmation-msg
- (getter :show-confirmation-msg))
-
 (reg-event-db
  :confirmation-sent
- (fn [db _]
-   (assoc-in db [:show-confirmation-msg] true)))
+ (fn [db [_ response]]
+   (js/alert (:original-text response))
+   db))
 
 (reg-event-db
  :confirmation-not-sent
- (fn [db _]
-   ;; should actually handle the error and/or log
-   ;; it properly somewhere
-   (assoc-in db [:show-confirmation-msg] true)))
+ (fn [db [_ response]]
+   (js/alert (:original-text response))
+   db))
 
 (reg-event-db
  :initialize-db
