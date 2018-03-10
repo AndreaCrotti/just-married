@@ -6,12 +6,12 @@
 
 (def default-db
   ;; what other possibly useful information could be here?
-  {:language              :en
-   :expanded-story        false
-   :rvsp                  {:name     nil
-                           :email    nil
-                           :how-many config/default-how-many
-                           :comment  nil}})
+  {:language       :en
+   :expanded-story false
+   :rvsp           {:name     nil
+                    :email    nil
+                    :how-many config/default-how-many
+                    :comment  nil}})
 
 (defn- getter
   [key]
@@ -28,7 +28,7 @@
  (getter :expanded-story))
 
 ;; register simple setters for all the rvsp fields dynamically
-(for [field (default-db :rvsp keys)]
+(doseq [field (-> default-db :rvsp keys)]
   (reg-event-db
    (keyword (str "set-" (name field)))
    (setter [:rvsp field])))
@@ -40,8 +40,7 @@
                 :uri             "/api/rvsp"
                 :params          (assoc (:rvsp db) :coming value)
                 :format          (ajax/json-request-format)
-                :response-format (ajax/json-response-format
-                                  {:keywords? true})
+                :response-format (ajax/json-response-format {:keywords? true})
                 :on-success      [:confirmation-sent]
                 :on-failure      [:confirmation-not-sent]}})
 
@@ -58,7 +57,7 @@
 (reg-event-db
  :confirmation-not-sent
  (fn [db [_ response]]
-   (js/alert (:original-text response))
+   (js/alert "Could not submit")
    db))
 
 (reg-event-db
