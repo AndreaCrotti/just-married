@@ -11,5 +11,7 @@
           (sut/rvsp! {:json-params {:name     "Name"
                                     :email    "My email"
                                     :how-many "3"
+                                    :comment  "My comment"
                                     :coming   "true"}})]
+
       (is (= 201 (-> response :status))))))

@@ -3,15 +3,17 @@
             [ajax.core :as ajax]
             [day8.re-frame.http-fx]))
 
+(def ^:private default-how-many "1")
+
 (def default-db
   ;; what other possibly useful information could be here?
-  {:language :en
-   :expanded-story false
-   :rvsp {:name nil
-          :email nil
-          :how-many nil
-          :comment nil
-          :show-confirmation-msg false}})
+  {:language              :en
+   :expanded-story        false
+   :show-confirmation-msg false
+   :rvsp                  {:name     nil
+                           :email    nil
+                           :how-many default-how-many
+                           :comment  nil}})
 
 (defn- getter
   [key]
@@ -61,18 +63,15 @@
 
 (defn rvsp
   [{:keys [db]} [_ value]]
-  {:db db
-   :http-xhrio {:method :post
-                :uri "/api/rvsp"
-                :params {:coming value
-                         :name (:name db)
-                         :email (:email db)
-                         :comment (:comment db)}
-                :format (ajax/json-request-format)
+  {:db         db
+   :http-xhrio {:method          :post
+                :uri             "/api/rvsp"
+                :params          (assoc (:rvsp db) :coming value)
+                :format          (ajax/json-request-format)
                 :response-format (ajax/json-response-format
                                   {:keywords? true})
-                :on-success [:confirmation-sent]
-                :on-failure [:confirmation-not-sent]}})
+                :on-success      [:confirmation-sent]
+                :on-failure      [:confirmation-not-sent]}})
 
 (reg-event-fx
  :send-notification

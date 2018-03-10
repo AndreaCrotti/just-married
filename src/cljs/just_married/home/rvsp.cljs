@@ -70,6 +70,6 @@
         [:button.rvsp__confirm.rvsp__not_coming
          {:on-click #(dispatch [:send-notification false])} (tr :not-coming)]
 
-        (when @show-confirmation-msg
+        #_(when @show-confirmation-msg
           [:div.confirmation__display (tr :confirmation-sent)])]])))
 

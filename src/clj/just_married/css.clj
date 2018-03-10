@@ -132,14 +132,14 @@
    [:.rvsp__confirm {:width           "200px"
                      :border-radius   "4px"
                      :padding         "10px"
-                     :font-size       "1.3em"
+                     :font-size       "1.2em"
                      :text-decoration "none"
                      :display         "inline-block"
                      :border          "none"
                      :cursor          "hand"
                      :color           (:white color-pallette)}]
 
-   [:.rvsp__confirm:hover {:font-size "1.5em"}]
+   [:.rvsp__confirm:hover {:font-size "1.1em"}]
 
    [:.rvsp__coming {:background-color (:dark-red color-pallette)}]
 
