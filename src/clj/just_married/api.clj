@@ -1,7 +1,6 @@
 (ns just-married.api
   (:gen-class)
-  (:require [clojure.walk :refer [keywordize-keys]]
-            [clojure.string :as string]
+  (:require [clojure.string :as string]
             [clojure.java.io :as io]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [compojure.core :refer [defroutes GET POST]]
@@ -21,10 +20,7 @@
             [just-married.pages.enter :as enter]
             [just-married.api.labels :refer [labels-api]]
             [just-married.api.rvsp :refer [rvsp!]]
-            [just-married
-             [settings :as settings]
-             [db :as db]
-             [mail :refer [send-email]]]))
+            [just-married.db :as db]))
 
 (defn get-language
   [request]

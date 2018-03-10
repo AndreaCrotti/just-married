@@ -24,6 +24,7 @@
            :migration-dir "migrations"
            :db            db/test-db-url}]
 
+      ;; TODO: There might be zero need to migrate
       (migratus/migrate config)
       (wrap-db-tx test-fn)
       (migratus/reset config))))
