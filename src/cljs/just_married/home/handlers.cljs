@@ -1,9 +1,8 @@
 (ns just-married.home.handlers
   (:require [re-frame.core :as re-frame :refer [reg-sub dispatch reg-event-db reg-event-fx]]
             [ajax.core :as ajax]
+            [just-married.home.config :as config]
             [day8.re-frame.http-fx]))
-
-(def ^:private default-how-many "1")
 
 (def default-db
   ;; what other possibly useful information could be here?
@@ -12,7 +11,7 @@
    :show-confirmation-msg false
    :rvsp                  {:name     nil
                            :email    nil
-                           :how-many default-how-many
+                           :how-many config/default-how-many
                            :comment  nil}})
 
 (defn- getter
@@ -84,14 +83,14 @@
 (reg-event-db
  :confirmation-sent
  (fn [db _]
-   (assoc-in db [:rvsp :show-confirmation-msg] true)))
+   (assoc-in db [:show-confirmation-msg] true)))
 
 (reg-event-db
  :confirmation-not-sent
  (fn [db _]
    ;; should actually handle the error and/or log
    ;; it properly somewhere
-   (assoc-in db [:rvsp :show-confirmation-msg] true)))
+   (assoc-in db [:show-confirmation-msg] true)))
 
 (reg-event-db
  :initialize-db
