@@ -10,7 +10,7 @@
    :rvsp {:name nil
           :email nil
           :how-many nil
-          :comments nil 
+          :comment nil
           :show-confirmation-msg false}})
 
 (defn- getter
@@ -49,7 +49,7 @@
 
 (reg-event-db
  :set-comment
- (setter [:rvsp :comments]))
+ (setter [:rvsp :comment]))
 
 (reg-sub
  :show-confirmation-success
@@ -59,25 +59,24 @@
  :show-confirmation-failure
  (getter :show-confirmation-failure))
 
-(defn notify
+(defn rvsp
   [{:keys [db]} [_ value]]
   {:db db
    :http-xhrio {:method :post
-                :uri "/notify"
+                :uri "/api/rvsp"
                 :params {:coming value
                          :name (:name db)
                          :email (:email db)
-                         :comments (:comments db)}
+                         :comment (:comment db)}
                 :format (ajax/json-request-format)
                 :response-format (ajax/json-response-format
                                   {:keywords? true})
                 :on-success [:confirmation-sent]
-                :on-failure [:confirmation-not-sent]
-                }})
+                :on-failure [:confirmation-not-sent]}})
 
 (reg-event-fx
  :send-notification
- notify)
+ rvsp)
 
 (reg-sub
  :show-confirmation-msg

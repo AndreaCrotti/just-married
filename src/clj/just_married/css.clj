@@ -81,6 +81,7 @@
    [:.timeline {:grid-column "2"}]
    [:.gift {:grid-column "2"}]
    [:.accommodation {:grid-column "2"}]
+   [:.rvsp {:grid-column "2"}]
 
    [:.accommodation-prices {:padding-bottom "30px"}]
 

@@ -9,8 +9,8 @@
         :name-sample "Pippo"
         :name "Name"
         :coming "I'll be there"
-        :comments-sample"Eg My girflriend is celiac, I can't eat peanuts"
-        :comments "Other comments (any allergies/special requirements)"
+        :comment-sample"Eg My girflriend is celiac, I can't eat peanuts"
+        :comment "Other comments (any allergies/special requirements)"
         :not-coming "Sorry I can't"
         :confirmation-sent "Thanks for letting us know!"
         :how-many "How many are you?"}
@@ -21,8 +21,8 @@
         :name "Nome"
         :name-sample "Pippo"
         :coming "Contaci"
-        :comments "Altri commenti (allergie/esigenze particolari)"
-        :comments-sample "Per esempio la mia ragazza e' ciliaca, io posso mangiare arachidi"
+        :comment "Altri commenti (allergie/esigenze particolari)"
+        :comment-sample "Per esempio la mia ragazza e' ciliaca, io posso mangiare arachidi"
         :not-coming "Non posso"
         :confirmation-sent "Grazie per averci fatto sapere!"
         :how-many "Quanti siete?"}})
@@ -58,10 +58,10 @@
                           :default 2}
                  n]))
 
-        [:label (tr :comments)]
-        [:textarea.rvsp__comments {:rows 2
+        [:label (tr :comment)]
+        [:textarea.rvsp__comment {:rows 2
                                    :cols 100
-                                   :placeholder (tr :comments-sample)
+                                   :placeholder (tr :comment-sample)
                                    :on-change (set-val :set-comment)}]
         
         [:button.rvsp__confirm.rvsp__coming

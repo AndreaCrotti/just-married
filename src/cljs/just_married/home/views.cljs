@@ -5,16 +5,17 @@
             [just-married.home.timeline :refer [timeline]]
             [just-married.home.find-us :refer [find-us]]
             [just-married.home.accommodation :refer [accommodation]]
+            [just-married.home.rvsp :refer [rvsp]]
             [just-married.home.gift :refer [gift]]))
 
 (def sections-roots
-  {:countdown countdown
+  {:countdown     countdown
    ;; :story story
-   :find-us find-us
-   :timeline timeline
-   ;; :rvsp rvsp
+   :find-us       find-us
+   :timeline      timeline
+   :rvsp          rvsp
    :accommodation accommodation
-   :gift gift})
+   :gift          gift})
 
 (def sections-filtered
   (select-keys sections-roots

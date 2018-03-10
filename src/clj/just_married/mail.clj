@@ -8,7 +8,7 @@
   Name: %s
   Email: %s
   Coming: %s
-  Other Comments: %s")
+  Other Comment: %s")
 
 (defn gen-subject
   [{:keys [name] :as params}]
@@ -16,12 +16,12 @@
           name))
 
 (defn gen-content
-  [{:keys [name email coming comments] :as params}]
+  [{:keys [name email coming comment] :as params}]
   (format confirmation-template
           name
           email
           coming
-          comments))
+          comment))
 
 (defn send-email
   [params]

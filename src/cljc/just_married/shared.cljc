@@ -17,4 +17,5 @@
    :find-us
    :timeline
    :accommodation
-   :gift])
+   :gift
+   :rvsp])
