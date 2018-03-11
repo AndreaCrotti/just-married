@@ -17,15 +17,15 @@
 
 (deftest rvsp-api-test
   (testing "Rvsp test"
-    (let [params   {:name     "Name"
-                    :email    "My email"
-                    :how-many "3"
-                    :comment  "My comment"
-                    :coming   "true"}
+    (let [params         {:name     "Name"
+                          :email    "My email"
+                          :how-many "3"
+                          :comment  "My comment"
+                          :coming   true}
           ;; bit of a hack to get transform the data
           params-from-db (dissoc (assoc params
-                                       :how_many 3
-                                       :coming true)
+                                        :how_many 3
+                                        :coming true)
                                  :how-many)
 
           response (sut/rvsp! {:json-params params})]
