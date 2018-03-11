@@ -39,6 +39,7 @@
    :http-xhrio {:method          :post
                 :uri             "/api/rvsp"
                 :params          (assoc (:rvsp db) :coming value)
+                ;; could use EDN as well here potentially
                 :format          (ajax/json-request-format)
                 :response-format (ajax/json-response-format {:keywords? true})
                 :on-success      [:confirmation-sent]
@@ -48,16 +49,23 @@
  :send-notification
  rvsp)
 
+(defn handle
+  [response]
+  (when (= 201 (:status response))
+    (js/alert "Thanks for letting us know")))
+
+;;XXX: getting strangely cjls-ajax to report failure
+;;even if in fact it worked and it was a 201 response
 (reg-event-db
  :confirmation-sent
  (fn [db [_ response]]
-   (js/alert (:original-text response))
+   (handle response)
    db))
 
 (reg-event-db
  :confirmation-not-sent
  (fn [db [_ response]]
-   (js/alert "Could not submit")
+   (handle response)
    db))
 
 (reg-event-db
