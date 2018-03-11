@@ -32,4 +32,10 @@
       (let [rows (jdbc/query (db/db-spec) (get-rvsps))]
         (is (= [params-from-db]
                (map #(dissoc % :id :created_at :phone_number)
-                    rows)))))))
+                    rows))))))
+
+  (testing "Missing required field name"
+    (let [response (sut/rvsp! {:json-params {:coming   true
+                                             :name     ""
+                                             :how-many "1"}})]
+      (is (= 400 (:status response))))))

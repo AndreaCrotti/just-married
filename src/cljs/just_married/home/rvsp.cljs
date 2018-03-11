@@ -6,9 +6,9 @@
 (def ^:private rvsp-dict
   {:en {:rvsp "RVSP"
         :email "Email"
-        :email-sample "pippo@disneyland.com"
-        :name-sample "Pippo"
-        :name "Name"
+        :email-sample "john@smith.com"
+        :name-sample "John Smith"
+        :name "Name (*)"
         :coming "I'll be there"
         :comment-sample"Eg My girflriend is celiac, I can't eat peanuts"
         :comment "Other comments (any allergies/special requirements)"
@@ -18,9 +18,9 @@
 
    :it {:rvsp "RVSP"
         :email "Email"
-        :email-sample "pippo@disneyland.com"
-        :name "Nome"
-        :name-sample "Pippo"
+        :email-sample "mario@rossi.com"
+        :name "Nome (*)"
+        :name-sample "Mario Rossi"
         :coming "Contaci"
         :comment "Altri commenti (allergie/esigenze particolari)"
         :comment-sample "Per esempio la mia ragazza e' ciliaca, io posso mangiare arachidi"
@@ -51,14 +51,10 @@
                          :on-change   (set-val :set-email)}]
 
     [:label (tr :how-many)]
-    (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)}]
+    (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
+                                  :value config/default-how-many}]
           (for [n (range 1 10)]
-            ;; there should be a better way to have a default
-            ;; value here ideally
-            (let [v (if (= n config/default-how-many)
-                      {:value n :selected "selected"}
-                      {:value n})]
-              [:option v n])))
+            [:option {:value n} n]))
 
     [:label (tr :comment)]
     [:textarea.rvsp__comment {:rows        2

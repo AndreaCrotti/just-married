@@ -51,8 +51,10 @@
 
 (defn handle
   [response]
-  (when (= 201 (:status response))
-    (js/alert "Thanks for letting us know")))
+  (case (:status response)
+    201 (js/alert "Thanks for letting us know")
+    400 (js/alert "Missing required field `Name`")
+    (js/alert "Could not submit your response")))
 
 ;;XXX: getting strangely cjls-ajax to report failure
 ;;even if in fact it worked and it was a 201 response

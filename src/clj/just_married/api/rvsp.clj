@@ -22,10 +22,17 @@
   [request]
   ;;TODO: should mabye just return 400 if parameters are missing or
   ;;are not the right type at the beginning
-  (let [params     (-> request :json-params keywordize-keys)
-        insert-sql (rvsp-insert-sql params)]
+  (let [{name :name :as params} (-> request :json-params keywordize-keys)
+        insert-sql              (rvsp-insert-sql params)]
 
-    ;;TODO:  check for exceptions or the return code of the write maybe?
-    (jdbc/execute! (db/db-spec) insert-sql)
-    {:status 201
-     :body   "Thanks for responding"}))
+    (if (or (empty? name)
+            (nil? name))
+      ;; use a spec instead of this very crude approach
+      {:status 400
+       :body   "missing required field name"}
+
+      (do
+        ;;TODO:  check for exceptions or the return code of the write maybe?
+        (jdbc/execute! (db/db-spec) insert-sql)
+        {:status 201
+         :body   "Thanks for responding"}))))
