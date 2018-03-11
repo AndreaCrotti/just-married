@@ -2,7 +2,19 @@
   (:require [re-frame.core :as re-frame :refer [reg-sub dispatch reg-event-db reg-event-fx]]
             [ajax.core :as ajax]
             [just-married.home.config :as config]
+            [just-married.home.language :refer [translate]]
             [day8.re-frame.http-fx]))
+
+(def ^:private handlers-dict
+  {:en {:worked "Thanks for letting us know"
+        :missing "Missing required field `Name`"
+        :not-working "Could not submit your response"}
+
+   :it {:worked "Grazie per averci fatto sapere"
+        :missing "Il campo `Nome` è richiesto"
+        :not-working "Errore nel sottomettere il tuo form"}})
+
+(def ^:private tr (partial translate handlers-dict))
 
 (def default-db
   ;; what other possibly useful information could be here?
@@ -52,9 +64,9 @@
 (defn handle
   [response]
   (case (:status response)
-    201 (js/alert "Thanks for letting us know")
-    400 (js/alert "Missing required field `Name`")
-    (js/alert "Could not submit your response")))
+    201 (js/alert (tr :worked))
+    400 (js/alert (tr :missing))
+    (js/alert (tr :not-working))))
 
 ;;XXX: getting strangely cjls-ajax to report failure
 ;;even if in fact it worked and it was a 201 response
