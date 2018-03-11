@@ -1,9 +1,7 @@
 (ns just-married.api
   (:gen-class)
-  (:require [clojure.walk :refer [keywordize-keys]]
-            [clojure.string :as string]
+  (:require [clojure.string :as string]
             [clojure.java.io :as io]
-            [clojure.tools.logging :as log]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
@@ -21,10 +19,8 @@
             [just-married.pages.guests :as guest-page]
             [just-married.pages.enter :as enter]
             [just-married.api.labels :refer [labels-api]]
-            [just-married
-             [settings :as settings]
-             [db :as db]
-             [mail :refer [send-email]]]))
+            [just-married.api.rvsp :refer [rvsp!]]
+            [just-married.db :as db]))
 
 (defn get-language
   [request]
@@ -64,30 +60,6 @@
       (resp/redirect (format "/main?language=%s" (name preferred-language)))
       (render-page :home {:language preferred-language}))))
 
-(defn notify
-  [request]
-  (let [params
-        (-> request
-            :params
-            ;; this keywordize should not be
-            ;; actually needed in theory
-            keywordize-keys)]
-    (log/info "passing to send-emails parameters"
-              params)
-
-    {:status 201
-     :body   (-> (send-email params)
-                 :message)}))
-
-(defn confirm
-  [request]
-  (let [params (-> request
-                   :params
-                   keywordize-keys)]
-
-    {:status 201
-     :body   "Done"}))
-
 (defn guest-list
   "Page showing the list of guests, needs to be authenticated"
   [request]
@@ -101,14 +73,14 @@
                                                                                :body   guests}
                                                                               (resp/content-type "application/edn"))))
 
+;;TODO: try to use bidi instead for the routing?
 (defroutes app-routes
   (GET "/" request (enter-page request))
   (GET "/rvsp" request (enter-page request :redirect-to "rvsp"))
-  (POST "/notify" request (notify request))
-  (POST "/confirm" request (confirm request))
   ;; do a redirect adding the extra information
   (GET "/main" request (main-page request))
   (GET "/guests" request (guest-list request))
+  (POST "/api/rvsp" request (rvsp! request))
   (GET "/api/labels" request (labels-api request))
   (GET "/api/guests" request (guest-list-api request)))
 

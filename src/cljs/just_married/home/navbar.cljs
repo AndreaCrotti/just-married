@@ -21,10 +21,10 @@
         :gift "Lista Nozze"}})
 
 (defn navbar
+  "Generate the full navbar from the sections"
   [sections]
   (into [:div.navbar__container]
         (for [sec sections]
-          ;; could avoid the special case maybe somehow
           (let [href (str "#" (name sec))]
             [:div.navbar__link
              [:a {:href href}
