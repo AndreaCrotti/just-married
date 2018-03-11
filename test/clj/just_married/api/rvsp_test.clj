@@ -23,9 +23,7 @@
                           :comment  "My comment"
                           :coming   true}
           ;; bit of a hack to get transform the data
-          params-from-db (dissoc (assoc params
-                                        :how_many 3
-                                        :coming true)
+          params-from-db (dissoc (assoc params :how_many 3)
                                  :how-many)
 
           response (sut/rvsp! {:json-params params})]
