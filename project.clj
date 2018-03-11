@@ -31,6 +31,7 @@
                  [day8.re-frame/test "0.1.5"]
                  [day8.re-frame/trace "0.1.13"]
                  [clj-recaptcha "0.0.2"]
+                 [cljsjs/react-select "1.2.1-1"]
 
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
