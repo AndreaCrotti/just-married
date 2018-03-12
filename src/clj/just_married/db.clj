@@ -26,23 +26,8 @@
   []
   (jdbc/query (db-spec) (all-guests)))
 
-(defn all-groups
-  []
-  (-> (h/select :*)
-      (h/from :guests-group)
-      (sql/format)))
-
-(defn guests-by-group
-  [group-id]
-  (->
-   (h/select :first_name :last_name)
-   (h/from :guest)
-   (h/where [:= :guest.group_id group-id])
-   (sql/format)))
-
 (defn- insert-into!
   [sql-map]
-
   (let [query (-> sql-map
                   (ph/returning :id)
                   sql/format)]
