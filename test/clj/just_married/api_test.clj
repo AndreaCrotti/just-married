@@ -74,16 +74,3 @@
                        :last_name  "Bros"}]}]
 
         (is (= desired (dissoc resp :headers)))))))
-
-(deftest guest-list-test
-  (testing "Without being authenticated we get 401"
-    (let [req  (mock/request :get "/guests")
-          resp (sut/app req)]
-      (is (= 401 (-> resp :status)))))
-
-  (testing "With authentication we get a 200"
-    (let [req        (mock/request :get "/guests")
-          authed-req (assoc req :identity "admin")
-          resp       (sut/app authed-req)]
-      (is (= 200 (-> resp :status)))
-      (is (clojure.string/includes? (-> resp :body) "init_guests()")))))

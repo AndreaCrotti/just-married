@@ -1,5 +1,6 @@
 (ns just-married.pages.enter
   (:require [just-married.settings :as settings]
+            [just-married.language :refer [get-language]]
             [just-married.pages.common :as common]))
 
 (def ^:private date

@@ -1,5 +1,6 @@
 (ns just-married.language
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as string]
+            [just-married.shared :refer [available-languages]]))
 
 (def ^:private default-language :en)
 
@@ -21,3 +22,9 @@
 
       (or (first only-available) default-language))
     default-language))
+
+(defn get-language
+  [request]
+  (detect-language
+   (get-in request [:headers "accept-language"])
+   available-languages))
