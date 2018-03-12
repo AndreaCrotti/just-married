@@ -1,6 +1,8 @@
 (ns just-married.system
   (:require [integrant.core :as ig]
             [environ.core :refer [env]]
+            [just-married.css :as css]
+            [garden.core :as garden]
             [ring.adapter.jetty :as jetty]))
 
 (def ^:private default-port 3000)
@@ -20,6 +22,10 @@
 (defmethod ig/halt-key! :adapter/jetty
   [_ server]
   (.stop server))
+
+(defn- compile-css
+  []
+  (spit "file.css" (garden/css css/screen)))
 
 (defmethod ig/init-key :garden/compiler
   [_ {:keys [handler] :as opts}]

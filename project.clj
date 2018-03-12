@@ -60,8 +60,7 @@
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
             [lein-cljsbuild "1.1.4"]
-            [lein-cljfmt "0.5.7"]
-            [lein-garden "0.2.8"]]
+            [lein-cljfmt "0.5.7"]]
 
   :uberjar-name "just-married.jar"
   :min-lein-version "2.7.1"
@@ -115,7 +114,6 @@
                    [figwheel "0.5.14"]
                    [figwheel-sidecar "0.5.14"]
                    [javax.servlet/servlet-api "2.5"]
-                   [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
                    [reloaded.repl "0.2.4"]
                    [ring/ring-mock "0.3.2"]]}}
