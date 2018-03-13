@@ -9,4 +9,7 @@ heroku-clean: uberjar heroku
 preview:
 	git push -v --force preview HEAD:master
 
+sloc:
+	cloc src/ test/
+
 .PHONY = heroku
