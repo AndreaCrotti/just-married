@@ -20,24 +20,29 @@
   ;; what other possibly useful information could be here?
   {:language       :en
    :expanded-story false
-   :rvsp           {:name     nil
-                    :email    nil
-                    :how-many config/default-how-many
-                    :comment  nil}})
+   :rvsp           {:name      nil
+                    :email     nil
+                    :how-many  config/default-how-many
+                    :comment   nil
+                    :is-coming nil}})
 
 (defn- getter
-  [key]
+  [path]
   (fn [db _]
-    (key db)))
+    (get-in path db)))
 
 (defn- setter
-  [key]
+  [path]
   (fn [db [_ val]]
-    (assoc-in db key val)))
+    (assoc-in db path val)))
 
 (reg-sub
  :expanded-story
- (getter :expanded-story))
+ (getter [:expanded-story]))
+
+(reg-sub
+ :is-coming
+ (getter [:rvsp :is-coming]))
 
 ;; register simple setters for all the rvsp fields dynamically
 (doseq [field (-> default-db :rvsp keys)]

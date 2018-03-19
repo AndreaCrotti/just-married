@@ -52,7 +52,7 @@
 
     [:label (tr :how-many)]
     (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
-                                  :value config/default-how-many}]
+                                  :value     config/default-how-many}]
           (for [n (range 1 10)]
             [:option {:value n} n]))
 
