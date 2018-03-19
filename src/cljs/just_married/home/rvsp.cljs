@@ -54,19 +54,20 @@
          {:on-click #(dispatch [:set-is-coming false])} (tr :not-coming)]
 
         (when @is-coming
-          [:label (tr :email)]
-          [:input.rvsp__email {:type        "email"
-                               :placeholder (tr :email-sample)
-                               :on-change   (set-val :set-email)}]
+          [:form.extra_details
+           [:label (tr :email)]
+           [:input.rvsp__email {:type        "email"
+                                :placeholder (tr :email-sample)
+                                :on-change   (set-val :set-email)}]
 
-          [:label (tr :comment)]
-          [:textarea.rvsp__comment {:rows        2
-                                    :cols        100
-                                    :placeholder (tr :comment-sample)
-                                    :on-change   (set-val :set-comment)}]
+           [:label (tr :comment)]
+           [:textarea.rvsp__comment {:rows        2
+                                     :cols        100
+                                     :placeholder (tr :comment-sample)
+                                     :on-change   (set-val :set-comment)}]
 
-          [:label (tr :how-many)]
-          (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
-                                        :value     config/default-how-many}]
-                (for [n (range 1 10)]
-                  [:option {:value n} n])))]])))
+           [:label (tr :how-many)]
+           (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
+                                         :value     config/default-how-many}]
+                 (for [n (range 1 10)]
+                   [:option {:value n} n]))])]])))
