@@ -34,6 +34,42 @@
   [handler-key]
   #(dispatch [handler-key (-> % .-target .-value)]))
 
+(defn form-fields
+  [with-details]
+  (let [basic-fields
+        [[:label (tr :name)]
+         [:input.rvsp__name {:type        "text"
+                             :placeholder (tr :name-sample)
+                             :on-change   (set-val :set-name)}]
+
+         [:button.rvsp__confirm.rvsp__coming
+          {:on-click #(dispatch [:set-is-coming true])} (tr :coming)]
+
+         [:button.rvsp__confirm.rvsp__not_coming
+          {:on-click #(dispatch [:set-is-coming false])} (tr :not-coming)]]
+
+        detail-fields
+        [[:label (tr :email)]
+         [:input.rvsp__email {:type        "email"
+                              :placeholder (tr :email-sample)
+                              :on-change   (set-val :set-email)}]
+
+         [:label (tr :comment)]
+         [:textarea.rvsp__comment {:rows        2
+                                   :cols        100
+                                   :placeholder (tr :comment-sample)
+                                   :on-change   (set-val :set-comment)}]
+
+         [:label (tr :how-many)]
+         (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
+                                       :value     config/default-how-many}]
+               (for [n (range 1 10)]
+                 [:option {:value n} n]))]]
+
+    (if with-details
+      (concat basic-fields detail-fields)
+      basic-fields)))
+
 (defn rvsp
   []
   (let [is-coming (subscribe [:is-coming])]
@@ -41,33 +77,5 @@
       [:div.rvsp {:id "rvsp"}
        [:h3 (tr :rvsp)]
 
-       [:div.rvsp__form
-        [:label (tr :name)]
-        [:input.rvsp__name {:type        "text"
-                            :placeholder (tr :name-sample)
-                            :on-change   (set-val :set-name)}]
-
-        [:button.rvsp__confirm.rvsp__coming
-         {:on-click #(dispatch [:set-is-coming true])} (tr :coming)]
-
-        [:button.rvsp__confirm.rvsp__not_coming
-         {:on-click #(dispatch [:set-is-coming false])} (tr :not-coming)]
-
-        (when @is-coming
-          [:form.extra_details
-           [:label (tr :email)]
-           [:input.rvsp__email {:type        "email"
-                                :placeholder (tr :email-sample)
-                                :on-change   (set-val :set-email)}]
-
-           [:label (tr :comment)]
-           [:textarea.rvsp__comment {:rows        2
-                                     :cols        100
-                                     :placeholder (tr :comment-sample)
-                                     :on-change   (set-val :set-comment)}]
-
-           [:label (tr :how-many)]
-           (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
-                                         :value     config/default-how-many}]
-                 (for [n (range 1 10)]
-                   [:option {:value n} n]))])]])))
+       (into [:div.rvsp__form]
+             (form-fields @is-coming))])))
