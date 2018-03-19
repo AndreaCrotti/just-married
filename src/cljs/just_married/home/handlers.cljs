@@ -29,7 +29,7 @@
 (defn- getter
   [path]
   (fn [db _]
-    (get-in path db)))
+    (get-in db path)))
 
 (defn- setter
   [path]
