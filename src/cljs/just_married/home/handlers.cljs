@@ -51,20 +51,16 @@
    (setter [:rvsp field])))
 
 (defn rvsp
-  [{:keys [db]} [_ value]]
+  [{:keys [db]}]
   {:db         db
    :http-xhrio {:method          :post
                 :uri             "/api/rvsp"
-                :params          (assoc (:rvsp db) :coming value)
+                :params          (:rvsp db)
                 ;; could use EDN as well here potentially
                 :format          (ajax/json-request-format)
                 :response-format (ajax/json-response-format {:keywords? true})
                 :on-success      [:confirmation-sent]
                 :on-failure      [:confirmation-not-sent]}})
-
-(reg-event-fx
- :send-notification
- rvsp)
 
 (defn handle
   [response]
@@ -86,6 +82,10 @@
  (fn [db [_ response]]
    (handle response)
    db))
+
+(reg-event-fx
+ :send-notification
+ rvsp)
 
 (reg-event-db
  :initialize-db

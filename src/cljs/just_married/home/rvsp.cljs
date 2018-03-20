@@ -14,7 +14,8 @@
         :comment "Other comments (any allergies/special requirements)"
         :not-coming "Sorry I can't"
         :confirmation-sent "Thanks for letting us know!"
-        :how-many "How many are you?"}
+        :how-many "How many are you?"
+        :submit "Let us know"}
 
    :it {:rvsp "RVSP"
         :email "Email"
@@ -26,7 +27,8 @@
         :comment-sample "Per esempio la mia ragazza e' ciliaca, io posso mangiare arachidi"
         :not-coming "Non posso"
         :confirmation-sent "Grazie per averci fatto sapere!"
-        :how-many "Quanti siete?"}})
+        :how-many "Quanti siete?"
+        :submit "Facci sapere"}})
 
 (def ^:private tr (partial translate rvsp-dict))
 
@@ -64,11 +66,14 @@
          (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
                                        :value     config/default-how-many}]
                (for [n (range 1 10)]
-                 [:option {:value n} n]))]]
+                 [:option {:value n} n]))]
 
-    (if with-details
-      (concat basic-fields detail-fields)
-      basic-fields)))
+        fields (if with-details (concat basic-fields detail-fields) basic-fields)
+        confirm-button
+        [:button.rvsp__submit {:on-change #(dispatch [:send-notification])}
+         (tr :submit)]]
+
+    (concat fields [confirm-button])))
 
 (defn rvsp
   []
