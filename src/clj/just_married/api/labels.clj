@@ -9,7 +9,7 @@
             [just-married.auth :refer [with-basic-auth]]
             [just-married.db :as db]))
 
-(def ^:private default-n-cols 3)
+(def ^:private default-n-cols 2)
 (def ^:private file-name "labels.pdf")
 (def ^:private default-font "Helvetica")
 
