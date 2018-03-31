@@ -9,7 +9,7 @@
             [just-married.auth :refer [with-basic-auth]]
             [just-married.db :as db]))
 
-(def ^:private default-n-cols 2)
+(def ^:private default-n-cols 3)
 (def ^:private file-name "labels.pdf")
 (def ^:private default-font "Helvetica")
 
@@ -31,10 +31,10 @@
 
 (def pdf-options
   {:title                  "Address List"
-   :left-margin            2
-   :right-margin           2
-   :top-margin             2
-   :bottom-margin          2
+   :left-margin            10
+   :right-margin           10
+   :top-margin             8
+   :bottom-margin          8
    :size                   :a4
    :font                   {:size     12
                             :family   default-font
