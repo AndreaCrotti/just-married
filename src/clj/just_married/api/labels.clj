@@ -66,10 +66,15 @@
   {:pre [(or (nil? country)
              (contains? (set (keys countries-mappping)) country))]}
 
-  (format "%s\n%s\n%s"
-          group_name
-          (or address "")
-          (or (countries-mappping country) "")))
+  (if (= country "IT")
+    (format "%s\n%s"
+            group_name
+            (or address ""))
+
+    (format "%s\n%s\n%s"
+            group_name
+            (or address "")
+            (or (countries-mappping country) ""))))
 
 (defn group-addresses
   [addresses n-cols]

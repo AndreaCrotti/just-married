@@ -46,5 +46,5 @@
             [[:pdf-cell
               {:align   :right
                :padding (repeat 4 8)}
-              "Long group name\nMy street 42, Town 10022 (PR)\nItaly"]]]
+              "Long group name\nMy street 42, Town 10022 (PR)"]]]
            (sut/gen-table [sample-address] 3)))))
