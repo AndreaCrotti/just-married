@@ -24,7 +24,7 @@
                     :email     nil
                     :how-many  config/default-how-many
                     :comment   nil
-                    :is-coming nil}})
+                    :is-coming true}})
 
 (defn- getter
   [path]

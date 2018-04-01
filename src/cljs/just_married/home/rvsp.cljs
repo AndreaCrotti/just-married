@@ -70,7 +70,7 @@
 
         fields (if with-details (concat basic-fields detail-fields) basic-fields)
         confirm-button
-        [:button.rvsp__submit {:on-change #(dispatch [:send-notification])}
+        [:button.rvsp__submit {:on-click #(dispatch [:send-notification])}
          (tr :submit)]]
 
     (concat fields [confirm-button])))
