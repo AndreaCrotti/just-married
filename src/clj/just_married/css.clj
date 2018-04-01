@@ -7,6 +7,8 @@
 (def ^:private map-height "500px")
 (def ^:private max-width-mobile "480px")
 
+(defcssfn url)
+
 ;; dynamically get the grid size from the actual sections declared
 (def num-sections (-> sections count))
 (def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
@@ -140,6 +142,11 @@
                      :cursor          "hand"
                      :color           (:white color-pallette)
                      :background-color (:dark-red color-pallette)}]
+
+   ;; url macro not currently working as expected
+   [:.rvsp__coming {;;:background (url "images/it_large.png") "no-repeat"
+                    :cursor "pointer"
+                    :border "none"}]
 
    [:blockquote:before {:color          (:quote-border-left color-pallette)
                         :content        "open-quote"
