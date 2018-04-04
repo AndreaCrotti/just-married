@@ -24,7 +24,8 @@
            :migration-dir "migrations"
            :db            db/test-db-url}]
 
-      ;; TODO: There might be zero need to migrate
+      ;; TODO: migrations only really need to be done once before all
+      ;; the tests run (and tore down at the end of everything)
       (migratus/migrate config)
       (wrap-db-tx test-fn)
       (migratus/reset config))))
