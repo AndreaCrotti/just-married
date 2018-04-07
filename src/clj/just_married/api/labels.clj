@@ -62,19 +62,8 @@
   (apply + (map count (vals address))))
 
 (defn format-address
-  [{:keys [group_name country address]}]
-  {:pre [(or (nil? country)
-             (contains? (set (keys countries-mappping)) country))]}
-
-  (if (= country "IT")
-    (format "%s\n%s"
-            group_name
-            (or address ""))
-
-    (format "%s\n%s\n%s"
-            group_name
-            (or address "")
-            (or (countries-mappping country) ""))))
+  [{:keys [group_name address]}]
+  (format "%s\n%s" group_name (or address "")))
 
 (defn group-addresses
   [addresses n-cols]
