@@ -1,22 +1,26 @@
 version: 2
 jobs:
   build:
+    # machine: true
     docker:
       # specify the version you desire here
       - image: circleci/clojure:lein-2.7.1
-        # environment:
-        #   - DATABASE_URL=postgresql://just_married:just_married@localhost
+        depends_on: db
+        environment:
 
       - image: postgres:9.6
         environment:
-          - POSTGRES_USER=localhost
+          - POSTGRES_USER=just_married
           - POSTGRES_PASSWORD=just_married
           - POSTGRES_DB=just_married
+        ports:
+          - "5432:5432"
 
     working_directory: ~/just-married
 
     environment:
       LEIN_ROOT: "true"
+      DATABASE_URL: postgresql://just_married:just_married@localhost:5432/just_married
     
     steps:
       - checkout
