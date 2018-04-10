@@ -12,7 +12,7 @@
                  [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
-
+                 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.2"]
@@ -53,7 +53,9 @@
                  [reframe-utils "0.1.4"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]
-                 [clj-pdf "2.2.30"]]
+                 [clj-pdf "2.2.30"]
+                 [cljsjs/moment "2.17.1-1"]
+                 [cljsjs/moment-range "3.0.3-0"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]

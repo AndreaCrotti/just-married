@@ -3,12 +3,25 @@
             [just-married.home.language :refer [translate get-language]]
             [cljs-time.core :as time]
             [cljs-time.format :refer [unparse-duration]]
+            [cljsjs.moment]
             [goog.date.duration :as duration]))
 
 (def ^:private reload-time-ms 1000)
 
 (def fatidic-time
-  (time/date-time 2018 05 27 11 30))
+  (time/date-time 2018 05 27 11 30)
+  ;;(js/moment "2018-05-27 11:30")
+  )
+
+;; (def mydiff (.diff (js/moment) fatidic-time "minutes"))
+;; (.as (js/moment.duration mydiff) "hours")
+
+(def gen-diff
+  []
+  (let [now (js/moment)
+        diff-fn #(.diff now fatidic-time (name %))
+        units #{:seconds :minutes :hours :days}]
+    ))
 
 (def ^:private countdown-dict
   {:en {:add-to-calendar "Add to Google Calendar"
