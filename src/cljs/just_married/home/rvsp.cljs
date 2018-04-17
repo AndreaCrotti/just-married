@@ -23,7 +23,7 @@
         :name-sample "Mario Rossi"
         :coming "Contaci"
         :comment "Altri commenti (allergie/esigenze particolari)"
-        :comment-sample "Per esempio la mia ragazza e' ciliaca, io posso mangiare arachidi"
+        :comment-sample "Per esempio la mia ragazza e' celiaca, io posso mangiare arachidi"
         :not-coming "Non posso"
         :confirmation-sent "Grazie per averci fatto sapere!"
         :how-many "Quanti siete?"}})
