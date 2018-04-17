@@ -10,7 +10,7 @@
         :name-sample "John Smith"
         :name "Name (*)"
         :coming "I'll be there"
-        :comment-sample"Eg My girflriend is celiac, I can't eat peanuts"
+        :comment-sample "Eg My girflriend is celiac, I'm allergic to peanuts"
         :comment "Other comments (any allergies/special requirements)"
         :not-coming "Sorry I can't"
         :confirmation-sent "Thanks for letting us know!"
@@ -23,7 +23,7 @@
         :name-sample "Mario Rossi"
         :coming "Contaci"
         :comment "Altri commenti (allergie/esigenze particolari)"
-        :comment-sample "Per esempio la mia ragazza e' celiaca, io posso mangiare arachidi"
+        :comment-sample "Per esempio la mia ragazza e' celiaca, io sono allergico alle arachidi"
         :not-coming "Non posso"
         :confirmation-sent "Grazie per averci fatto sapere!"
         :how-many "Quanti siete?"}})
