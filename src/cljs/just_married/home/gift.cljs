@@ -9,13 +9,13 @@
 
 (def coordinates
   {:eur {:name "Andrea Crotti"
-         :iban "DE70100110012629402677"}
+         :iban "DE70100110012629402677"
+         :bic "BICNTSBDEB1XXX"}
 
    :gbp {:name "Andrea Crotti"
          :iban "GB19ABBY09012921859069"
          :number "21859069"
-         :sort-code "09-01-29"
-         :bic "BICNTSBDEB1XXX"}})
+         :sort-code "09-01-29"}})
 
 (def gift-dict
   {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon trip to the Seychelles you can use the bank details provided below:"
@@ -48,7 +48,7 @@
    [:h3 (tr :title)]
    (tr :gift)
    [:h4 "Euros (€)"]
-   (coords-table [:name :iban] :eur)
+   (coords-table [:name :iban :bic] :eur)
 
    [:h4 (gstring/format "%s (£)" (tr :pounds))]
-   (coords-table [:name :iban :number :sort-code :bic] :gbp)])
+   (coords-table [:name :iban :number :sort-code] :gbp)])
