@@ -14,7 +14,8 @@
    :gbp {:name "Andrea Crotti"
          :iban "GB19ABBY09012921859069"
          :number "21859069"
-         :sort-code "09-01-29"}})
+         :sort-code "09-01-29"
+         :bic "BICNTSBDEB1XXX"}})
 
 (def gift-dict
   {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon trip to the Seychelles you can use the bank details provided below:"
@@ -50,4 +51,4 @@
    (coords-table [:name :iban] :eur)
 
    [:h4 (gstring/format "%s (£)" (tr :pounds))]
-   (coords-table [:name :iban :number :sort-code] :gbp)])
+   (coords-table [:name :iban :number :sort-code :bic] :gbp)])
