@@ -36,7 +36,7 @@
                 :top-margin 3
                 :bottom-margin 3
                 :size [450 450]
-                :font {:size 17
+                :font {:size 22
                        :ttf-name "Satisfy-Regular.ttf"
                        :encoding :unicode}
                 :register-system-fonts? true}
@@ -61,12 +61,18 @@
 
 (def table-options-cards
   {:width-percent 100
-   :border-width 0.2
+   :border-width 0.1
+   
    :horizontal-align :right})
 
 (def cell-options
   {:align   :right
    :padding (repeat 4 8)})
+
+(def cell-options-cards
+  {:align   :right
+   :padding (repeat 4 10)
+   :border-color [10 10 10]})
 
 (def countries-mappping
   {"IT" "Italy"
@@ -101,15 +107,13 @@
 (defn gen-placecard-table
   [names n-cols]
   
-  (let [names-sorted (sort names)
-        grouped-names (partition-all n-cols names-sorted)]
-
+  (let [grouped-names (partition-all n-cols names)]
     (into [:pdf-table
            table-options-cards
            (repeat n-cols 10)]
           
           (map #(for [name %]
-                  [:pdf-cell cell-options name])
+                  [:pdf-cell cell-options-cards name])
 
                grouped-names))))
 
