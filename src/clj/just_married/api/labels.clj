@@ -36,8 +36,8 @@
                 :top-margin 3
                 :bottom-margin 3
                 :size [450 450]
-                :font {:size 15
-                       :family default-font
+                :font {:size 17
+                       :ttf-name "Satisfy-Regular.ttf"
                        :encoding :unicode}
                 :register-system-fonts? true}
 
@@ -57,6 +57,11 @@
 (def table-options
   {:width-percent    100
    :border           false
+   :horizontal-align :right})
+
+(def table-options-cards
+  {:width-percent 100
+   :border-width 0.2
    :horizontal-align :right})
 
 (def cell-options
@@ -100,7 +105,7 @@
         grouped-names (partition-all n-cols names-sorted)]
 
     (into [:pdf-table
-           table-options
+           table-options-cards
            (repeat n-cols 10)]
           
           (map #(for [name %]
@@ -140,9 +145,6 @@
                            clojure.string/split-lines
                            (map massage-word))))
 
-(comment
-  (write-cards "names.txt"))
-
 (defn labels-api
   [request]
   (with-basic-auth request
@@ -151,3 +153,6 @@
 
       (-> (resp/file-response labels-pdf-file)
           (resp/content-type "application/pdf")))))
+
+(comment
+  (write-cards "names.txt"))
