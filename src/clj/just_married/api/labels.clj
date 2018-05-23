@@ -36,9 +36,10 @@
                 :top-margin 3
                 :bottom-margin 3
                 :size [450 450]
-                :font {:size 12
+                :font {:size 15
                        :family default-font
-                       :encoding :unicode}}
+                       :encoding :unicode}
+                :register-system-fonts? true}
 
    :addresses {:title                  "Address List"
                :left-margin            10
@@ -125,6 +126,22 @@
    "cards.pdf")
 
   "cards.pdf")
+
+(defn massage-word
+  [word]
+  (clojure.string/join " "
+                       (map clojure.string/capitalize
+                            (clojure.string/split word #" "))))
+
+(defn write-cards
+  [names-files]
+  (placecard-generator (->> names-files
+                           slurp
+                           clojure.string/split-lines
+                           (map massage-word))))
+
+(comment
+  (write-cards "names.txt"))
 
 (defn labels-api
   [request]
