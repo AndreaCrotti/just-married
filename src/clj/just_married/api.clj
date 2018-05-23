@@ -1,24 +1,23 @@
 (ns just-married.api
   (:gen-class)
-  (:require [clojure.string :as string]
+  (:require [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [clojure.java.io :as io]
-            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
+            [clojure.string :as string]
             [compojure.core :refer [defroutes GET POST]]
             [environ.core :refer [env]]
             [hiccup.core :as html]
-            [ring.middleware.defaults :as r-def]
-            [ring.middleware.resource :as resources]
-            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
-            [ring.middleware.keyword-params :refer [wrap-keyword-params]]
-            [ring.util.response :as resp]
-            [ring.adapter.jetty :as jetty]
-            [just-married.auth :refer [with-basic-auth basic-auth-backend]]
-            [just-married.language :refer [get-language]]
-            [just-married.pages.home :as home-page]
-            [just-married.pages.enter :as enter]
             [just-married.api.labels :refer [labels-api]]
             [just-married.api.rvsp :refer [rvsp!]]
-            [just-married.db :as db]))
+            [just-married.auth :refer [with-basic-auth basic-auth-backend]]
+            [just-married.db :as db]
+            [just-married.language :refer [get-language]]
+            [just-married.pages.enter :as enter]
+            [just-married.pages.home :as home-page]
+            [ring.middleware.defaults :as r-def]
+            [ring.middleware.json :refer [wrap-json-params wrap-json-response]]
+            [ring.middleware.keyword-params :refer [wrap-keyword-params]]
+            [ring.middleware.resource :as resources]
+            [ring.util.response :as resp]))
 
 (def pages
   {:home    home-page/home-page
@@ -30,11 +29,6 @@
       (resp/content-type "text/html")))
 
 (def ^:private secure? (= (env :secure) "true"))
-(def ^:private default-port 3000)
-
-(defn- get-port
-  []
-  (Integer. (or (env :port) default-port)))
 
 (defn main-page
   [request]
@@ -82,6 +76,3 @@
       (wrap-authentication basic-auth-backend)
       wrap-keyword-params
       wrap-json-params))
-
-(defn -main [& args]
-  (jetty/run-jetty app {:port (get-port)}))

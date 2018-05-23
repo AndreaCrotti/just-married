@@ -80,7 +80,7 @@
              :server-ip "127.0.0.1"}
 
   :ring {:handler just-married.api/app}
-  :main ^{:skip-aot true} just-married.api
+  :main ^{:skip-aot true} just-married.core
   :target-path "target/%s"
 
   :doo {:alias {:browsers [:phantomjs]}}
@@ -99,7 +99,7 @@
 
              :omit-source true
              :aot :all
-             :main just-married.api}
+             :main just-married.core}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :env {:devtools-debug "true"}
