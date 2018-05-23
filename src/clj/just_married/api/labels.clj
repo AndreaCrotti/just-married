@@ -30,18 +30,28 @@
   (jdbc/query (db/db-spec) (labels-sql)))
 
 (def pdf-options
-  {:title                  "Address List"
-   :left-margin            10
-   :right-margin           10
-   :top-margin             8
-   :bottom-margin          8
-   :size                   :a4
-   :font                   {:size     12
-                            :family   default-font
-                            ;;TODO: change the font in this way if you want to
-                            ;; :ttf-name "resources/public/fonts/OpenSans-Regular.ttf"
-                            :encoding :unicode}
-   :register-system-fonts? true})
+  {:placecards {:title "Place Cards"
+                :left-margin 3
+                :right-margin 3
+                :top-margin 3
+                :bottom-margin 3
+                :size [450 450]
+                :font {:size 12
+                       :family default-font
+                       :encoding :unicode}}
+
+   :addresses {:title                  "Address List"
+               :left-margin            10
+               :right-margin           10
+               :top-margin             8
+               :bottom-margin          8
+               :size                   :a4
+               :font                   {:size     12
+                                        :family   default-font
+                                        ;;TODO: change the font in this way if you want to
+                                        ;; :ttf-name "resources/public/fonts/OpenSans-Regular.ttf"
+                                        :encoding :unicode}
+               :register-system-fonts? true}})
 
 (def table-options
   {:width-percent    100
@@ -82,15 +92,39 @@
                   [:pdf-cell cell-options (format-address addr)])
                grouped-addresses))))
 
+(defn gen-placecard-table
+  [names n-cols]
+  
+  (let [names-sorted (sort names)
+        grouped-names (partition-all n-cols names-sorted)]
+
+    (into [:pdf-table
+           table-options
+           (repeat n-cols 10)]
+          
+          (map #(for [name %]
+                  [:pdf-cell cell-options name])
+
+               grouped-names))))
+
 (defn labels
   "Place all the labels in a table generating the right pdf code"
   [addresses]
   (pdf/pdf
-   [pdf-options
+   [(:addresses pdf-options)
     (gen-table addresses default-n-cols)]
    file-name)
 
   file-name)
+
+(defn placecard-generator
+  [names]
+  (pdf/pdf
+   [(:placecards pdf-options)
+    (gen-placecard-table names 3)]
+   "cards.pdf")
+
+  "cards.pdf")
 
 (defn labels-api
   [request]

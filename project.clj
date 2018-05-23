@@ -53,7 +53,8 @@
                  [reframe-utils "0.1.4"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]
-                 [clj-pdf "2.2.30"]]
+                 [clj-pdf "2.2.30"]
+                 [org.clojure/tools.cli "0.3.7"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
