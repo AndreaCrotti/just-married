@@ -13,7 +13,7 @@
    :maps geo/map-configs})
 
 (def sections
-  [:countdown
+  [;; :countdown
    :find-us
    :timeline
    :accommodation
