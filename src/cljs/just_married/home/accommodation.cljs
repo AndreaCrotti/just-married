@@ -1,6 +1,7 @@
 (ns just-married.home.accommodation
   (:require [just-married.home.language :refer [translate]]
-            [goog.string]
+            [goog.string :as gstring]
+            [cljs-time.core :as time]
             [clojure.string :refer [upper-case]]
             [just-married.geo-info :refer [place-detail-list]]
             [re-frame.core :refer [dispatch subscribe]]))
@@ -47,7 +48,7 @@
 
    (into [:tr]
          (for [pr (keys prices)]
-           [:td (goog.string/format "%s €" (pr prices))]))])
+           [:td (gstring/format "%s €" (pr prices))]))])
 
 (defn accommodation
   []
@@ -58,8 +59,8 @@
     [:div (tr :code)]
     [prices-table]
     [:div (tr :distance)]
-    [:a {:href (goog.string/format "mailto:%s" email-hotel)}
-     (goog.string/format (tr :contact) email-hotel)]]
+    [:a {:href (gstring/format "mailto:%s" email-hotel)}
+     (gstring/format (tr :contact) email-hotel)]]
    
    [:div.google-map {:id "accommodation-map"}]
 
