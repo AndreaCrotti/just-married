@@ -1,0 +1,8 @@
+#+AUTHOR: Andrea Crotti
+#+TITLE: Getting Married with Clojure
+#+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t reveal_overview:t
+#+REVEAL_TRANS: fade
+#+REVEAL_SPEED: fast
+#+EMAIL: andrea.crotti.0@gmail.com
+#+TOC: 
+
