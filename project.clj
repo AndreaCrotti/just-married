@@ -53,7 +53,8 @@
                  [reframe-utils "0.1.4"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]
-                 [clj-pdf "2.2.30"]]
+                 [clj-pdf "2.2.30"]
+                 [org.clojure/tools.cli "0.3.7"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
@@ -80,7 +81,7 @@
              :server-ip "127.0.0.1"}
 
   :ring {:handler just-married.api/app}
-  :main ^{:skip-aot true} just-married.api
+  :main ^{:skip-aot true} just-married.core
   :target-path "target/%s"
 
   :doo {:alias {:browsers [:phantomjs]}}
@@ -99,7 +100,7 @@
 
              :omit-source true
              :aot :all
-             :main just-married.api}
+             :main just-married.core}
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :env {:devtools-debug "true"}
