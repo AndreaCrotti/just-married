@@ -3,45 +3,58 @@
 #+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t reveal_overview:t
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
-#+EMAIL: andrea.crotti.0@gmail.com
+#+EMAIL: @andreacrotti
 #+TOC: 
 
+* Wedding planning
 
-* 
-  :PROPERTIES:
-  :reveal_background: ./images/enter_page.png
-  :END:
+#+BEGIN_NOTES
+If anyone of you organised a wedding (or an event with around 100
+people attending), know, organising an even it's a massive amount of
+work, which involves coordinating lots of people, planning with
+months in advance and so on and so forth.
 
-* Why 
+There are some website generators and other online tools that help you
+a bit, but of course nothing beats a totally custom platform, and of
+course where would be the fun using some pre made stuff anyway.
 
-#+BEGIN_SRC 
+In the spirit of Lisp we prefer to write everything ourselves.
+#+END_NOTES
 
-#+END_SRC
-
-[[./images/scheming2.gif]]
+[[./images/panic.jpg]]
 
 * The grand plan
+
+#+BEGIN_NOTES
+So as long as the dates where set I started working on this side
+project, with the goal of making a good looking website and some tools
+to help us out with all the grunt work without getting crazy.
+
+The original plan was quite ambitious, with an Italian/English
+website, integration with google maps, a way for guests to RVSP
+smartly, integration with payments platform for the wedding registry,
+a Postgres database to store all the useful information about guests
+and even an automated way to generate tables.
+#+END_NOTES
 
 - Italian & English public website
 - Google maps integration
 - Smart RVSP
-- Integrated weding registry (Paypal/Stripe integration)
+- Integrated wedding registry (Paypal/Stripe integration)
 - Notification system
 - Database to store guests
 - Table generator
 
 * Reality
 
-** Planning
+[[./images/scheming2.gif]]
 
-** Deadlines
-
-* The reality
+* Implementation
 
 ** Some stats
 
 - 9 months of development
-- 433 commits
+- 433 commits (with > 10k lines added)
 - 50 PRs closed
 - 550 Clj SLOC
 - 92 Cljc SLOC
@@ -49,12 +62,13 @@
 
 ** Backend
 
-- Clojure / Ring
+- Clojure
+- Ring/Compojure
 - Postgres
 - HoneySQL
-- Migratus to handle migrations
-- Buddy for authentication
-- Clj-pdf to generate labels and placeholders
+- Migratus
+- Buddy
+- Clj-pdf
 
 ** Frontend
 
@@ -197,5 +211,4 @@
 
 
 * Conclusions
-
 
