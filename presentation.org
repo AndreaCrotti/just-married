@@ -209,6 +209,14 @@ and even an automated way to generate tables.
             (resp/content-type "application/pdf")))))
 #+END_SRC
 
+#+BEGIN_SRC sh
+  lein run generate-placeholders names.txt
+#+END_SRC
 
 * Conclusions
 
+#+BEGIN_NOTES
+So in conclusions everything went quite well 
+#+END_NOTES
+
+[[./images/sposini.jpg]]
