@@ -4,7 +4,6 @@
 (def ^:private navbar-dict
   {:en {:timeline "Timeline"
         :rvsp "RVSP"
-        :story "Our Story"
         :find-us "Find Us"
         :countdown "Countdown"
         :accommodation "Accommodation"
@@ -12,7 +11,6 @@
         :gift "Wedding Registry"}
 
    :it {:timeline "Programma"
-        :story "La Nostra Storia"
         :find-us "Trovaci"
         :rvsp "RVSP"
         :countdown "Conto Alla Rovescia"
