@@ -6,50 +6,47 @@
   :dependencies [[org.clojure/clojure "1.9.0"]
                  ;; ring dependencies
                  [ring "1.6.3"]
-                 [ring/ring-defaults "0.3.1"]
-                 [compojure "1.6.0"]
+                 [ring/ring-defaults "0.3.2"]
+                 [compojure "1.6.1"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 [raven-clj "1.5.1"]
-                 [clj-http "3.7.0"]
+                 [clj-http "3.9.0"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
-                 [re-frame "0.10.2"]
-                 [day8.re-frame/http-fx "0.1.4"]
-                 [cljs-ajax "0.7.3"]
+                 [re-frame "0.10.5"]
+                 [day8.re-frame/http-fx "0.1.6"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
-                 [garden "1.3.3"]
-                 [tongue "0.2.3"]
+                 [garden "1.3.5"]
+                 [tongue "0.2.4"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]
-                 [com.taoensso/tempura "1.1.2"]
-                 [cljs-http "0.1.44"]
+                 [cljs-http "0.1.45"]
 
                  ;; testing libraries, could they also not be in here at all?
-                 [doo "0.1.8"]
+                 [doo "0.1.10"]
                  [day8.re-frame/test "0.1.5"]
-                 [day8.re-frame/trace "0.1.13"]
+                 [day8.re-frame/trace "0.1.22"]
                  [clj-recaptcha "0.0.2"]
 
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
-                 [prone "1.1.4"]
+                 [prone "1.6.0"]
                  ;; database libraries
-                 [nilenso/honeysql-postgres "0.2.3"]
+                 [nilenso/honeysql-postgres "0.2.4"]
                  [clj-postgresql "0.7.0"]
-                 [org.clojure/java.jdbc "0.7.4"]
-                 [org.postgresql/postgresql "42.1.4"]
+                 [org.clojure/java.jdbc "0.7.6"]
+                 [org.postgresql/postgresql "42.2.2"]
 
-                 [honeysql "0.9.1"]
-                 [migratus "1.0.2"]
+                 [honeysql "0.9.2"]
+                 [migratus "1.0.6"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
                  [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
-                 [reframe-utils "0.1.4"]
+                 [reframe-utils "0.2.1-1"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]
-                 [clj-pdf "2.2.30"]]
+                 [clj-pdf "2.2.31"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
@@ -99,15 +96,15 @@
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :env {:devtools-debug "true"}
-    :plugins [[lein-figwheel "0.5.14"]
+    :plugins [[lein-figwheel "0.5.16"]
               [lein-doo "0.1.7"]
               [migratus-lein "0.5.0"]]
 
     :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
-    :dependencies [[binaryage/devtools "0.9.8"]
+    :dependencies [[binaryage/devtools "0.9.10"]
                    [com.cemerick/piggieback "0.2.2"]
-                   [figwheel "0.5.14"]
-                   [figwheel-sidecar "0.5.14"]
+                   [figwheel "0.5.16"]
+                   [figwheel-sidecar "0.5.16"]
                    [javax.servlet/servlet-api "2.5"]
                    [lambdaisland/garden-watcher "0.3.2"]
                    ;; dependencies for the reloaded workflow
