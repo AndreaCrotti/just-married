@@ -23,6 +23,7 @@
 * The grand plan
 
 - Italian & English public website
+- Google maps integration
 - Smart RVSP
 - Integrated weding registry (Paypal/Stripe integration)
 - Notification system
@@ -51,16 +52,114 @@
 - Reagent
 - Re-frame
 - Garden for CSS generation
+- Responsive Navbar with CSS Grid
 
-** Deployment
+** Other
 
-Github -> CircleCI -> Heroku
+- CircleCI to run tests
+- Deploying on Heroku
+- HTTPS with lets encrypt and Heroku
+- Separate staging and production environments
+- Deploy hooks to notify my wife
 
-*Staging* and *Production* environment.
+* Clojure niceties
 
-#+BEGIN_SRC sh
-  git push -v --force preview HEAD:master
+** One language to rule them all
+
+#+BEGIN_SRC clojure
+  (def sections
+    [:find-us
+     :timeline
+     :accommodation
+     :gift
+     :rvsp])
+
 #+END_SRC
 
-Deploy hooks to inform about new deployments.
+#+BEGIN_SRC clojure
+  (ns just-married.css
+    (:require [just-married.shared :refer [sections]]))
 
+  (def num-sections (-> sections count))
+  (def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
+  
+  (def ^:private body-grid-config
+      {:display               "grid"
+       :grid-gap              "5px"
+       :grid-template-columns "auto 80% auto"
+       :grid-template-rows    (repeat-word "auto" num-sections)
+       :justify-items         "left"
+       :justify-content       "center"
+       :width                 "90%"})
+
+#+END_SRC
+
+** Maps support
+
+#+BEGIN_SRC clojure
+  (def places
+    {:lepri {:lat 42.346799
+             :lng 14.164534
+             :title "Palazzo Lepri"
+             :icon "images/rings_small.png"
+             :info "Palazzo Lepri"
+             :address "Via la Valletta, 6, 66100 Chieti CH, Italy"
+             :website "http://www.palazzolepri.it/"
+             :description {:it "Palazzo Lepri"
+                           :en "Lepri Palace"}}})
+
+  (def map-configs
+    {:wedding {:element-id "map"
+               :places [:lepri :princi]
+               :center {:lat 42.4
+                        :lng 14.2}
+               :zoom 12
+               :map-type-id "roadmap"}
+
+     :accommodation {}})
+#+END_SRC
+
+** Maps config in JS
+
+#+BEGIN_SRC javascript
+  var config = window.config;
+  function addMap(mapConfig) {
+      var mapOptions = {
+          zoom: mapConfig.zoom,
+          center: new google.maps.LatLng(mapConfig.center.lat, mapConfig.center.lng),
+          mapTypeId: mapConfig['map-type-id']
+      }
+      var map = new google.maps.Map(document.getElementById(mapConfig['element-id']), mapOptions);
+
+      mapConfig.places.forEach(function(placeName) {
+          var placeConfig = config.places[placeName];
+          addMarker(map, placeConfig);
+      });
+  }
+
+  addMap(config['maps']['wedding']);
+
+#+END_SRC
+
+** Fill in window.config
+
+#+BEGIN_SRC clojure
+  (defn home-page
+    [{:keys [language]}]
+    (let [env (language common/text)
+          client-side-config (json/write-str (assoc config
+                                                    :language language))]
+      [:html {:lang (name language)}
+       (common/header env)
+       (when settings/google-analytics-key
+         [:script common/ga-js])
+
+       [:body
+        [:script (format "window['config']=%s" client-side-config)]
+        [:div {:id "app"}]
+        ;; now we can easily generate some JS that can be then loaded by
+        ;; the frontend to decide which page to display for example
+        common/app-js
+        [:script "just_married.core.init();"]
+        [:script {:src "map.js"}]]]))
+#+END_SRC
