@@ -9,14 +9,12 @@
                  [ring/ring-defaults "0.3.2"]
                  [compojure "1.6.1"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 [raven-clj "1.5.2"]
                  [clj-http "3.9.0"]
 
                  ;; clojurescript dependencies
                  [org.clojure/clojurescript "1.9.946"]
                  [re-frame "0.10.5"]
                  [day8.re-frame/http-fx "0.1.6"]
-                 [cljs-ajax "0.7.3"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
                  [garden "1.3.5"]
