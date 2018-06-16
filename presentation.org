@@ -6,3 +6,38 @@
 #+EMAIL: andrea.crotti.0@gmail.com
 #+TOC: 
 
+
+* 
+  :PROPERTIES:
+  :reveal_background: ./images/enter_page.png
+  :END:
+
+* Why 
+
+#+BEGIN_SRC 
+
+#+END_SRC
+
+[[./images/scheming2.gif]]
+
+* The grand plan
+
+- Notification system
+- 
+
+* Project management
+
+** Planning
+
+** Deadlines
+
+* What 
+
+** Backend
+
+- Clojure / Ring
+- Reagent
+
+** Frontend
+
+
