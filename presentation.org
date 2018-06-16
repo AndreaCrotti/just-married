@@ -52,8 +52,9 @@
 - Clojure / Ring
 - Postgres
 - HoneySQL
-- Buddy for the authentication layer
 - Migratus to handle migrations
+- Buddy for authentication
+- Clj-pdf to generate labels and placeholders
 
 ** Frontend
 
