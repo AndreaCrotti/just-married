@@ -9,7 +9,6 @@
                  [ring/ring-defaults "0.3.1"]
                  [compojure "1.6.0"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 [camdez/sendgrid "0.1.0"]
                  [raven-clj "1.5.1"]
                  [clj-http "3.7.0"]
 
