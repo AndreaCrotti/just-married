@@ -22,8 +22,12 @@
 
 * The grand plan
 
+- Italian & English public website
+- Smart RVSP
+- Integrated weding registry (Paypal/Stripe integration)
 - Notification system
-- 
+- Database to store guests
+- Table generator
 
 * Project management
 
@@ -36,8 +40,27 @@
 ** Backend
 
 - Clojure / Ring
-- Reagent
+- Postgres
+- HoneySQL
+- Buddy for the authentication layer
+- Migratus to handle migrations
 
 ** Frontend
 
+- Clojurescript
+- Reagent
+- Re-frame
+- Garden for CSS generation
+
+** Deployment
+
+Github -> CircleCI -> Heroku
+
+*Staging* and *Production* environment.
+
+#+BEGIN_SRC sh
+  git push -v --force preview HEAD:master
+#+END_SRC
+
+Deploy hooks to inform about new deployments.
 

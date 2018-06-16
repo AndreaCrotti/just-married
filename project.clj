@@ -42,12 +42,9 @@
 
                  [honeysql "0.9.1"]
                  [migratus "1.0.2"]
-                 [com.rpl/specter "1.0.5"]
-                 [mount "0.1.11"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
-                 [secretary "1.2.3"]
                  [day8/re-frame-tracer "0.1.1-SNAPSHOT"]
                  [reframe-utils "0.1.4"]
                  [com.cemerick/url "0.1.1"]
