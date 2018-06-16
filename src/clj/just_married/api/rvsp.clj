@@ -1,7 +1,6 @@
 (ns just-married.api.rvsp
   (:require [just-married.db :as db]
             [clojure.walk :refer [keywordize-keys]]
-            [clojure.spec.alpha :as s]
             [honeysql.core :as sql]
             [honeysql.helpers :as h]
             [clojure.java.jdbc :as jdbc]))

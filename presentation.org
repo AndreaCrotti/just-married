@@ -30,7 +30,7 @@
 - Database to store guests
 - Table generator
 
-* Project management
+* Reality
 
 ** Planning
 
@@ -43,9 +43,9 @@
 - 9 months of development
 - 433 commits
 - 50 PRs closed
-- 559 Clj SLOC
+- 550 Clj SLOC
 - 92 Cljc SLOC
-- 505 Cljs SLOC
+- 463 Cljs SLOC
 
 ** Backend
 

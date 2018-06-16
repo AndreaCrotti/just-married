@@ -2,8 +2,7 @@
   (:require [reagent.core :as reagent]
             [re-frame.core :as re-frame]
             [just-married.home.handlers]
-            [just-married.home.views :as home-views]
-            [just-married.guests.views :as guest-views]))
+            [just-married.home.views :as home-views]))
 
 (def debug?
   ^boolean js/goog.DEBUG)
@@ -21,8 +20,3 @@
   (re-frame/dispatch-sync [:initialize-db])
   (dev-setup)
   (mount-root home-views/main-panel))
-
-(defn ^:export init-guests []
-  (re-frame/dispatch-sync [:initialize-db])
-  (dev-setup)
-  (mount-root guest-views/main-panel))
