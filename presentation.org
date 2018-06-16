@@ -36,7 +36,16 @@
 
 ** Deadlines
 
-* What 
+* The reality
+
+** Some stats
+
+- 9 months of development
+- 433 commits
+- 50 PRs closed
+- 559 Clj SLOC
+- 92 Cljc SLOC
+- 505 Cljs SLOC
 
 ** Backend
 
@@ -163,3 +172,29 @@
         [:script "just_married.core.init();"]
         [:script {:src "map.js"}]]]))
 #+END_SRC
+
+** Labels and placeholders generation
+
+#+BEGIN_SRC clojure
+
+  (def labels-sql
+    (-> (h/select :group_name :country :address)
+        (h/from :guests-group)
+        (h/where [:and
+                  [:= :invitation_sent false]])
+        (sql/format)))
+
+  (defn labels-api
+    [request]
+    (with-basic-auth request
+      (let [labels-data     (get-labels!)
+            labels-pdf-file (labels labels-data)]
+
+        (-> (resp/file-response labels-pdf-file)
+            (resp/content-type "application/pdf")))))
+#+END_SRC
+
+
+* Conclusions
+
+
