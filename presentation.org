@@ -1,6 +1,6 @@
 #+AUTHOR: Andrea Crotti
 #+TITLE: Getting Married with Clojure
-#+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t reveal_overview:t
+#+OPTIONS: num:nil ^:nil tex:t toc:t reveal_progress:t reveal_control:t reveal_overview:t
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+EMAIL: @andreacrotti
@@ -9,6 +9,14 @@
 * Wedding planning
 
 #+BEGIN_NOTES
+Good afternoon everyone and thanks for coming here instead of watching
+the world cup.
+
+I'm Andrea Crotti, and in case you are worried by the title of the
+talk, it should not be taken literally, I just got married with
+another human being but created a website with some extra backend
+automation to make the organisation of the wedding easier.
+
 If anyone of you organised a wedding (or an event with around 100
 people attending), know, organising an even it's a massive amount of
 work, which involves coordinating lots of people, planning with
@@ -18,45 +26,46 @@ There are some website generators and other online tools that help you
 a bit, but of course nothing beats a totally custom platform, and of
 course where would be the fun using some pre made stuff anyway.
 
-In the spirit of Lisp we prefer to write everything ourselves.
+In the spirit of Lisp we prefer to write everything ourselves, so
+that's what I'm going to show to you today.
 #+END_NOTES
 
 [[./images/panic.jpg]]
 
-* The grand plan
+** The grand plan
 
-#+BEGIN_NOTES
-So as long as the dates where set I started working on this side
-project, with the goal of making a good looking website and some tools
-to help us out with all the grunt work without getting crazy.
+ #+BEGIN_NOTES
+ So as long as the dates where set I started working on this side
+ project, with the goal of making a good looking website and some tools
+ to help us out with all the grunt work without getting crazy.
 
-The original plan was quite ambitious, with an Italian/English
-website, integration with google maps, a way for guests to RVSP
-smartly, integration with payments platform for the wedding registry,
-a Postgres database to store all the useful information about guests
-and even an automated way to generate tables.
-#+END_NOTES
+ The original plan was quite ambitious, with an Italian/English
+ website, integration with google maps, a way for guests to RVSP
+ smartly, integration with payments platform for the wedding registry,
+ a Postgres database to store all the useful information about guests
+ and even an automated way to generate tables.
+ #+END_NOTES
 
-- Italian & English public website
-- Google maps integration
-- Smart RVSP
-- Integrated wedding registry (Paypal/Stripe integration)
-- Notification system
-- Database to store guests
-- Table generator
+ - Italian & English public website
+ - Google maps integration
+ - Smart RVSP
+ - Integrated wedding registry (Paypal/Stripe integration)
+ - Notification system
+ - Database to store guests
+ - Table generator
 
-* Reality
+** The Reality
 
-#+BEGIN_NOTES
-The reality was not as simple however, because for example I had no
-contact information for a lot of the guests, and for many of them
-(friends of my wife family) I didn't even have their physical address.
+ #+BEGIN_NOTES
+ The reality was not as simple however, because for example I had no
+ contact information for a lot of the guests, and for many of them
+ (friends of my wife family) I didn't even have their physical address.
 
-As another example, the vast majority of Italian guests would just
-give as the gift in cash, and the few that 
-#+END_NOTES
+ As another example, the vast majority of Italian guests would just
+ give as the gift in cash, and the few that 
+ #+END_NOTES
 
-[[./images/scheming2.gif]]
+ [[./images/scheming2.gif]]
 
 * Implementation
 
@@ -103,7 +112,7 @@ And from Google analytics:
 - Separate staging and production environments
 - Deploy hooks to notify my wife
 
-* Clojure niceties
+* Interesting code snippets
 
 ** One language to rule them all
 
