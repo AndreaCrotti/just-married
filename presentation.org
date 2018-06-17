@@ -1,9 +1,9 @@
-#+AUTHOR: Andrea Crotti
+#+AUTHOR: Andrea Crotti (Funding Circle)
 #+TITLE: Getting Married with Clojure
 #+OPTIONS: num:nil ^:nil tex:t toc:t reveal_progress:t reveal_control:t reveal_overview:t
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
-#+EMAIL: @andreacrotti
+#+EMAIL: andrea.crotti.0@gmail.com (@andreacrotti)
 #+TOC: 
 
 * Wedding planning
@@ -305,3 +305,4 @@ have to worry about timezones at least.)
 #+END_NOTES
 
 [[./images/sposini.jpg]]
+
