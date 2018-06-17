@@ -263,6 +263,8 @@ And this is all you need to actually get something like this to work.
 
 ** Labels and placeholders generation
 
+API to generate labels:
+
 #+BEGIN_SRC clojure
 
   (def labels-sql
@@ -281,6 +283,8 @@ And this is all you need to actually get something like this to work.
         (-> (resp/file-response labels-pdf-file)
             (resp/content-type "application/pdf")))))
 #+END_SRC
+
+Command line to generate placeholders:
 
 #+BEGIN_SRC sh
   lein run generate-placeholders names.txt
