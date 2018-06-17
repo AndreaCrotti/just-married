@@ -12,10 +12,11 @@
 Good afternoon everyone and thanks for coming here instead of watching
 the world cup.
 
-I'm Andrea Crotti, and in case you are worried by the title of the
-talk, it should not be taken literally, I just got married with
-another human being but created a website with some extra backend
-automation to make the organisation of the wedding easier.
+I'm Andrea Crotti, I work for Funding Circle. and in case you are
+worried by the title of the talk, it should not be taken literally, I
+just got married with another human being but created a website with
+some extra backend automation to make the organisation of the wedding
+easier.
 
 If anyone of you organised a wedding (or an event with around 100
 people attending), know, organising an even it's a massive amount of
@@ -62,18 +63,30 @@ that's what I'm going to show to you today.
  (friends of my wife family) I didn't even have their physical address.
 
  As another example, the vast majority of Italian guests would just
- give as the gift in cash, and the few that 
+ give as the gift in cash, and the ones that would have used a more
+ modern solution, could as easily just use bank coordinates, so no
+ point really in building something fancy.
+
+ RVSP is another good example, to make something super fancy (with
+ auto completion and such) we would have needed names and last names
+ of everyone, which I didn't have.  So I ended up doing something much
+ simpler, overall I just got less than 10 guests using that. It's
+ however still useful to have a way to track their responses of course
+ which is what I will show later on.
  #+END_NOTES
 
  [[./images/scheming2.gif]]
 
 * Implementation
 
+** Lots of work
+
+[[./images/progress.png]]
+
 ** Some stats
 
-- 9 months of development
 - 433 commits (with > 10k lines added)
-- 50 PRs closed
+- 50 self approved PRs closed
 - 550 Clj SLOC
 - 92 Cljc SLOC
 - 463 Cljs SLOC
@@ -116,6 +129,22 @@ And from Google analytics:
 
 ** One language to rule them all
 
+#+BEGIN_NOTES
+I think this is by far the best thing about using Clojure all the way,
+by using Clojure, Clojurescript and Garden to generate the CSS from
+Clojure data structures, you can really remove any kind of repetition
+from your codebase.
+
+This is for example how the different sections of the website are
+defined. We simply have a list of sections in shared Cljc file, which
+is then used by Clojure, Clojurescript and the css.clj file.  Since I
+used CSS grid I still needed to define for example how many rows we
+have, which normally would have to be repeated in the CSS files.
+
+This way instead it's just dynamically generated depending on what's
+in the cljc file.
+#+END_NOTES
+
 #+BEGIN_SRC clojure
   (def sections
     [:find-us
@@ -146,6 +175,13 @@ And from Google analytics:
 
 ** Maps support
 
+#+BEGIN_NOTES
+Another interesting thing is how Javascript and Clojurescript can easily share information.
+For example here we have a simple way to define point of interests that have to show
+up in the maps integrated in the website, and a map config that defines which point
+of interest will go in each of the maps.
+#+END_NOTES
+
 #+BEGIN_SRC clojure
   (def places
     {:lepri {:lat 42.346799
@@ -171,6 +207,13 @@ And from Google analytics:
 
 ** Maps config in JS
 
+#+BEGIN_NOTES
+This is all very nice and declarative, but since I could not manage to
+easily do all the Google Maps set up directly with Clojurescript wrappers,
+I need to get this configuration somehow available to Javascript, to make
+it possible to use it in this code.
+#+END_NOTES
+
 #+BEGIN_SRC javascript
   var config = window.config;
   function addMap(mapConfig) {
@@ -192,6 +235,10 @@ And from Google analytics:
 #+END_SRC
 
 ** Fill in window.config
+
+#+BEGIN_NOTES
+And this is all you need to actually get something like this to work.
+#+END_NOTES
 
 #+BEGIN_SRC clojure
   (defn home-page
