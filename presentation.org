@@ -85,7 +85,7 @@ that's what I'm going to show to you today.
 
 ** Some stats
 
-- 433 commits (with > 10k lines added)
+- 397 commits (with > 10k lines added)
 - 50 self approved PRs closed
 - 550 Clj SLOC
 - 92 Cljc SLOC
@@ -293,7 +293,15 @@ Command line to generate placeholders:
 * Conclusions
 
 #+BEGIN_NOTES
-So in conclusions everything went quite well 
+In the end the wedding went very well and everyone was happy, probably
+more thanks to the food and the nice day than all the automation done
+with Clojure.
+
+One fun fact is that right when the countdown reached zero the website
+stopped working throwing a javascript assertion, because the library
+used didn't like having a negative time interval, so that's just a
+reminder to test things a bit more carefully (and thank God I didn't
+have to worry about timezones at least.)
 #+END_NOTES
 
 [[./images/sposini.jpg]]
