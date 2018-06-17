@@ -47,6 +47,15 @@ and even an automated way to generate tables.
 
 * Reality
 
+#+BEGIN_NOTES
+The reality was not as simple however, because for example I had no
+contact information for a lot of the guests, and for many of them
+(friends of my wife family) I didn't even have their physical address.
+
+As another example, the vast majority of Italian guests would just
+give as the gift in cash, and the few that 
+#+END_NOTES
+
 [[./images/scheming2.gif]]
 
 * Implementation
@@ -60,6 +69,10 @@ and even an automated way to generate tables.
 - 92 Cljc SLOC
 - 463 Cljs SLOC
 
+And from Google analytics:
+- 183 users from 10 countries
+- 1400 page views
+
 ** Backend
 
 - Clojure
@@ -69,6 +82,10 @@ and even an automated way to generate tables.
 - Migratus
 - Buddy
 - Clj-pdf
+
+** Db schema
+
+[[./images/db_schema.png]]
 
 ** Frontend
 
