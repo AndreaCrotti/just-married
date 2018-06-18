@@ -4,7 +4,6 @@
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+EMAIL: andrea.crotti.0@gmail.com (@andreacrotti)
-#+TOC: 
 
 * Wedding planning
 
@@ -27,8 +26,8 @@ There are some website generators and other online tools that help you
 a bit, but of course nothing beats a totally custom platform, and of
 course where would be the fun using some pre made stuff anyway.
 
-In the spirit of Lisp we prefer to write everything ourselves, so
-that's what I'm going to show to you today.
+In the spirit of Lisp programmers we prefer to write everything
+ourselves, so that's what I'm going to show to you today.
 #+END_NOTES
 
 [[./images/panic.jpg]]
@@ -45,6 +44,8 @@ that's what I'm going to show to you today.
  smartly, integration with payments platform for the wedding registry,
  a Postgres database to store all the useful information about guests
  and even an automated way to generate tables.
+
+ As a side note I think if you are like me you struggled
  #+END_NOTES
 
  - Italian & English public website
@@ -161,7 +162,7 @@ in the cljc file.
 
   (def num-sections (-> sections count))
   (def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
-  
+
   (def ^:private body-grid-config
       {:display               "grid"
        :grid-gap              "5px"
@@ -305,4 +306,3 @@ have to worry about timezones at least.)
 #+END_NOTES
 
 [[./images/sposini.jpg]]
-

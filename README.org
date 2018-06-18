@@ -23,7 +23,7 @@ wedding related website, and it's backend storing information about guests
 
 ** TODO run backend tests
    This involves also finding a way to set up docker properly,
-   to be able to run integration tests.   
+   to be able to run integration tests.
 
 * DONE use HTTPS everywhere                                  :infrastructure:
   CLOSED: [2017-09-28 Thu 16:19]
@@ -39,11 +39,17 @@ wedding related website, and it's backend storing information about guests
 
 * User facing features
 
-** TODO add "our story" section                                          :v1:
+** REJECTED add "our story" section                                      :v1:
+   CLOSED: [2018-06-18 Mon 16:21]
 
-*** TODO proof read our story and translate it in italian
+   - CLOSING NOTE [2018-06-18 Mon 16:21]
+*** REJECTED proof read our story and translate it in italian
+    CLOSED: [2018-06-18 Mon 16:21]
 
-** TODO upload funny stories and pictures/videos of the two              :v2:
+    - CLOSING NOTE [2018-06-18 Mon 16:21]
+** REJECTED upload funny stories and pictures/videos of the two          :v2:
+   CLOSED: [2018-06-18 Mon 16:21]
+   - CLOSING NOTE [2018-06-18 Mon 16:21]
    getting married, so they can be told, attached somewhere during the
    wedding itself.
 
@@ -54,7 +60,7 @@ wedding related website, and it's backend storing information about guests
    otherwise there are products like
    - https://www.eventable.com/docs
    - https://addtocalendar.com/
-    
+
    that do everything but it might be more fiddly.
 
 Easiest way is however to simply have a public calendar and include the HTML from there
@@ -100,7 +106,7 @@ Easiest way is however to simply have a public calendar and include the HTML fro
 
 ** TODO feature to upload your own thoughts and images                   :v3:
 
-Could use [Picasa WEB developer API](https://developers.google.com/picasa-web/) 
+Could use [Picasa WEB developer API](https://developers.google.com/picasa-web/)
 For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
 
 ** TODO language detection and translation (italian/english)             :v1:
@@ -127,7 +133,6 @@ For clojure see [clj-dropbox ](https://github.com/aria42/clj-dropbox) instead.
   CLOSED: [2017-10-08 Sun 22:26]
 
   - CLOSING NOTE [2017-10-08 Sun 22:26]
-* TODO logentries                                               :infrastructure:
 
 * DONE fill in the database with all the invited people importing from existing data :v1:
   CLOSED: [2018-03-08 Thu 14:01]
