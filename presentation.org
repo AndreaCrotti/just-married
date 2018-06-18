@@ -76,7 +76,7 @@ ourselves, so that's what I'm going to show to you today.
  which is what I will show later on.
  #+END_NOTES
 
- [[./images/scheming2.gif]]
+ [[./images/hopes.gif]]
 
 * Implementation
 
