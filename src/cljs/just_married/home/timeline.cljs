@@ -11,7 +11,8 @@
 
 (def ^:private timeline-dict
   {:it {:civil-start "Inizio cerimonia civile"
-        :restaurant "Pranzo"}})
+        :restaurant "Pranzo"
+        :timeline "Programma Della Giornata"}})
 
 (def ^:private tr (partial translate timeline-dict))
 
