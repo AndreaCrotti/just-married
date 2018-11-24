@@ -7,15 +7,19 @@
   {:en "gbp"
    :it "euro"})
 
-(def coordinates
-  {:eur {:name "Andrea Crotti"
-         :iban "DE70100110012629402677"
-         :bic "BICNTSBDEB1XXX"}
+;; add missing information here:
+;; Marco Guidetti
+;; IBAN: IT95U0306234210000001075832
+;; CAB: 34210
+;; ABI: 03062
+;; CIN: U
+;; BBAN: U030623421001075832
+;; BIC/SWIFT: MEDBITMMXXX
 
-   :gbp {:name "Andrea Crotti"
-         :iban "GB19ABBY09012921859069"
-         :number "21859069"
-         :sort-code "09-01-29"}})
+(def coordinates
+  {:eur {:name "Marco Guidetti"
+         :iban "IT95U0306234210000001075832"
+         :bic "MEDBITMMXXX"}})
 
 (def gift-dict
   {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon trip to the Seychelles you can use the bank details provided below:"
@@ -47,8 +51,4 @@
   [:div.gift.section {:id "gift"}
    [:h3 (tr :title)]
    (tr :gift)
-   [:h4 "Euros (€)"]
-   (coords-table [:name :iban :bic] :eur)
-
-   [:h4 (gstring/format "%s (£)" (tr :pounds))]
-   (coords-table [:name :iban :number :sort-code] :gbp)])
+   (coords-table [:name :iban :bic] :eur)])

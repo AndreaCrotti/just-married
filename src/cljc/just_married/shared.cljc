@@ -16,7 +16,7 @@
   [:countdown
    :find-us
    :timeline
-   :accommodation
+   ;; :accommodation
    :gift
    ;;:rvsp
    ])
