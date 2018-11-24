@@ -83,8 +83,5 @@
   []
   [:div.countdown.section {:id "countdown"}
    [:h3 (tr :countdown)]
-   [:div.names "Marco & Elisa"]
-   [:span.date (tr :date)]
-   #_[:span.add-to-calendar (add-to-calendar)]
    [:div.countdown__internal
     (countdown-component)]])
