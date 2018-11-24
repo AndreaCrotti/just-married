@@ -13,17 +13,15 @@
              :icon "images/rings_small.png"
              :info "Palazzo Gonzaga Guerrieri"
              :address "Via Beata Paola Montaldi, 15, 46049 Volta Mantovana MN"
-             :website "http://www.enotecagonzaga.com/"
-             :description {:it "Palazzo Gonzaga Guerrieri"}}
+             :website "http://www.enotecagonzaga.com/"}
 
    :satakunta {:lat 45.370703
                :lng 10.580631
-               :inco "images/party_small.png"
+               :icon "images/party_small.png"
                :title "Ristorante Satakunta"
                :info "Ristorante Satakunta"
                :address "Via Parolara, 2, 46040 Cavriana MN"
-               :website "http://satakunta.it/"
-               :description {:it "Ristorante Satakunta"}}})
+               :website "http://satakunta.it/"}})
 
 (def map-configs
   {:wedding {:element-id "map"

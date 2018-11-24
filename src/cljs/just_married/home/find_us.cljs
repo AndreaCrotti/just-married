@@ -6,7 +6,7 @@
   {:en {:find-us "Find Us"
         :find-us-text "The wedding will be celebrated in the beautiful Abruzzo region, between the cities Chieti and Pescara."}
    :it {:find-us "Come Trovarci"
-        :find-us-text "Il matrimonio verrà celebrato nella bellissima regione Abruzzo, tra Chieti e Pescara."}})
+        :find-us-text ""}})
 
 (def ^:private tr
   (partial translate find-us-dict))
@@ -18,4 +18,4 @@
    [:div.find-us-text (tr :find-us-text)]
    [:div.google-map {:id "map"}]
 
-   (place-detail-list [:lepri :princi])])
+   (place-detail-list [:palazzo :satakunta])])
