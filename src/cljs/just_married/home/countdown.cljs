@@ -8,12 +8,12 @@
 (def ^:private reload-time-ms 1000)
 
 (def fatidic-time
-  (time/date-time 2018 05 27 11 30))
+  (time/date-time 2018 12 22 11 30))
 
 (def ^:private countdown-dict
   {:en {:add-to-calendar "Add to Google Calendar"
         :countdown "Countdown"
-        :date "27th May, 2018"
+        :date "22nd December 2018"
         :days "Days"
         :hours "Hours"
         :minutes "Minutes"
@@ -21,7 +21,7 @@
 
    :it {:add-to-calendar "Aggiungi al Calendario di Google"
         :countdown "Conto alla rovescia"
-        :date "27 Maggio 2018"
+        :date "22 Dicembre 2018"
         :days "Giorni"
         :hours "Ore"
         :minutes "Minuti"
@@ -85,6 +85,6 @@
    [:h3 (tr :countdown)]
    [:div.names "Andrea Crotti & Enrica Verrucci"]
    [:span.date (tr :date)]
-   [:span.add-to-calendar (add-to-calendar)]
+   #_[:span.add-to-calendar (add-to-calendar)]
    [:div.countdown__internal
     (countdown-component)]])

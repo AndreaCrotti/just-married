@@ -4,11 +4,13 @@
             [just-married.home.timeline :refer [timeline]]
             [just-married.home.find-us :refer [find-us]]
             [just-married.home.accommodation :refer [accommodation]]
+            [just-married.home.countdown :refer [countdown]]
             [just-married.home.rvsp :refer [rvsp]]
             [just-married.home.gift :refer [gift]]))
 
 (def sections-roots
   {:find-us       find-us
+   :countdown     countdown
    :timeline      timeline
    :rvsp          rvsp
    :accommodation accommodation
