@@ -4,8 +4,8 @@
             [just-married.pages.common :as common]))
 
 (def ^:private date
-  {:en "27th May 2018"
-   :it "27 Maggio 2018"})
+  {:en "22nd December 2018"
+   :it "22 Dicembre 2018"})
 
 (defn- make-url
   [language redirect-to]
@@ -28,10 +28,10 @@
       [:div.initial__root
        [:div.monogram__container
         [:img.monogram {:src "images/monogram_white.png"
-                        :alt "Andrea & Enrica"}]]
+                        :alt "Marco & Elisa"}]]
 
        [:div.date__container (language date)]
-       [:div.language__detector__english
+       #_[:div.language__detector__english
         [:a {:href (make-url "en" redirect-to)}
          [:img.flag {:src "images/gb_large.png"
                      :alt "English"}]]]

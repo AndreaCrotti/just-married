@@ -6,6 +6,9 @@ heroku:
 
 heroku-clean: uberjar heroku
 
+marco-elisa:
+	git push -v --force marco-elisa HEAD:master
+
 preview:
 	git push -v --force preview HEAD:master
 
