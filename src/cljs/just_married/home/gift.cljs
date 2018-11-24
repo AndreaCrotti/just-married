@@ -22,11 +22,7 @@
          :bic "MEDBITMMXXX"}})
 
 (def gift-dict
-  {:en {:gift   "Your company in this special day will be the greatest gift. If you would like to contribute to our Honeymoon trip to the Seychelles you can use the bank details provided below:"
-        :pounds "British Pounds"
-        :title  "Wedding Registry"}
-
-   :it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire al nostro viaggio di nozze alle Seychelles potrete farlo usando queste coordinate bancarie:"
+  {:it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante."
         :pounds "Sterline"
         :title  "Lista Nozze"}})
 

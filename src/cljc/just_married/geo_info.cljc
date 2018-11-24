@@ -28,9 +28,9 @@
 (def map-configs
   {:wedding {:element-id "map"
              :places [:satakunta :palazzo]
-             :center {:lat 45.3
+             :center {:lat 45.34
                       :lng 10.6}
-             :zoom 12
+             :zoom 11
              :map-type-id "roadmap"}})
 
 (defn place-detail
