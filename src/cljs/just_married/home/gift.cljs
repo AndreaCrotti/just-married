@@ -7,19 +7,14 @@
   {:en "gbp"
    :it "euro"})
 
-;; add missing information here:
-;; Marco Guidetti
-;; IBAN: IT95U0306234210000001075832
-;; CAB: 34210
-;; ABI: 03062
-;; CIN: U
-;; BBAN: U030623421001075832
-;; BIC/SWIFT: MEDBITMMXXX
-
 (def coordinates
   {:nome "Marco Guidetti"
    :iban "IT95U0306234210000001075832"
-   :bic  "MEDBITMMXXX"})
+   :bic  "MEDBITMMXXX"
+   :cab  "34210"
+   :abi  "03062"
+   :cin  "U"
+   :bban "U030623421001075832"})
 
 (def gift-dict
   {:it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire a rendere la nostra casa piu accogliente potete farlo utilizzando queste coordinate bancarie."
@@ -46,8 +41,8 @@
   [:div.gift.section {:id "gift"}
    [:h3 (tr :title)]
    (tr :gift)
-   (into [:ul]
-         (for [k [:nome :iban :bic]]
+   (into [:ul.bank__coordinate__list]
+         (for [k [:nome :iban :bic :cab :abi :cin :bban]]
            [:li
             [:span.bank__coordinate__label
              (-> k name string/upper-case)]

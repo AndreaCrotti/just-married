@@ -177,6 +177,9 @@
                   :border-radius "10px"}]
 
    [:.find-us-text {:padding-bottom "30px"}]
+   [:.bank__coordinate__list
+    {:font-family (:open-sans font-families)}]
+
    [:.bank__coordinate__label
     {:padding-right "10px"}]
 
