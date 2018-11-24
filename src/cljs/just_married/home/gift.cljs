@@ -17,9 +17,9 @@
 ;; BIC/SWIFT: MEDBITMMXXX
 
 (def coordinates
-  {:eur {:name "Marco Guidetti"
-         :iban "IT95U0306234210000001075832"
-         :bic "MEDBITMMXXX"}})
+  {:nome "Marco Guidetti"
+   :iban "IT95U0306234210000001075832"
+   :bic  "MEDBITMMXXX"})
 
 (def gift-dict
   {:it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire a rendere la nostra casa piu accogliente potete farlo utilizzando queste coordinate bancarie."
@@ -46,4 +46,12 @@
   [:div.gift.section {:id "gift"}
    [:h3 (tr :title)]
    (tr :gift)
-   (coords-table [:name :iban :bic] :eur)])
+   (into [:ul]
+         (for [k [:nome :iban :bic]]
+           [:li
+            [:span.bank__coordinate__label
+             (-> k name string/upper-case)]
+
+            [:span.bank__coordinate__value
+             (-> coordinates
+                 k)]]))])

@@ -177,6 +177,11 @@
                   :border-radius "10px"}]
 
    [:.find-us-text {:padding-bottom "30px"}]
+   [:.bank__coordinate__label
+    {:padding-right "10px"}]
+
+   [:.bank__coordinate__value
+    {:padding-left "30px"}]
 
    [:.navbar__container (:desktop navbar-grid-config)
 
