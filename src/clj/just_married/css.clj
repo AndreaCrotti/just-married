@@ -192,13 +192,14 @@
 
 (def enter-page
   [[:.initial__root {:display "grid"
-                     :width "100%"
                      :height "auto"
+                     :width "100%"
                      :bottom "0px"
                      :top "0px"
                      :left 0
                      :justify-items "center"
                      :position "absolute"
+                     :margin "0 auto"
                      :grid-template-columns "auto auto"
                      :grid-template-rows "auto auto auto"
                      :background-color (:dark-red color-pallette)}]
@@ -206,6 +207,9 @@
    [:.monogram__container {:grid-row "1"
                            :grid-column "span 2"
                            :margin-top "100px"}]
+
+   [:.enter__link {:color "gold" #_(:white color-pallette)
+                   :font-size "4em"}]
 
    [:.date__container {:grid-column "span 2"
                        :grid-row "2"
@@ -218,10 +222,11 @@
 
    [:.language__detector__english {:grid-column "1"
                                    :grid-row "3"
+
                                    :padding-left "150px"}]
 
    [:.monogram {:width "400px"}]
-   [:.language__detector__italian {:grid-column "2"
+   [:.language__detector__italian {:grid-column "span 2"
                                    :grid-row "3"
                                    :padding-right "150px"}]])
 

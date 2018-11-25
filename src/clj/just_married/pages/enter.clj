@@ -37,6 +37,5 @@
                      :alt "English"}]]]
 
        [:div.language__detector__italian
-        [:a {:href (make-url "it" redirect-to)}
-         [:img.flag {:src "images/it_large.png"
-                     :alt "Italiano"}]]]]]]))
+        [:a.enter__link {:href (make-url "it" redirect-to)}
+         "ENTRA"]]]]]))

@@ -7,12 +7,14 @@
 
 (def ^:private timeline-def
   [["11:30" :palazzo :civil-start]
-   ["13:00" :satakunta :restaurant]])
+   ["13:00" :satakunta :restaurant]
+   ["17.00" :satakunta :taglio]])
 
 (def ^:private timeline-dict
-  {:it {:civil-start "Inizio cerimonia civile"
+  {:it {:timeline "Programma Della Giornata"
+        :civil-start "Inizio cerimonia civile"
         :restaurant "Pranzo"
-        :timeline "Programma Della Giornata"}})
+        :taglio "Taglio della torta"}})
 
 (def ^:private tr (partial translate timeline-dict))
 
