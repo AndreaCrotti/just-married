@@ -27,14 +27,14 @@
      [:body
       [:div.initial__root
        [:div.monogram__container
-        [:img.monogram {:src "images/monogram_white.png"
+        [:img.monogram {:src "images/marco_elisa.jpeg"
                         :alt "Marco & Elisa"}]]
 
        [:div.date__container (language date)]
        #_[:div.language__detector__english
-        [:a {:href (make-url "en" redirect-to)}
-         [:img.flag {:src "images/gb_large.png"
-                     :alt "English"}]]]
+          [:a {:href (make-url "en" redirect-to)}
+           [:img.flag {:src "images/gb_large.png"
+                       :alt "English"}]]]
 
        [:div.language__detector__italian
         [:a.enter__link {:href (make-url "it" redirect-to)}
