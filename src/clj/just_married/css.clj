@@ -225,7 +225,7 @@
 
                                    :padding-left "150px"}]
 
-   [:.monogram {:width "400px"}]
+   [:.monogram {:width "500px"}]
    [:.language__detector__italian {:grid-column "span 2"
                                    :grid-row "3"
                                    :padding-right "150px"}]])

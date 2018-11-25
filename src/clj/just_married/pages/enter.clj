@@ -27,7 +27,7 @@
      [:body
       [:div.initial__root
        [:div.monogram__container
-        [:img.monogram {:src "images/marco_elisa.jpeg"
+        [:img.monogram {:src "images/elisa_marco_pulito.png"
                         :alt "Marco & Elisa"}]]
 
        [:div.date__container (language date)]
