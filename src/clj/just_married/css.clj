@@ -32,13 +32,8 @@
    :satisfy    "'Satisfy', cursive"})
 
 (def ^:private body-grid-config
-  {:display               "grid"
-   :grid-gap              "5px"
-   :grid-template-columns "auto 80% auto"
-   :grid-template-rows    (repeat-word "auto" num-sections)
-   :justify-items         "left"
-   :justify-content       "center"
-   :width                 "90%"})
+  {:max-width "800px"
+   :margin    "0 auto"})
 
 (def ^:private navbar-grid-config
   {:background-color      (:dark-red color-pallette)
