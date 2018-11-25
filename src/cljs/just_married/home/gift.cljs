@@ -17,7 +17,7 @@
    :bban "U030623421001075832"})
 
 (def gift-dict
-  {:it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire a rendere la nostra casa piu accogliente potete farlo utilizzando queste coordinate bancarie."
+  {:it {:gift   "La vostra presenza in questo giorno speciale sarà il regalo più importante. Se vorrete contribuire a rendere la nostra casa piu accogliente, potrete farlo utilizzando queste coordinate bancarie."
         :title  "Lista Nozze"}})
 
 (def ^:private tr
