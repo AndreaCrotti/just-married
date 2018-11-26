@@ -19,4 +19,4 @@
    ;; :accommodation
    :gift
    ;;:rvsp
-   ])
+   :social])

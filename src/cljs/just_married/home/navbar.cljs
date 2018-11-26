@@ -8,7 +8,8 @@
         :countdown "Countdown"
         :accommodation "Accommodation"
         :contacts "Contacts"
-        :gift "Wedding Registry"}
+        :gift "Wedding Registry"
+        :social "Foto"}
 
    :it {:timeline "Programma"
         :find-us "Trovaci"
@@ -16,7 +17,8 @@
         :countdown "Conto Alla Rovescia"
         :accommodation "Dove Dormire"
         :contacts "Contatti"
-        :gift "Lista Nozze"}})
+        :gift "Lista Nozze"
+        :social "Foto"}})
 
 (defn navbar
   "Generate the full navbar from the sections"
@@ -27,4 +29,3 @@
             [:div.navbar__link
              [:a {:href href}
               (translate navbar-dict sec)]]))))
-

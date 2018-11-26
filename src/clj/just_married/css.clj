@@ -77,8 +77,10 @@
    [:.gift {:grid-column "2"}]
    [:.accommodation {:grid-column "2"}]
    [:.rvsp {:grid-column "2"}]
+   [:.social {:grid-column "2"}]
 
    [:.accommodation-prices {:padding-bottom "30px"}]
+   [:.social__content {:color "black"}]
 
    [:h3 {:color (:dark-red color-pallette)}]
    [:body {:color       (:navy color-pallette)
