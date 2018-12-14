@@ -48,7 +48,10 @@
   (extract (get-time-left)))
 
 (defonce time-left
-  (r/atom (init-time-left)))
+  (r/atom
+   (if (time/after? (time/now) fatidic-time)
+     0
+     (init-time-left))))
 
 (defn reset-left-time
   []
@@ -62,16 +65,20 @@
 (defn countdown-component
   "Generic component for the countdown"
   []
-  (r/with-let [timer-fn
-               (js/setInterval
-                #(swap! time-left reset-left-time) reload-time-ms)]
+  (if (time/after? (time/now) fatidic-time)
+    [:div "That's all folks!"]
+    (r/with-let [timer-fn
+                 (js/setInterval
+                  #(swap! time-left reset-left-time) reload-time-ms)]
 
-    [:div.timer {:class ["col-xs" "row"]}
-     [:div (str (or-zero :days) " " (tr :days))]
-     [:div (str (or-zero :hours) " " (tr :hours))]
-     [:div (str (or-zero :minutes) " " (tr :minutes))]]
+      
 
-    (finally (js/clearInterval timer-fn))))
+      [:div.timer {:class ["col-xs" "row"]}
+       [:div (str (or-zero :days) " " (tr :days))]
+       [:div (str (or-zero :hours) " " (tr :hours))]
+       [:div (str (or-zero :minutes) " " (tr :minutes))]]
+
+      (finally (js/clearInterval timer-fn)))))
 
 (defn add-to-calendar
   []
