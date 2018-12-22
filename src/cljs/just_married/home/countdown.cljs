@@ -38,7 +38,7 @@
   [interval]
   (let [[days hours minutes]
         (re-seq #"\d+" (unparse-duration interval))]
-    
+
     {:days days
      :hours hours
      :minutes minutes}))
@@ -64,14 +64,16 @@
 ;; sample code found https://stackoverflow.com/questions/30280484/making-a-simple-countdown-timer-with-clojure-reagent
 (defn countdown-component
   "Generic component for the countdown"
+
   []
-  (if (time/after? (time/now) fatidic-time)
+  [:div "Oggi è il grande giorno"]
+  #_(if (time/after? (time/now) fatidic-time)
     [:div "That's all folks!"]
     (r/with-let [timer-fn
                  (js/setInterval
                   #(swap! time-left reset-left-time) reload-time-ms)]
 
-      
+
 
       [:div.timer {:class ["col-xs" "row"]}
        [:div (str (or-zero :days) " " (tr :days))]
