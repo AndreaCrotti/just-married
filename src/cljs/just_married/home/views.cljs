@@ -11,7 +11,7 @@
 
 (def sections-roots
   {:find-us       find-us
-   :countdown     countdown
+   ;; :countdown     countdown
    :timeline      timeline
    :rvsp          rvsp
    :accommodation accommodation
