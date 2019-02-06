@@ -14,7 +14,8 @@
         :comment "Other comments (any allergies/special requirements)"
         :not-coming "Sorry I can't"
         :confirmation-sent "Thanks for letting us know!"
-        :how-many "How many are you?"}
+        :how-many "How many are you?"
+        :submit "Let us know"}
 
    :it {:rvsp "RVSP"
         :email "Email"
@@ -26,7 +27,8 @@
         :comment-sample "Per esempio la mia ragazza e' celiaca, io sono allergico alle arachidi"
         :not-coming "Non posso"
         :confirmation-sent "Grazie per averci fatto sapere!"
-        :how-many "Quanti siete?"}})
+        :how-many "Quanti siete?"
+        :submit "Facci sapere"}})
 
 (def ^:private tr (partial translate rvsp-dict))
 
@@ -34,37 +36,51 @@
   [handler-key]
   #(dispatch [handler-key (-> % .-target .-value)]))
 
+(defn form-fields
+  [with-details]
+  (let [basic-fields
+        [[:label (tr :name)]
+         [:input.rvsp__name {:type        "text"
+                             :placeholder (tr :name-sample)
+                             :on-change   (set-val :set-name)}]
+
+         [:button.rvsp__confirm.rvsp__coming
+          {:on-click #(dispatch [:set-is-coming true])} (tr :coming)]
+
+         [:button.rvsp__confirm.rvsp__not_coming
+          {:on-click #(dispatch [:set-is-coming false])} (tr :not-coming)]]
+
+        detail-fields
+        [[:label (tr :email)]
+         [:input.rvsp__email {:type        "email"
+                              :placeholder (tr :email-sample)
+                              :on-change   (set-val :set-email)}]
+
+         [:label (tr :comment)]
+         [:textarea.rvsp__comment {:rows        2
+                                   :cols        100
+                                   :placeholder (tr :comment-sample)
+                                   :on-change   (set-val :set-comment)}]
+
+         [:label (tr :how-many)]
+         (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
+                                       :value     config/default-how-many}]
+               (for [n (range 1 10)]
+                 [:option {:value n} n]))]
+
+        fields (if with-details (concat basic-fields detail-fields) basic-fields)
+        confirm-button
+        [:button.rvsp__submit {:on-click #(dispatch [:send-notification])}
+         (tr :submit)]]
+
+    (concat fields [confirm-button])))
+
 (defn rvsp
   []
-  [:div.rvsp {:id "rvsp"}
-   [:h3 (tr :rvsp)]
-   
-   [:div.rvsp__form
-    [:label (tr :name)]
-    [:input.rvsp__name {:type        "text"
-                        :placeholder (tr :name-sample)
-                        :on-change   (set-val :set-name)}]
+  (let [is-coming (subscribe [:is-coming])]
+    (fn []
+      [:div.rvsp {:id "rvsp"}
+       [:h3 (tr :rvsp)]
 
-    [:label (tr :email)]
-    [:input.rvsp__email {:type        "email"
-                         :placeholder (tr :email-sample)
-                         :on-change   (set-val :set-email)}]
-
-    [:label (tr :how-many)]
-    (into [:select.rvsp__howmany {:on-change (set-val :set-how-many)
-                                  :value config/default-how-many}]
-          (for [n (range 1 10)]
-            [:option {:value n} n]))
-
-    [:label (tr :comment)]
-    [:textarea.rvsp__comment {:rows        2
-                              :cols        100
-                              :placeholder (tr :comment-sample)
-                              :on-change   (set-val :set-comment)}]
-    
-    [:button.rvsp__confirm.rvsp__coming
-     {:on-click #(dispatch [:send-notification true])} (tr :coming)]
-
-    [:button.rvsp__confirm.rvsp__not_coming
-     {:on-click #(dispatch [:send-notification false])} (tr :not-coming)]]])
-
+       (into [:div.rvsp__form]
+             (form-fields @is-coming))])))

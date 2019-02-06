@@ -7,6 +7,8 @@
 (def ^:private map-height "500px")
 (def ^:private max-width-mobile "480px")
 
+(defcssfn url)
+
 ;; dynamically get the grid size from the actual sections declared
 (def num-sections (-> sections count))
 (def menu-size (format "repeat(%d, 1fr)" (inc num-sections)))
@@ -90,7 +92,7 @@
            :font-family (:satisfy font-families)
            :font-size   "1.4em"}]
 
-   [:.names {:font-size "1.4em"
+   [:.names {:font-size      "1.4em"
              :padding-bottom "10px"}]
    [:.date {:font-size "1.4em"}]
    [:.countdown__internal {:text-align "center"
@@ -111,8 +113,8 @@
                       :padding-right "5px"}]
 
    [:.bank_table {:font-family (:open-sans font-families)}]
-   [:.accommodation-prices {:font-family (:open-sans font-families)
-                            :padding-top "10px"
+   [:.accommodation-prices {:font-family  (:open-sans font-families)
+                            :padding-top  "10px"
                             :padding-left "30px"}]
 
    [:th {:padding "4px"}]
@@ -132,18 +134,19 @@
    [:.rvsp__confirm {:width           "200px"
                      :border-radius   "4px"
                      :padding         "10px"
-                     :font-size       "1.2em"
+                     :margin "10px"
+                     ;; :font-size       "1.1em"
                      :text-decoration "none"
                      :display         "inline-block"
                      :border          "none"
                      :cursor          "hand"
-                     :color           (:white color-pallette)}]
+                     :color           (:white color-pallette)
+                     :background-color (:dark-red color-pallette)}]
 
-   [:.rvsp__confirm:hover {:font-size "1.1em"}]
-
-   [:.rvsp__coming {:background-color (:dark-red color-pallette)}]
-
-   [:.rvsp__not_coming {:background-color (:navy color-pallette)}]
+   ;; url macro not currently working as expected
+   [:.rvsp__coming {;;:background (url "images/it_large.png") "no-repeat"
+                    :cursor "pointer"
+                    :border "none"}]
 
    [:blockquote:before {:color          (:quote-border-left color-pallette)
                         :content        "open-quote"
@@ -180,7 +183,9 @@
 
    [:.navbar__container (:desktop navbar-grid-config)
 
-    ;; FIXME: should be less generic here
+    
+    
+;; FIXME: should be less generic here
     [:a {:color (:white color-pallette)}]
 
     [:a:hover {:color        (:gold color-pallette)

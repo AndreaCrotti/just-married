@@ -20,24 +20,29 @@
   ;; what other possibly useful information could be here?
   {:language       :en
    :expanded-story false
-   :rvsp           {:name     nil
-                    :email    nil
-                    :how-many config/default-how-many
-                    :comment  nil}})
+   :rvsp           {:name      nil
+                    :email     nil
+                    :how-many  config/default-how-many
+                    :comment   nil
+                    :is-coming true}})
 
 (defn- getter
-  [key]
+  [path]
   (fn [db _]
-    (key db)))
+    (get-in db path)))
 
 (defn- setter
-  [key]
+  [path]
   (fn [db [_ val]]
-    (assoc-in db key val)))
+    (assoc-in db path val)))
 
 (reg-sub
  :expanded-story
- (getter :expanded-story))
+ (getter [:expanded-story]))
+
+(reg-sub
+ :is-coming
+ (getter [:rvsp :is-coming]))
 
 ;; register simple setters for all the rvsp fields dynamically
 (doseq [field (-> default-db :rvsp keys)]
@@ -46,20 +51,16 @@
    (setter [:rvsp field])))
 
 (defn rvsp
-  [{:keys [db]} [_ value]]
+  [{:keys [db]}]
   {:db         db
    :http-xhrio {:method          :post
                 :uri             "/api/rvsp"
-                :params          (assoc (:rvsp db) :coming value)
+                :params          (:rvsp db)
                 ;; could use EDN as well here potentially
                 :format          (ajax/json-request-format)
                 :response-format (ajax/json-response-format {:keywords? true})
                 :on-success      [:confirmation-sent]
                 :on-failure      [:confirmation-not-sent]}})
-
-(reg-event-fx
- :send-notification
- rvsp)
 
 (defn handle
   [response]
@@ -81,6 +82,10 @@
  (fn [db [_ response]]
    (handle response)
    db))
+
+(reg-event-fx
+ :send-notification
+ rvsp)
 
 (reg-event-db
  :initialize-db
