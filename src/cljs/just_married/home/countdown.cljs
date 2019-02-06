@@ -8,12 +8,12 @@
 (def ^:private reload-time-ms 1000)
 
 (def fatidic-time
-  (time/date-time 2018 05 27 11 30))
+  (time/date-time 2018 12 22 11 30))
 
 (def ^:private countdown-dict
   {:en {:add-to-calendar "Add to Google Calendar"
         :countdown "Countdown"
-        :date "27th May, 2018"
+        :date "22nd December 2018"
         :days "Days"
         :hours "Hours"
         :minutes "Minutes"
@@ -21,7 +21,7 @@
 
    :it {:add-to-calendar "Aggiungi al Calendario di Google"
         :countdown "Conto alla rovescia"
-        :date "27 Maggio 2018"
+        :date "22 Dicembre 2018"
         :days "Giorni"
         :hours "Ore"
         :minutes "Minuti"
@@ -38,7 +38,7 @@
   [interval]
   (let [[days hours minutes]
         (re-seq #"\d+" (unparse-duration interval))]
-    
+
     {:days days
      :hours hours
      :minutes minutes}))
@@ -48,7 +48,10 @@
   (extract (get-time-left)))
 
 (defonce time-left
-  (r/atom (init-time-left)))
+  (r/atom
+   (if (time/after? (time/now) fatidic-time)
+     0
+     (init-time-left))))
 
 (defn reset-left-time
   []
@@ -61,17 +64,23 @@
 ;; sample code found https://stackoverflow.com/questions/30280484/making-a-simple-countdown-timer-with-clojure-reagent
 (defn countdown-component
   "Generic component for the countdown"
+
   []
-  (r/with-let [timer-fn
-               (js/setInterval
-                #(swap! time-left reset-left-time) reload-time-ms)]
+  [:div "Oggi è il grande giorno"]
+  #_(if (time/after? (time/now) fatidic-time)
+    [:div "That's all folks!"]
+    (r/with-let [timer-fn
+                 (js/setInterval
+                  #(swap! time-left reset-left-time) reload-time-ms)]
 
-    [:div.timer {:class ["col-xs" "row"]}
-     [:div (str (or-zero :days) " " (tr :days))]
-     [:div (str (or-zero :hours) " " (tr :hours))]
-     [:div (str (or-zero :minutes) " " (tr :minutes))]]
 
-    (finally (js/clearInterval timer-fn))))
+
+      [:div.timer {:class ["col-xs" "row"]}
+       [:div (str (or-zero :days) " " (tr :days))]
+       [:div (str (or-zero :hours) " " (tr :hours))]
+       [:div (str (or-zero :minutes) " " (tr :minutes))]]
+
+      (finally (js/clearInterval timer-fn)))))
 
 (defn add-to-calendar
   []
@@ -83,8 +92,5 @@
   []
   [:div.countdown.section {:id "countdown"}
    [:h3 (tr :countdown)]
-   [:div.names "Andrea Crotti & Enrica Verrucci"]
-   [:span.date (tr :date)]
-   [:span.add-to-calendar (add-to-calendar)]
    [:div.countdown__internal
     (countdown-component)]])

@@ -7,70 +7,29 @@
 (def map-type-id "roadmap")
 
 (def places
-  {:lepri {:lat 42.346799
-           :lng 14.164534
-           :title "Palazzo Lepri"
-           :icon "images/rings_small.png"
-           :info "Palazzo Lepri"
-           :address "Via la Valletta, 6, 66100 Chieti CH, Italy"
-           :website "http://www.palazzolepri.it/"
-           :description {:it "Palazzo Lepri"
-                         :en "Lepri Palace"}}
+  {:palazzo {:lat 45.321197
+             :lng 10.658947
+             :title "Palazzo Gonzaga Guerrieri"
+             :icon "images/rings_small.png"
+             :info "Palazzo Gonzaga Guerrieri"
+             :address "Via Beata Paola Montaldi, 15, 46049 Volta Mantovana MN"
+             :website "http://www.enotecagonzaga.com/"}
 
-   :princi {:lat 42.423608
-            :lng 14.231041
-            :address "Strada Provinciale per Pescara - S. Silvestro, 320, 65100 Pescara PE, Italy"
-            :website "http://www.masgrandieventi.it/"
-            :title "Parco dei Principi"
-            :icon "images/party_small.png"
-            :info "Parco dei Principi"}
-
-   :villa {:lat 42.421552
-           :lng 14.230742
-           :address "Strada Comunale San Silvestro, 340, 65129 Pescara PE, Italy"
-           :website "http://www.hotelvillaimmacolata.it/"
-           :icon "images/hotel_small.png"
-           :title "Parc Hotel Villa Immacolata"
-           :info "Hotel Villa Immacolata"}
-
-   ;;TODO: get the right coordinates
-   :vignaiole {:lat 42.421552
-               :lng 14.230742
-               :icon "images/vignaiole.png"
-               :info "B & B"}
-
-   :pescara-airport {:lat 42.421552
-                     :lng 14.230742
-                     :icon "images/airport.png"
-                     :info "Aeroporto di Pescara"}
-
-   :pescara-station {:lat 42.421552
-                     :lng 14.230742
-                     :icon "images/stazione.png"
-                     :info "Stazione di Pescara"}})
+   :satakunta {:lat 45.370703
+               :lng 10.580631
+               :icon "images/party_small.png"
+               :title "Ristorante Satakunta"
+               :info "Ristorante Satakunta"
+               :address "Via Parolara, 2, 46040 Cavriana MN"
+               :website "http://satakunta.it/"}})
 
 (def map-configs
   {:wedding {:element-id "map"
-             :places [:lepri :princi]
-             :center {:lat 42.4
-                      :lng 14.2}
-             :zoom 12
-             :map-type-id "roadmap"}
-
-   :accommodation {:element-id "accommodation-map"
-                   :places [:princi :villa]
-                   :center {:lat (-> places :villa :lat)
-                            :lng (-> places :villa :lng)}
-                   :zoom 15
-                   :map-type-id "roadmap"}
-
-   ;; use this merged map somewhere
-   :merged-map {:element-id "full-map"
-                :places (keys places)
-                :center {:lat 42.42
-                         :lng 14.23}
-                :zoom 11
-                :map-type-id "roadmap"}})
+             :places [:satakunta :palazzo]
+             :center {:lat 45.34
+                      :lng 10.6}
+             :zoom 11
+             :map-type-id "roadmap"}})
 
 (defn place-detail
   [name]

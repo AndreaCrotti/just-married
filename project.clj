@@ -5,40 +5,40 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.9.0"]
                  ;; ring dependencies
-                 [ring "1.6.3"]
+                 [ring "1.7.1"]
                  [ring/ring-defaults "0.3.2"]
                  [compojure "1.6.1"]
                  [ch.qos.logback/logback-classic "1.2.3" :exclusions [org.slf4j/slf4j-api]]
-                 [clj-http "3.9.0"]
+                 [clj-http "3.9.1"]
 
                  ;; clojurescript dependencies
-                 [org.clojure/clojurescript "1.9.946"]
-                 [re-frame "0.10.5"]
+                 [org.clojure/clojurescript "1.10.439"]
+                 [re-frame "0.10.6"]
                  [day8.re-frame/http-fx "0.1.6"]
                  ;; also ns-tracker is needed not only in dev
                  [ns-tracker "0.3.1"]
-                 [garden "1.3.5"]
+                 [garden "1.3.6"]
                  [tongue "0.2.4"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]
                  [cljs-http "0.1.45"]
 
                  ;; testing libraries, could they also not be in here at all?
-                 [doo "0.1.10"]
+                 [doo "0.1.11"]
                  [day8.re-frame/test "0.1.5"]
                  [day8.re-frame/trace "0.1.22"]
                  [clj-recaptcha "0.0.2"]
 
                  [environ "1.1.0"]
                  ;; this added just to make garden happy?
-                 [prone "1.6.0"]
+                 [prone "1.6.1"]
                  ;; database libraries
                  [nilenso/honeysql-postgres "0.2.4"]
                  [clj-postgresql "0.7.0"]
-                 [org.clojure/java.jdbc "0.7.6"]
-                 [org.postgresql/postgresql "42.2.2"]
+                 [org.clojure/java.jdbc "0.7.8"]
+                 [org.postgresql/postgresql "42.2.5"]
 
-                 [honeysql "0.9.2"]
-                 [migratus "1.0.6"]
+                 [honeysql "0.9.4"]
+                 [migratus "1.1.9"]
                  [buddy "2.0.0"]
                  [buddy/buddy-auth "2.1.0"]
                  [hiccup "1.0.5"]
@@ -46,7 +46,7 @@
                  [reframe-utils "0.2.1-1"]
                  [com.cemerick/url "0.1.1"]
                  [ring/ring-json "0.4.0"]
-                 [clj-pdf "2.2.31"]]
+                 [clj-pdf "2.2.33"]]
 
   :plugins [[environ/environ.lein "0.3.1"]
             [lein-ring "0.9.7"]
@@ -96,17 +96,17 @@
    :dev
    {:aliases {"run-dev" ["trampoline" "run" "-m" "just-married.server/run-dev"]}
     :env {:devtools-debug "true"}
-    :plugins [[lein-figwheel "0.5.16"]
+    :plugins [[lein-figwheel "0.5.17"]
               [lein-doo "0.1.7"]
               [migratus-lein "0.5.0"]]
 
-    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
+    :repl-options {:nrepl-middleware [cider.piggieback/wrap-cljs-repl]}
     :dependencies [[binaryage/devtools "0.9.10"]
-                   [com.cemerick/piggieback "0.2.2"]
-                   [figwheel "0.5.16"]
-                   [figwheel-sidecar "0.5.16"]
+                   [cider/piggieback "0.3.9"]
+                   [figwheel "0.5.17"]
+                   [figwheel-sidecar "0.5.17"]
                    [javax.servlet/servlet-api "2.5"]
-                   [lambdaisland/garden-watcher "0.3.2"]
+                   [lambdaisland/garden-watcher "0.3.3"]
                    ;; dependencies for the reloaded workflow
                    [reloaded.repl "0.2.4"]
                    [ring/ring-mock "0.3.2"]]}}

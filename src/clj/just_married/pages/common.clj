@@ -58,9 +58,9 @@ ga('send', 'pageview');"
 
 (def text
   {:en
-   {:title "Andrea & Enrica"
+   {:title "Marco & Elisa"
     :description "Wedding Andrea Crotti and Enrica Verrucci"}
 
    :it
-   {:title "Andrea e Enrica"
-    :description "Matrimonio di Andrea Crotti e Enrica Verrucci"}})
+   {:title "Marco & Elisa"
+    :description "Matrimonio Marco e Elisa"}})

@@ -24,7 +24,7 @@
     (testing "Homepage contains some valid content"
       (is (true? (body-includes? resp "Andrea")))))
 
-  (testing "/rvsp redirects directly to the rvsp anchor"
+  #_(testing "/rvsp redirects directly to the rvsp anchor"
     (let [req-rvsp (mock/request :get "/rvsp")
           resp (sut/app req-rvsp)]
 

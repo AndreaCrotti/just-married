@@ -32,13 +32,8 @@
    :satisfy    "'Satisfy', cursive"})
 
 (def ^:private body-grid-config
-  {:display               "grid"
-   :grid-gap              "5px"
-   :grid-template-columns "auto 80% auto"
-   :grid-template-rows    (repeat-word "auto" num-sections)
-   :justify-items         "left"
-   :justify-content       "center"
-   :width                 "90%"})
+  {:max-width "800px"
+   :margin    "0 auto"})
 
 (def ^:private navbar-grid-config
   {:background-color      (:dark-red color-pallette)
@@ -82,8 +77,10 @@
    [:.gift {:grid-column "2"}]
    [:.accommodation {:grid-column "2"}]
    [:.rvsp {:grid-column "2"}]
+   [:.social {:grid-column "2"}]
 
    [:.accommodation-prices {:padding-bottom "30px"}]
+   [:.social__content {:color "black"}]
 
    [:h3 {:color (:dark-red color-pallette)}]
    [:body {:color       (:navy color-pallette)
@@ -177,6 +174,14 @@
                   :border-radius "10px"}]
 
    [:.find-us-text {:padding-bottom "30px"}]
+   [:.bank__coordinate__list
+    {:font-family (:open-sans font-families)}]
+
+   [:.bank__coordinate__label
+    {:padding-right "10px"}]
+
+   [:.bank__coordinate__value
+    {:padding-left "30px"}]
 
    [:.navbar__container (:desktop navbar-grid-config)
 
@@ -189,13 +194,14 @@
 
 (def enter-page
   [[:.initial__root {:display "grid"
-                     :width "100%"
                      :height "auto"
+                     :width "100%"
                      :bottom "0px"
                      :top "0px"
                      :left 0
                      :justify-items "center"
                      :position "absolute"
+                     :margin "0 auto"
                      :grid-template-columns "auto auto"
                      :grid-template-rows "auto auto auto"
                      :background-color (:dark-red color-pallette)}]
@@ -203,6 +209,9 @@
    [:.monogram__container {:grid-row "1"
                            :grid-column "span 2"
                            :margin-top "100px"}]
+
+   [:.enter__link {:color "gold" #_(:white color-pallette)
+                   :font-size "4em"}]
 
    [:.date__container {:grid-column "span 2"
                        :grid-row "2"
@@ -215,10 +224,11 @@
 
    [:.language__detector__english {:grid-column "1"
                                    :grid-row "3"
+
                                    :padding-left "150px"}]
 
-   [:.monogram {:width "400px"}]
-   [:.language__detector__italian {:grid-column "2"
+   [:.monogram {:width "500px"}]
+   [:.language__detector__italian {:grid-column "span 2"
                                    :grid-row "3"
                                    :padding-right "150px"}]])
 
